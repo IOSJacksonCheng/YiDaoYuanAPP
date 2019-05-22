@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2310BCEB229543CE001D6D2B /* ForgetCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2310BCEA229543CE001D6D2B /* ForgetCodeViewController.m */; };
+		23258E092294F8B700EF44DC /* CSUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 23258E082294F8B700EF44DC /* CSUtility.m */; };
+		23258E1022951EF500EF44DC /* UIColor+ChangeSixteenColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 23258E0B22951EF500EF44DC /* UIColor+ChangeSixteenColor.m */; };
+		23258E1122951EF500EF44DC /* UIView+CSSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 23258E0C22951EF500EF44DC /* UIView+CSSExtension.m */; };
+		23258E1222951EF500EF44DC /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 23258E0F22951EF500EF44DC /* UIView+Extension.m */; };
+		23258E172295231F00EF44DC /* LoginInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23258E162295231F00EF44DC /* LoginInViewController.m */; };
+		23258E1B22953C2400EF44DC /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23258E1A22953C2400EF44DC /* RegisterViewController.m */; };
+		235B465B2295521100DD39A5 /* CSCommonTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235B465A2295521100DD39A5 /* CSCommonTabBarController.m */; };
+		235B466222955AEA00DD39A5 /* ZhuanJiaZiXunViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235B466122955AEA00DD39A5 /* ZhuanJiaZiXunViewController.m */; };
+		235B466522955B6C00DD39A5 /* CSCommonNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235B466422955B6C00DD39A5 /* CSCommonNavigationController.m */; };
 		2379E3F32294DC920055FBDA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2379E3F22294DC920055FBDA /* AppDelegate.m */; };
 		2379E3F92294DC920055FBDA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2379E3F72294DC920055FBDA /* Main.storyboard */; };
 		2379E3FB2294DC990055FBDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2379E3FA2294DC990055FBDA /* Assets.xcassets */; };
@@ -14,10 +24,34 @@
 		2379E4012294DC990055FBDA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2379E4002294DC990055FBDA /* main.m */; };
 		2379E40E2294E21E0055FBDA /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2379E40D2294E21E0055FBDA /* Login.storyboard */; };
 		2379E4122294EAAC0055FBDA /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2379E4112294EAAC0055FBDA /* BaseViewController.m */; };
-		2379E4152294EAC30055FBDA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2379E4142294EAC30055FBDA /* ViewController.m */; };
+		3EF042296F0BCAB9238D7999 /* libPods-YiDaoYuanAPP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10A9668D8E5847F0F92E54E5 /* libPods-YiDaoYuanAPP.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		10A9668D8E5847F0F92E54E5 /* libPods-YiDaoYuanAPP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YiDaoYuanAPP.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2310BCE9229543CE001D6D2B /* ForgetCodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForgetCodeViewController.h; sourceTree = "<group>"; };
+		2310BCEA229543CE001D6D2B /* ForgetCodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForgetCodeViewController.m; sourceTree = "<group>"; };
+		23258E052294F80200EF44DC /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		23258E072294F8B700EF44DC /* CSUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSUtility.h; sourceTree = "<group>"; };
+		23258E082294F8B700EF44DC /* CSUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSUtility.m; sourceTree = "<group>"; };
+		23258E0A22951EF400EF44DC /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		23258E0B22951EF500EF44DC /* UIColor+ChangeSixteenColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ChangeSixteenColor.m"; sourceTree = "<group>"; };
+		23258E0C22951EF500EF44DC /* UIView+CSSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CSSExtension.m"; sourceTree = "<group>"; };
+		23258E0D22951EF500EF44DC /* UIView+CSSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CSSExtension.h"; sourceTree = "<group>"; };
+		23258E0E22951EF500EF44DC /* UIColor+ChangeSixteenColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ChangeSixteenColor.h"; sourceTree = "<group>"; };
+		23258E0F22951EF500EF44DC /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		23258E1322951F5400EF44DC /* CSColorAndFont.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSColorAndFont.h; sourceTree = "<group>"; };
+		23258E1422951F9500EF44DC /* CSInterfaceAddress.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSInterfaceAddress.h; sourceTree = "<group>"; };
+		23258E152295231F00EF44DC /* LoginInViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginInViewController.h; sourceTree = "<group>"; };
+		23258E162295231F00EF44DC /* LoginInViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginInViewController.m; sourceTree = "<group>"; };
+		23258E1922953C2400EF44DC /* RegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		23258E1A22953C2400EF44DC /* RegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		235B46592295521100DD39A5 /* CSCommonTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSCommonTabBarController.h; sourceTree = "<group>"; };
+		235B465A2295521100DD39A5 /* CSCommonTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSCommonTabBarController.m; sourceTree = "<group>"; };
+		235B466022955AEA00DD39A5 /* ZhuanJiaZiXunViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZhuanJiaZiXunViewController.h; sourceTree = "<group>"; };
+		235B466122955AEA00DD39A5 /* ZhuanJiaZiXunViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZhuanJiaZiXunViewController.m; sourceTree = "<group>"; };
+		235B466322955B6C00DD39A5 /* CSCommonNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSCommonNavigationController.h; sourceTree = "<group>"; };
+		235B466422955B6C00DD39A5 /* CSCommonNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSCommonNavigationController.m; sourceTree = "<group>"; };
 		2379E3EE2294DC920055FBDA /* YiDaoYuanAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YiDaoYuanAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2379E3F12294DC920055FBDA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2379E3F22294DC920055FBDA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -29,8 +63,8 @@
 		2379E40D2294E21E0055FBDA /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		2379E4102294EAAC0055FBDA /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		2379E4112294EAAC0055FBDA /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
-		2379E4132294EAC30055FBDA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		2379E4142294EAC30055FBDA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		30E92645C0A1586562B7C4F6 /* Pods-YiDaoYuanAPP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YiDaoYuanAPP.release.xcconfig"; path = "Pods/Target Support Files/Pods-YiDaoYuanAPP/Pods-YiDaoYuanAPP.release.xcconfig"; sourceTree = "<group>"; };
+		4FB55DA717085005CF36E971 /* Pods-YiDaoYuanAPP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YiDaoYuanAPP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YiDaoYuanAPP/Pods-YiDaoYuanAPP.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,17 +72,68 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EF042296F0BCAB9238D7999 /* libPods-YiDaoYuanAPP.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		23258E062294F88400EF44DC /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				23258E072294F8B700EF44DC /* CSUtility.h */,
+				23258E082294F8B700EF44DC /* CSUtility.m */,
+				23258E0E22951EF500EF44DC /* UIColor+ChangeSixteenColor.h */,
+				23258E0B22951EF500EF44DC /* UIColor+ChangeSixteenColor.m */,
+				23258E0D22951EF500EF44DC /* UIView+CSSExtension.h */,
+				23258E0C22951EF500EF44DC /* UIView+CSSExtension.m */,
+				23258E0A22951EF400EF44DC /* UIView+Extension.h */,
+				23258E0F22951EF500EF44DC /* UIView+Extension.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		235B465C22955A9D00DD39A5 /* zhuanjiazixunPage */ = {
+			isa = PBXGroup;
+			children = (
+				235B465F22955ACA00DD39A5 /* View */,
+				235B465E22955AC200DD39A5 /* Controller */,
+				235B465D22955ABA00DD39A5 /* Model */,
+			);
+			path = zhuanjiazixunPage;
+			sourceTree = "<group>";
+		};
+		235B465D22955ABA00DD39A5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		235B465E22955AC200DD39A5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				235B466022955AEA00DD39A5 /* ZhuanJiaZiXunViewController.h */,
+				235B466122955AEA00DD39A5 /* ZhuanJiaZiXunViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		235B465F22955ACA00DD39A5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		2379E3E52294DC910055FBDA = {
 			isa = PBXGroup;
 			children = (
 				2379E3F02294DC920055FBDA /* YiDaoYuanAPP */,
 				2379E3EF2294DC920055FBDA /* Products */,
+				CA240571C6937C5FAE35DEAC /* Pods */,
+				9B4865008A12AAB9D89727F9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,10 +148,12 @@
 		2379E3F02294DC920055FBDA /* YiDaoYuanAPP */ = {
 			isa = PBXGroup;
 			children = (
-				2379E40F2294EA980055FBDA /* BaseController */,
+				235B465C22955A9D00DD39A5 /* zhuanjiazixunPage */,
 				2379E40C2294E1C50055FBDA /* StoryboardPart */,
 				2379E4082294E1400055FBDA /* LoginPart */,
 				2379E4072294DDA00055FBDA /* Other */,
+				23258E062294F88400EF44DC /* Tools */,
+				2379E40F2294EA980055FBDA /* BaseController */,
 			);
 			path = YiDaoYuanAPP;
 			sourceTree = "<group>";
@@ -80,6 +167,9 @@
 				2379E3FC2294DC990055FBDA /* LaunchScreen.storyboard */,
 				2379E3FF2294DC990055FBDA /* Info.plist */,
 				2379E4002294DC990055FBDA /* main.m */,
+				23258E052294F80200EF44DC /* PrefixHeader.pch */,
+				23258E1322951F5400EF44DC /* CSColorAndFont.h */,
+				23258E1422951F9500EF44DC /* CSInterfaceAddress.h */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -104,8 +194,12 @@
 		2379E40A2294E1600055FBDA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				2379E4132294EAC30055FBDA /* ViewController.h */,
-				2379E4142294EAC30055FBDA /* ViewController.m */,
+				23258E152295231F00EF44DC /* LoginInViewController.h */,
+				23258E162295231F00EF44DC /* LoginInViewController.m */,
+				23258E1922953C2400EF44DC /* RegisterViewController.h */,
+				23258E1A22953C2400EF44DC /* RegisterViewController.m */,
+				2310BCE9229543CE001D6D2B /* ForgetCodeViewController.h */,
+				2310BCEA229543CE001D6D2B /* ForgetCodeViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -131,8 +225,29 @@
 			children = (
 				2379E4102294EAAC0055FBDA /* BaseViewController.h */,
 				2379E4112294EAAC0055FBDA /* BaseViewController.m */,
+				235B46592295521100DD39A5 /* CSCommonTabBarController.h */,
+				235B465A2295521100DD39A5 /* CSCommonTabBarController.m */,
+				235B466322955B6C00DD39A5 /* CSCommonNavigationController.h */,
+				235B466422955B6C00DD39A5 /* CSCommonNavigationController.m */,
 			);
 			path = BaseController;
+			sourceTree = "<group>";
+		};
+		9B4865008A12AAB9D89727F9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				10A9668D8E5847F0F92E54E5 /* libPods-YiDaoYuanAPP.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CA240571C6937C5FAE35DEAC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4FB55DA717085005CF36E971 /* Pods-YiDaoYuanAPP.debug.xcconfig */,
+				30E92645C0A1586562B7C4F6 /* Pods-YiDaoYuanAPP.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,9 +257,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2379E4042294DC990055FBDA /* Build configuration list for PBXNativeTarget "YiDaoYuanAPP" */;
 			buildPhases = (
+				1DDCF011EA4FE3B1348C7750 /* [CP] Check Pods Manifest.lock */,
 				2379E3EA2294DC910055FBDA /* Sources */,
 				2379E3EB2294DC910055FBDA /* Frameworks */,
 				2379E3EC2294DC910055FBDA /* Resources */,
+				DD02517AA9E51001B56A870A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -201,14 +318,64 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1DDCF011EA4FE3B1348C7750 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YiDaoYuanAPP-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DD02517AA9E51001B56A870A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-YiDaoYuanAPP/Pods-YiDaoYuanAPP-resources.sh",
+				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YiDaoYuanAPP/Pods-YiDaoYuanAPP-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2379E3EA2294DC910055FBDA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23258E1122951EF500EF44DC /* UIView+CSSExtension.m in Sources */,
+				23258E172295231F00EF44DC /* LoginInViewController.m in Sources */,
 				2379E4012294DC990055FBDA /* main.m in Sources */,
+				235B465B2295521100DD39A5 /* CSCommonTabBarController.m in Sources */,
+				235B466522955B6C00DD39A5 /* CSCommonNavigationController.m in Sources */,
+				23258E092294F8B700EF44DC /* CSUtility.m in Sources */,
+				23258E1B22953C2400EF44DC /* RegisterViewController.m in Sources */,
+				23258E1022951EF500EF44DC /* UIColor+ChangeSixteenColor.m in Sources */,
+				235B466222955AEA00DD39A5 /* ZhuanJiaZiXunViewController.m in Sources */,
 				2379E4122294EAAC0055FBDA /* BaseViewController.m in Sources */,
-				2379E4152294EAC30055FBDA /* ViewController.m in Sources */,
+				23258E1222951EF500EF44DC /* UIView+Extension.m in Sources */,
+				2310BCEB229543CE001D6D2B /* ForgetCodeViewController.m in Sources */,
 				2379E3F32294DC920055FBDA /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,6 +443,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREFIX_HEADER = /Users/shoubincheng/Desktop/YiDaoYuanAPP/YiDaoYuanAPP/Other/PrefixHeader.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -333,6 +501,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = /Users/shoubincheng/Desktop/YiDaoYuanAPP/YiDaoYuanAPP/Other/PrefixHeader.pch;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -349,6 +518,7 @@
 		};
 		2379E4052294DC990055FBDA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4FB55DA717085005CF36E971 /* Pods-YiDaoYuanAPP.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -367,6 +537,7 @@
 		};
 		2379E4062294DC990055FBDA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30E92645C0A1586562B7C4F6 /* Pods-YiDaoYuanAPP.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
