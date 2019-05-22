@@ -6,10 +6,12 @@
 //  Copyright © 2019年 Jackson cheng. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface ViewController : UIViewController
+NS_ASSUME_NONNULL_BEGIN
 
+@interface ViewController : BaseViewController
 
 @end
 
+NS_ASSUME_NONNULL_END

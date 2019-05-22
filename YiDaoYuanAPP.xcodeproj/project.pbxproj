@@ -8,24 +8,29 @@
 
 /* Begin PBXBuildFile section */
 		2379E3F32294DC920055FBDA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2379E3F22294DC920055FBDA /* AppDelegate.m */; };
-		2379E3F62294DC920055FBDA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2379E3F52294DC920055FBDA /* ViewController.m */; };
 		2379E3F92294DC920055FBDA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2379E3F72294DC920055FBDA /* Main.storyboard */; };
 		2379E3FB2294DC990055FBDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2379E3FA2294DC990055FBDA /* Assets.xcassets */; };
 		2379E3FE2294DC990055FBDA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2379E3FC2294DC990055FBDA /* LaunchScreen.storyboard */; };
 		2379E4012294DC990055FBDA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2379E4002294DC990055FBDA /* main.m */; };
+		2379E40E2294E21E0055FBDA /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2379E40D2294E21E0055FBDA /* Login.storyboard */; };
+		2379E4122294EAAC0055FBDA /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2379E4112294EAAC0055FBDA /* BaseViewController.m */; };
+		2379E4152294EAC30055FBDA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2379E4142294EAC30055FBDA /* ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2379E3EE2294DC920055FBDA /* YiDaoYuanAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YiDaoYuanAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2379E3F12294DC920055FBDA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2379E3F22294DC920055FBDA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		2379E3F42294DC920055FBDA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		2379E3F52294DC920055FBDA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		2379E3F82294DC920055FBDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2379E3FA2294DC990055FBDA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2379E3FD2294DC990055FBDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2379E3FF2294DC990055FBDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2379E4002294DC990055FBDA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2379E40D2294E21E0055FBDA /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		2379E4102294EAAC0055FBDA /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		2379E4112294EAAC0055FBDA /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		2379E4132294EAC30055FBDA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		2379E4142294EAC30055FBDA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,17 +63,76 @@
 		2379E3F02294DC920055FBDA /* YiDaoYuanAPP */ = {
 			isa = PBXGroup;
 			children = (
+				2379E40F2294EA980055FBDA /* BaseController */,
+				2379E40C2294E1C50055FBDA /* StoryboardPart */,
+				2379E4082294E1400055FBDA /* LoginPart */,
+				2379E4072294DDA00055FBDA /* Other */,
+			);
+			path = YiDaoYuanAPP;
+			sourceTree = "<group>";
+		};
+		2379E4072294DDA00055FBDA /* Other */ = {
+			isa = PBXGroup;
+			children = (
 				2379E3F12294DC920055FBDA /* AppDelegate.h */,
 				2379E3F22294DC920055FBDA /* AppDelegate.m */,
-				2379E3F42294DC920055FBDA /* ViewController.h */,
-				2379E3F52294DC920055FBDA /* ViewController.m */,
-				2379E3F72294DC920055FBDA /* Main.storyboard */,
 				2379E3FA2294DC990055FBDA /* Assets.xcassets */,
 				2379E3FC2294DC990055FBDA /* LaunchScreen.storyboard */,
 				2379E3FF2294DC990055FBDA /* Info.plist */,
 				2379E4002294DC990055FBDA /* main.m */,
 			);
-			path = YiDaoYuanAPP;
+			path = Other;
+			sourceTree = "<group>";
+		};
+		2379E4082294E1400055FBDA /* LoginPart */ = {
+			isa = PBXGroup;
+			children = (
+				2379E40B2294E16B0055FBDA /* Model */,
+				2379E40A2294E1600055FBDA /* Controller */,
+				2379E4092294E1580055FBDA /* View */,
+			);
+			path = LoginPart;
+			sourceTree = "<group>";
+		};
+		2379E4092294E1580055FBDA /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2379E40A2294E1600055FBDA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2379E4132294EAC30055FBDA /* ViewController.h */,
+				2379E4142294EAC30055FBDA /* ViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2379E40B2294E16B0055FBDA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2379E40C2294E1C50055FBDA /* StoryboardPart */ = {
+			isa = PBXGroup;
+			children = (
+				2379E3F72294DC920055FBDA /* Main.storyboard */,
+				2379E40D2294E21E0055FBDA /* Login.storyboard */,
+			);
+			path = StoryboardPart;
+			sourceTree = "<group>";
+		};
+		2379E40F2294EA980055FBDA /* BaseController */ = {
+			isa = PBXGroup;
+			children = (
+				2379E4102294EAAC0055FBDA /* BaseViewController.h */,
+				2379E4112294EAAC0055FBDA /* BaseViewController.m */,
+			);
+			path = BaseController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,6 +192,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2379E40E2294E21E0055FBDA /* Login.storyboard in Resources */,
 				2379E3FE2294DC990055FBDA /* LaunchScreen.storyboard in Resources */,
 				2379E3FB2294DC990055FBDA /* Assets.xcassets in Resources */,
 				2379E3F92294DC920055FBDA /* Main.storyboard in Resources */,
@@ -141,8 +206,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2379E3F62294DC920055FBDA /* ViewController.m in Sources */,
 				2379E4012294DC990055FBDA /* main.m in Sources */,
+				2379E4122294EAAC0055FBDA /* BaseViewController.m in Sources */,
+				2379E4152294EAC30055FBDA /* ViewController.m in Sources */,
 				2379E3F32294DC920055FBDA /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -287,7 +353,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F7JC9U8436;
-				INFOPLIST_FILE = YiDaoYuanAPP/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/YiDaoYuanAPP/Other/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -304,7 +371,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F7JC9U8436;
-				INFOPLIST_FILE = YiDaoYuanAPP/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/YiDaoYuanAPP/Other/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
