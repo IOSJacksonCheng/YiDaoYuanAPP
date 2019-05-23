@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CSUtility : NSObject
 /** 判断字符串是否为空 */
 + (BOOL) characterIsBlankString:(NSString *)string;
+
++(UIImage*) createImageWithColor:(UIColor*) color;
 @end
 
 NS_ASSUME_NONNULL_END

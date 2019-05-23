@@ -18,9 +18,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tRa-9N-KeH">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tRa-9N-KeH">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="t89-1D-R2v" id="InA-ju-k1z"/>
+                                    <outlet property="delegate" destination="t89-1D-R2v" id="nQs-we-L4A"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -33,6 +37,9 @@
                         <viewLayoutGuide key="safeArea" id="BmH-EW-40o"/>
                     </view>
                     <navigationItem key="navigationItem" id="4iU-N9-ODC"/>
+                    <connections>
+                        <outlet property="mainTableView" destination="tRa-9N-KeH" id="Yba-ZD-R7g"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DcU-rz-hcJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -79,6 +86,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="nxC-jM-Neq" customClass="CSCommonTabBarController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9II-cO-sRC">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -94,10 +102,10 @@
             </objects>
             <point key="canvasLocation" x="36" y="-181"/>
         </scene>
-        <!--View Controller-->
+        <!--Yi Dao Ke Tang View Controller-->
         <scene sceneID="JWq-Ay-Xea">
             <objects>
-                <viewController id="SSH-eC-QYY" sceneMemberID="viewController">
+                <viewController id="SSH-eC-QYY" customClass="YiDaoKeTangViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VKh-8t-aZc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -126,10 +134,10 @@
             </objects>
             <point key="canvasLocation" x="2162" y="1613"/>
         </scene>
-        <!--View Controller-->
+        <!--Xiao Xi View Controller-->
         <scene sceneID="w9X-kB-LOf">
             <objects>
-                <viewController id="eIu-hy-w5f" sceneMemberID="viewController">
+                <viewController id="eIu-hy-w5f" customClass="XiaoXiViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cN8-kA-qNR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -164,7 +172,7 @@
         <!--祈福-->
         <scene sceneID="Ysf-IH-2My">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="32c-ge-TJg" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="32c-ge-TJg" customClass="CSCommonNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="祈福" image="icon_qifu" id="lMe-kR-u2A"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="l8e-VK-gfM">
@@ -183,7 +191,7 @@
         <!--消息-->
         <scene sceneID="pDz-po-1G3">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Al2-2C-4Ar" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Al2-2C-4Ar" customClass="CSCommonNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="消息" image="icon_xiaoxi" selectedImage="icon_xiaoxi_pre" id="5PL-xZ-6gF"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WKv-pY-Ors">
@@ -202,7 +210,7 @@
         <!--我的-->
         <scene sceneID="ffC-Pk-rd6">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Pf8-yK-gkH" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Pf8-yK-gkH" customClass="CSCommonNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="我的" image="icon_wode" selectedImage="icon_wode_pre" id="fcw-c9-zwb"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6Du-MO-2Q9">
