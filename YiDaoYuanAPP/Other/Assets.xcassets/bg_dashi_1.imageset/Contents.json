@@ -1,16 +1,58 @@
 {
   "images" : [
     {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "tile",
+          "width" : 1,
+          "height" : 1
+        },
+        "cap-insets" : {
+          "bottom" : 56,
+          "top" : 49,
+          "right" : 152,
+          "left" : 102
+        }
+      },
       "idiom" : "universal",
       "filename" : "bg_dashi_1.png",
       "scale" : "1x"
     },
     {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "tile",
+          "width" : 1,
+          "height" : 66
+        },
+        "cap-insets" : {
+          "bottom" : 103,
+          "top" : 111,
+          "right" : 299,
+          "left" : 190
+        }
+      },
       "idiom" : "universal",
       "filename" : "bg_dashi_1@2x.png",
       "scale" : "2x"
     },
     {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "tile",
+          "width" : 1,
+          "height" : 42
+        },
+        "cap-insets" : {
+          "bottom" : 210,
+          "top" : 168,
+          "right" : 357,
+          "left" : 279
+        }
+      },
       "idiom" : "universal",
       "filename" : "bg_dashi_1@3x.png",
       "scale" : "3x"

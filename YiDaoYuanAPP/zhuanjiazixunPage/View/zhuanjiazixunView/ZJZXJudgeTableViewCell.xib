@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ZJZXJudgeTableViewCell" id="KGk-i7-Jjw" customClass="ZJZXJudgeTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="87.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_user_head" translatesAutoresizingMaskIntoConstraints="NO" id="Suw-NA-1am">
+                        <rect key="frame" x="11" y="10" width="68" height="68"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="68" id="TaA-Vg-2O8"/>
+                            <constraint firstAttribute="width" constant="68" id="qXM-DD-P4j"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="孙俪" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ac-gI-Yd6">
+                        <rect key="frame" x="96" y="10" width="31" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="占卜断事" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPW-aH-uKc">
+                        <rect key="frame" x="96" y="37" width="41" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2019-03-27   13:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cx6-aJ-lgr">
+                        <rect key="frame" x="163" y="37" width="95" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="易大师真的很准，帮助我避过了事业上的困难，真的太神了!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ICy-jN-Edn">
+                        <rect key="frame" x="96" y="56" width="187" height="29"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="lPW-aH-uKc" firstAttribute="leading" secondItem="Suw-NA-1am" secondAttribute="trailing" constant="17" id="58T-DT-NaK"/>
+                    <constraint firstItem="ICy-jN-Edn" firstAttribute="leading" secondItem="Suw-NA-1am" secondAttribute="trailing" constant="17" id="6u4-uX-dPG"/>
+                    <constraint firstItem="Suw-NA-1am" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Jwj-E7-DQ0"/>
+                    <constraint firstAttribute="trailing" secondItem="ICy-jN-Edn" secondAttribute="trailing" constant="37" id="R9q-4l-YMK"/>
+                    <constraint firstItem="cx6-aJ-lgr" firstAttribute="leading" secondItem="lPW-aH-uKc" secondAttribute="trailing" constant="26" id="Sn2-5V-iXa"/>
+                    <constraint firstItem="lPW-aH-uKc" firstAttribute="top" secondItem="3ac-gI-Yd6" secondAttribute="bottom" constant="9" id="fSH-GW-RWj"/>
+                    <constraint firstItem="ICy-jN-Edn" firstAttribute="top" secondItem="lPW-aH-uKc" secondAttribute="bottom" constant="7" id="gFD-KJ-mbJ"/>
+                    <constraint firstItem="3ac-gI-Yd6" firstAttribute="top" secondItem="Suw-NA-1am" secondAttribute="top" id="qUH-G5-o4i"/>
+                    <constraint firstItem="cx6-aJ-lgr" firstAttribute="centerY" secondItem="lPW-aH-uKc" secondAttribute="centerY" id="trg-ec-VNU"/>
+                    <constraint firstItem="Suw-NA-1am" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="vaR-zV-zSf"/>
+                    <constraint firstItem="3ac-gI-Yd6" firstAttribute="leading" secondItem="Suw-NA-1am" secondAttribute="trailing" constant="17" id="yOS-az-G8h"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="img_user_head" width="68" height="68"/>
+    </resources>
+</document>

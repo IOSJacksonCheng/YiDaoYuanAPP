@@ -7,19 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2303920B22969B1900B52DFB /* CSTitleSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2303920A22969B1900B52DFB /* CSTitleSearchView.m */; };
 		2310BCEB229543CE001D6D2B /* ForgetCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2310BCEA229543CE001D6D2B /* ForgetCodeViewController.m */; };
+		2319210C2297CB8E00CADD7F /* CSLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2319210B2297CB8E00CADD7F /* CSLocationViewController.m */; };
+		231921102297CD2200CADD7F /* CSSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2319210F2297CD2200CADD7F /* CSSearchViewController.m */; };
+		231921502297E34800CADD7F /* ZJZXJudgeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2319213E2297E34500CADD7F /* ZJZXJudgeTableViewCell.m */; };
+		231921512297E34800CADD7F /* ZJZXJudgeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2319213F2297E34600CADD7F /* ZJZXJudgeTableViewCell.xib */; };
+		231921522297E34800CADD7F /* ZJZXMoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 231921402297E34600CADD7F /* ZJZXMoreTableViewCell.m */; };
+		231921532297E34800CADD7F /* ZJZXBannerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 231921422297E34600CADD7F /* ZJZXBannerTableViewCell.m */; };
+		231921542297E34800CADD7F /* ZJZXDaShiTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 231921432297E34600CADD7F /* ZJZXDaShiTableViewCell.m */; };
+		231921552297E34800CADD7F /* ZJZXDaShiTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 231921442297E34600CADD7F /* ZJZXDaShiTableViewCell.xib */; };
+		231921562297E34800CADD7F /* ZJZXDaShiBangDangTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 231921462297E34700CADD7F /* ZJZXDaShiBangDangTableViewCell.m */; };
+		231921572297E34800CADD7F /* ZJZXFirstRowTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 231921492297E34700CADD7F /* ZJZXFirstRowTableViewCell.xib */; };
+		231921582297E34800CADD7F /* ZJZXFirstRowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2319214B2297E34700CADD7F /* ZJZXFirstRowTableViewCell.m */; };
+		231921592297E34800CADD7F /* ZJZXMoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2319214C2297E34700CADD7F /* ZJZXMoreTableViewCell.xib */; };
+		2319215A2297E34800CADD7F /* ZJZXDaShiBangDangTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2319214D2297E34700CADD7F /* ZJZXDaShiBangDangTableViewCell.xib */; };
+		2319215B2297E34800CADD7F /* ZJZXBannerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2319214E2297E34800CADD7F /* ZJZXBannerTableViewCell.xib */; };
+		2319215F2297E3A300CADD7F /* CSSearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2319215C2297E3A300CADD7F /* CSSearchTableViewCell.xib */; };
+		231921602297E3A300CADD7F /* CSSearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2319215D2297E3A300CADD7F /* CSSearchTableViewCell.m */; };
+		231921632297E3AB00CADD7F /* CSTitleSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 231921622297E3AB00CADD7F /* CSTitleSearchView.m */; };
 		23258E092294F8B700EF44DC /* CSUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 23258E082294F8B700EF44DC /* CSUtility.m */; };
 		23258E1022951EF500EF44DC /* UIColor+ChangeSixteenColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 23258E0B22951EF500EF44DC /* UIColor+ChangeSixteenColor.m */; };
 		23258E1122951EF500EF44DC /* UIView+CSSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 23258E0C22951EF500EF44DC /* UIView+CSSExtension.m */; };
 		23258E1222951EF500EF44DC /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 23258E0F22951EF500EF44DC /* UIView+Extension.m */; };
 		23258E172295231F00EF44DC /* LoginInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23258E162295231F00EF44DC /* LoginInViewController.m */; };
 		23258E1B22953C2400EF44DC /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23258E1A22953C2400EF44DC /* RegisterViewController.m */; };
-		234EB9692296AA42004309B4 /* ZJZXFirstRowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 234EB9672296AA42004309B4 /* ZJZXFirstRowTableViewCell.m */; };
-		234EB96A2296AA42004309B4 /* ZJZXFirstRowTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 234EB9682296AA42004309B4 /* ZJZXFirstRowTableViewCell.xib */; };
 		234EB96E2296C503004309B4 /* ZJZXFirstRowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 234EB96D2296C503004309B4 /* ZJZXFirstRowModel.m */; };
-		234EB9722296CA30004309B4 /* ZJZXDaShiTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 234EB9702296CA30004309B4 /* ZJZXDaShiTableViewCell.m */; };
-		234EB9732296CA30004309B4 /* ZJZXDaShiTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 234EB9712296CA30004309B4 /* ZJZXDaShiTableViewCell.xib */; };
 		235B465B2295521100DD39A5 /* CSCommonTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235B465A2295521100DD39A5 /* CSCommonTabBarController.m */; };
 		235B466222955AEA00DD39A5 /* ZhuanJiaZiXunViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235B466122955AEA00DD39A5 /* ZhuanJiaZiXunViewController.m */; };
 		235B466522955B6C00DD39A5 /* CSCommonNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235B466422955B6C00DD39A5 /* CSCommonNavigationController.m */; };
@@ -37,10 +49,35 @@
 
 /* Begin PBXFileReference section */
 		10A9668D8E5847F0F92E54E5 /* libPods-YiDaoYuanAPP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YiDaoYuanAPP.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2303920922969B1900B52DFB /* CSTitleSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSTitleSearchView.h; sourceTree = "<group>"; };
-		2303920A22969B1900B52DFB /* CSTitleSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSTitleSearchView.m; sourceTree = "<group>"; };
 		2310BCE9229543CE001D6D2B /* ForgetCodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForgetCodeViewController.h; sourceTree = "<group>"; };
 		2310BCEA229543CE001D6D2B /* ForgetCodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForgetCodeViewController.m; sourceTree = "<group>"; };
+		2319210A2297CB8E00CADD7F /* CSLocationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLocationViewController.h; sourceTree = "<group>"; };
+		2319210B2297CB8E00CADD7F /* CSLocationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLocationViewController.m; sourceTree = "<group>"; };
+		2319210E2297CD2200CADD7F /* CSSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSSearchViewController.h; sourceTree = "<group>"; };
+		2319210F2297CD2200CADD7F /* CSSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSSearchViewController.m; sourceTree = "<group>"; };
+		2319213E2297E34500CADD7F /* ZJZXJudgeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJZXJudgeTableViewCell.m; sourceTree = "<group>"; };
+		2319213F2297E34600CADD7F /* ZJZXJudgeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJZXJudgeTableViewCell.xib; sourceTree = "<group>"; };
+		231921402297E34600CADD7F /* ZJZXMoreTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJZXMoreTableViewCell.m; sourceTree = "<group>"; };
+		231921412297E34600CADD7F /* ZJZXFirstRowTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJZXFirstRowTableViewCell.h; sourceTree = "<group>"; };
+		231921422297E34600CADD7F /* ZJZXBannerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJZXBannerTableViewCell.m; sourceTree = "<group>"; };
+		231921432297E34600CADD7F /* ZJZXDaShiTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJZXDaShiTableViewCell.m; sourceTree = "<group>"; };
+		231921442297E34600CADD7F /* ZJZXDaShiTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJZXDaShiTableViewCell.xib; sourceTree = "<group>"; };
+		231921452297E34700CADD7F /* ZJZXDaShiTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJZXDaShiTableViewCell.h; sourceTree = "<group>"; };
+		231921462297E34700CADD7F /* ZJZXDaShiBangDangTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJZXDaShiBangDangTableViewCell.m; sourceTree = "<group>"; };
+		231921472297E34700CADD7F /* ZJZXMoreTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJZXMoreTableViewCell.h; sourceTree = "<group>"; };
+		231921482297E34700CADD7F /* ZJZXBannerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJZXBannerTableViewCell.h; sourceTree = "<group>"; };
+		231921492297E34700CADD7F /* ZJZXFirstRowTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJZXFirstRowTableViewCell.xib; sourceTree = "<group>"; };
+		2319214A2297E34700CADD7F /* ZJZXJudgeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJZXJudgeTableViewCell.h; sourceTree = "<group>"; };
+		2319214B2297E34700CADD7F /* ZJZXFirstRowTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJZXFirstRowTableViewCell.m; sourceTree = "<group>"; };
+		2319214C2297E34700CADD7F /* ZJZXMoreTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJZXMoreTableViewCell.xib; sourceTree = "<group>"; };
+		2319214D2297E34700CADD7F /* ZJZXDaShiBangDangTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJZXDaShiBangDangTableViewCell.xib; sourceTree = "<group>"; };
+		2319214E2297E34800CADD7F /* ZJZXBannerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJZXBannerTableViewCell.xib; sourceTree = "<group>"; };
+		2319214F2297E34800CADD7F /* ZJZXDaShiBangDangTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJZXDaShiBangDangTableViewCell.h; sourceTree = "<group>"; };
+		2319215C2297E3A300CADD7F /* CSSearchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSSearchTableViewCell.xib; sourceTree = "<group>"; };
+		2319215D2297E3A300CADD7F /* CSSearchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSearchTableViewCell.m; sourceTree = "<group>"; };
+		2319215E2297E3A300CADD7F /* CSSearchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSearchTableViewCell.h; sourceTree = "<group>"; };
+		231921612297E3AB00CADD7F /* CSTitleSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSTitleSearchView.h; sourceTree = "<group>"; };
+		231921622297E3AB00CADD7F /* CSTitleSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSTitleSearchView.m; sourceTree = "<group>"; };
 		23258E052294F80200EF44DC /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		23258E072294F8B700EF44DC /* CSUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSUtility.h; sourceTree = "<group>"; };
 		23258E082294F8B700EF44DC /* CSUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSUtility.m; sourceTree = "<group>"; };
@@ -56,14 +93,8 @@
 		23258E162295231F00EF44DC /* LoginInViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginInViewController.m; sourceTree = "<group>"; };
 		23258E1922953C2400EF44DC /* RegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		23258E1A22953C2400EF44DC /* RegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
-		234EB9662296AA42004309B4 /* ZJZXFirstRowTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJZXFirstRowTableViewCell.h; sourceTree = "<group>"; };
-		234EB9672296AA42004309B4 /* ZJZXFirstRowTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJZXFirstRowTableViewCell.m; sourceTree = "<group>"; };
-		234EB9682296AA42004309B4 /* ZJZXFirstRowTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZJZXFirstRowTableViewCell.xib; sourceTree = "<group>"; };
 		234EB96C2296C503004309B4 /* ZJZXFirstRowModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJZXFirstRowModel.h; sourceTree = "<group>"; };
 		234EB96D2296C503004309B4 /* ZJZXFirstRowModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJZXFirstRowModel.m; sourceTree = "<group>"; };
-		234EB96F2296CA30004309B4 /* ZJZXDaShiTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJZXDaShiTableViewCell.h; sourceTree = "<group>"; };
-		234EB9702296CA30004309B4 /* ZJZXDaShiTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJZXDaShiTableViewCell.m; sourceTree = "<group>"; };
-		234EB9712296CA30004309B4 /* ZJZXDaShiTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZJZXDaShiTableViewCell.xib; sourceTree = "<group>"; };
 		235B46592295521100DD39A5 /* CSCommonTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSCommonTabBarController.h; sourceTree = "<group>"; };
 		235B465A2295521100DD39A5 /* CSCommonTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSCommonTabBarController.m; sourceTree = "<group>"; };
 		235B466022955AEA00DD39A5 /* ZhuanJiaZiXunViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZhuanJiaZiXunViewController.h; sourceTree = "<group>"; };
@@ -101,6 +132,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		231921092297CB6900CADD7F /* zhuanjiazixunView */ = {
+			isa = PBXGroup;
+			children = (
+				231921612297E3AB00CADD7F /* CSTitleSearchView.h */,
+				231921622297E3AB00CADD7F /* CSTitleSearchView.m */,
+				231921482297E34700CADD7F /* ZJZXBannerTableViewCell.h */,
+				231921422297E34600CADD7F /* ZJZXBannerTableViewCell.m */,
+				2319214E2297E34800CADD7F /* ZJZXBannerTableViewCell.xib */,
+				2319214F2297E34800CADD7F /* ZJZXDaShiBangDangTableViewCell.h */,
+				231921462297E34700CADD7F /* ZJZXDaShiBangDangTableViewCell.m */,
+				2319214D2297E34700CADD7F /* ZJZXDaShiBangDangTableViewCell.xib */,
+				231921452297E34700CADD7F /* ZJZXDaShiTableViewCell.h */,
+				231921432297E34600CADD7F /* ZJZXDaShiTableViewCell.m */,
+				231921442297E34600CADD7F /* ZJZXDaShiTableViewCell.xib */,
+				231921412297E34600CADD7F /* ZJZXFirstRowTableViewCell.h */,
+				2319214B2297E34700CADD7F /* ZJZXFirstRowTableViewCell.m */,
+				231921492297E34700CADD7F /* ZJZXFirstRowTableViewCell.xib */,
+				2319214A2297E34700CADD7F /* ZJZXJudgeTableViewCell.h */,
+				2319213E2297E34500CADD7F /* ZJZXJudgeTableViewCell.m */,
+				2319213F2297E34600CADD7F /* ZJZXJudgeTableViewCell.xib */,
+				231921472297E34700CADD7F /* ZJZXMoreTableViewCell.h */,
+				231921402297E34600CADD7F /* ZJZXMoreTableViewCell.m */,
+				2319214C2297E34700CADD7F /* ZJZXMoreTableViewCell.xib */,
+			);
+			path = zhuanjiazixunView;
+			sourceTree = "<group>";
+		};
 		23258E062294F88400EF44DC /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +198,10 @@
 			children = (
 				235B466022955AEA00DD39A5 /* ZhuanJiaZiXunViewController.h */,
 				235B466122955AEA00DD39A5 /* ZhuanJiaZiXunViewController.m */,
+				2319210A2297CB8E00CADD7F /* CSLocationViewController.h */,
+				2319210B2297CB8E00CADD7F /* CSLocationViewController.m */,
+				2319210E2297CD2200CADD7F /* CSSearchViewController.h */,
+				2319210F2297CD2200CADD7F /* CSSearchViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -147,14 +209,10 @@
 		235B465F22955ACA00DD39A5 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2303920922969B1900B52DFB /* CSTitleSearchView.h */,
-				2303920A22969B1900B52DFB /* CSTitleSearchView.m */,
-				234EB9662296AA42004309B4 /* ZJZXFirstRowTableViewCell.h */,
-				234EB9672296AA42004309B4 /* ZJZXFirstRowTableViewCell.m */,
-				234EB9682296AA42004309B4 /* ZJZXFirstRowTableViewCell.xib */,
-				234EB96F2296CA30004309B4 /* ZJZXDaShiTableViewCell.h */,
-				234EB9702296CA30004309B4 /* ZJZXDaShiTableViewCell.m */,
-				234EB9712296CA30004309B4 /* ZJZXDaShiTableViewCell.xib */,
+				2319215E2297E3A300CADD7F /* CSSearchTableViewCell.h */,
+				2319215D2297E3A300CADD7F /* CSSearchTableViewCell.m */,
+				2319215C2297E3A300CADD7F /* CSSearchTableViewCell.xib */,
+				231921092297CB6900CADD7F /* zhuanjiazixunView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -410,11 +468,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				2379E40E2294E21E0055FBDA /* Login.storyboard in Resources */,
-				234EB9732296CA30004309B4 /* ZJZXDaShiTableViewCell.xib in Resources */,
+				2319215B2297E34800CADD7F /* ZJZXBannerTableViewCell.xib in Resources */,
+				2319215F2297E3A300CADD7F /* CSSearchTableViewCell.xib in Resources */,
+				231921552297E34800CADD7F /* ZJZXDaShiTableViewCell.xib in Resources */,
+				231921592297E34800CADD7F /* ZJZXMoreTableViewCell.xib in Resources */,
 				2379E3FE2294DC990055FBDA /* LaunchScreen.storyboard in Resources */,
+				231921512297E34800CADD7F /* ZJZXJudgeTableViewCell.xib in Resources */,
 				2379E3FB2294DC990055FBDA /* Assets.xcassets in Resources */,
-				234EB96A2296AA42004309B4 /* ZJZXFirstRowTableViewCell.xib in Resources */,
 				2379E3F92294DC920055FBDA /* Main.storyboard in Resources */,
+				231921572297E34800CADD7F /* ZJZXFirstRowTableViewCell.xib in Resources */,
+				2319215A2297E34800CADD7F /* ZJZXDaShiBangDangTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,24 +530,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				235B467322963AD100DD39A5 /* XiaoXiViewController.m in Sources */,
-				234EB9692296AA42004309B4 /* ZJZXFirstRowTableViewCell.m in Sources */,
-				234EB9722296CA30004309B4 /* ZJZXDaShiTableViewCell.m in Sources */,
 				23258E1122951EF500EF44DC /* UIView+CSSExtension.m in Sources */,
+				231921542297E34800CADD7F /* ZJZXDaShiTableViewCell.m in Sources */,
 				23258E172295231F00EF44DC /* LoginInViewController.m in Sources */,
 				2379E4012294DC990055FBDA /* main.m in Sources */,
 				235B465B2295521100DD39A5 /* CSCommonTabBarController.m in Sources */,
+				231921562297E34800CADD7F /* ZJZXDaShiBangDangTableViewCell.m in Sources */,
 				235B466522955B6C00DD39A5 /* CSCommonNavigationController.m in Sources */,
 				23258E092294F8B700EF44DC /* CSUtility.m in Sources */,
-				2303920B22969B1900B52DFB /* CSTitleSearchView.m in Sources */,
+				231921632297E3AB00CADD7F /* CSTitleSearchView.m in Sources */,
 				23258E1B22953C2400EF44DC /* RegisterViewController.m in Sources */,
+				231921582297E34800CADD7F /* ZJZXFirstRowTableViewCell.m in Sources */,
+				2319210C2297CB8E00CADD7F /* CSLocationViewController.m in Sources */,
 				23258E1022951EF500EF44DC /* UIColor+ChangeSixteenColor.m in Sources */,
 				235B466222955AEA00DD39A5 /* ZhuanJiaZiXunViewController.m in Sources */,
+				231921602297E3A300CADD7F /* CSSearchTableViewCell.m in Sources */,
+				231921522297E34800CADD7F /* ZJZXMoreTableViewCell.m in Sources */,
 				235B466C2296392100DD39A5 /* YiDaoKeTangViewController.m in Sources */,
 				2379E4122294EAAC0055FBDA /* BaseViewController.m in Sources */,
 				23258E1222951EF500EF44DC /* UIView+Extension.m in Sources */,
 				2310BCEB229543CE001D6D2B /* ForgetCodeViewController.m in Sources */,
+				231921532297E34800CADD7F /* ZJZXBannerTableViewCell.m in Sources */,
 				2379E3F32294DC920055FBDA /* AppDelegate.m in Sources */,
+				231921102297CD2200CADD7F /* CSSearchViewController.m in Sources */,
 				234EB96E2296C503004309B4 /* ZJZXFirstRowModel.m in Sources */,
+				231921502297E34800CADD7F /* ZJZXJudgeTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

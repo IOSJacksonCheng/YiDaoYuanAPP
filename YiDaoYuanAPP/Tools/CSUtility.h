@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (BOOL) characterIsBlankString:(NSString *)string;
 
 +(UIImage*) createImageWithColor:(UIColor*) color;
+
++ (UIViewController *)getCurrentViewController;
 @end
 
 NS_ASSUME_NONNULL_END

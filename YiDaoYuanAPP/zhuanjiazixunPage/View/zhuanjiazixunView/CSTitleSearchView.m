@@ -7,22 +7,20 @@
 //
 
 #import "CSTitleSearchView.h"
-#import "Masonry.h"
 
-//#import "MakeDealViewController.h"
-@interface CSTitleSearchView()<UITextFieldDelegate>
-@property (nonatomic, strong) UIButton *brandButton;
-@property (nonatomic, strong) UITextField *keywordTextField;
-@property (nonatomic, strong) NSString *recordType;
+
+
+@interface CSTitleSearchView()
+
 @end
 @implementation CSTitleSearchView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = csf4f4f4Color;
-         self.layer.cornerRadius = 11;
+        self.layer.cornerRadius = 11;
         self.layer.masksToBounds = YES;
-
+        
         UIButton *searchButton = [UIButton new];
         
         [self addSubview:searchButton];
@@ -33,21 +31,24 @@
             make.top.mas_equalTo(0);
             make.bottom.mas_equalTo(0);
         }];
-       
-     
         
-     
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickSearchButtonDone)];
+        
+        tap.numberOfTapsRequired = 1;
+        
+        tap.numberOfTouchesRequired = 1;
+        
+        [self addGestureRecognizer:tap];
+        
+        
     }
     return self;
 }
 - (void)clickSearchButtonDone {
-  
-//    UIStoryboard *sb= [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    
-//    MakeDealViewController *new= [sb instantiateViewControllerWithIdentifier:@"MakeDealViewController"];
-//    new.recordKeyword = self.keywordTextField.text;
-//   
-//    [[CSUtility getCurrentViewController].navigationController pushViewController:new animated:YES];
+    
+    [[CSUtility getCurrentViewController]  performSegueWithIdentifier:@"CSSearchViewController" sender:self];
+    
 }
 
 @end

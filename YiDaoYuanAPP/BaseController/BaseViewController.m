@@ -19,6 +19,16 @@
     // Do any additional setup after loading the view.
     self.navigationController.navigationBar.translucent = NO;
     self.tabBarController.tabBar.translucent = NO;
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+    backItem.title = @"";
+    
+    //主要是以下两个图片设置
+    UIImage *iconImage = [DotaImageName(@"icon_back") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.navigationController.navigationBar.backIndicatorImage = iconImage;
+    
+ self.navigationController.navigationBar.backIndicatorTransitionMaskImage = iconImage;
+    
+    self.navigationItem.backBarButtonItem = backItem;
 }
 
 /*

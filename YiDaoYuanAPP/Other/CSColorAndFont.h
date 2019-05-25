@@ -29,5 +29,5 @@
 #define csLineColor [UIColor colorWithHexString:@"F0F1F2"]
 
 #define DotaImageName(name) [UIImage imageNamed:name]
-#define PlaceHolderImage [UIImage imageNamed:@""]
+#define PlaceHolderImage [UIImage imageNamed:@"banner"]
 #endif /* CSColorAndFont_h */

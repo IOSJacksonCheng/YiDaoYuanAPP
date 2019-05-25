@@ -7,8 +7,31 @@
 //
 
 #import "CSUtility.h"
-
+#import "CSCommonTabBarController.h"
 @implementation CSUtility
++ (UIViewController *)getCurrentViewController {
+    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+    if (window.windowLevel != UIWindowLevelNormal){
+        NSArray *windows = [[UIApplication sharedApplication] windows];
+        for(UIWindow * tmpWin in windows){
+            if (tmpWin.windowLevel == UIWindowLevelNormal){
+                window = tmpWin;
+                break;
+            }
+        }
+    }
+    UIViewController *result = window.rootViewController;
+    while (result.presentedViewController) {
+        result = result.presentedViewController;
+    }
+    if ([result isKindOfClass:[CSCommonTabBarController class]]) {
+        result = [(CSCommonTabBarController *)result selectedViewController];
+    }
+    if ([result isKindOfClass:[UINavigationController class]]) {
+        result = [(UINavigationController *)result topViewController];
+    }
+    return result;
+}
 +(UIImage*) createImageWithColor:(UIColor*) color
 {
     CGRect rect=CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
