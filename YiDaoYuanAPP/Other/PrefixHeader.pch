@@ -25,8 +25,8 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
 #define WhiteNavigationBarColor [self.navigationController.navigationBar setBackgroundImage:[CSUtility createImageWithColor:[UIColor colorWithHexString:@"FFFFFF"]] forBarMetrics:UIBarMetricsDefault];
-
-
+#define F3f3f3NavigationBarColor [self.navigationController.navigationBar setBackgroundImage:[CSUtility createImageWithColor:[UIColor colorWithHexString:@"f3f3f3"]] forBarMetrics:UIBarMetricsDefault];
+#define BlueNavigationBarColor [self.navigationController.navigationBar setBackgroundImage:[CSUtility createImageWithColor:[UIColor colorWithHexString:@"0D71C8"]] forBarMetrics:UIBarMetricsDefault];
 #define csCharacterIsBlank(message) [CSUtility characterIsBlankString:message]
 
 #define MainScreenWidth [UIScreen mainScreen].bounds.size.width

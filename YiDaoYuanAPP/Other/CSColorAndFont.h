@@ -22,6 +22,7 @@
 #define csLightBlueColor [UIColor colorWithHexString:@"599AD6"]
 #define csf1f1f1Color [UIColor colorWithHexString:@"f1f1f1"]
 #define cs999999Color [UIColor colorWithHexString:@"999999"]
+#define cs333333Color [UIColor colorWithHexString:@"333333"]
 #define csf4f4f4Color [UIColor colorWithHexString:@"F4F4F4"]
 #define csNavigationBarColor [UIColor colorWithHexString:@"ff6347"]
 

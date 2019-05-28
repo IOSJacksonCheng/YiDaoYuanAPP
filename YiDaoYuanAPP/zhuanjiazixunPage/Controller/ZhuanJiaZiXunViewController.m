@@ -28,7 +28,7 @@ CGFloat const AD_Height = 160;
 
 
 - (void)viewWillAppear:(BOOL)animated {
-    
+     WhiteNavigationBarColor
     [super viewWillDisappear:animated];
 
 }
@@ -37,6 +37,7 @@ CGFloat const AD_Height = 160;
 
 }
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
     [self configSubViews];
@@ -52,6 +53,7 @@ CGFloat const AD_Height = 160;
 - (void)configTableView {
     
     self.mainTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
     [self.mainTableView registerNib:[UINib nibWithNibName:CSCellName(ZJZXFirstRowTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(ZJZXFirstRowTableViewCell)];
     [self.mainTableView registerNib:[UINib nibWithNibName:CSCellName(ZJZXDaShiTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(ZJZXDaShiTableViewCell)];
     
@@ -156,6 +158,14 @@ CGFloat const AD_Height = 160;
     
     ZJZXJudgeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(ZJZXJudgeTableViewCell)];
     return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.section == 1 && indexPath.row == 1) {
+        
+        [self  performSegueWithIdentifier:@"DaShiListViewController" sender:self];
+       
+    }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {

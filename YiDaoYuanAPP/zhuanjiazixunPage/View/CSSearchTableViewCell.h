@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CSSearchTableViewCell : UITableViewCell
 
+@property (nonatomic, getter=isShowButton) BOOL showButton;
 @end
 
 NS_ASSUME_NONNULL_END

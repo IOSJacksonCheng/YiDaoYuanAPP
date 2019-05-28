@@ -145,6 +145,18 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_wait" translatesAutoresizingMaskIntoConstraints="NO" id="hjU-XI-ksZ">
                                 <rect key="frame" x="203.5" y="133.5" width="15" height="15"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BRa-ez-L1d">
+                                <rect key="frame" x="219" y="68" width="70" height="22"/>
+                                <color key="backgroundColor" red="0.050980392159999999" green="0.4431372549" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="cCN-9B-eej"/>
+                                    <constraint firstAttribute="height" constant="22" id="fq1-zf-KzA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="咨询老师">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -177,6 +189,7 @@
                             <constraint firstItem="mBE-PH-j48" firstAttribute="leading" secondItem="hjU-XI-ksZ" secondAttribute="trailing" constant="1" id="Woe-SS-kie"/>
                             <constraint firstItem="e1r-ZU-QbG" firstAttribute="leading" secondItem="P3C-Ta-f9t" secondAttribute="trailing" constant="8" id="XjW-gv-d2x"/>
                             <constraint firstItem="qMc-hd-dFg" firstAttribute="leading" secondItem="e1r-ZU-QbG" secondAttribute="trailing" constant="8" id="Xye-Yu-TRI"/>
+                            <constraint firstAttribute="trailing" secondItem="BRa-ez-L1d" secondAttribute="trailing" constant="10" id="aH8-lr-BH3"/>
                             <constraint firstItem="5TQ-OV-N9C" firstAttribute="leading" secondItem="X4T-wZ-oZf" secondAttribute="leading" constant="10" id="baL-s6-Yoz"/>
                             <constraint firstItem="eGK-FZ-jYm" firstAttribute="top" secondItem="X4T-wZ-oZf" secondAttribute="top" constant="12" id="cxx-b6-OYk"/>
                             <constraint firstItem="mBE-PH-j48" firstAttribute="centerY" secondItem="JP4-Nt-Cyj" secondAttribute="centerY" id="dqe-hX-nM3"/>
@@ -191,6 +204,7 @@
                             <constraint firstItem="jqH-Bu-lih" firstAttribute="leading" secondItem="f8Y-nW-ZyE" secondAttribute="trailing" constant="5" id="nle-An-P17"/>
                             <constraint firstItem="e1r-ZU-QbG" firstAttribute="centerY" secondItem="tmd-eZ-cDx" secondAttribute="centerY" id="ouy-8w-SyU"/>
                             <constraint firstItem="tmd-eZ-cDx" firstAttribute="leading" secondItem="Zzv-pu-sNM" secondAttribute="trailing" constant="11" id="pGt-l2-HSJ"/>
+                            <constraint firstItem="BRa-ez-L1d" firstAttribute="centerY" secondItem="jqH-Bu-lih" secondAttribute="centerY" id="r1I-cU-Bkv"/>
                             <constraint firstItem="jZk-vR-meX" firstAttribute="centerY" secondItem="f8Y-nW-ZyE" secondAttribute="centerY" id="r9M-0y-tzf"/>
                             <constraint firstItem="cRw-Ag-Y6C" firstAttribute="leading" secondItem="X4T-wZ-oZf" secondAttribute="leading" constant="10" id="reI-tE-YBC"/>
                             <constraint firstItem="5TQ-OV-N9C" firstAttribute="top" secondItem="qFj-HS-Tht" secondAttribute="bottom" constant="7" id="ttx-qf-9oS"/>
@@ -211,6 +225,8 @@
             <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="consultButton" destination="BRa-ez-L1d" id="rQl-kH-ZQk"/>
+                <outlet property="priceLabel" destination="eGK-FZ-jYm" id="Jhu-ZF-Qpu"/>
                 <outlet property="searchView" destination="X4T-wZ-oZf" id="YHB-dt-V1t"/>
             </connections>
             <point key="canvasLocation" x="52.799999999999997" y="49.475262368815599"/>

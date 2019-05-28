@@ -10,6 +10,8 @@
 @interface CSSearchTableViewCell()
 
 @property (weak, nonatomic) IBOutlet UIView *searchView;
+@property (weak, nonatomic) IBOutlet UIButton *consultButton;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 
 @end
 @implementation CSSearchTableViewCell
@@ -19,6 +21,9 @@
     // Initialization code
     self.searchView.layer.cornerRadius = 5;
     self.searchView.layer.masksToBounds = YES;
+    
+    self.consultButton.layer.cornerRadius = 5;
+    self.consultButton.layer.masksToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -26,5 +31,11 @@
 
     // Configure the view for the selected state
 }
-
+- (void)setShowButton:(BOOL)showButton {
+    _showButton = showButton;
+    self.consultButton.hidden = !showButton;
+    if (showButton) {
+        self.priceLabel.text = @"免费";
+    }
+}
 @end

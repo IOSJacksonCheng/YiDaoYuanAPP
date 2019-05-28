@@ -583,7 +583,11 @@
             <connections>
                 <outlet property="baziLabel" destination="rhG-GS-PtE" id="LFP-XA-JAv"/>
                 <outlet property="fengshuiLabel" destination="UZo-Qz-eRO" id="6Ha-ie-idU"/>
+                <outlet property="firstDaShiView" destination="Sb8-0l-5vA" id="QTW-3Y-c08"/>
                 <outlet property="qumingLabel" destination="leS-i4-KXT" id="bm5-l9-ZHK"/>
+                <outlet property="secondDaShiView" destination="t1t-ex-o8I" id="J0J-eB-ix8"/>
+                <outlet property="thirdDaShiView" destination="dqN-WS-Xvg" id="8mi-7Q-0G1"/>
+                <outlet property="topDaShiView" destination="YN0-Bl-kfN" id="kDs-Yb-B8r"/>
             </connections>
             <point key="canvasLocation" x="81.599999999999994" y="49.475262368815599"/>
         </tableViewCell>

@@ -12,6 +12,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *baziLabel;
 @property (weak, nonatomic) IBOutlet UILabel *qumingLabel;
 @property (weak, nonatomic) IBOutlet UILabel *fengshuiLabel;
+@property (weak, nonatomic) IBOutlet UIView *topDaShiView;
+@property (weak, nonatomic) IBOutlet UIView *firstDaShiView;
+@property (weak, nonatomic) IBOutlet UIView *secondDaShiView;
+@property (weak, nonatomic) IBOutlet UIView *thirdDaShiView;
+
 
 @end
 @implementation ZJZXDaShiTableViewCell
@@ -30,12 +35,58 @@
     self.fengshuiLabel.layer.cornerRadius = 3;
     self.fengshuiLabel.layer.borderColor = csBlueColor.CGColor;
     self.fengshuiLabel.layer.borderWidth = 1;
+    
+    
+    UITapGestureRecognizer *newsTap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clicktopDaShiViewDone)];
+    
+    newsTap1.numberOfTapsRequired = 1;
+    
+    newsTap1.numberOfTouchesRequired = 1;
+    
+    [self.topDaShiView addGestureRecognizer:newsTap1];
+    
+    
+    UITapGestureRecognizer *newsTap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickfirstDaShiViewDone)];
+    
+    newsTap2.numberOfTapsRequired = 1;
+    
+    newsTap2.numberOfTouchesRequired = 1;
+    
+    [self.firstDaShiView addGestureRecognizer:newsTap2];
+    
+    
+    UITapGestureRecognizer *newsTap3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clicksecondDaShiViewDone)];
+    
+    newsTap3.numberOfTapsRequired = 1;
+    
+    newsTap3.numberOfTouchesRequired = 1;
+    
+    [self.secondDaShiView addGestureRecognizer:newsTap3];
+    
+    
+    UITapGestureRecognizer *newsTap4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickthirdDaShiViewDone)];
+    
+    newsTap4.numberOfTapsRequired = 1;
+    
+    newsTap4.numberOfTouchesRequired = 1;
+    
+    [self.thirdDaShiView addGestureRecognizer:newsTap4];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)clickthirdDaShiViewDone {
+     [[CSUtility getCurrentViewController]  performSegueWithIdentifier:@"DaShiDetailViewController" sender:self];
 }
+- (void)clicksecondDaShiViewDone {
+     [[CSUtility getCurrentViewController]  performSegueWithIdentifier:@"DaShiDetailViewController" sender:self];
+}
+- (void)clickfirstDaShiViewDone {
+    
+     [[CSUtility getCurrentViewController]  performSegueWithIdentifier:@"DaShiDetailViewController" sender:self];
 
+}
+- (void)clicktopDaShiViewDone {
+    
+     [[CSUtility getCurrentViewController]  performSegueWithIdentifier:@"DaShiDetailViewController" sender:self];
+
+}
 @end

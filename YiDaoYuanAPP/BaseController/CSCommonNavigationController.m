@@ -14,6 +14,13 @@
 
 @implementation CSCommonNavigationController
 + (void)initialize {
+    UINavigationBar *bar = [UINavigationBar appearance];
+    NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+ 
+    
+        attributes[NSFontAttributeName] = [UIFont systemFontOfSize:18];
+    [bar setTitleTextAttributes:attributes];
+ 
     //使用Appearance对导航栏统一外观设置
 //    UINavigationBar *bar = [UINavigationBar appearance];
     //1.设置背景图

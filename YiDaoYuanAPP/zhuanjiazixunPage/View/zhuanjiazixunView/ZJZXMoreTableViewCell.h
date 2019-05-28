@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZJZXMoreTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *csTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *moreTitleLabel;
 
 @end
 

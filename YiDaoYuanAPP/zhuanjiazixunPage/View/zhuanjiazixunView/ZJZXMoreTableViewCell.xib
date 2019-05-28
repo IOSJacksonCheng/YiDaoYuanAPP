@@ -52,6 +52,7 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="csTitleLabel" destination="7Vb-d2-gAW" id="DTA-6t-8C9"/>
+                <outlet property="moreTitleLabel" destination="f9K-YG-9aW" id="sIm-69-dvZ"/>
             </connections>
         </tableViewCell>
     </objects>
