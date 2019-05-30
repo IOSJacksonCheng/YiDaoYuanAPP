@@ -68,6 +68,10 @@
 		235B466522955B6C00DD39A5 /* CSCommonNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235B466422955B6C00DD39A5 /* CSCommonNavigationController.m */; };
 		235B466C2296392100DD39A5 /* YiDaoKeTangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235B466B2296392100DD39A5 /* YiDaoKeTangViewController.m */; };
 		235B467322963AD100DD39A5 /* XiaoXiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235B467222963AD100DD39A5 /* XiaoXiViewController.m */; };
+		235C324A229FB0ED00446450 /* SureOrderMoneyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 235C3248229FB0ED00446450 /* SureOrderMoneyTableViewCell.m */; };
+		235C324B229FB0ED00446450 /* SureOrderMoneyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 235C3249229FB0ED00446450 /* SureOrderMoneyTableViewCell.xib */; };
+		235C324E229FB39700446450 /* SureOrderWriteMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235C324D229FB39700446450 /* SureOrderWriteMessageViewController.m */; };
+		235C3251229FBCC300446450 /* AfterPayMoneyChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235C3250229FBCC300446450 /* AfterPayMoneyChatViewController.m */; };
 		235D5437229BD0F30028591B /* DaShiDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235D5436229BD0F30028591B /* DaShiDetailViewController.m */; };
 		2373C6F1229D4376004A6EA0 /* RightNowConsultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2373C6F0229D4376004A6EA0 /* RightNowConsultViewController.m */; };
 		2373C6F5229D55C7004A6EA0 /* RightNowConsultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2373C6F3229D55C7004A6EA0 /* RightNowConsultTableViewCell.m */; };
@@ -93,6 +97,16 @@
 		23C3A536229D6F4000212BAF /* UserDefaultJudgeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23C3A534229D6F4000212BAF /* UserDefaultJudgeTableViewCell.xib */; };
 		23C3A539229D744C00212BAF /* AdmireMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C3A538229D744C00212BAF /* AdmireMoneyViewController.m */; };
 		23C3A53C229D7A1F00212BAF /* AnswerMyQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C3A53B229D7A1F00212BAF /* AnswerMyQuestionViewController.m */; };
+		23C3A53F229F781200212BAF /* PayMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C3A53E229F781200212BAF /* PayMoneyViewController.m */; };
+		23C3A543229F7E7800212BAF /* PayMoneyWaysTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C3A541229F7E7800212BAF /* PayMoneyWaysTableViewCell.m */; };
+		23C3A544229F7E7800212BAF /* PayMoneyWaysTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23C3A542229F7E7800212BAF /* PayMoneyWaysTableViewCell.xib */; };
+		23C3A548229F7F4600212BAF /* PayMoneyTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C3A546229F7F4600212BAF /* PayMoneyTitleTableViewCell.m */; };
+		23C3A549229F7F4600212BAF /* PayMoneyTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23C3A547229F7F4600212BAF /* PayMoneyTitleTableViewCell.xib */; };
+		23C3A54C229F88FE00212BAF /* SureOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C3A54B229F88FE00212BAF /* SureOrderViewController.m */; };
+		23C3A550229FA70F00212BAF /* SureOrderCourseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C3A54E229FA70F00212BAF /* SureOrderCourseTableViewCell.m */; };
+		23C3A551229FA70F00212BAF /* SureOrderCourseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23C3A54F229FA70F00212BAF /* SureOrderCourseTableViewCell.xib */; };
+		23C3A555229FAADB00212BAF /* SureOrderDaShiInfomationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C3A553229FAADB00212BAF /* SureOrderDaShiInfomationTableViewCell.m */; };
+		23C3A556229FAADB00212BAF /* SureOrderDaShiInfomationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23C3A554229FAADB00212BAF /* SureOrderDaShiInfomationTableViewCell.xib */; };
 		3EF042296F0BCAB9238D7999 /* libPods-YiDaoYuanAPP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10A9668D8E5847F0F92E54E5 /* libPods-YiDaoYuanAPP.a */; };
 /* End PBXBuildFile section */
 
@@ -206,6 +220,13 @@
 		235B466B2296392100DD39A5 /* YiDaoKeTangViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YiDaoKeTangViewController.m; sourceTree = "<group>"; };
 		235B467122963AD100DD39A5 /* XiaoXiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XiaoXiViewController.h; sourceTree = "<group>"; };
 		235B467222963AD100DD39A5 /* XiaoXiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XiaoXiViewController.m; sourceTree = "<group>"; };
+		235C3247229FB0ED00446450 /* SureOrderMoneyTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SureOrderMoneyTableViewCell.h; sourceTree = "<group>"; };
+		235C3248229FB0ED00446450 /* SureOrderMoneyTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SureOrderMoneyTableViewCell.m; sourceTree = "<group>"; };
+		235C3249229FB0ED00446450 /* SureOrderMoneyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SureOrderMoneyTableViewCell.xib; sourceTree = "<group>"; };
+		235C324C229FB39700446450 /* SureOrderWriteMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SureOrderWriteMessageViewController.h; sourceTree = "<group>"; };
+		235C324D229FB39700446450 /* SureOrderWriteMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SureOrderWriteMessageViewController.m; sourceTree = "<group>"; };
+		235C324F229FBCC300446450 /* AfterPayMoneyChatViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AfterPayMoneyChatViewController.h; sourceTree = "<group>"; };
+		235C3250229FBCC300446450 /* AfterPayMoneyChatViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AfterPayMoneyChatViewController.m; sourceTree = "<group>"; };
 		235D5435229BD0F30028591B /* DaShiDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DaShiDetailViewController.h; sourceTree = "<group>"; };
 		235D5436229BD0F30028591B /* DaShiDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DaShiDetailViewController.m; sourceTree = "<group>"; };
 		2373C6EF229D4376004A6EA0 /* RightNowConsultViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RightNowConsultViewController.h; sourceTree = "<group>"; };
@@ -248,6 +269,22 @@
 		23C3A538229D744C00212BAF /* AdmireMoneyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdmireMoneyViewController.m; sourceTree = "<group>"; };
 		23C3A53A229D7A1F00212BAF /* AnswerMyQuestionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnswerMyQuestionViewController.h; sourceTree = "<group>"; };
 		23C3A53B229D7A1F00212BAF /* AnswerMyQuestionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnswerMyQuestionViewController.m; sourceTree = "<group>"; };
+		23C3A53D229F781200212BAF /* PayMoneyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PayMoneyViewController.h; sourceTree = "<group>"; };
+		23C3A53E229F781200212BAF /* PayMoneyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PayMoneyViewController.m; sourceTree = "<group>"; };
+		23C3A540229F7E7800212BAF /* PayMoneyWaysTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PayMoneyWaysTableViewCell.h; sourceTree = "<group>"; };
+		23C3A541229F7E7800212BAF /* PayMoneyWaysTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PayMoneyWaysTableViewCell.m; sourceTree = "<group>"; };
+		23C3A542229F7E7800212BAF /* PayMoneyWaysTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PayMoneyWaysTableViewCell.xib; sourceTree = "<group>"; };
+		23C3A545229F7F4600212BAF /* PayMoneyTitleTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PayMoneyTitleTableViewCell.h; sourceTree = "<group>"; };
+		23C3A546229F7F4600212BAF /* PayMoneyTitleTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PayMoneyTitleTableViewCell.m; sourceTree = "<group>"; };
+		23C3A547229F7F4600212BAF /* PayMoneyTitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PayMoneyTitleTableViewCell.xib; sourceTree = "<group>"; };
+		23C3A54A229F88FE00212BAF /* SureOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SureOrderViewController.h; sourceTree = "<group>"; };
+		23C3A54B229F88FE00212BAF /* SureOrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SureOrderViewController.m; sourceTree = "<group>"; };
+		23C3A54D229FA70F00212BAF /* SureOrderCourseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SureOrderCourseTableViewCell.h; sourceTree = "<group>"; };
+		23C3A54E229FA70F00212BAF /* SureOrderCourseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SureOrderCourseTableViewCell.m; sourceTree = "<group>"; };
+		23C3A54F229FA70F00212BAF /* SureOrderCourseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SureOrderCourseTableViewCell.xib; sourceTree = "<group>"; };
+		23C3A552229FAADB00212BAF /* SureOrderDaShiInfomationTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SureOrderDaShiInfomationTableViewCell.h; sourceTree = "<group>"; };
+		23C3A553229FAADB00212BAF /* SureOrderDaShiInfomationTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SureOrderDaShiInfomationTableViewCell.m; sourceTree = "<group>"; };
+		23C3A554229FAADB00212BAF /* SureOrderDaShiInfomationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SureOrderDaShiInfomationTableViewCell.xib; sourceTree = "<group>"; };
 		30E92645C0A1586562B7C4F6 /* Pods-YiDaoYuanAPP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YiDaoYuanAPP.release.xcconfig"; path = "Pods/Target Support Files/Pods-YiDaoYuanAPP/Pods-YiDaoYuanAPP.release.xcconfig"; sourceTree = "<group>"; };
 		4FB55DA717085005CF36E971 /* Pods-YiDaoYuanAPP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YiDaoYuanAPP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YiDaoYuanAPP/Pods-YiDaoYuanAPP.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -444,6 +481,14 @@
 				2373C6F0229D4376004A6EA0 /* RightNowConsultViewController.m */,
 				23C3A537229D744C00212BAF /* AdmireMoneyViewController.h */,
 				23C3A538229D744C00212BAF /* AdmireMoneyViewController.m */,
+				23C3A53D229F781200212BAF /* PayMoneyViewController.h */,
+				23C3A53E229F781200212BAF /* PayMoneyViewController.m */,
+				23C3A54A229F88FE00212BAF /* SureOrderViewController.h */,
+				23C3A54B229F88FE00212BAF /* SureOrderViewController.m */,
+				235C324C229FB39700446450 /* SureOrderWriteMessageViewController.h */,
+				235C324D229FB39700446450 /* SureOrderWriteMessageViewController.m */,
+				235C324F229FBCC300446450 /* AfterPayMoneyChatViewController.h */,
+				235C3250229FBCC300446450 /* AfterPayMoneyChatViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -469,6 +514,21 @@
 				23C3A532229D6F4000212BAF /* UserDefaultJudgeTableViewCell.h */,
 				23C3A533229D6F4000212BAF /* UserDefaultJudgeTableViewCell.m */,
 				23C3A534229D6F4000212BAF /* UserDefaultJudgeTableViewCell.xib */,
+				23C3A540229F7E7800212BAF /* PayMoneyWaysTableViewCell.h */,
+				23C3A541229F7E7800212BAF /* PayMoneyWaysTableViewCell.m */,
+				23C3A542229F7E7800212BAF /* PayMoneyWaysTableViewCell.xib */,
+				23C3A545229F7F4600212BAF /* PayMoneyTitleTableViewCell.h */,
+				23C3A546229F7F4600212BAF /* PayMoneyTitleTableViewCell.m */,
+				23C3A547229F7F4600212BAF /* PayMoneyTitleTableViewCell.xib */,
+				23C3A54D229FA70F00212BAF /* SureOrderCourseTableViewCell.h */,
+				23C3A54E229FA70F00212BAF /* SureOrderCourseTableViewCell.m */,
+				23C3A54F229FA70F00212BAF /* SureOrderCourseTableViewCell.xib */,
+				23C3A552229FAADB00212BAF /* SureOrderDaShiInfomationTableViewCell.h */,
+				23C3A553229FAADB00212BAF /* SureOrderDaShiInfomationTableViewCell.m */,
+				23C3A554229FAADB00212BAF /* SureOrderDaShiInfomationTableViewCell.xib */,
+				235C3247229FB0ED00446450 /* SureOrderMoneyTableViewCell.h */,
+				235C3248229FB0ED00446450 /* SureOrderMoneyTableViewCell.m */,
+				235C3249229FB0ED00446450 /* SureOrderMoneyTableViewCell.xib */,
 				230C3EDA229CD5ED003BC45C /* DaShiListItemView */,
 				230C3ED3229C07E3003BC45C /* DaShiDetail */,
 				231921092297CB6900CADD7F /* zhuanjiazixunView */,
@@ -740,7 +800,9 @@
 				230C3EDF229CD617003BC45C /* DaShiItemCollectionViewCell.xib in Resources */,
 				231921552297E34800CADD7F /* ZJZXDaShiTableViewCell.xib in Resources */,
 				230C3ECC229C05A4003BC45C /* DaShiDetailChooseServiceTableViewCell.xib in Resources */,
+				23C3A549229F7F4600212BAF /* PayMoneyTitleTableViewCell.xib in Resources */,
 				231921592297E34800CADD7F /* ZJZXMoreTableViewCell.xib in Resources */,
+				23C3A544229F7E7800212BAF /* PayMoneyWaysTableViewCell.xib in Resources */,
 				2379E3FE2294DC990055FBDA /* LaunchScreen.storyboard in Resources */,
 				2373C6F6229D55C7004A6EA0 /* RightNowConsultTableViewCell.xib in Resources */,
 				2332CC022299049800DBC24A /* CSLocationTableViewCell.xib in Resources */,
@@ -750,9 +812,12 @@
 				2379E3FB2294DC990055FBDA /* Assets.xcassets in Resources */,
 				2379E3F92294DC920055FBDA /* Main.storyboard in Resources */,
 				233BC7BC22998962007EA3CB /* IndustryNewsTableViewCell.xib in Resources */,
+				235C324B229FB0ED00446450 /* SureOrderMoneyTableViewCell.xib in Resources */,
 				23C3A536229D6F4000212BAF /* UserDefaultJudgeTableViewCell.xib in Resources */,
 				238C5323229B7F56008CA750 /* XiaoXiTableViewCell.xib in Resources */,
 				230C3EE4229CD670003BC45C /* DaShiItemCollectionReusableView.xib in Resources */,
+				23C3A556229FAADB00212BAF /* SureOrderDaShiInfomationTableViewCell.xib in Resources */,
+				23C3A551229FA70F00212BAF /* SureOrderCourseTableViewCell.xib in Resources */,
 				231921572297E34800CADD7F /* ZJZXFirstRowTableViewCell.xib in Resources */,
 				2319215A2297E34800CADD7F /* ZJZXDaShiBangDangTableViewCell.xib in Resources */,
 				230C3EC7229C04B4003BC45C /* DaShiDetailCenterTableViewCell.xib in Resources */,
@@ -816,21 +881,26 @@
 				2373C6F1229D4376004A6EA0 /* RightNowConsultViewController.m in Sources */,
 				233BC7D7229A3D97007EA3CB /* ConsultOrderViewController.m in Sources */,
 				233BC7CA22999D54007EA3CB /* PersonalSetTableViewCell.m in Sources */,
+				23C3A543229F7E7800212BAF /* PayMoneyWaysTableViewCell.m in Sources */,
 				230C3EC6229C04B4003BC45C /* DaShiDetailCenterTableViewCell.m in Sources */,
 				230C3ED0229C0737003BC45C /* DaShiDetailMoreServicesTableViewCell.m in Sources */,
 				233BC7C622999B76007EA3CB /* PersonalSetViewController.m in Sources */,
 				23258E172295231F00EF44DC /* LoginInViewController.m in Sources */,
+				23C3A54C229F88FE00212BAF /* SureOrderViewController.m in Sources */,
 				2379E4012294DC990055FBDA /* main.m in Sources */,
 				230C3EDE229CD617003BC45C /* DaShiItemCollectionViewCell.m in Sources */,
 				235B465B2295521100DD39A5 /* CSCommonTabBarController.m in Sources */,
 				231921562297E34800CADD7F /* ZJZXDaShiBangDangTableViewCell.m in Sources */,
 				238C5322229B7F56008CA750 /* XiaoXiTableViewCell.m in Sources */,
 				2373C6FA229D5D4A004A6EA0 /* RightNowConsultIntroduceTableViewCell.m in Sources */,
+				235C3251229FBCC300446450 /* AfterPayMoneyChatViewController.m in Sources */,
 				235B466522955B6C00DD39A5 /* CSCommonNavigationController.m in Sources */,
 				23258E092294F8B700EF44DC /* CSUtility.m in Sources */,
+				23C3A555229FAADB00212BAF /* SureOrderDaShiInfomationTableViewCell.m in Sources */,
 				231921632297E3AB00CADD7F /* CSTitleSearchView.m in Sources */,
 				235D5437229BD0F30028591B /* DaShiDetailViewController.m in Sources */,
 				23258E1B22953C2400EF44DC /* RegisterViewController.m in Sources */,
+				23C3A548229F7F4600212BAF /* PayMoneyTitleTableViewCell.m in Sources */,
 				231921582297E34800CADD7F /* ZJZXFirstRowTableViewCell.m in Sources */,
 				23C3A535229D6F4000212BAF /* UserDefaultJudgeTableViewCell.m in Sources */,
 				233BC7B722998726007EA3CB /* IndustryNewsViewController.m in Sources */,
@@ -839,6 +909,7 @@
 				23258E1022951EF500EF44DC /* UIColor+ChangeSixteenColor.m in Sources */,
 				235B466222955AEA00DD39A5 /* ZhuanJiaZiXunViewController.m in Sources */,
 				231921602297E3A300CADD7F /* CSSearchTableViewCell.m in Sources */,
+				23C3A550229FA70F00212BAF /* SureOrderCourseTableViewCell.m in Sources */,
 				230C3ECB229C05A4003BC45C /* DaShiDetailChooseServiceTableViewCell.m in Sources */,
 				230C3EE3229CD670003BC45C /* DaShiItemCollectionReusableView.m in Sources */,
 				231921522297E34800CADD7F /* ZJZXMoreTableViewCell.m in Sources */,
@@ -846,7 +917,9 @@
 				235B466C2296392100DD39A5 /* YiDaoKeTangViewController.m in Sources */,
 				233BC7D1229A35DC007EA3CB /* ChangePersonalInfomationViewController.m in Sources */,
 				2373C6FE229D6341004A6EA0 /* RightNowConsultModel.m in Sources */,
+				23C3A53F229F781200212BAF /* PayMoneyViewController.m in Sources */,
 				2379E4122294EAAC0055FBDA /* BaseViewController.m in Sources */,
+				235C324E229FB39700446450 /* SureOrderWriteMessageViewController.m in Sources */,
 				2332CC052299070000DBC24A /* CSNewsViewController.m in Sources */,
 				230C3EC1229C021F003BC45C /* DaShiDetailJudgeTableViewCell.m in Sources */,
 				2373C6F5229D55C7004A6EA0 /* RightNowConsultTableViewCell.m in Sources */,
@@ -863,6 +936,7 @@
 				2379E3F32294DC920055FBDA /* AppDelegate.m in Sources */,
 				237C0C3322991561006B72F0 /* DaShiListViewController.m in Sources */,
 				231921102297CD2200CADD7F /* CSSearchViewController.m in Sources */,
+				235C324A229FB0ED00446450 /* SureOrderMoneyTableViewCell.m in Sources */,
 				233BC7C322998DB8007EA3CB /* PersonalCenterViewController.m in Sources */,
 				234EB96E2296C503004309B4 /* ZJZXFirstRowModel.m in Sources */,
 				23C3A539229D744C00212BAF /* AdmireMoneyViewController.m in Sources */,

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PayMoneyWaysTableViewCell" id="KGk-i7-Jjw" customClass="PayMoneyWaysTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6A9-ce-cAE">
+                        <rect key="frame" x="10" y="2" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="l9s-GT-59E"/>
+                            <constraint firstAttribute="height" constant="40" id="mBj-2t-4kO"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="余额支付" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ku-ZR-kyn">
+                        <rect key="frame" x="63" y="13" width="62" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_xuanzhong" translatesAutoresizingMaskIntoConstraints="NO" id="d2N-vm-5LD">
+                        <rect key="frame" x="288" y="12.5" width="19" height="19"/>
+                    </imageView>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="（充值易道源享受折扣）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="End-rO-LXJ">
+                        <rect key="frame" x="130" y="14.5" width="135" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="d2N-vm-5LD" secondAttribute="trailing" constant="13" id="Fdu-z3-c05"/>
+                    <constraint firstItem="6ku-ZR-kyn" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="O6d-3X-xWM"/>
+                    <constraint firstItem="6ku-ZR-kyn" firstAttribute="leading" secondItem="6A9-ce-cAE" secondAttribute="trailing" constant="13" id="YZr-Ev-FaN"/>
+                    <constraint firstItem="6A9-ce-cAE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="bbp-cC-9nk"/>
+                    <constraint firstItem="d2N-vm-5LD" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hcc-Yn-EM4"/>
+                    <constraint firstItem="6A9-ce-cAE" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="nfm-Mn-hV8"/>
+                    <constraint firstItem="End-rO-LXJ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="sKZ-tK-wus"/>
+                    <constraint firstItem="End-rO-LXJ" firstAttribute="leading" secondItem="6ku-ZR-kyn" secondAttribute="trailing" constant="5" id="xd5-1y-bbc"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="chooseImageView" destination="d2N-vm-5LD" id="h7O-9J-X29"/>
+                <outlet property="explainLabel" destination="End-rO-LXJ" id="CqJ-Ku-Dg8"/>
+                <outlet property="titleImageView" destination="6A9-ce-cAE" id="ezf-8r-75G"/>
+                <outlet property="titleLabel" destination="6ku-ZR-kyn" id="sLx-IJ-idC"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icon_xuanzhong" width="19" height="19"/>
+    </resources>
+</document>

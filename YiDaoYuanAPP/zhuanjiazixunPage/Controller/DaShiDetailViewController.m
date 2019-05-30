@@ -106,6 +106,7 @@
     
    
     
+   
 }
 #pragma mark --UITableViewDelegate/DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -214,7 +215,7 @@
 }
 
 - (IBAction)clickRightBuyButtonDone:(id)sender {
-    
+     [self performSegueWithIdentifier:@"SureOrderViewController" sender:self];
     
 }
 @end
