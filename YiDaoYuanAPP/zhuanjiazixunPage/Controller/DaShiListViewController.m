@@ -9,6 +9,7 @@
 #import "DaShiListViewController.h"
 #import "CSSearchTableViewCell.h"
 #import "DaShiListItemView.h"
+#import "AfterPayMoneyChatViewController.h"
 @interface DaShiListViewController ()<UITableViewDelegate, UITableViewDataSource, DaShiListItemViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *searchTableView;
 
@@ -104,5 +105,14 @@ NSString *imageString = [[NSUserDefaults standardUserDefaults] objectForKey:@"im
 }
 
 - (IBAction)clickAllSelectionButtonDone:(id)sender {
+}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"AfterPayMoneyChatViewController"]) {
+       
+        AfterPayMoneyChatViewController *new = segue.destinationViewController;
+        
+        new.showTopView = YES;
+    }
+    
 }
 @end

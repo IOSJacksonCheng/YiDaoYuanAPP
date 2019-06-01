@@ -8,14 +8,18 @@
 
 #import "XiaoXiViewController.h"
 #import "XiaoXiTableViewCell.h"
-@interface XiaoXiViewController ()
+
+@interface XiaoXiViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *searchView;
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 
 @end
 
 @implementation XiaoXiViewController
-
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self configNavigationBar];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configSubViews];
@@ -73,5 +77,8 @@
         cell.userContent.text = @"新用户赠送您100易道元";
     }
     return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"AfterPayMoneyChatViewController" sender:self];
 }
 @end

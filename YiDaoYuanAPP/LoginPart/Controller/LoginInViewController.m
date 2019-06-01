@@ -51,6 +51,10 @@
 }
 - (IBAction)clickLoginButtonDone:(id)sender {
     
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    [UIApplication sharedApplication].keyWindow.rootViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"MainStoryboard"];
+    
 }
 - (IBAction)clickShowSecureButtonDone:(UIButton *)sender {
     sender.selected = !sender.selected;

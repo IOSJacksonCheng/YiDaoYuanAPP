@@ -21,12 +21,16 @@
     return _listArray;
 }
 - (void)viewDidLoad {
+  
     [super viewDidLoad];
+   
     [self configSubViews];
     
     [self configNavigationBar];
     
     [self configTableView];
+    
+     [self.tableView reloadData];
 }
 
 - (void)configTableView {
@@ -41,7 +45,7 @@
 
 - (void)configSubViews {
     
-    
+   
 }
 
 - (void)configNavigationBar {
@@ -60,8 +64,13 @@
    return self.listArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     PersonalSetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(PersonalSetTableViewCell)];
-     cell.csTitleLabel.text = self.listArray[indexPath.row];
+    
+    NSString *title = self.listArray[indexPath.row];
+    
+     cell.csTitleLabel.text = title;
+    
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

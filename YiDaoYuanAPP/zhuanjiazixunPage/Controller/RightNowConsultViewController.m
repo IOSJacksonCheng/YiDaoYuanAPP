@@ -56,6 +56,8 @@
 
 - (IBAction)clickChooseButtonDone:(id)sender {
     
+    [self performSegueWithIdentifier:@"DaShiListViewController" sender:self];
+    
 }
 #pragma mark --UITableViewDelegate/DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

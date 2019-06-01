@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AfterPayMoneyChatViewController : BaseViewController
-
+@property (nonatomic, assign) BOOL showTopView;
 @end
 
 NS_ASSUME_NONNULL_END

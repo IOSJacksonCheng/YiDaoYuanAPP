@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		230AC7C222A0C0A800E1CB58 /* ChatJudgeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 230AC7C022A0C0A800E1CB58 /* ChatJudgeTableViewCell.m */; };
+		230AC7C322A0C0A800E1CB58 /* ChatJudgeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 230AC7C122A0C0A800E1CB58 /* ChatJudgeTableViewCell.xib */; };
+		230AC7C822A0CEFC00E1CB58 /* AfterChatJudgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 230AC7C722A0CEFC00E1CB58 /* AfterChatJudgeViewController.m */; };
+		230AC7CC22A0F45E00E1CB58 /* UploadImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 230AC7CA22A0F45E00E1CB58 /* UploadImageCollectionViewCell.m */; };
+		230AC7CD22A0F45E00E1CB58 /* UploadImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 230AC7CB22A0F45E00E1CB58 /* UploadImageCollectionViewCell.xib */; };
+		230AC7D122A0FCCE00E1CB58 /* PlayContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 230AC7D022A0FCCE00E1CB58 /* PlayContactViewController.m */; };
+		230AC7D522A0FDB200E1CB58 /* PlayContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 230AC7D322A0FDB200E1CB58 /* PlayContactTableViewCell.m */; };
+		230AC7D622A0FDB200E1CB58 /* PlayContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 230AC7D422A0FDB200E1CB58 /* PlayContactTableViewCell.xib */; };
 		230C3EBC229BD9D0003BC45C /* DaShiDetailTitlleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 230C3EBA229BD9D0003BC45C /* DaShiDetailTitlleTableViewCell.m */; };
 		230C3EBD229BD9D0003BC45C /* DaShiDetailTitlleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 230C3EBB229BD9D0003BC45C /* DaShiDetailTitlleTableViewCell.xib */; };
 		230C3EC1229C021F003BC45C /* DaShiDetailJudgeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 230C3EBF229C021F003BC45C /* DaShiDetailJudgeTableViewCell.m */; };
@@ -62,6 +70,8 @@
 		233BC7D1229A35DC007EA3CB /* ChangePersonalInfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 233BC7D0229A35DC007EA3CB /* ChangePersonalInfomationViewController.m */; };
 		233BC7D4229A35EC007EA3CB /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 233BC7D3229A35EC007EA3CB /* ChangePasswordViewController.m */; };
 		233BC7D7229A3D97007EA3CB /* ConsultOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 233BC7D6229A3D97007EA3CB /* ConsultOrderViewController.m */; };
+		234DE90D22A14D8600994E38 /* AskStepThreeDetailInfomationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 234DE90B22A14D8600994E38 /* AskStepThreeDetailInfomationTableViewCell.m */; };
+		234DE90E22A14D8600994E38 /* AskStepThreeDetailInfomationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 234DE90C22A14D8600994E38 /* AskStepThreeDetailInfomationTableViewCell.xib */; };
 		234EB96E2296C503004309B4 /* ZJZXFirstRowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 234EB96D2296C503004309B4 /* ZJZXFirstRowModel.m */; };
 		235B465B2295521100DD39A5 /* CSCommonTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235B465A2295521100DD39A5 /* CSCommonTabBarController.m */; };
 		235B466222955AEA00DD39A5 /* ZhuanJiaZiXunViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235B466122955AEA00DD39A5 /* ZhuanJiaZiXunViewController.m */; };
@@ -72,7 +82,23 @@
 		235C324B229FB0ED00446450 /* SureOrderMoneyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 235C3249229FB0ED00446450 /* SureOrderMoneyTableViewCell.xib */; };
 		235C324E229FB39700446450 /* SureOrderWriteMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235C324D229FB39700446450 /* SureOrderWriteMessageViewController.m */; };
 		235C3251229FBCC300446450 /* AfterPayMoneyChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235C3250229FBCC300446450 /* AfterPayMoneyChatViewController.m */; };
+		235C325A229FF96400446450 /* ChatLeftTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 235C3258229FF96400446450 /* ChatLeftTableViewCell.m */; };
+		235C325B229FF96400446450 /* ChatLeftTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 235C3259229FF96400446450 /* ChatLeftTableViewCell.xib */; };
+		235C325F229FF97300446450 /* ChatRightTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 235C325D229FF97300446450 /* ChatRightTableViewCell.m */; };
+		235C3260229FF97300446450 /* ChatRightTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 235C325E229FF97300446450 /* ChatRightTableViewCell.xib */; };
+		235C326422A0002100446450 /* ChatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 235C326322A0002100446450 /* ChatModel.m */; };
 		235D5437229BD0F30028591B /* DaShiDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235D5436229BD0F30028591B /* DaShiDetailViewController.m */; };
+		236F82DE22A28042003894D0 /* YiDaoKeTangDetailIntroduceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 236F82DC22A28042003894D0 /* YiDaoKeTangDetailIntroduceTableViewCell.m */; };
+		236F82DF22A28042003894D0 /* YiDaoKeTangDetailIntroduceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 236F82DD22A28042003894D0 /* YiDaoKeTangDetailIntroduceTableViewCell.xib */; };
+		236F82E322A282B0003894D0 /* YiDaoKeTangDetailJudgeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 236F82E122A282B0003894D0 /* YiDaoKeTangDetailJudgeTableViewCell.m */; };
+		236F82E422A282B0003894D0 /* YiDaoKeTangDetailJudgeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 236F82E222A282B0003894D0 /* YiDaoKeTangDetailJudgeTableViewCell.xib */; };
+		236F82E722A2883C003894D0 /* YiDaoKeTangContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 236F82E622A2883C003894D0 /* YiDaoKeTangContentViewController.m */; };
+		2370023C22A10B6F00C9D568 /* PlayContactSamplesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2370023A22A10B6F00C9D568 /* PlayContactSamplesTableViewCell.m */; };
+		2370023D22A10B6F00C9D568 /* PlayContactSamplesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2370023B22A10B6F00C9D568 /* PlayContactSamplesTableViewCell.xib */; };
+		2370024122A1126200C9D568 /* PlayContactUserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2370023F22A1126200C9D568 /* PlayContactUserTableViewCell.m */; };
+		2370024222A1126200C9D568 /* PlayContactUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2370024022A1126200C9D568 /* PlayContactUserTableViewCell.xib */; };
+		2370024522A1142000C9D568 /* PlayContactNextStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2370024422A1142000C9D568 /* PlayContactNextStepViewController.m */; };
+		2370024922A1411900C9D568 /* PlayContactStepThreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2370024822A1411900C9D568 /* PlayContactStepThreeViewController.m */; };
 		2373C6F1229D4376004A6EA0 /* RightNowConsultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2373C6F0229D4376004A6EA0 /* RightNowConsultViewController.m */; };
 		2373C6F5229D55C7004A6EA0 /* RightNowConsultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2373C6F3229D55C7004A6EA0 /* RightNowConsultTableViewCell.m */; };
 		2373C6F6229D55C7004A6EA0 /* RightNowConsultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2373C6F4229D55C7004A6EA0 /* RightNowConsultTableViewCell.xib */; };
@@ -87,12 +113,33 @@
 		2379E4012294DC990055FBDA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2379E4002294DC990055FBDA /* main.m */; };
 		2379E40E2294E21E0055FBDA /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2379E40D2294E21E0055FBDA /* Login.storyboard */; };
 		2379E4122294EAAC0055FBDA /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2379E4112294EAAC0055FBDA /* BaseViewController.m */; };
+		237A1C9222A14BCB00C88BF0 /* AskStepThreeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 237A1C9022A14BCB00C88BF0 /* AskStepThreeTableViewCell.m */; };
+		237A1C9322A14BCB00C88BF0 /* AskStepThreeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 237A1C9122A14BCB00C88BF0 /* AskStepThreeTableViewCell.xib */; };
 		237C0C3322991561006B72F0 /* DaShiListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 237C0C3222991561006B72F0 /* DaShiListViewController.m */; };
+		237E268A22A2495900A1B46B /* FuGouBangTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 237E268822A2495900A1B46B /* FuGouBangTableViewCell.m */; };
+		237E268B22A2495900A1B46B /* FuGouBangTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 237E268922A2495900A1B46B /* FuGouBangTableViewCell.xib */; };
+		237E268E22A2536300A1B46B /* UserJudgeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 237E268D22A2536300A1B46B /* UserJudgeListViewController.m */; };
+		237E269122A253EF00A1B46B /* UserJudgeListDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 237E269022A253EF00A1B46B /* UserJudgeListDetailViewController.m */; };
+		237E269522A25A1500A1B46B /* UserJudgeDetailImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 237E269322A25A1500A1B46B /* UserJudgeDetailImageTableViewCell.m */; };
+		237E269622A25A1500A1B46B /* UserJudgeDetailImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 237E269422A25A1500A1B46B /* UserJudgeDetailImageTableViewCell.xib */; };
+		237E269B22A266A200A1B46B /* YiDaoKeTangTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 237E269922A266A200A1B46B /* YiDaoKeTangTableViewCell.m */; };
+		237E269C22A266A200A1B46B /* YiDaoKeTangTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 237E269A22A266A200A1B46B /* YiDaoKeTangTableViewCell.xib */; };
+		237E269F22A2689D00A1B46B /* YiDaoKeTangSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 237E269E22A2689D00A1B46B /* YiDaoKeTangSearchViewController.m */; };
 		238C5319229A4053008CA750 /* MyCollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 238C5318229A4053008CA750 /* MyCollectViewController.m */; };
 		238C531D229A40DA008CA750 /* MyCollectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 238C531B229A40DA008CA750 /* MyCollectTableViewCell.m */; };
 		238C531E229A40DA008CA750 /* MyCollectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 238C531C229A40DA008CA750 /* MyCollectTableViewCell.xib */; };
 		238C5322229B7F56008CA750 /* XiaoXiTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 238C5320229B7F56008CA750 /* XiaoXiTableViewCell.m */; };
 		238C5323229B7F56008CA750 /* XiaoXiTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 238C5321229B7F56008CA750 /* XiaoXiTableViewCell.xib */; };
+		23B0A33D22A15072002299E5 /* PlayContactStepThreeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B0A33C22A15072002299E5 /* PlayContactStepThreeModel.m */; };
+		23B0A34022A156CD002299E5 /* ChooseDaShiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B0A33F22A156CD002299E5 /* ChooseDaShiViewController.m */; };
+		23B0A34422A1583D002299E5 /* ChooseDaShiTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B0A34222A1583D002299E5 /* ChooseDaShiTableViewCell.m */; };
+		23B0A34522A1583D002299E5 /* ChooseDaShiTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23B0A34322A1583D002299E5 /* ChooseDaShiTableViewCell.xib */; };
+		23B0A34922A159C9002299E5 /* ChooseDaShiPersonalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B0A34722A159C9002299E5 /* ChooseDaShiPersonalTableViewCell.m */; };
+		23B0A34A22A159C9002299E5 /* ChooseDaShiPersonalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23B0A34822A159C9002299E5 /* ChooseDaShiPersonalTableViewCell.xib */; };
+		23B0A34D22A15BCD002299E5 /* PlaySurePayMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B0A34C22A15BCD002299E5 /* PlaySurePayMoneyViewController.m */; };
+		23B0A35122A15E73002299E5 /* PlaySurePayMoneyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B0A34F22A15E73002299E5 /* PlaySurePayMoneyTableViewCell.m */; };
+		23B0A35222A15E73002299E5 /* PlaySurePayMoneyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23B0A35022A15E73002299E5 /* PlaySurePayMoneyTableViewCell.xib */; };
+		23B0A35522A243D4002299E5 /* FuGouBangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B0A35422A243D4002299E5 /* FuGouBangViewController.m */; };
 		23C3A535229D6F4000212BAF /* UserDefaultJudgeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C3A533229D6F4000212BAF /* UserDefaultJudgeTableViewCell.m */; };
 		23C3A536229D6F4000212BAF /* UserDefaultJudgeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23C3A534229D6F4000212BAF /* UserDefaultJudgeTableViewCell.xib */; };
 		23C3A539229D744C00212BAF /* AdmireMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C3A538229D744C00212BAF /* AdmireMoneyViewController.m */; };
@@ -107,11 +154,32 @@
 		23C3A551229FA70F00212BAF /* SureOrderCourseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23C3A54F229FA70F00212BAF /* SureOrderCourseTableViewCell.xib */; };
 		23C3A555229FAADB00212BAF /* SureOrderDaShiInfomationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C3A553229FAADB00212BAF /* SureOrderDaShiInfomationTableViewCell.m */; };
 		23C3A556229FAADB00212BAF /* SureOrderDaShiInfomationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23C3A554229FAADB00212BAF /* SureOrderDaShiInfomationTableViewCell.xib */; };
+		23CB84E022A26B050004512D /* YiDaoKeTangSearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23CB84DE22A26B050004512D /* YiDaoKeTangSearchTableViewCell.m */; };
+		23CB84E122A26B050004512D /* YiDaoKeTangSearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23CB84DF22A26B050004512D /* YiDaoKeTangSearchTableViewCell.xib */; };
+		23CB84E422A26E920004512D /* YiDaoKeTangDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23CB84E322A26E920004512D /* YiDaoKeTangDetailViewController.m */; };
+		23CB84E822A27A380004512D /* YiDaoKeTangDetailDaShiTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23CB84E622A27A380004512D /* YiDaoKeTangDetailDaShiTableViewCell.m */; };
+		23CB84E922A27A380004512D /* YiDaoKeTangDetailDaShiTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23CB84E722A27A380004512D /* YiDaoKeTangDetailDaShiTableViewCell.xib */; };
+		23CB84ED22A27B9E0004512D /* YiDaoKeTangDetailButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23CB84EB22A27B9E0004512D /* YiDaoKeTangDetailButtonTableViewCell.m */; };
+		23CB84EE22A27B9E0004512D /* YiDaoKeTangDetailButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23CB84EC22A27B9E0004512D /* YiDaoKeTangDetailButtonTableViewCell.xib */; };
 		3EF042296F0BCAB9238D7999 /* libPods-YiDaoYuanAPP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10A9668D8E5847F0F92E54E5 /* libPods-YiDaoYuanAPP.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		10A9668D8E5847F0F92E54E5 /* libPods-YiDaoYuanAPP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YiDaoYuanAPP.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		230AC7BF22A0C0A800E1CB58 /* ChatJudgeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatJudgeTableViewCell.h; sourceTree = "<group>"; };
+		230AC7C022A0C0A800E1CB58 /* ChatJudgeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatJudgeTableViewCell.m; sourceTree = "<group>"; };
+		230AC7C122A0C0A800E1CB58 /* ChatJudgeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatJudgeTableViewCell.xib; sourceTree = "<group>"; };
+		230AC7C422A0C61300E1CB58 /* CSChatCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSChatCell.h; sourceTree = "<group>"; };
+		230AC7C622A0CEFC00E1CB58 /* AfterChatJudgeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AfterChatJudgeViewController.h; sourceTree = "<group>"; };
+		230AC7C722A0CEFC00E1CB58 /* AfterChatJudgeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AfterChatJudgeViewController.m; sourceTree = "<group>"; };
+		230AC7C922A0F45E00E1CB58 /* UploadImageCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UploadImageCollectionViewCell.h; sourceTree = "<group>"; };
+		230AC7CA22A0F45E00E1CB58 /* UploadImageCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UploadImageCollectionViewCell.m; sourceTree = "<group>"; };
+		230AC7CB22A0F45E00E1CB58 /* UploadImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadImageCollectionViewCell.xib; sourceTree = "<group>"; };
+		230AC7CF22A0FCCE00E1CB58 /* PlayContactViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayContactViewController.h; sourceTree = "<group>"; };
+		230AC7D022A0FCCE00E1CB58 /* PlayContactViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayContactViewController.m; sourceTree = "<group>"; };
+		230AC7D222A0FDB200E1CB58 /* PlayContactTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayContactTableViewCell.h; sourceTree = "<group>"; };
+		230AC7D322A0FDB200E1CB58 /* PlayContactTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayContactTableViewCell.m; sourceTree = "<group>"; };
+		230AC7D422A0FDB200E1CB58 /* PlayContactTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayContactTableViewCell.xib; sourceTree = "<group>"; };
 		230C3EB9229BD9D0003BC45C /* DaShiDetailTitlleTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DaShiDetailTitlleTableViewCell.h; sourceTree = "<group>"; };
 		230C3EBA229BD9D0003BC45C /* DaShiDetailTitlleTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DaShiDetailTitlleTableViewCell.m; sourceTree = "<group>"; };
 		230C3EBB229BD9D0003BC45C /* DaShiDetailTitlleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DaShiDetailTitlleTableViewCell.xib; sourceTree = "<group>"; };
@@ -208,6 +276,9 @@
 		233BC7D3229A35EC007EA3CB /* ChangePasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordViewController.m; sourceTree = "<group>"; };
 		233BC7D5229A3D97007EA3CB /* ConsultOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConsultOrderViewController.h; sourceTree = "<group>"; };
 		233BC7D6229A3D97007EA3CB /* ConsultOrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConsultOrderViewController.m; sourceTree = "<group>"; };
+		234DE90A22A14D8600994E38 /* AskStepThreeDetailInfomationTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AskStepThreeDetailInfomationTableViewCell.h; sourceTree = "<group>"; };
+		234DE90B22A14D8600994E38 /* AskStepThreeDetailInfomationTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AskStepThreeDetailInfomationTableViewCell.m; sourceTree = "<group>"; };
+		234DE90C22A14D8600994E38 /* AskStepThreeDetailInfomationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AskStepThreeDetailInfomationTableViewCell.xib; sourceTree = "<group>"; };
 		234EB96C2296C503004309B4 /* ZJZXFirstRowModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJZXFirstRowModel.h; sourceTree = "<group>"; };
 		234EB96D2296C503004309B4 /* ZJZXFirstRowModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJZXFirstRowModel.m; sourceTree = "<group>"; };
 		235B46592295521100DD39A5 /* CSCommonTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSCommonTabBarController.h; sourceTree = "<group>"; };
@@ -227,8 +298,34 @@
 		235C324D229FB39700446450 /* SureOrderWriteMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SureOrderWriteMessageViewController.m; sourceTree = "<group>"; };
 		235C324F229FBCC300446450 /* AfterPayMoneyChatViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AfterPayMoneyChatViewController.h; sourceTree = "<group>"; };
 		235C3250229FBCC300446450 /* AfterPayMoneyChatViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AfterPayMoneyChatViewController.m; sourceTree = "<group>"; };
+		235C3257229FF96400446450 /* ChatLeftTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatLeftTableViewCell.h; sourceTree = "<group>"; };
+		235C3258229FF96400446450 /* ChatLeftTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatLeftTableViewCell.m; sourceTree = "<group>"; };
+		235C3259229FF96400446450 /* ChatLeftTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatLeftTableViewCell.xib; sourceTree = "<group>"; };
+		235C325C229FF97300446450 /* ChatRightTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatRightTableViewCell.h; sourceTree = "<group>"; };
+		235C325D229FF97300446450 /* ChatRightTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatRightTableViewCell.m; sourceTree = "<group>"; };
+		235C325E229FF97300446450 /* ChatRightTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatRightTableViewCell.xib; sourceTree = "<group>"; };
+		235C326222A0002100446450 /* ChatModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatModel.h; sourceTree = "<group>"; };
+		235C326322A0002100446450 /* ChatModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatModel.m; sourceTree = "<group>"; };
 		235D5435229BD0F30028591B /* DaShiDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DaShiDetailViewController.h; sourceTree = "<group>"; };
 		235D5436229BD0F30028591B /* DaShiDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DaShiDetailViewController.m; sourceTree = "<group>"; };
+		236F82DB22A28042003894D0 /* YiDaoKeTangDetailIntroduceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YiDaoKeTangDetailIntroduceTableViewCell.h; sourceTree = "<group>"; };
+		236F82DC22A28042003894D0 /* YiDaoKeTangDetailIntroduceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YiDaoKeTangDetailIntroduceTableViewCell.m; sourceTree = "<group>"; };
+		236F82DD22A28042003894D0 /* YiDaoKeTangDetailIntroduceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YiDaoKeTangDetailIntroduceTableViewCell.xib; sourceTree = "<group>"; };
+		236F82E022A282B0003894D0 /* YiDaoKeTangDetailJudgeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YiDaoKeTangDetailJudgeTableViewCell.h; sourceTree = "<group>"; };
+		236F82E122A282B0003894D0 /* YiDaoKeTangDetailJudgeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YiDaoKeTangDetailJudgeTableViewCell.m; sourceTree = "<group>"; };
+		236F82E222A282B0003894D0 /* YiDaoKeTangDetailJudgeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YiDaoKeTangDetailJudgeTableViewCell.xib; sourceTree = "<group>"; };
+		236F82E522A2883C003894D0 /* YiDaoKeTangContentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YiDaoKeTangContentViewController.h; sourceTree = "<group>"; };
+		236F82E622A2883C003894D0 /* YiDaoKeTangContentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YiDaoKeTangContentViewController.m; sourceTree = "<group>"; };
+		2370023922A10B6F00C9D568 /* PlayContactSamplesTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayContactSamplesTableViewCell.h; sourceTree = "<group>"; };
+		2370023A22A10B6F00C9D568 /* PlayContactSamplesTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayContactSamplesTableViewCell.m; sourceTree = "<group>"; };
+		2370023B22A10B6F00C9D568 /* PlayContactSamplesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayContactSamplesTableViewCell.xib; sourceTree = "<group>"; };
+		2370023E22A1126200C9D568 /* PlayContactUserTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayContactUserTableViewCell.h; sourceTree = "<group>"; };
+		2370023F22A1126200C9D568 /* PlayContactUserTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayContactUserTableViewCell.m; sourceTree = "<group>"; };
+		2370024022A1126200C9D568 /* PlayContactUserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayContactUserTableViewCell.xib; sourceTree = "<group>"; };
+		2370024322A1142000C9D568 /* PlayContactNextStepViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayContactNextStepViewController.h; sourceTree = "<group>"; };
+		2370024422A1142000C9D568 /* PlayContactNextStepViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayContactNextStepViewController.m; sourceTree = "<group>"; };
+		2370024722A1411900C9D568 /* PlayContactStepThreeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayContactStepThreeViewController.h; sourceTree = "<group>"; };
+		2370024822A1411900C9D568 /* PlayContactStepThreeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayContactStepThreeViewController.m; sourceTree = "<group>"; };
 		2373C6EF229D4376004A6EA0 /* RightNowConsultViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RightNowConsultViewController.h; sourceTree = "<group>"; };
 		2373C6F0229D4376004A6EA0 /* RightNowConsultViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RightNowConsultViewController.m; sourceTree = "<group>"; };
 		2373C6F2229D55C7004A6EA0 /* RightNowConsultTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RightNowConsultTableViewCell.h; sourceTree = "<group>"; };
@@ -252,8 +349,26 @@
 		2379E40D2294E21E0055FBDA /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		2379E4102294EAAC0055FBDA /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		2379E4112294EAAC0055FBDA /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		237A1C8F22A14BCB00C88BF0 /* AskStepThreeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AskStepThreeTableViewCell.h; sourceTree = "<group>"; };
+		237A1C9022A14BCB00C88BF0 /* AskStepThreeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AskStepThreeTableViewCell.m; sourceTree = "<group>"; };
+		237A1C9122A14BCB00C88BF0 /* AskStepThreeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AskStepThreeTableViewCell.xib; sourceTree = "<group>"; };
 		237C0C3122991561006B72F0 /* DaShiListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DaShiListViewController.h; sourceTree = "<group>"; };
 		237C0C3222991561006B72F0 /* DaShiListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DaShiListViewController.m; sourceTree = "<group>"; };
+		237E268722A2495900A1B46B /* FuGouBangTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FuGouBangTableViewCell.h; sourceTree = "<group>"; };
+		237E268822A2495900A1B46B /* FuGouBangTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FuGouBangTableViewCell.m; sourceTree = "<group>"; };
+		237E268922A2495900A1B46B /* FuGouBangTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FuGouBangTableViewCell.xib; sourceTree = "<group>"; };
+		237E268C22A2536300A1B46B /* UserJudgeListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserJudgeListViewController.h; sourceTree = "<group>"; };
+		237E268D22A2536300A1B46B /* UserJudgeListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserJudgeListViewController.m; sourceTree = "<group>"; };
+		237E268F22A253EF00A1B46B /* UserJudgeListDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserJudgeListDetailViewController.h; sourceTree = "<group>"; };
+		237E269022A253EF00A1B46B /* UserJudgeListDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserJudgeListDetailViewController.m; sourceTree = "<group>"; };
+		237E269222A25A1500A1B46B /* UserJudgeDetailImageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserJudgeDetailImageTableViewCell.h; sourceTree = "<group>"; };
+		237E269322A25A1500A1B46B /* UserJudgeDetailImageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserJudgeDetailImageTableViewCell.m; sourceTree = "<group>"; };
+		237E269422A25A1500A1B46B /* UserJudgeDetailImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserJudgeDetailImageTableViewCell.xib; sourceTree = "<group>"; };
+		237E269822A266A200A1B46B /* YiDaoKeTangTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YiDaoKeTangTableViewCell.h; sourceTree = "<group>"; };
+		237E269922A266A200A1B46B /* YiDaoKeTangTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YiDaoKeTangTableViewCell.m; sourceTree = "<group>"; };
+		237E269A22A266A200A1B46B /* YiDaoKeTangTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YiDaoKeTangTableViewCell.xib; sourceTree = "<group>"; };
+		237E269D22A2689D00A1B46B /* YiDaoKeTangSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YiDaoKeTangSearchViewController.h; sourceTree = "<group>"; };
+		237E269E22A2689D00A1B46B /* YiDaoKeTangSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YiDaoKeTangSearchViewController.m; sourceTree = "<group>"; };
 		238C5317229A4053008CA750 /* MyCollectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCollectViewController.h; sourceTree = "<group>"; };
 		238C5318229A4053008CA750 /* MyCollectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCollectViewController.m; sourceTree = "<group>"; };
 		238C531A229A40DA008CA750 /* MyCollectTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCollectTableViewCell.h; sourceTree = "<group>"; };
@@ -262,6 +377,23 @@
 		238C531F229B7F56008CA750 /* XiaoXiTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XiaoXiTableViewCell.h; sourceTree = "<group>"; };
 		238C5320229B7F56008CA750 /* XiaoXiTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XiaoXiTableViewCell.m; sourceTree = "<group>"; };
 		238C5321229B7F56008CA750 /* XiaoXiTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XiaoXiTableViewCell.xib; sourceTree = "<group>"; };
+		23B0A33B22A15072002299E5 /* PlayContactStepThreeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayContactStepThreeModel.h; sourceTree = "<group>"; };
+		23B0A33C22A15072002299E5 /* PlayContactStepThreeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayContactStepThreeModel.m; sourceTree = "<group>"; };
+		23B0A33E22A156CD002299E5 /* ChooseDaShiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChooseDaShiViewController.h; sourceTree = "<group>"; };
+		23B0A33F22A156CD002299E5 /* ChooseDaShiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChooseDaShiViewController.m; sourceTree = "<group>"; };
+		23B0A34122A1583D002299E5 /* ChooseDaShiTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChooseDaShiTableViewCell.h; sourceTree = "<group>"; };
+		23B0A34222A1583D002299E5 /* ChooseDaShiTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChooseDaShiTableViewCell.m; sourceTree = "<group>"; };
+		23B0A34322A1583D002299E5 /* ChooseDaShiTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChooseDaShiTableViewCell.xib; sourceTree = "<group>"; };
+		23B0A34622A159C9002299E5 /* ChooseDaShiPersonalTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChooseDaShiPersonalTableViewCell.h; sourceTree = "<group>"; };
+		23B0A34722A159C9002299E5 /* ChooseDaShiPersonalTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChooseDaShiPersonalTableViewCell.m; sourceTree = "<group>"; };
+		23B0A34822A159C9002299E5 /* ChooseDaShiPersonalTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChooseDaShiPersonalTableViewCell.xib; sourceTree = "<group>"; };
+		23B0A34B22A15BCD002299E5 /* PlaySurePayMoneyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaySurePayMoneyViewController.h; sourceTree = "<group>"; };
+		23B0A34C22A15BCD002299E5 /* PlaySurePayMoneyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaySurePayMoneyViewController.m; sourceTree = "<group>"; };
+		23B0A34E22A15E73002299E5 /* PlaySurePayMoneyTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaySurePayMoneyTableViewCell.h; sourceTree = "<group>"; };
+		23B0A34F22A15E73002299E5 /* PlaySurePayMoneyTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaySurePayMoneyTableViewCell.m; sourceTree = "<group>"; };
+		23B0A35022A15E73002299E5 /* PlaySurePayMoneyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaySurePayMoneyTableViewCell.xib; sourceTree = "<group>"; };
+		23B0A35322A243D4002299E5 /* FuGouBangViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FuGouBangViewController.h; sourceTree = "<group>"; };
+		23B0A35422A243D4002299E5 /* FuGouBangViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FuGouBangViewController.m; sourceTree = "<group>"; };
 		23C3A532229D6F4000212BAF /* UserDefaultJudgeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserDefaultJudgeTableViewCell.h; sourceTree = "<group>"; };
 		23C3A533229D6F4000212BAF /* UserDefaultJudgeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserDefaultJudgeTableViewCell.m; sourceTree = "<group>"; };
 		23C3A534229D6F4000212BAF /* UserDefaultJudgeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDefaultJudgeTableViewCell.xib; sourceTree = "<group>"; };
@@ -285,6 +417,17 @@
 		23C3A552229FAADB00212BAF /* SureOrderDaShiInfomationTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SureOrderDaShiInfomationTableViewCell.h; sourceTree = "<group>"; };
 		23C3A553229FAADB00212BAF /* SureOrderDaShiInfomationTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SureOrderDaShiInfomationTableViewCell.m; sourceTree = "<group>"; };
 		23C3A554229FAADB00212BAF /* SureOrderDaShiInfomationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SureOrderDaShiInfomationTableViewCell.xib; sourceTree = "<group>"; };
+		23CB84DD22A26B050004512D /* YiDaoKeTangSearchTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YiDaoKeTangSearchTableViewCell.h; sourceTree = "<group>"; };
+		23CB84DE22A26B050004512D /* YiDaoKeTangSearchTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YiDaoKeTangSearchTableViewCell.m; sourceTree = "<group>"; };
+		23CB84DF22A26B050004512D /* YiDaoKeTangSearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YiDaoKeTangSearchTableViewCell.xib; sourceTree = "<group>"; };
+		23CB84E222A26E920004512D /* YiDaoKeTangDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YiDaoKeTangDetailViewController.h; sourceTree = "<group>"; };
+		23CB84E322A26E920004512D /* YiDaoKeTangDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YiDaoKeTangDetailViewController.m; sourceTree = "<group>"; };
+		23CB84E522A27A380004512D /* YiDaoKeTangDetailDaShiTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YiDaoKeTangDetailDaShiTableViewCell.h; sourceTree = "<group>"; };
+		23CB84E622A27A380004512D /* YiDaoKeTangDetailDaShiTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YiDaoKeTangDetailDaShiTableViewCell.m; sourceTree = "<group>"; };
+		23CB84E722A27A380004512D /* YiDaoKeTangDetailDaShiTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YiDaoKeTangDetailDaShiTableViewCell.xib; sourceTree = "<group>"; };
+		23CB84EA22A27B9E0004512D /* YiDaoKeTangDetailButtonTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YiDaoKeTangDetailButtonTableViewCell.h; sourceTree = "<group>"; };
+		23CB84EB22A27B9E0004512D /* YiDaoKeTangDetailButtonTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YiDaoKeTangDetailButtonTableViewCell.m; sourceTree = "<group>"; };
+		23CB84EC22A27B9E0004512D /* YiDaoKeTangDetailButtonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YiDaoKeTangDetailButtonTableViewCell.xib; sourceTree = "<group>"; };
 		30E92645C0A1586562B7C4F6 /* Pods-YiDaoYuanAPP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YiDaoYuanAPP.release.xcconfig"; path = "Pods/Target Support Files/Pods-YiDaoYuanAPP/Pods-YiDaoYuanAPP.release.xcconfig"; sourceTree = "<group>"; };
 		4FB55DA717085005CF36E971 /* Pods-YiDaoYuanAPP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YiDaoYuanAPP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YiDaoYuanAPP/Pods-YiDaoYuanAPP.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -454,6 +597,10 @@
 				230C3EE6229CD6F6003BC45C /* DaShiListItemModel.m */,
 				2373C6FC229D6341004A6EA0 /* RightNowConsultModel.h */,
 				2373C6FD229D6341004A6EA0 /* RightNowConsultModel.m */,
+				235C326222A0002100446450 /* ChatModel.h */,
+				235C326322A0002100446450 /* ChatModel.m */,
+				23B0A33B22A15072002299E5 /* PlayContactStepThreeModel.h */,
+				23B0A33C22A15072002299E5 /* PlayContactStepThreeModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -477,8 +624,6 @@
 				235D5436229BD0F30028591B /* DaShiDetailViewController.m */,
 				2373C6FF229D671E004A6EA0 /* UserJudgeViewController.h */,
 				2373C700229D671E004A6EA0 /* UserJudgeViewController.m */,
-				2373C6EF229D4376004A6EA0 /* RightNowConsultViewController.h */,
-				2373C6F0229D4376004A6EA0 /* RightNowConsultViewController.m */,
 				23C3A537229D744C00212BAF /* AdmireMoneyViewController.h */,
 				23C3A538229D744C00212BAF /* AdmireMoneyViewController.m */,
 				23C3A53D229F781200212BAF /* PayMoneyViewController.h */,
@@ -489,6 +634,26 @@
 				235C324D229FB39700446450 /* SureOrderWriteMessageViewController.m */,
 				235C324F229FBCC300446450 /* AfterPayMoneyChatViewController.h */,
 				235C3250229FBCC300446450 /* AfterPayMoneyChatViewController.m */,
+				230AC7C622A0CEFC00E1CB58 /* AfterChatJudgeViewController.h */,
+				230AC7C722A0CEFC00E1CB58 /* AfterChatJudgeViewController.m */,
+				2373C6EF229D4376004A6EA0 /* RightNowConsultViewController.h */,
+				2373C6F0229D4376004A6EA0 /* RightNowConsultViewController.m */,
+				230AC7CF22A0FCCE00E1CB58 /* PlayContactViewController.h */,
+				230AC7D022A0FCCE00E1CB58 /* PlayContactViewController.m */,
+				2370024322A1142000C9D568 /* PlayContactNextStepViewController.h */,
+				2370024422A1142000C9D568 /* PlayContactNextStepViewController.m */,
+				2370024722A1411900C9D568 /* PlayContactStepThreeViewController.h */,
+				2370024822A1411900C9D568 /* PlayContactStepThreeViewController.m */,
+				23B0A33E22A156CD002299E5 /* ChooseDaShiViewController.h */,
+				23B0A33F22A156CD002299E5 /* ChooseDaShiViewController.m */,
+				23B0A34B22A15BCD002299E5 /* PlaySurePayMoneyViewController.h */,
+				23B0A34C22A15BCD002299E5 /* PlaySurePayMoneyViewController.m */,
+				23B0A35322A243D4002299E5 /* FuGouBangViewController.h */,
+				23B0A35422A243D4002299E5 /* FuGouBangViewController.m */,
+				237E268C22A2536300A1B46B /* UserJudgeListViewController.h */,
+				237E268D22A2536300A1B46B /* UserJudgeListViewController.m */,
+				237E268F22A253EF00A1B46B /* UserJudgeListDetailViewController.h */,
+				237E269022A253EF00A1B46B /* UserJudgeListDetailViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -511,6 +676,15 @@
 				2373C6F7229D5D4A004A6EA0 /* RightNowConsultIntroduceTableViewCell.h */,
 				2373C6F8229D5D4A004A6EA0 /* RightNowConsultIntroduceTableViewCell.m */,
 				2373C6F9229D5D4A004A6EA0 /* RightNowConsultIntroduceTableViewCell.xib */,
+				230AC7D222A0FDB200E1CB58 /* PlayContactTableViewCell.h */,
+				230AC7D322A0FDB200E1CB58 /* PlayContactTableViewCell.m */,
+				230AC7D422A0FDB200E1CB58 /* PlayContactTableViewCell.xib */,
+				2370023922A10B6F00C9D568 /* PlayContactSamplesTableViewCell.h */,
+				2370023A22A10B6F00C9D568 /* PlayContactSamplesTableViewCell.m */,
+				2370023B22A10B6F00C9D568 /* PlayContactSamplesTableViewCell.xib */,
+				2370023E22A1126200C9D568 /* PlayContactUserTableViewCell.h */,
+				2370023F22A1126200C9D568 /* PlayContactUserTableViewCell.m */,
+				2370024022A1126200C9D568 /* PlayContactUserTableViewCell.xib */,
 				23C3A532229D6F4000212BAF /* UserDefaultJudgeTableViewCell.h */,
 				23C3A533229D6F4000212BAF /* UserDefaultJudgeTableViewCell.m */,
 				23C3A534229D6F4000212BAF /* UserDefaultJudgeTableViewCell.xib */,
@@ -529,6 +703,31 @@
 				235C3247229FB0ED00446450 /* SureOrderMoneyTableViewCell.h */,
 				235C3248229FB0ED00446450 /* SureOrderMoneyTableViewCell.m */,
 				235C3249229FB0ED00446450 /* SureOrderMoneyTableViewCell.xib */,
+				230AC7C922A0F45E00E1CB58 /* UploadImageCollectionViewCell.h */,
+				230AC7CA22A0F45E00E1CB58 /* UploadImageCollectionViewCell.m */,
+				230AC7CB22A0F45E00E1CB58 /* UploadImageCollectionViewCell.xib */,
+				237A1C8F22A14BCB00C88BF0 /* AskStepThreeTableViewCell.h */,
+				237A1C9022A14BCB00C88BF0 /* AskStepThreeTableViewCell.m */,
+				237A1C9122A14BCB00C88BF0 /* AskStepThreeTableViewCell.xib */,
+				234DE90A22A14D8600994E38 /* AskStepThreeDetailInfomationTableViewCell.h */,
+				234DE90B22A14D8600994E38 /* AskStepThreeDetailInfomationTableViewCell.m */,
+				234DE90C22A14D8600994E38 /* AskStepThreeDetailInfomationTableViewCell.xib */,
+				23B0A34122A1583D002299E5 /* ChooseDaShiTableViewCell.h */,
+				23B0A34222A1583D002299E5 /* ChooseDaShiTableViewCell.m */,
+				23B0A34322A1583D002299E5 /* ChooseDaShiTableViewCell.xib */,
+				23B0A34622A159C9002299E5 /* ChooseDaShiPersonalTableViewCell.h */,
+				23B0A34722A159C9002299E5 /* ChooseDaShiPersonalTableViewCell.m */,
+				23B0A34822A159C9002299E5 /* ChooseDaShiPersonalTableViewCell.xib */,
+				23B0A34E22A15E73002299E5 /* PlaySurePayMoneyTableViewCell.h */,
+				23B0A34F22A15E73002299E5 /* PlaySurePayMoneyTableViewCell.m */,
+				23B0A35022A15E73002299E5 /* PlaySurePayMoneyTableViewCell.xib */,
+				237E268722A2495900A1B46B /* FuGouBangTableViewCell.h */,
+				237E268822A2495900A1B46B /* FuGouBangTableViewCell.m */,
+				237E268922A2495900A1B46B /* FuGouBangTableViewCell.xib */,
+				237E269222A25A1500A1B46B /* UserJudgeDetailImageTableViewCell.h */,
+				237E269322A25A1500A1B46B /* UserJudgeDetailImageTableViewCell.m */,
+				237E269422A25A1500A1B46B /* UserJudgeDetailImageTableViewCell.xib */,
+				235C3256229FF94500446450 /* ChatView */,
 				230C3EDA229CD5ED003BC45C /* DaShiListItemView */,
 				230C3ED3229C07E3003BC45C /* DaShiDetail */,
 				231921092297CB6900CADD7F /* zhuanjiazixunView */,
@@ -551,6 +750,12 @@
 			children = (
 				235B466A2296392100DD39A5 /* YiDaoKeTangViewController.h */,
 				235B466B2296392100DD39A5 /* YiDaoKeTangViewController.m */,
+				237E269D22A2689D00A1B46B /* YiDaoKeTangSearchViewController.h */,
+				237E269E22A2689D00A1B46B /* YiDaoKeTangSearchViewController.m */,
+				23CB84E222A26E920004512D /* YiDaoKeTangDetailViewController.h */,
+				23CB84E322A26E920004512D /* YiDaoKeTangDetailViewController.m */,
+				236F82E522A2883C003894D0 /* YiDaoKeTangContentViewController.h */,
+				236F82E622A2883C003894D0 /* YiDaoKeTangContentViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -558,6 +763,24 @@
 		235B46682296390000DD39A5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				237E269822A266A200A1B46B /* YiDaoKeTangTableViewCell.h */,
+				237E269922A266A200A1B46B /* YiDaoKeTangTableViewCell.m */,
+				237E269A22A266A200A1B46B /* YiDaoKeTangTableViewCell.xib */,
+				23CB84DD22A26B050004512D /* YiDaoKeTangSearchTableViewCell.h */,
+				23CB84DE22A26B050004512D /* YiDaoKeTangSearchTableViewCell.m */,
+				23CB84DF22A26B050004512D /* YiDaoKeTangSearchTableViewCell.xib */,
+				23CB84E522A27A380004512D /* YiDaoKeTangDetailDaShiTableViewCell.h */,
+				23CB84E622A27A380004512D /* YiDaoKeTangDetailDaShiTableViewCell.m */,
+				23CB84E722A27A380004512D /* YiDaoKeTangDetailDaShiTableViewCell.xib */,
+				23CB84EA22A27B9E0004512D /* YiDaoKeTangDetailButtonTableViewCell.h */,
+				23CB84EB22A27B9E0004512D /* YiDaoKeTangDetailButtonTableViewCell.m */,
+				23CB84EC22A27B9E0004512D /* YiDaoKeTangDetailButtonTableViewCell.xib */,
+				236F82DB22A28042003894D0 /* YiDaoKeTangDetailIntroduceTableViewCell.h */,
+				236F82DC22A28042003894D0 /* YiDaoKeTangDetailIntroduceTableViewCell.m */,
+				236F82DD22A28042003894D0 /* YiDaoKeTangDetailIntroduceTableViewCell.xib */,
+				236F82E022A282B0003894D0 /* YiDaoKeTangDetailJudgeTableViewCell.h */,
+				236F82E122A282B0003894D0 /* YiDaoKeTangDetailJudgeTableViewCell.m */,
+				236F82E222A282B0003894D0 /* YiDaoKeTangDetailJudgeTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -603,6 +826,22 @@
 				235B467222963AD100DD39A5 /* XiaoXiViewController.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		235C3256229FF94500446450 /* ChatView */ = {
+			isa = PBXGroup;
+			children = (
+				235C3257229FF96400446450 /* ChatLeftTableViewCell.h */,
+				235C3258229FF96400446450 /* ChatLeftTableViewCell.m */,
+				235C3259229FF96400446450 /* ChatLeftTableViewCell.xib */,
+				235C325C229FF97300446450 /* ChatRightTableViewCell.h */,
+				235C325D229FF97300446450 /* ChatRightTableViewCell.m */,
+				235C325E229FF97300446450 /* ChatRightTableViewCell.xib */,
+				230AC7BF22A0C0A800E1CB58 /* ChatJudgeTableViewCell.h */,
+				230AC7C022A0C0A800E1CB58 /* ChatJudgeTableViewCell.m */,
+				230AC7C122A0C0A800E1CB58 /* ChatJudgeTableViewCell.xib */,
+			);
+			path = ChatView;
 			sourceTree = "<group>";
 		};
 		2379E3E52294DC910055FBDA = {
@@ -651,6 +890,7 @@
 				23258E052294F80200EF44DC /* PrefixHeader.pch */,
 				23258E1322951F5400EF44DC /* CSColorAndFont.h */,
 				23258E1422951F9500EF44DC /* CSInterfaceAddress.h */,
+				230AC7C422A0C61300E1CB58 /* CSChatCell.h */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -796,9 +1036,12 @@
 				233BC7CB22999D54007EA3CB /* PersonalSetTableViewCell.xib in Resources */,
 				2319215F2297E3A300CADD7F /* CSSearchTableViewCell.xib in Resources */,
 				238C531E229A40DA008CA750 /* MyCollectTableViewCell.xib in Resources */,
+				23CB84EE22A27B9E0004512D /* YiDaoKeTangDetailButtonTableViewCell.xib in Resources */,
 				230C3EBD229BD9D0003BC45C /* DaShiDetailTitlleTableViewCell.xib in Resources */,
 				230C3EDF229CD617003BC45C /* DaShiItemCollectionViewCell.xib in Resources */,
 				231921552297E34800CADD7F /* ZJZXDaShiTableViewCell.xib in Resources */,
+				235C3260229FF97300446450 /* ChatRightTableViewCell.xib in Resources */,
+				2370023D22A10B6F00C9D568 /* PlayContactSamplesTableViewCell.xib in Resources */,
 				230C3ECC229C05A4003BC45C /* DaShiDetailChooseServiceTableViewCell.xib in Resources */,
 				23C3A549229F7F4600212BAF /* PayMoneyTitleTableViewCell.xib in Resources */,
 				231921592297E34800CADD7F /* ZJZXMoreTableViewCell.xib in Resources */,
@@ -807,20 +1050,37 @@
 				2373C6F6229D55C7004A6EA0 /* RightNowConsultTableViewCell.xib in Resources */,
 				2332CC022299049800DBC24A /* CSLocationTableViewCell.xib in Resources */,
 				230C3EC2229C021F003BC45C /* DaShiDetailJudgeTableViewCell.xib in Resources */,
+				234DE90E22A14D8600994E38 /* AskStepThreeDetailInfomationTableViewCell.xib in Resources */,
+				237E268B22A2495900A1B46B /* FuGouBangTableViewCell.xib in Resources */,
+				237A1C9322A14BCB00C88BF0 /* AskStepThreeTableViewCell.xib in Resources */,
 				2373C6FB229D5D4A004A6EA0 /* RightNowConsultIntroduceTableViewCell.xib in Resources */,
+				23CB84E922A27A380004512D /* YiDaoKeTangDetailDaShiTableViewCell.xib in Resources */,
 				231921512297E34800CADD7F /* ZJZXJudgeTableViewCell.xib in Resources */,
+				237E269C22A266A200A1B46B /* YiDaoKeTangTableViewCell.xib in Resources */,
 				2379E3FB2294DC990055FBDA /* Assets.xcassets in Resources */,
+				23B0A35222A15E73002299E5 /* PlaySurePayMoneyTableViewCell.xib in Resources */,
+				230AC7CD22A0F45E00E1CB58 /* UploadImageCollectionViewCell.xib in Resources */,
+				237E269622A25A1500A1B46B /* UserJudgeDetailImageTableViewCell.xib in Resources */,
 				2379E3F92294DC920055FBDA /* Main.storyboard in Resources */,
+				23B0A34A22A159C9002299E5 /* ChooseDaShiPersonalTableViewCell.xib in Resources */,
 				233BC7BC22998962007EA3CB /* IndustryNewsTableViewCell.xib in Resources */,
 				235C324B229FB0ED00446450 /* SureOrderMoneyTableViewCell.xib in Resources */,
+				23CB84E122A26B050004512D /* YiDaoKeTangSearchTableViewCell.xib in Resources */,
 				23C3A536229D6F4000212BAF /* UserDefaultJudgeTableViewCell.xib in Resources */,
+				230AC7D622A0FDB200E1CB58 /* PlayContactTableViewCell.xib in Resources */,
+				2370024222A1126200C9D568 /* PlayContactUserTableViewCell.xib in Resources */,
+				235C325B229FF96400446450 /* ChatLeftTableViewCell.xib in Resources */,
 				238C5323229B7F56008CA750 /* XiaoXiTableViewCell.xib in Resources */,
+				230AC7C322A0C0A800E1CB58 /* ChatJudgeTableViewCell.xib in Resources */,
 				230C3EE4229CD670003BC45C /* DaShiItemCollectionReusableView.xib in Resources */,
+				236F82DF22A28042003894D0 /* YiDaoKeTangDetailIntroduceTableViewCell.xib in Resources */,
 				23C3A556229FAADB00212BAF /* SureOrderDaShiInfomationTableViewCell.xib in Resources */,
 				23C3A551229FA70F00212BAF /* SureOrderCourseTableViewCell.xib in Resources */,
+				236F82E422A282B0003894D0 /* YiDaoKeTangDetailJudgeTableViewCell.xib in Resources */,
 				231921572297E34800CADD7F /* ZJZXFirstRowTableViewCell.xib in Resources */,
 				2319215A2297E34800CADD7F /* ZJZXDaShiBangDangTableViewCell.xib in Resources */,
 				230C3EC7229C04B4003BC45C /* DaShiDetailCenterTableViewCell.xib in Resources */,
+				23B0A34522A1583D002299E5 /* ChooseDaShiTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -872,8 +1132,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23B0A34422A1583D002299E5 /* ChooseDaShiTableViewCell.m in Sources */,
 				23C3A53C229D7A1F00212BAF /* AnswerMyQuestionViewController.m in Sources */,
 				230C3EE7229CD6F6003BC45C /* DaShiListItemModel.m in Sources */,
+				237E269F22A2689D00A1B46B /* YiDaoKeTangSearchViewController.m in Sources */,
+				237A1C9222A14BCB00C88BF0 /* AskStepThreeTableViewCell.m in Sources */,
+				234DE90D22A14D8600994E38 /* AskStepThreeDetailInfomationTableViewCell.m in Sources */,
+				23CB84E422A26E920004512D /* YiDaoKeTangDetailViewController.m in Sources */,
+				237E268E22A2536300A1B46B /* UserJudgeListViewController.m in Sources */,
+				235C325A229FF96400446450 /* ChatLeftTableViewCell.m in Sources */,
 				235B467322963AD100DD39A5 /* XiaoXiViewController.m in Sources */,
 				23258E1122951EF500EF44DC /* UIView+CSSExtension.m in Sources */,
 				231921542297E34800CADD7F /* ZJZXDaShiTableViewCell.m in Sources */,
@@ -883,9 +1150,11 @@
 				233BC7CA22999D54007EA3CB /* PersonalSetTableViewCell.m in Sources */,
 				23C3A543229F7E7800212BAF /* PayMoneyWaysTableViewCell.m in Sources */,
 				230C3EC6229C04B4003BC45C /* DaShiDetailCenterTableViewCell.m in Sources */,
+				237E269B22A266A200A1B46B /* YiDaoKeTangTableViewCell.m in Sources */,
 				230C3ED0229C0737003BC45C /* DaShiDetailMoreServicesTableViewCell.m in Sources */,
 				233BC7C622999B76007EA3CB /* PersonalSetViewController.m in Sources */,
 				23258E172295231F00EF44DC /* LoginInViewController.m in Sources */,
+				235C326422A0002100446450 /* ChatModel.m in Sources */,
 				23C3A54C229F88FE00212BAF /* SureOrderViewController.m in Sources */,
 				2379E4012294DC990055FBDA /* main.m in Sources */,
 				230C3EDE229CD617003BC45C /* DaShiItemCollectionViewCell.m in Sources */,
@@ -894,6 +1163,7 @@
 				238C5322229B7F56008CA750 /* XiaoXiTableViewCell.m in Sources */,
 				2373C6FA229D5D4A004A6EA0 /* RightNowConsultIntroduceTableViewCell.m in Sources */,
 				235C3251229FBCC300446450 /* AfterPayMoneyChatViewController.m in Sources */,
+				230AC7C222A0C0A800E1CB58 /* ChatJudgeTableViewCell.m in Sources */,
 				235B466522955B6C00DD39A5 /* CSCommonNavigationController.m in Sources */,
 				23258E092294F8B700EF44DC /* CSUtility.m in Sources */,
 				23C3A555229FAADB00212BAF /* SureOrderDaShiInfomationTableViewCell.m in Sources */,
@@ -901,10 +1171,13 @@
 				235D5437229BD0F30028591B /* DaShiDetailViewController.m in Sources */,
 				23258E1B22953C2400EF44DC /* RegisterViewController.m in Sources */,
 				23C3A548229F7F4600212BAF /* PayMoneyTitleTableViewCell.m in Sources */,
+				23CB84ED22A27B9E0004512D /* YiDaoKeTangDetailButtonTableViewCell.m in Sources */,
 				231921582297E34800CADD7F /* ZJZXFirstRowTableViewCell.m in Sources */,
 				23C3A535229D6F4000212BAF /* UserDefaultJudgeTableViewCell.m in Sources */,
 				233BC7B722998726007EA3CB /* IndustryNewsViewController.m in Sources */,
+				230AC7C822A0CEFC00E1CB58 /* AfterChatJudgeViewController.m in Sources */,
 				230C3ED9229CD550003BC45C /* DaShiListCollectionView.m in Sources */,
+				236F82DE22A28042003894D0 /* YiDaoKeTangDetailIntroduceTableViewCell.m in Sources */,
 				2319210C2297CB8E00CADD7F /* CSLocationViewController.m in Sources */,
 				23258E1022951EF500EF44DC /* UIColor+ChangeSixteenColor.m in Sources */,
 				235B466222955AEA00DD39A5 /* ZhuanJiaZiXunViewController.m in Sources */,
@@ -913,32 +1186,53 @@
 				230C3ECB229C05A4003BC45C /* DaShiDetailChooseServiceTableViewCell.m in Sources */,
 				230C3EE3229CD670003BC45C /* DaShiItemCollectionReusableView.m in Sources */,
 				231921522297E34800CADD7F /* ZJZXMoreTableViewCell.m in Sources */,
+				230AC7CC22A0F45E00E1CB58 /* UploadImageCollectionViewCell.m in Sources */,
 				230C3EBC229BD9D0003BC45C /* DaShiDetailTitlleTableViewCell.m in Sources */,
+				23B0A33D22A15072002299E5 /* PlayContactStepThreeModel.m in Sources */,
+				230AC7D522A0FDB200E1CB58 /* PlayContactTableViewCell.m in Sources */,
+				23B0A35122A15E73002299E5 /* PlaySurePayMoneyTableViewCell.m in Sources */,
 				235B466C2296392100DD39A5 /* YiDaoKeTangViewController.m in Sources */,
+				235C325F229FF97300446450 /* ChatRightTableViewCell.m in Sources */,
 				233BC7D1229A35DC007EA3CB /* ChangePersonalInfomationViewController.m in Sources */,
 				2373C6FE229D6341004A6EA0 /* RightNowConsultModel.m in Sources */,
 				23C3A53F229F781200212BAF /* PayMoneyViewController.m in Sources */,
 				2379E4122294EAAC0055FBDA /* BaseViewController.m in Sources */,
+				23B0A34D22A15BCD002299E5 /* PlaySurePayMoneyViewController.m in Sources */,
+				237E269522A25A1500A1B46B /* UserJudgeDetailImageTableViewCell.m in Sources */,
+				23CB84E822A27A380004512D /* YiDaoKeTangDetailDaShiTableViewCell.m in Sources */,
 				235C324E229FB39700446450 /* SureOrderWriteMessageViewController.m in Sources */,
 				2332CC052299070000DBC24A /* CSNewsViewController.m in Sources */,
+				230AC7D122A0FCCE00E1CB58 /* PlayContactViewController.m in Sources */,
 				230C3EC1229C021F003BC45C /* DaShiDetailJudgeTableViewCell.m in Sources */,
+				2370024522A1142000C9D568 /* PlayContactNextStepViewController.m in Sources */,
 				2373C6F5229D55C7004A6EA0 /* RightNowConsultTableViewCell.m in Sources */,
 				23258E1222951EF500EF44DC /* UIView+Extension.m in Sources */,
 				233BC7CE229A334B007EA3CB /* PersonalInfomationViewController.m in Sources */,
+				23CB84E022A26B050004512D /* YiDaoKeTangSearchTableViewCell.m in Sources */,
 				2310BCEB229543CE001D6D2B /* ForgetCodeViewController.m in Sources */,
 				230C3ED6229CD522003BC45C /* DaShiListItemView.m in Sources */,
 				233BC7BB22998962007EA3CB /* IndustryNewsTableViewCell.m in Sources */,
 				2373C701229D671E004A6EA0 /* UserJudgeViewController.m in Sources */,
 				238C531D229A40DA008CA750 /* MyCollectTableViewCell.m in Sources */,
+				2370023C22A10B6F00C9D568 /* PlayContactSamplesTableViewCell.m in Sources */,
 				238C5319229A4053008CA750 /* MyCollectViewController.m in Sources */,
 				231921532297E34800CADD7F /* ZJZXBannerTableViewCell.m in Sources */,
+				237E268A22A2495900A1B46B /* FuGouBangTableViewCell.m in Sources */,
 				2332CC012299049800DBC24A /* CSLocationTableViewCell.m in Sources */,
+				237E269122A253EF00A1B46B /* UserJudgeListDetailViewController.m in Sources */,
 				2379E3F32294DC920055FBDA /* AppDelegate.m in Sources */,
 				237C0C3322991561006B72F0 /* DaShiListViewController.m in Sources */,
+				2370024122A1126200C9D568 /* PlayContactUserTableViewCell.m in Sources */,
+				236F82E322A282B0003894D0 /* YiDaoKeTangDetailJudgeTableViewCell.m in Sources */,
 				231921102297CD2200CADD7F /* CSSearchViewController.m in Sources */,
 				235C324A229FB0ED00446450 /* SureOrderMoneyTableViewCell.m in Sources */,
+				23B0A34922A159C9002299E5 /* ChooseDaShiPersonalTableViewCell.m in Sources */,
 				233BC7C322998DB8007EA3CB /* PersonalCenterViewController.m in Sources */,
 				234EB96E2296C503004309B4 /* ZJZXFirstRowModel.m in Sources */,
+				23B0A35522A243D4002299E5 /* FuGouBangViewController.m in Sources */,
+				23B0A34022A156CD002299E5 /* ChooseDaShiViewController.m in Sources */,
+				2370024922A1411900C9D568 /* PlayContactStepThreeViewController.m in Sources */,
+				236F82E722A2883C003894D0 /* YiDaoKeTangContentViewController.m in Sources */,
 				23C3A539229D744C00212BAF /* AdmireMoneyViewController.m in Sources */,
 				231921502297E34800CADD7F /* ZJZXJudgeTableViewCell.m in Sources */,
 			);
@@ -1086,14 +1380,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F7JC9U8436;
+				DEVELOPMENT_TEAM = XSN66725SV;
 				INFOPLIST_FILE = "$(SRCROOT)/YiDaoYuanAPP/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = shoubin.com.YiDaoYuanAPP;
+				PRODUCT_BUNDLE_IDENTIFIER = Jacky.com.YiDaoYuanAPP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1105,14 +1399,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F7JC9U8436;
+				DEVELOPMENT_TEAM = XSN66725SV;
 				INFOPLIST_FILE = "$(SRCROOT)/YiDaoYuanAPP/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = shoubin.com.YiDaoYuanAPP;
+				PRODUCT_BUNDLE_IDENTIFIER = Jacky.com.YiDaoYuanAPP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

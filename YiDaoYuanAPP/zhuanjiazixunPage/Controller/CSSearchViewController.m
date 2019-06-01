@@ -16,7 +16,14 @@
 @end
 
 @implementation CSSearchViewController
-
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self configNavigationBar];
+}
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self configNavigationBar];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configSubViews];
@@ -41,6 +48,11 @@
     
     WhiteNavigationBarColor
     
+    UIColor *whiteColor = [UIColor colorWithHexString:@"333333"];
+    
+    NSDictionary *dic = [NSDictionary dictionaryWithObject:whiteColor forKey:NSForegroundColorAttributeName];
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:dic];
     
 }
 #pragma mark --UITableViewDelegate/DataSource
@@ -50,6 +62,10 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CSSearchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(CSSearchTableViewCell)];
+    cell.showButton = NO;
     return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"DaShiDetailViewController" sender:self];
 }
 @end

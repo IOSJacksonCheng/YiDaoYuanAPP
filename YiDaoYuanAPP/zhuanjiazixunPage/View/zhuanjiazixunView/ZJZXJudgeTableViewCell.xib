@@ -66,6 +66,9 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="csTitleImageVIew" destination="Suw-NA-1am" id="KvU-iY-ACK"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>

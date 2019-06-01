@@ -165,10 +165,13 @@ CGFloat const AD_Height = 160;
         
         [self  performSegueWithIdentifier:@"DaShiListViewController" sender:self];
        
+    } else if (indexPath.section == 3 && indexPath.row == 0) {
+       [self  performSegueWithIdentifier:@"FuGouBangViewController" sender:self];
+    } else if (indexPath.section == 3 && indexPath.row == 1){
+        
+        [self  performSegueWithIdentifier:@"UserJudgeListViewController" sender:self];
     }
-    if (indexPath.section == 3 && indexPath.row == 0) {
-       [self  performSegueWithIdentifier:@"DaShiListViewController" sender:self];
-    }
+    
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {

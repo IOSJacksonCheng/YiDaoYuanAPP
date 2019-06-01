@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PlayContactTableViewCell" id="KGk-i7-Jjw" customClass="PlayContactTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a9b-ro-5rq">
+                        <rect key="frame" x="9" y="10.5" width="59" height="59"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="59" id="9v2-iB-kmj"/>
+                            <constraint firstAttribute="width" constant="59" id="tAb-aC-zHb"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="婚恋情感" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajf-xv-Aig">
+                        <rect key="frame" x="82" y="10.5" width="74" height="22"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="爱情、婚姻、桃花姻缘等问题" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s1t-87-osE">
+                        <rect key="frame" x="82" y="51.5" width="199" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oys-gx-ogB">
+                        <rect key="frame" x="241" y="10.5" width="69" height="23"/>
+                        <color key="backgroundColor" red="0.050980392159999999" green="0.4431372549" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="69" id="AIy-gu-X2n"/>
+                            <constraint firstAttribute="height" constant="23" id="KbT-iq-I9X"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <state key="normal" title="提问">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Tp-6B-YeX">
+                        <rect key="frame" x="10" y="78.5" width="300" height="1"/>
+                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="VPf-75-yIi"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="5Tp-6B-YeX" secondAttribute="bottom" id="0NN-bL-uBO"/>
+                    <constraint firstItem="Oys-gx-ogB" firstAttribute="top" secondItem="ajf-xv-Aig" secondAttribute="top" id="CLg-3v-lSz"/>
+                    <constraint firstItem="ajf-xv-Aig" firstAttribute="top" secondItem="a9b-ro-5rq" secondAttribute="top" id="EBM-7P-Q8T"/>
+                    <constraint firstItem="s1t-87-osE" firstAttribute="leading" secondItem="ajf-xv-Aig" secondAttribute="leading" id="Kz7-f1-8So"/>
+                    <constraint firstItem="5Tp-6B-YeX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="V8i-oa-j2l"/>
+                    <constraint firstItem="s1t-87-osE" firstAttribute="bottom" secondItem="a9b-ro-5rq" secondAttribute="bottom" id="Z9A-dx-89f"/>
+                    <constraint firstAttribute="trailing" secondItem="Oys-gx-ogB" secondAttribute="trailing" constant="10" id="ftc-wV-8kC"/>
+                    <constraint firstItem="a9b-ro-5rq" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="jVb-B0-fxf"/>
+                    <constraint firstItem="a9b-ro-5rq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="9" id="sLF-IL-yt4"/>
+                    <constraint firstItem="ajf-xv-Aig" firstAttribute="leading" secondItem="a9b-ro-5rq" secondAttribute="trailing" constant="14" id="vtc-G3-59e"/>
+                    <constraint firstAttribute="trailing" secondItem="5Tp-6B-YeX" secondAttribute="trailing" constant="10" id="xot-UK-bGj"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="askButton" destination="Oys-gx-ogB" id="OqO-u3-8OR"/>
+                <outlet property="csImageView" destination="a9b-ro-5rq" id="Hf7-uJ-eRq"/>
+                <outlet property="csSubTitleLabel" destination="s1t-87-osE" id="mNA-Qd-B1v"/>
+                <outlet property="csTitleLabel" destination="ajf-xv-Aig" id="jMb-x6-JW8"/>
+            </connections>
+            <point key="canvasLocation" x="52.799999999999997" y="83.658170914542737"/>
+        </tableViewCell>
+    </objects>
+</document>

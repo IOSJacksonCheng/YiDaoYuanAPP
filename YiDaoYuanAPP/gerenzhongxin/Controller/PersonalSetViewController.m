@@ -86,7 +86,7 @@
     if ([title isEqualToString:@"个人信息"]) {
         [self performSegueWithIdentifier:@"PersonalInfomationViewController" sender:self];
     } else if ([title isEqualToString:@"新手指南"]) {
-         [self performSegueWithIdentifier:@"PersonalInfomationViewController" sender:self];
+         
     }else if ([title isEqualToString:@"分享APP"]) {
        
     }

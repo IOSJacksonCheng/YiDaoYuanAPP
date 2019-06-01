@@ -20,6 +20,8 @@
     [self configNavigationBar];
     
     [self configTableView];
+    
+    
 }
 
 - (void)configTableView {

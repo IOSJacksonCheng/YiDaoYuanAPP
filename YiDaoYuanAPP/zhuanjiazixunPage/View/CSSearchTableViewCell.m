@@ -12,6 +12,7 @@
 @property (weak, nonatomic) IBOutlet UIView *searchView;
 @property (weak, nonatomic) IBOutlet UIButton *consultButton;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+- (IBAction)clickConsultButtonDone:(id)sender;
 
 @end
 @implementation CSSearchTableViewCell
@@ -37,5 +38,10 @@
     if (showButton) {
         self.priceLabel.text = @"免费";
     }
+}
+- (IBAction)clickConsultButtonDone:(id)sender {
+    
+    
+    [[CSUtility getCurrentViewController] performSegueWithIdentifier:@"AfterPayMoneyChatViewController" sender:self];
 }
 @end

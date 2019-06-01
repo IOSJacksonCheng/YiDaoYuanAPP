@@ -156,6 +156,9 @@
                                 <state key="normal" title="咨询老师">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="clickConsultButtonDone:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="CiH-SW-8sH"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

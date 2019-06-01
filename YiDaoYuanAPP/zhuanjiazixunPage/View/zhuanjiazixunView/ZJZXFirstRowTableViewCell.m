@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIView *zanbuduanshiViw;
 @property (weak, nonatomic) IBOutlet UIView *hunlianqinggangView;
 @property (weak, nonatomic) IBOutlet UIView *rightNowConsultView;
+@property (weak, nonatomic) IBOutlet UIView *playContactView;
 
 @end
 @implementation ZJZXFirstRowTableViewCell
@@ -76,6 +77,18 @@
     newsTap5.numberOfTouchesRequired = 1;
     
     [self.rightNowConsultView addGestureRecognizer:newsTap5];
+    
+    
+    UITapGestureRecognizer *newsTap6 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickPlayContactViewDone)];
+    
+    newsTap6.numberOfTapsRequired = 1;
+    
+    newsTap6.numberOfTouchesRequired = 1;
+    
+    [self.playContactView addGestureRecognizer:newsTap6];
+}
+- (void)clickPlayContactViewDone {
+     [[CSUtility getCurrentViewController]  performSegueWithIdentifier:@"PlayContactViewController" sender:self];
 }
 - (void)clickRightNowConsultViewDone {
     

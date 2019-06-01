@@ -12,6 +12,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *surePayButton;
 
+- (IBAction)clickContactButtonDone:(id)sender;
+
 @end
 
 @implementation SureOrderWriteMessageViewController
@@ -59,5 +61,9 @@
     cell.secondLabel.textColor = csBlueColor;
     cell.secondImageView.image = DotaImageName(@"icon_2_zhifu_pre");
     return cell;
+}
+- (IBAction)clickContactButtonDone:(id)sender {
+    
+    [self performSegueWithIdentifier:@"AfterPayMoneyChatViewController" sender:self];
 }
 @end
