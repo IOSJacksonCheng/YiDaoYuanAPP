@@ -61,6 +61,9 @@
 }
 - (void)clickRightButtonDone {
     
+    [self performSegueWithIdentifier:@"LunTanViewController" sender:self];
+    
+    
 }
 #pragma mark --UITableViewDelegate/DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

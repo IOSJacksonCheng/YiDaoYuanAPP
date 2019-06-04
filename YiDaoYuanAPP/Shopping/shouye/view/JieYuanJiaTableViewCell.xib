@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="JieYuanJiaTableViewCell" rowHeight="156" id="KGk-i7-Jjw" customClass="JieYuanJiaTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="329" height="259"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="329" height="258.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_remen tuijian" translatesAutoresizingMaskIntoConstraints="NO" id="qYx-mX-ih0">
+                        <rect key="frame" x="10" y="10" width="309" height="145"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开光铜葫芦：镇宅化煞  辟邪消灾  祛病纳福  催桃花  催婚姻  增进夫妻感情（附开光图片）" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rR3-AT-GHu">
+                        <rect key="frame" x="10" y="165" width="297" height="54"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥200" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m04-4x-axX">
+                        <rect key="frame" x="282" y="229" width="37" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="1" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0DB-Pb-whi">
+                        <rect key="frame" x="10" y="257.5" width="309" height="1"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="geg-3C-lPM"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="结缘价：" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RN7-zT-nEg">
+                        <rect key="frame" x="220.5" y="229" width="61.5" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="0DB-Pb-whi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="B3k-c0-0in"/>
+                    <constraint firstItem="m04-4x-axX" firstAttribute="leading" secondItem="RN7-zT-nEg" secondAttribute="trailing" id="Chk-h3-FvW"/>
+                    <constraint firstItem="qYx-mX-ih0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="FMg-R6-qst"/>
+                    <constraint firstAttribute="trailing" secondItem="qYx-mX-ih0" secondAttribute="trailing" constant="10" id="Hrt-W4-MMD"/>
+                    <constraint firstAttribute="trailing" secondItem="0DB-Pb-whi" secondAttribute="trailing" constant="10" id="I6j-4D-9Uk"/>
+                    <constraint firstItem="m04-4x-axX" firstAttribute="centerY" secondItem="RN7-zT-nEg" secondAttribute="centerY" id="K7p-v1-mps"/>
+                    <constraint firstItem="rR3-AT-GHu" firstAttribute="top" secondItem="qYx-mX-ih0" secondAttribute="bottom" constant="10" id="LXR-EF-GWA"/>
+                    <constraint firstAttribute="trailing" secondItem="rR3-AT-GHu" secondAttribute="trailing" constant="22" id="TNO-Fd-AdA"/>
+                    <constraint firstAttribute="trailing" secondItem="m04-4x-axX" secondAttribute="trailing" constant="10" id="YiX-MR-ABV"/>
+                    <constraint firstAttribute="bottom" secondItem="0DB-Pb-whi" secondAttribute="bottom" id="Zvo-cl-irZ"/>
+                    <constraint firstItem="m04-4x-axX" firstAttribute="top" secondItem="rR3-AT-GHu" secondAttribute="bottom" constant="10" id="ZzR-p8-MGz"/>
+                    <constraint firstItem="rR3-AT-GHu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="dbn-k3-q9W"/>
+                    <constraint firstItem="qYx-mX-ih0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="muI-Fp-8B5"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="priceLabel" destination="m04-4x-axX" id="svg-dv-qIM"/>
+            </connections>
+            <point key="canvasLocation" x="135.19999999999999" y="145.27736131934034"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="img_remen tuijian" width="355" height="145"/>
+    </resources>
+</document>

@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIView *hunlianqinggangView;
 @property (weak, nonatomic) IBOutlet UIView *rightNowConsultView;
 @property (weak, nonatomic) IBOutlet UIView *playContactView;
+@property (weak, nonatomic) IBOutlet UIView *shoppingView;
 
 @end
 @implementation ZJZXFirstRowTableViewCell
@@ -86,6 +87,21 @@
     newsTap6.numberOfTouchesRequired = 1;
     
     [self.playContactView addGestureRecognizer:newsTap6];
+    
+    UITapGestureRecognizer *newsTap7 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickShoppingViewDone)];
+    
+    newsTap7.numberOfTapsRequired = 1;
+    
+    newsTap7.numberOfTouchesRequired = 1;
+    
+    [self.shoppingView addGestureRecognizer:newsTap7];
+    
+    
+}
+- (void)clickShoppingViewDone {
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"shopping" bundle:nil];
+    
+    [UIApplication sharedApplication].keyWindow.rootViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"shoppingStoryboard"];
 }
 - (void)clickPlayContactViewDone {
      [[CSUtility getCurrentViewController]  performSegueWithIdentifier:@"PlayContactViewController" sender:self];

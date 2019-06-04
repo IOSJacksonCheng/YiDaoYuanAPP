@@ -51,6 +51,12 @@
 //    }
     
     if ([viewController.tabBarItem.title isEqualToString:@"祈福"]) {
+        
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"QiFu" bundle:nil];
+        
+        [UIApplication sharedApplication].keyWindow.rootViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"QiFuStoryboard"];
+        
+        
         return NO;
     }
     return YES;

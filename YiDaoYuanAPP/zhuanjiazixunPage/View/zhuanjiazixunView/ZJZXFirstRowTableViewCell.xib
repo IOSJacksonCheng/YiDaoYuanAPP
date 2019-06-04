@@ -501,6 +501,7 @@
                 <outlet property="playContactView" destination="gML-7J-T0D" id="4Pg-s4-uKA"/>
                 <outlet property="rightNowConsultView" destination="DBc-gR-s40" id="qhN-zT-Uzi"/>
                 <outlet property="shiyecaiyunView" destination="rs9-vy-L9l" id="jSm-AH-awf"/>
+                <outlet property="shoppingView" destination="GKa-WP-YC6" id="0jO-Wm-avc"/>
                 <outlet property="zanbuduanshiViw" destination="4r1-JD-aPQ" id="qvx-20-43z"/>
             </connections>
             <point key="canvasLocation" x="135.19999999999999" y="137.18140929535232"/>

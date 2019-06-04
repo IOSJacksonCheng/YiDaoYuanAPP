@@ -8,6 +8,15 @@
 
 #import "ConsultOrderViewController.h"
 
+#import "ConsultTableViewCell.h"
+
+typedef NS_ENUM(NSInteger, CellType) {
+    AllCellType = 0,
+    DaiFuKuanCellType,
+    JinXinZhongCellType,
+    YiWanChengCellType,
+    TuiKuanCellType
+};
 @interface ConsultOrderViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIButton *firstButton;
 @property (weak, nonatomic) IBOutlet UIButton *secondButton;
@@ -18,11 +27,116 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *lineViewLeftConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *lineViewWidth;
 @property (weak, nonatomic) IBOutlet UITableView *listTableView;
-
+@property (nonatomic, strong) NSMutableArray *allArray;
+@property (nonatomic, strong) NSMutableArray *daifukuanArray;
+@property (nonatomic, strong) NSMutableArray *jinxinzhongArray;
+@property (nonatomic, strong) NSMutableArray *yiwanchengArray;
+@property (nonatomic, strong) NSMutableArray *tuikuanArray;
+@property (nonatomic, assign) CellType currentCellType;
 @end
 
 @implementation ConsultOrderViewController
 
+- (NSMutableArray *)tuikuanArray {
+    if (!_tuikuanArray) {
+        _tuikuanArray = @[].mutableCopy;
+        
+        ConsultModel *model1 = [ConsultModel new];
+        model1.state = @"4";
+        model1.statTitle = @"退款";
+        [_tuikuanArray addObject:model1];
+        
+        ConsultModel *model2 = [ConsultModel new];
+        model2.state = @"4";
+        model2.statTitle = @"退款";
+        [_tuikuanArray addObject:model2];
+    }
+    return _tuikuanArray;
+}
+- (NSMutableArray *)yiwanchengArray {
+    if (!_yiwanchengArray) {
+        _yiwanchengArray = @[].mutableCopy;
+        
+        ConsultModel *model1 = [ConsultModel new];
+        model1.state = @"3";
+         model1.statTitle = @"已完成";
+        [_yiwanchengArray addObject:model1];
+        
+        ConsultModel *model2 = [ConsultModel new];
+        model2.state = @"3";
+         model2.statTitle = @"已完成";
+        [_yiwanchengArray addObject:model2];
+    }
+    return _yiwanchengArray;
+}
+- (NSMutableArray *)jinxinzhongArray {
+    if (!_jinxinzhongArray) {
+        _jinxinzhongArray = @[].mutableCopy;
+        
+        ConsultModel *model1 = [ConsultModel new];
+        model1.state = @"2";
+        model1.statTitle = @"进行中";
+
+        [_jinxinzhongArray addObject:model1];
+        
+        ConsultModel *model2 = [ConsultModel new];
+        model2.state = @"2";
+        model2.statTitle = @"进行中";
+
+        [_jinxinzhongArray addObject:model2];
+    }
+    return _jinxinzhongArray;
+}
+
+- (NSMutableArray *)daifukuanArray {
+    if (!_daifukuanArray) {
+        _daifukuanArray = @[].mutableCopy;
+        
+        ConsultModel *model1 = [ConsultModel new];
+        model1.state = @"1";
+        model1.statTitle = @"待付款";
+
+        [_daifukuanArray addObject:model1];
+        
+        ConsultModel *model2 = [ConsultModel new];
+        model2.state = @"1";
+        model2.statTitle = @"待付款";
+
+        [_daifukuanArray addObject:model2];
+    }
+    return _daifukuanArray;
+}
+- (NSMutableArray *)allArray {
+    if (!_allArray) {
+        _allArray = @[].mutableCopy;
+        
+        ConsultModel *model1 = [ConsultModel new];
+        model1.state = @"2";
+        model1.statTitle = @"进行中";
+
+        [_allArray addObject:model1];
+        
+        ConsultModel *model2 = [ConsultModel new];
+        model2.state = @"3";
+        model2.statTitle = @"已完成";
+
+        [_allArray addObject:model2];
+        
+        ConsultModel *model3 = [ConsultModel new];
+        model3.state = @"4";
+        model3.statTitle = @"退款";
+
+        [_allArray addObject:model3];
+        
+        
+        ConsultModel *model5 = [ConsultModel new];
+        model5.state = @"1";
+        model5.statTitle = @"待付款";
+
+        [_allArray addObject:model5];
+    }
+    return _allArray;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configSubViews];
@@ -31,14 +145,16 @@
     
     [self configTableView];
     
-   
+   [self changeButtonStatusWithTag:0];
 }
 
 - (void)configTableView {
-    
+    [self.listTableView registerNib:[UINib nibWithNibName:CSCellName(ConsultTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(ConsultTableViewCell)];
+    self.listTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.listTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 - (void)configSubViews {
-    [self changeButtonStatusWithTag:0];
+    
 }
 - (void)configNavigationBar {
     
@@ -64,7 +180,7 @@
 }
 - (void)changeButtonStatusWithTag:(NSUInteger)tag {
     
-    
+    self.currentCellType = tag;
     if (tag == 0) {
         //全部付款
         [self.firstButton setTitleColor:csBlueColor forState:UIControlStateNormal];
@@ -138,18 +254,69 @@
         
     }];
    
-    
+    [self.listTableView reloadData];
 }
 #pragma mark --UITableViewDelegate/DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return [self getCurrentArray].count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(2"")];
-//    return cell;
-    return nil;
+    
+
+    ConsultTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(ConsultTableViewCell)];
+    
+    ConsultModel *model = [self getCurrentModel:indexPath.row];
+    cell.model = model;
+    return cell;
+    
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    ConsultModel *model = [self getCurrentModel:indexPath.row];
+    if (model.state.integerValue == TuiKuanCellType) {
+        return 181;
+    }
+    
+    return 209;
+    
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    ConsultModel *model = [self getCurrentModel:indexPath.row];
+     if (model.state.integerValue == JinXinZhongCellType) {
+      
+          [self performSegueWithIdentifier:@"ConsultJinXinZhongViewController" sender:self];
+     } else if (model.state.integerValue == TuiKuanCellType) {
+         
+         [self performSegueWithIdentifier:@"ConsultTuiKuanViewController" sender:self];
+     }else if (model.state.integerValue == YiWanChengCellType) {
+         
+         [self performSegueWithIdentifier:@"ConsultYiWanChengViewController" sender:self];
+     }
+}
+- (ConsultModel *)getCurrentModel:(NSInteger)row {
+    NSMutableArray *array = [self getCurrentArray];
+    
+    return array[row];
+}
+- (NSMutableArray *)getCurrentArray {
+    if (self.currentCellType == AllCellType) {
+        return self.allArray;
+    }
+    if (self.currentCellType == DaiFuKuanCellType) {
+        return self.daifukuanArray;
+    }
+    
+    if (self.currentCellType == JinXinZhongCellType) {
+        return self.jinxinzhongArray;
+    }
+    if (self.currentCellType == YiWanChengCellType) {
+        return self.yiwanchengArray;
+    }
+    return self.tuikuanArray;
+}
+
 @end

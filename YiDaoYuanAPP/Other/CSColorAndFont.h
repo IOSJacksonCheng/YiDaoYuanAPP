@@ -10,6 +10,8 @@
 #define CSColorAndFont_h
 
 //font
+#define csCharacterFont_14     [UIFont systemFontOfSize:14]
+
 #define csCharacterFont_15     [UIFont systemFontOfSize:15]
 #define csCharacterFont_12     [UIFont systemFontOfSize:12]
 #define csCharacterFont_18     [UIFont systemFontOfSize:18]

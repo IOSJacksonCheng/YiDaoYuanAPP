@@ -118,24 +118,18 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
    
-    
-    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-    
-    
-    
-    return cell.frame.size.height;
-    
-//    if (indexPath.section == 0) {
-//        if (indexPath.row == 0) {
-//            return 73;
-//        }
-//        return 227.5;
-//    }
-//    if (indexPath.section == 1) {
-//
-//        return 55;
-//    }
-//    return 44;
+
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            return 73;
+        }
+        return 227.5;
+    }
+    if (indexPath.section == 1) {
+
+        return 55;
+    }
+    return 44;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     if (section == 1) {

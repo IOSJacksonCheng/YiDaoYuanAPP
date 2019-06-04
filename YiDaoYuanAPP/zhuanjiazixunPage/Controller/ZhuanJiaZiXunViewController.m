@@ -28,7 +28,7 @@ CGFloat const AD_Height = 160;
 
 
 - (void)viewWillAppear:(BOOL)animated {
-     WhiteNavigationBarColor
+    [self configNavigationBar];
     [super viewWillDisappear:animated];
 
 }
@@ -73,6 +73,11 @@ CGFloat const AD_Height = 160;
     
    WhiteNavigationBarColor
     
+    UIColor *whiteColor = [UIColor colorWithHexString:@"333333"];
+    
+    NSDictionary *dic = [NSDictionary dictionaryWithObject:whiteColor forKey:NSForegroundColorAttributeName];
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:dic];
     CSTitleSearchView *searchView = [[CSTitleSearchView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 22)];
     
     searchView.intrinsicContentSize = CGSizeMake(self.view.width - 30, 35);
