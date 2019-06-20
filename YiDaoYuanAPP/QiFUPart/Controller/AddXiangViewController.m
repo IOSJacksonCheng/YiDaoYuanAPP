@@ -13,11 +13,15 @@ NSString * const xianGuoString = @"献果";
 NSString * const xianXiangString = @"敬香";
 
 NSString * const xianHuaString = @"献花";
-
+NSString * const jingShiString = @"敬食";
 @interface AddXiangViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *moneyView;
 - (IBAction)clickCloseButtonDone:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *otherFuFeiImageView;
+@property (weak, nonatomic) IBOutlet UILabel *otherFuFeiTitleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *otherFuFeiButton;
+@property (weak, nonatomic) IBOutlet UILabel *otherFuFeiSubLabel;
 
 @end
 
@@ -57,6 +61,18 @@ NSString * const xianHuaString = @"献花";
     
     [self.navigationController.navigationBar setTitleTextAttributes:dic];
     
+    
+    
+    if ([self.passString isEqualToString:xianGuoString]) {
+        self.otherFuFeiImageView.image = DotaImageName(@"img_pingan-1");
+        
+    } else if ([self.passString isEqualToString:xianHuaString]) {
+        self.otherFuFeiImageView.image = DotaImageName(@"img_huaping");
+       
+    } else if ([self.passString isEqualToString:jingShiString]){
+        self.otherFuFeiImageView.image = DotaImageName(@"img_1_hongguo");
+        
+    }
 }
 #pragma mark --UITableViewDelegate/DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -76,6 +92,10 @@ NSString * const xianHuaString = @"献花";
          cell.firstImageView.image = DotaImageName(@"img_hua_1");
          cell.secondImageView.image = DotaImageName(@"img_hua_2");
          cell.thirdImageView.image = DotaImageName(@"8059a809e52f57c038e7364a0d0322e604fd0e6fce57-Yoccmn_fw658");
+    } else if ([self.passString isEqualToString:jingShiString]){
+        cell.firstImageView.image = DotaImageName(@"img_1_hongguo");
+        cell.secondImageView.image = DotaImageName(@"img_2_huangguo");
+        cell.thirdImageView.image = DotaImageName(@"img_3_baiguo");
     }
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickFirstViewDone)];
@@ -85,10 +105,42 @@ NSString * const xianHuaString = @"献花";
     [cell.firstView addGestureRecognizer:tap];
     
     
+    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickSecondViewDone)];
+    tap1.numberOfTapsRequired = 1;
+    tap1.numberOfTouchesRequired = 1;
+    
+    [cell.secondView addGestureRecognizer:tap1];
+    
+    
+    
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickThirdViewDone)];
+    tap2.numberOfTapsRequired = 1;
+    tap2.numberOfTouchesRequired = 1;
+    
+    [cell.thirdView addGestureRecognizer:tap2];
     return cell;
 }
 - (void)clickFirstViewDone {
     self.moneyView.hidden = NO;
+    [self.otherFuFeiButton setTitle:@"确定" forState:UIControlStateNormal];
+    
+    self.otherFuFeiTitleLabel.text = @"平安吉祥";
+}
+- (void)clickSecondViewDone {
+    self.moneyView.hidden = NO;
+    
+    [self.otherFuFeiButton setTitle:@"立即请购" forState:UIControlStateNormal];
+    
+    self.otherFuFeiTitleLabel.text = @"平安吉祥\n20易道元/10个";
+    
+}
+- (void)clickThirdViewDone {
+    self.moneyView.hidden = NO;
+    [self.otherFuFeiButton setTitle:@"立即请购" forState:UIControlStateNormal];
+    
+    self.otherFuFeiTitleLabel.text = @"平安吉祥\n20易道元/10个";
+    
+    
 }
 - (IBAction)clickCloseButtonDone:(id)sender {
     

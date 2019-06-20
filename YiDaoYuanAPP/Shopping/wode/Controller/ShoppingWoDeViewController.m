@@ -52,7 +52,7 @@
 - (void)configNavigationBar {
     
     
-    self.title = @"个人中心";
+    self.title = @"我的";
     WhiteNavigationBarColor
     UIColor *whiteColor = [UIColor colorWithHexString:@"333333"];
     
@@ -131,6 +131,18 @@
     
  
     return cell;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *view = UIView.new;
+    
+    view.backgroundColor = csf5f5f5Color;
+    return view;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return 0;
+    }
+    return 8;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {

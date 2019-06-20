@@ -25,7 +25,9 @@ NSString * const HuanXinApnsCertName = @"";
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
   
+    [[UITabBar appearance] setShadowImage:[[UIImage alloc]init]];
     
+    [[UITabBar appearance] setBackgroundImage:[[UIImage alloc]init]];
 
     return YES;
 }

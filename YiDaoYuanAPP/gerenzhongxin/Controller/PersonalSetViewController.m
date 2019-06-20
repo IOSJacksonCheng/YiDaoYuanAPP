@@ -11,6 +11,7 @@
 #import "PersonalSetTableViewCell.h"
 
 @interface PersonalSetViewController ()<UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UIView *shareView;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *listArray;
@@ -87,7 +88,7 @@
     } else if ([title isEqualToString:@"新手指南"]) {
          
     }else if ([title isEqualToString:@"分享APP"]) {
-       
+        self.shareView.hidden = NO;
     }
 }
 @end

@@ -82,7 +82,7 @@ NSString *dashiyiwancheng = @"3";
     
     CGFloat buttonHeight = 30;
     
-    CGFloat buttonInterval_X = 5;
+    CGFloat buttonInterval_X = 10;
     
     CGFloat buttonWidth = 90;
     
@@ -90,7 +90,7 @@ NSString *dashiyiwancheng = @"3";
         UIButton *button = newMutableArray[0];
         [self.buttonView addSubview:button];
         [button mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(-9);
+            make.right.mas_equalTo(0);
             make.centerY.mas_equalTo(0);
             make.height.mas_equalTo(buttonHeight);
             make.width.mas_equalTo(buttonWidth);
@@ -105,7 +105,7 @@ NSString *dashiyiwancheng = @"3";
         [self.buttonView addSubview:button];
         
         [button mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(-9 - (buttonInterval_X + buttonWidth) * i);
+            make.right.mas_equalTo(0 - (buttonInterval_X + buttonWidth) * i);
             make.height.mas_equalTo(buttonHeight);
             make.width.mas_equalTo(buttonWidth);
             make.centerY.mas_equalTo(0);

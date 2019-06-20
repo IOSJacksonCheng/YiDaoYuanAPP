@@ -51,6 +51,9 @@
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_tixing" translatesAutoresizingMaskIntoConstraints="NO" id="iJv-bW-5a8">
+                        <rect key="frame" x="63" y="19" width="9" height="9"/>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="QCt-fn-FhH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="7vR-hf-IvH"/>
@@ -58,23 +61,28 @@
                     <constraint firstAttribute="trailing" secondItem="HPy-Cb-04Z" secondAttribute="trailing" constant="13" id="ANy-w8-fM3"/>
                     <constraint firstAttribute="bottom" secondItem="ApX-Pm-VbH" secondAttribute="bottom" id="Gza-FG-Vbi"/>
                     <constraint firstItem="HPy-Cb-04Z" firstAttribute="top" secondItem="AVc-9q-hGG" secondAttribute="top" id="Qz5-AG-eln"/>
+                    <constraint firstItem="iJv-bW-5a8" firstAttribute="top" secondItem="QCt-fn-FhH" secondAttribute="top" id="R9g-vL-RaJ"/>
                     <constraint firstAttribute="trailing" secondItem="ApX-Pm-VbH" secondAttribute="trailing" id="SZ7-r4-KJq"/>
                     <constraint firstItem="AVc-9q-hGG" firstAttribute="leading" secondItem="QCt-fn-FhH" secondAttribute="trailing" constant="15" id="XbF-QN-bA2"/>
                     <constraint firstItem="AJh-9U-KQs" firstAttribute="leading" secondItem="QCt-fn-FhH" secondAttribute="trailing" constant="20" id="ZNC-q7-71y"/>
                     <constraint firstItem="AVc-9q-hGG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="21" id="ZwY-uU-r1g"/>
                     <constraint firstItem="QCt-fn-FhH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="19" id="bW3-Pk-n4n"/>
+                    <constraint firstItem="iJv-bW-5a8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="63" id="ggY-BL-BJm"/>
                     <constraint firstItem="AJh-9U-KQs" firstAttribute="top" secondItem="AVc-9q-hGG" secondAttribute="bottom" constant="13" id="xIb-rP-hBM"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="tiXingImageView" destination="iJv-bW-5a8" id="n2M-Xq-g5M"/>
                 <outlet property="userContent" destination="AJh-9U-KQs" id="u5b-tl-nGF"/>
                 <outlet property="userImageView" destination="QCt-fn-FhH" id="MK6-Ux-oB9"/>
                 <outlet property="userTitle" destination="AVc-9q-hGG" id="hHI-Jy-qYu"/>
             </connections>
+            <point key="canvasLocation" x="129.59999999999999" y="120.53973013493254"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="icon_tixing" width="9" height="9"/>
         <image name="img_user_head" width="68" height="68"/>
     </resources>
 </document>

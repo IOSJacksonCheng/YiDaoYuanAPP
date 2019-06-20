@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 +(UIImage*) createImageWithColor:(UIColor*) color;
 
 + (UIViewController *)getCurrentViewController;
+/** 设置错误提示信息 */
++ (void) showWrongMessageWithTitle:(NSString *)title;
 @end
 
 NS_ASSUME_NONNULL_END

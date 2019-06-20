@@ -163,7 +163,7 @@
 - (void)configNavigationBar {
     
     
-    self.title = @"商城";
+    self.title = @"生肖";
     WhiteNavigationBarColor
     UIColor *whiteColor = [UIColor colorWithHexString:@"333333"];
     

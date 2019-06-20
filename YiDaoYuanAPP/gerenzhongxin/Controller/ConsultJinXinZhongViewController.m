@@ -77,7 +77,7 @@
         if (indexPath.row == 0) {
             return 73;
         }
-        return 227.5;
+        return 237;
     
 }
 - (IBAction)clickContinueConsultDone:(id)sender {

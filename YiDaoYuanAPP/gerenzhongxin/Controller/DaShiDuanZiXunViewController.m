@@ -96,11 +96,7 @@ typedef NS_ENUM(NSInteger, DaShiCellType) {
         
         [_allArray addObject:model1];
         
-        AllOrderModel *model2 = [AllOrderModel new];
-        model2.state = @"3";
-        model2.statTitle = @"待收货";
-        
-        [_allArray addObject:model2];
+       
         
     }
     return _allArray;
@@ -129,7 +125,7 @@ typedef NS_ENUM(NSInteger, DaShiCellType) {
     
     WhiteNavigationBarColor
     
-    self.title = @"我的订单";
+    self.title = @"咨询订单";
     UIColor *whiteColor = [UIColor colorWithHexString:@"333333"];
     
     NSDictionary *dic = [NSDictionary dictionaryWithObject:whiteColor forKey:NSForegroundColorAttributeName];
@@ -244,7 +240,14 @@ typedef NS_ENUM(NSInteger, DaShiCellType) {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    //    AllOrderModel *model = [self getCurrentModel:indexPath.row];
+        AllOrderModel *model = [self getCurrentModel:indexPath.row];
+
+    if ([model.state isEqualToString:@"3"]) {
+        [self performSegueWithIdentifier:@"DaShiDuanYiWanChengDetailViewController" sender:self];
+    } else if ([model.state isEqualToString:@"1"]) {
+        
+          [self performSegueWithIdentifier:@"DaShiDuanDaiHuiFuViewController" sender:self];
+    }
     
 }
 - (AllOrderModel *)getCurrentModel:(NSInteger)row {

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="XuYuanMingDengCollectionViewCell" id="gTV-IL-0wX" customClass="XuYuanMingDengCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="94" height="220"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="94" height="220"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fk6-1b-CE9">
+                        <rect key="frame" x="0.0" y="0.0" width="94" height="220"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_pingan" translatesAutoresizingMaskIntoConstraints="NO" id="wBC-DT-tiw">
+                                <rect key="frame" x="5" y="23" width="84" height="132"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_cengban" translatesAutoresizingMaskIntoConstraints="NO" id="EUi-5M-hxR">
+                                <rect key="frame" x="0.0" y="0.0" width="94" height="39"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="平安灯" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CBO-El-wQO">
+                                <rect key="frame" x="16" y="160" width="62" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="1" green="0.78823529410000004" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AUm-wz-ny6">
+                                <rect key="frame" x="4.5" y="189" width="85" height="22"/>
+                                <state key="normal" image="icon_diandeng"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="wBC-DT-tiw" firstAttribute="top" secondItem="Fk6-1b-CE9" secondAttribute="top" constant="23" id="34R-Wm-fkd"/>
+                            <constraint firstItem="CBO-El-wQO" firstAttribute="top" secondItem="wBC-DT-tiw" secondAttribute="bottom" constant="5" id="DXu-vx-2dI"/>
+                            <constraint firstItem="EUi-5M-hxR" firstAttribute="top" secondItem="Fk6-1b-CE9" secondAttribute="top" id="OYE-qn-X1u"/>
+                            <constraint firstItem="CBO-El-wQO" firstAttribute="centerX" secondItem="Fk6-1b-CE9" secondAttribute="centerX" id="ikb-N3-tUD"/>
+                            <constraint firstItem="AUm-wz-ny6" firstAttribute="top" secondItem="CBO-El-wQO" secondAttribute="bottom" constant="5" id="jLV-s0-EmU"/>
+                            <constraint firstAttribute="trailing" secondItem="EUi-5M-hxR" secondAttribute="trailing" id="lGz-Pt-hGP"/>
+                            <constraint firstItem="AUm-wz-ny6" firstAttribute="centerX" secondItem="Fk6-1b-CE9" secondAttribute="centerX" id="oDS-UF-OaW"/>
+                            <constraint firstItem="wBC-DT-tiw" firstAttribute="centerX" secondItem="Fk6-1b-CE9" secondAttribute="centerX" id="yPx-Sv-BFZ"/>
+                            <constraint firstItem="EUi-5M-hxR" firstAttribute="leading" secondItem="Fk6-1b-CE9" secondAttribute="leading" id="zz4-Cj-kHe"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="Fk6-1b-CE9" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ExM-ZU-q5g"/>
+                <constraint firstItem="Fk6-1b-CE9" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="HN5-Xh-uI4"/>
+                <constraint firstAttribute="trailing" secondItem="Fk6-1b-CE9" secondAttribute="trailing" id="TcA-L3-hl1"/>
+                <constraint firstAttribute="bottom" secondItem="Fk6-1b-CE9" secondAttribute="bottom" id="p0X-Ui-Ysd"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <size key="customSize" width="138" height="164"/>
+            <connections>
+                <outlet property="csImageView" destination="wBC-DT-tiw" id="LVV-u4-sqJ"/>
+                <outlet property="csTitleLabel" destination="CBO-El-wQO" id="C4F-DQ-GK8"/>
+            </connections>
+            <point key="canvasLocation" x="200" y="172.71364317841082"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="icon_diandeng" width="85" height="20"/>
+        <image name="img_cengban" width="375" height="39"/>
+        <image name="img_pingan" width="84" height="132"/>
+    </resources>
+</document>

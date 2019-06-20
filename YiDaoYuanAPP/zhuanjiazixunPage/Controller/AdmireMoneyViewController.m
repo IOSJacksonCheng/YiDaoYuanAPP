@@ -43,7 +43,9 @@
 - (void)configSubViews {
     [self changeButtonStatus:1];
     
-    self.titleImageView.layer.cornerRadius = 55 * 0.5;
+    self.titleImageView.layer.cornerRadius = 76 * 0.5;
+    self.titleImageView.layer.borderWidth = 1;
+    self.titleImageView.layer.borderColor = UIColor.whiteColor.CGColor;
     self.titleImageView.layer.masksToBounds = YES;
     
     self.surePayButton.layer.cornerRadius = 5;

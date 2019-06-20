@@ -7,12 +7,17 @@
 //
 
 #import "DaShiDetailTitlleTableViewCell.h"
+@interface DaShiDetailTitlleTableViewCell()
+@property (weak, nonatomic) IBOutlet UIView *bgView;
 
+@end
 @implementation DaShiDetailTitlleTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.bgView.layer.cornerRadius = 5;
+    self.bgView.layer.masksToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

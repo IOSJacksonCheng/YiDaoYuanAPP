@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIView *remindView;
 
 - (IBAction)clickCancelButtonDone:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *bgView;
 @end
 
 @implementation LunTanMoreDetailViewController
@@ -39,6 +40,10 @@
     
 }
 - (void)configSubViews {
+    
+//    self.bgView.layer.cornerRadius = 5;
+//    self.bgView.layer.masksToBounds = YES;
+    
     self.csInputTextField.layer.cornerRadius = 15;
     self.csInputTextField.layer.masksToBounds = YES;
 }

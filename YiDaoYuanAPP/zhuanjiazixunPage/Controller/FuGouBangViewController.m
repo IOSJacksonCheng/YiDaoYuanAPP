@@ -8,6 +8,7 @@
 
 #import "FuGouBangViewController.h"
 #import "FuGouBangTableViewCell.h"
+#import "DaShiDetailViewController.h"
 typedef NS_ENUM(NSInteger, ListType) {
     HaoPingBangType = 0,
     FuGouBangType,
@@ -26,7 +27,10 @@ typedef NS_ENUM(NSInteger, ListType) {
 @end
 
 @implementation FuGouBangViewController
-
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self configNavigationBar];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configSubViews];
@@ -53,6 +57,11 @@ typedef NS_ENUM(NSInteger, ListType) {
     WhiteNavigationBarColor
     
     self.title = @"婚恋情感";
+    UIColor *whiteColor = [UIColor colorWithHexString:@"333333"];
+    
+    NSDictionary *dic = [NSDictionary dictionaryWithObject:whiteColor forKey:NSForegroundColorAttributeName];
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:dic];
 }
 - (IBAction)clickTopViewButtonDone:(UIButton *)sender {
     [self changeButtonStatusWithTag:sender.tag];
@@ -153,5 +162,10 @@ typedef NS_ENUM(NSInteger, ListType) {
         return 106;
     }
     return 82;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    DaShiDetailViewController *new = [mainStoryboard instantiateViewControllerWithIdentifier:@"DaShiDetailViewController"];
+    [self.navigationController pushViewController:new animated:YES];
 }
 @end

@@ -9,6 +9,7 @@
 #import "QingShengViewController.h"
 
 @interface QingShengViewController ()
+- (IBAction)clickQingShengGongFengButtonDone:(id)sender;
 
 @end
 
@@ -59,4 +60,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (IBAction)clickQingShengGongFengButtonDone:(id)sender {
+    [self performSegueWithIdentifier:@"MingDengViewController" sender:self];
+}
 @end

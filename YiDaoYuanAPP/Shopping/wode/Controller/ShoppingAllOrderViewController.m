@@ -271,8 +271,14 @@ typedef NS_ENUM(NSInteger, CSCellType) {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-//    AllOrderModel *model = [self getCurrentModel:indexPath.row];
-    
+    AllOrderModel *model = [self getCurrentModel:indexPath.row];
+    if (model.state.intValue == YiWanChengCSCellType) {
+         [self performSegueWithIdentifier:@"ShoppingHaveFinishedViewController" sender:self];
+    } else if (model.state.intValue == DaiShouHuoCSCellType) {
+        
+         [self performSegueWithIdentifier:@"ShoppingWaitReceiveGoodsViewController" sender:self];
+    }
+   
 }
 - (AllOrderModel *)getCurrentModel:(NSInteger)row {
     NSMutableArray *array = [self getCurrentArray];

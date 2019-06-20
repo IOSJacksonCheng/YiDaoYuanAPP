@@ -95,7 +95,7 @@
     
     
         self.centerImageView = [[UIImageView alloc]initWithFrame:CGRectMake(MainScreenWidth, 0, MainScreenWidth, 160)];
-        self.centerImageView.backgroundColor = UIColor.redColor;
+    
         self.centerImageView.userInteractionEnabled = YES;
         self.centerImageView.contentMode = UIViewContentModeScaleToFill;
         
@@ -107,7 +107,7 @@
     
     
         self.rightImageView = [[UIImageView alloc]initWithFrame:CGRectMake(2 * MainScreenWidth, 0, MainScreenWidth, 160)];
-        self.rightImageView .backgroundColor = UIColor.blackColor;
+      
         self.rightImageView .contentMode = UIViewContentModeScaleToFill
         ;
         [self.bannerScrollView addSubview:self.rightImageView ];

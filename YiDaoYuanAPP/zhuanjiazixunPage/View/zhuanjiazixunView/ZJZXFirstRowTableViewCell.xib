@@ -495,6 +495,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="bottomLineView" destination="z0b-Mg-UWg" id="aMZ-cL-w5r"/>
                 <outlet property="hunlianqinggangView" destination="Ojo-KS-qdj" id="SWj-WI-TjO"/>
                 <outlet property="mingyunxiangpiView" destination="po7-aD-R6G" id="m7I-my-hUU"/>
                 <outlet property="newsView" destination="Ino-IV-8Ug" id="Y6m-J7-vCX"/>
@@ -502,6 +503,7 @@
                 <outlet property="rightNowConsultView" destination="DBc-gR-s40" id="qhN-zT-Uzi"/>
                 <outlet property="shiyecaiyunView" destination="rs9-vy-L9l" id="jSm-AH-awf"/>
                 <outlet property="shoppingView" destination="GKa-WP-YC6" id="0jO-Wm-avc"/>
+                <outlet property="topLineView" destination="6AO-Es-tEK" id="tlN-FQ-8kc"/>
                 <outlet property="zanbuduanshiViw" destination="4r1-JD-aPQ" id="qvx-20-43z"/>
             </connections>
             <point key="canvasLocation" x="135.19999999999999" y="137.18140929535232"/>

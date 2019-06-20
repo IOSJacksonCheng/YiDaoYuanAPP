@@ -18,7 +18,10 @@
 @end
 
 @implementation PlayContactNextStepViewController
-
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self configNavigationBar];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configSubViews];
@@ -29,6 +32,8 @@
 }
 
 - (void)configTableView {
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     [self.tableView registerNib:[UINib nibWithNibName:CSCellName(ZJZXMoreTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(ZJZXMoreTableViewCell)];

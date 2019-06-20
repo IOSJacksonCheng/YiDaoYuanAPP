@@ -7,6 +7,7 @@
 //
 
 #import "ZJZXFirstRowTableViewCell.h"
+#import "YiDaoKeTangListViewController.h"
 @interface ZJZXFirstRowTableViewCell()
 
 
@@ -18,7 +19,8 @@
 @property (weak, nonatomic) IBOutlet UIView *rightNowConsultView;
 @property (weak, nonatomic) IBOutlet UIView *playContactView;
 @property (weak, nonatomic) IBOutlet UIView *shoppingView;
-
+@property (weak, nonatomic) IBOutlet UIView *topLineView;
+@property (weak, nonatomic) IBOutlet UIView *bottomLineView;
 @end
 @implementation ZJZXFirstRowTableViewCell
 
@@ -97,6 +99,24 @@
     [self.shoppingView addGestureRecognizer:newsTap7];
     
     
+    UITapGestureRecognizer *newsTap8 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToKeTangList)];
+    
+    newsTap8.numberOfTapsRequired = 1;
+    
+    newsTap8.numberOfTouchesRequired = 1;
+    
+    [self.topLineView addGestureRecognizer:newsTap8];
+    
+    [self.bottomLineView addGestureRecognizer:newsTap8];
+}
+- (void)goToKeTangList {
+    
+    
+     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    YiDaoKeTangListViewController *new = [mainStoryboard instantiateViewControllerWithIdentifier:@"YiDaoKeTangListViewController"];
+    
+    [[CSUtility getCurrentViewController].navigationController pushViewController:new animated:YES];
 }
 - (void)clickShoppingViewDone {
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"shopping" bundle:nil];

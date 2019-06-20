@@ -91,7 +91,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="03I-SL-zxz">
-                                <rect key="frame" x="10" y="170" width="280" height="28"/>
+                                <rect key="frame" x="10" y="170" width="282" height="28"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="YcT-YD-HeF"/>
@@ -111,7 +111,7 @@
                             <constraint firstItem="f1F-VP-zOE" firstAttribute="leading" secondItem="Rzk-8e-6m7" secondAttribute="trailing" constant="8" id="a9l-Ka-5Zs"/>
                             <constraint firstItem="G5h-mF-iiT" firstAttribute="leading" secondItem="EBB-pT-4hH" secondAttribute="leading" id="aVJ-vL-LGJ"/>
                             <constraint firstItem="zDy-I2-IQp" firstAttribute="leading" secondItem="EBB-pT-4hH" secondAttribute="leading" constant="8" id="fTg-K4-Inc"/>
-                            <constraint firstAttribute="trailing" secondItem="03I-SL-zxz" secondAttribute="trailing" constant="10" id="k7E-JI-cmZ"/>
+                            <constraint firstAttribute="trailing" secondItem="03I-SL-zxz" secondAttribute="trailing" constant="8" id="k7E-JI-cmZ"/>
                             <constraint firstItem="03I-SL-zxz" firstAttribute="leading" secondItem="EBB-pT-4hH" secondAttribute="leading" constant="10" id="qq5-x7-Ctr"/>
                             <constraint firstItem="nxk-Ed-ae9" firstAttribute="top" secondItem="EBB-pT-4hH" secondAttribute="top" constant="10" id="s3p-vk-RBN"/>
                             <constraint firstAttribute="trailing" secondItem="G5h-mF-iiT" secondAttribute="trailing" id="sMu-8A-xy7"/>

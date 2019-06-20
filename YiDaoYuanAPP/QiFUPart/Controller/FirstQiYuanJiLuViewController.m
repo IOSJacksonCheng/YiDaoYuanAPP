@@ -82,7 +82,8 @@
     return cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-     [self performSegueWithIdentifier:@"QiYuanJiLuViewController" sender:self];
+    
+    [self performSegueWithIdentifier:@"QiYuanJiLuViewController" sender:self];
    
 }
 

@@ -40,11 +40,11 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_more-1" translatesAutoresizingMaskIntoConstraints="NO" id="WWv-sQ-29S">
-                        <rect key="frame" x="286" y="35" width="25" height="25"/>
+                        <rect key="frame" x="271" y="35" width="25" height="25"/>
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="WWv-sQ-29S" secondAttribute="trailing" constant="9" id="0zd-Nt-vPX"/>
+                    <constraint firstAttribute="trailing" secondItem="WWv-sQ-29S" secondAttribute="trailing" constant="24" id="0zd-Nt-vPX"/>
                     <constraint firstAttribute="bottom" secondItem="1Id-OE-nKw" secondAttribute="bottom" id="1hV-WN-C0o"/>
                     <constraint firstAttribute="trailing" secondItem="1Id-OE-nKw" secondAttribute="trailing" constant="18" id="AZU-xj-3Rp"/>
                     <constraint firstItem="TM4-46-PPF" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="XUY-gJ-kt9"/>

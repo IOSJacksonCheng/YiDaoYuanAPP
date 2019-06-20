@@ -29,4 +29,34 @@
         self.csTitleLabel.textColor = [UIColor colorWithHexString:@"333333"];
     }
 }
+- (void)setWishModel:(DaShiListItemModel *)wishModel {
+    
+    _wishModel = wishModel;
+    self.backgroundColor = UIColor.clearColor;
+    self.csTitleLabel.text = wishModel.title;
+    if (_wishModel.isChoose) {
+       
+        
+       
+        self.csTitleLabel.textColor = [UIColor colorWithHexString:@"#42231E"];
+       
+        self.layer.cornerRadius = 5;
+        
+        self.layer.borderColor = [UIColor colorWithHexString:@"#42231E"].CGColor;
+        
+        self.layer.borderWidth = 1;
+        
+    } else {
+       
+       
+        self.csTitleLabel.textColor = [UIColor colorWithHexString:@"#42231E"];
+        
+        self.layer.cornerRadius = 5;
+        
+        self.layer.borderColor = [UIColor colorWithHexString:@"#42231E"].CGColor;
+        
+        self.layer.borderWidth = 1;
+    }
+    
+}
 @end

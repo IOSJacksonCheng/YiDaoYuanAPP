@@ -100,7 +100,7 @@
         if (indexPath.row == 0) {
             ZJZXMoreTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(ZJZXMoreTableViewCell)];
             cell.csTitleLabel.text = @"专题目录";
-            cell.moreTitleLabel.text = @"更新至1课时/共1课时";
+            cell.moreTitleLabel.text = @"更新至1课时/共1课时 >";
             return cell;
         } else if (indexPath.row == 1) {
             YiDaoKeTangDetailDaShiTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(YiDaoKeTangDetailDaShiTableViewCell)];

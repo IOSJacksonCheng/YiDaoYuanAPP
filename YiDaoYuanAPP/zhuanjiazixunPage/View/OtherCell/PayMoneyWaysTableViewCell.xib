@@ -32,8 +32,8 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_xuanzhong" translatesAutoresizingMaskIntoConstraints="NO" id="d2N-vm-5LD">
-                        <rect key="frame" x="288" y="12.5" width="19" height="19"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_xuanze" translatesAutoresizingMaskIntoConstraints="NO" id="d2N-vm-5LD">
+                        <rect key="frame" x="286" y="11.5" width="21" height="21"/>
                     </imageView>
                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="（充值易道源享受折扣）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="End-rO-LXJ">
                         <rect key="frame" x="130" y="14.5" width="135" height="15"/>
@@ -63,6 +63,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="icon_xuanzhong" width="19" height="19"/>
+        <image name="icon_xuanze" width="21" height="21"/>
     </resources>
 </document>

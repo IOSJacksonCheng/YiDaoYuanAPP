@@ -14,6 +14,7 @@
 - (IBAction)clickCloseButton:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *diandengView;
 - (IBAction)clickBeginDianDengDone:(id)sender;
+- (IBAction)clickNextButtonDone:(UIButton *)sender;
 
 @end
 
@@ -69,9 +70,13 @@
 - (IBAction)clickBeginDianDengDone:(id)sender {
     self.diandengView.hidden = NO;
 }
+
+- (IBAction)clickNextButtonDone:(UIButton *)sender {
+    [self performSegueWithIdentifier:@"QuickWishViewController" sender:self];
+}
 #pragma mark --UITableViewDelegate/DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
+    return 3;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
@@ -82,7 +87,7 @@
     cell.xuanzhongImageView.hidden = YES;
     
     cell.csImageView.hidden = YES;
-    if (indexPath.section == 3) {
+    if (indexPath.section == 2) {
         cell.csImageView.hidden = NO;
     }
     if (indexPath.section == 0) {

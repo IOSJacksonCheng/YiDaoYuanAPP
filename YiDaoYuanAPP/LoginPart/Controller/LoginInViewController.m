@@ -48,12 +48,44 @@
 
 - (IBAction)ckickRegisterButtonDone:(id)sender {
     
+   
+    
 }
 - (IBAction)clickLoginButtonDone:(id)sender {
-    
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
-    [UIApplication sharedApplication].keyWindow.rootViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"MainStoryboard"];
+                [UIApplication sharedApplication].keyWindow.rootViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"MainStoryboard"];
+//    if (csCharacterIsBlank(self.phoneTextField.text) || csCharacterIsBlank(self.secureTextField.text)) {
+//
+//        CustomWrongMessage(@"请填写完整信息")
+//        return;
+//    }
+//
+//    NSMutableDictionary *para = @{}.mutableCopy;
+//    para[@"cspameter"] = self.phoneTextField.text;
+//    para[@"password"] = self.secureTextField.text;
+//    para[@"device_type"] = @"iphone";
+//    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Login Pameters:para success:^(id  _Nonnull responseObject) {
+//
+//        if (CSInternetRequestSuccessful) {
+//
+//
+//            [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",CSGetResult[@"token"]] forKey:@"CSGetToken"];
+//
+//              [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",CSGetResult[@"token"]] forKey:@"CSGetToken"];
+//
+//            UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//
+//            [UIApplication sharedApplication].keyWindow.rootViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"MainStoryboard"];
+//        }else {
+//
+//            CSShowWrongMessage
+//
+//        }
+//    } failure:^(NSError * _Nonnull error) {
+//        CSInternetFailure
+//    }];
+    
     
 }
 - (IBAction)clickShowSecureButtonDone:(UIButton *)sender {

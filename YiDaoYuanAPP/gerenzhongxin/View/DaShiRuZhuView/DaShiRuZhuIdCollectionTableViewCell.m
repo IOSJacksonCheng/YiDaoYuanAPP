@@ -22,7 +22,9 @@
     [self.collectionView registerNib:[UINib nibWithNibName:CSCellName(DaShiItemCollectionViewCell) bundle:nil] forCellWithReuseIdentifier:CSCellName(DaShiItemCollectionViewCell)];
     
     self.collectionView.showsHorizontalScrollIndicator = NO;
-    self.collectionView.showsVerticalScrollIndicator = NO;}
+    self.collectionView.showsVerticalScrollIndicator = NO;
+    
+}
 
 #pragma mark -- UICollectionViewDataSource/Delegate
 // UIEdgeInsets insets = {top, left, bottom, right};

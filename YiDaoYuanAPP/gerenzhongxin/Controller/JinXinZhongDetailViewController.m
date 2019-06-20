@@ -45,13 +45,17 @@
 
 }
 - (void)configNavigationBar {
+   
     self.title = @"咨询详情";
+    
     F3f3f3NavigationBarColor
+   
     UIColor *whiteColor = [UIColor colorWithHexString:@"333333"];
 
     NSDictionary *dic = [NSDictionary dictionaryWithObject:whiteColor forKey:NSForegroundColorAttributeName];
 
     [self.navigationController.navigationBar setTitleTextAttributes:dic];
+    
 }
 #pragma mark --UITableViewDelegate/DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -95,7 +99,7 @@
         if (indexPath.row == 0) {
             return 153;
         }
-        return 227.5;
+        return 237;
     }
 
     if (indexPath.row == 0) {

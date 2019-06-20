@@ -42,9 +42,11 @@
     self.payButton.layer.cornerRadius = 5;
     self.payButton.layer.masksToBounds = YES;
     
-    
+    [self.payButton addTarget:self action:@selector(clickPayMoneyButton) forControlEvents:UIControlEventTouchDown];
 }
-
+- (void)clickPayMoneyButton {
+    [self performSegueWithIdentifier:@"ShopSureOrderViewController" sender:self];
+}
 - (void)configNavigationBar {
     
     

@@ -168,6 +168,7 @@
         ZJZXMoreTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(ZJZXMoreTableViewCell)];
         cell.csTitleLabel.text = @"用户评价";
         cell.moreTitleLabel.hidden = NO;
+        cell.moreTitleLabel.text = @"查看更多";
         return cell;
         
         

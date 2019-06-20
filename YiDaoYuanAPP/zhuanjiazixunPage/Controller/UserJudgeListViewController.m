@@ -37,7 +37,7 @@
     
 }
 - (void)configNavigationBar {
-    WhiteNavigationBarColor
+    F3f3f3NavigationBarColor
     
     self.title = @"晒单列表";
 }

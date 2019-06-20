@@ -21,6 +21,7 @@
 - (IBAction)clickMoneyButtonDone:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UIView *successView;
 - (IBAction)clickSurePayButtonDone:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UIView *remindView;
 @end
 
 @implementation YuEChongZhiViewController
@@ -48,9 +49,12 @@
 }
 
 - (void)configSubViews {
+    
+    
+    
     self.successView.hidden = YES;
-    self.successView.layer.cornerRadius = 5;
-    self.successView.layer.masksToBounds = YES;
+    self.remindView.layer.cornerRadius = 5;
+    self.remindView.layer.masksToBounds = YES;
     
     [self changeButtonStatus:1];
     

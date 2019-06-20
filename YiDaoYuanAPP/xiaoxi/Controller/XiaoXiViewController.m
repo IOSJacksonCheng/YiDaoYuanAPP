@@ -48,9 +48,9 @@
     
     UIButton *rightButton = [[UIButton alloc] init];
 
-    
-    [rightButton setImage:DotaImageName(@"icon_weixin-1") forState:UIControlStateNormal];
-    
+    [rightButton setTitle:@"论坛" forState:UIControlStateNormal];
+    [rightButton setTitleColor:csBlueColor forState:UIControlStateNormal];
+    rightButton.titleLabel.font = csCharacterFont_18;
     
     [rightButton addTarget:self action:@selector(clickRightButtonDone) forControlEvents:UIControlEventTouchDown];
     
@@ -74,11 +74,14 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     XiaoXiTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(XiaoXiTableViewCell)];
+    cell.imageView.hidden = YES;
     if (indexPath.row == 0) {
         cell.userTitle.text = @"易道源客服";
         cell.userImageView.image = DotaImageName(@"img_kefu");
         cell.userContent.text = @"新用户赠送您100易道元";
+        cell.tiXingImageView.hidden = NO;
     }
+    
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

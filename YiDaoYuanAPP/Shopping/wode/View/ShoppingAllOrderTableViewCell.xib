@@ -13,17 +13,17 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ShoppingAllOrderTableViewCell" rowHeight="158" id="KGk-i7-Jjw" customClass="ShoppingAllOrderTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+            <rect key="frame" x="0.0" y="0.0" width="364" height="200"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="199.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="364" height="199.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m2L-sA-8Ag">
-                        <rect key="frame" x="10" y="10" width="300" height="189.5"/>
+                        <rect key="frame" x="10" y="10" width="344" height="189.5"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y3e-li-Ejz">
-                                <rect key="frame" x="0.0" y="36" width="300" height="89"/>
+                                <rect key="frame" x="0.0" y="36" width="344" height="89"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-2" translatesAutoresizingMaskIntoConstraints="NO" id="gxG-XT-a5e">
                                         <rect key="frame" x="9" y="8" width="72" height="72"/>
@@ -44,15 +44,8 @@
                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="风水" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ev-Jb-4CP">
-                                        <rect key="frame" x="304.5" y="40.5" width="25" height="15"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RVZ-LF-cz5">
-                                        <rect key="frame" x="10" y="87" width="281" height="1"/>
+                                        <rect key="frame" x="10" y="87" width="325" height="1"/>
                                         <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="aSh-u6-7s4"/>
@@ -96,7 +89,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="待付款" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d51-16-Ek7">
-                                <rect key="frame" x="246" y="10" width="46" height="18"/>
+                                <rect key="frame" x="290" y="10" width="46" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.050980392159999999" green="0.4431372549" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -108,13 +101,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="合计：¥300" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="squ-L2-I3n">
-                                <rect key="frame" x="208" y="133" width="83" height="18"/>
+                                <rect key="frame" x="252" y="133" width="83" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.01176470588" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MXJ-Gs-ByY">
-                                <rect key="frame" x="10" y="170" width="280" height="28"/>
+                                <rect key="frame" x="10" y="170" width="326" height="28"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="51M-5w-ma5"/>
@@ -138,7 +131,7 @@
                             <constraint firstItem="MXJ-Gs-ByY" firstAttribute="top" secondItem="AA9-RV-6FI" secondAttribute="bottom" constant="19" id="nXb-7f-qVE"/>
                             <constraint firstItem="Y3e-li-Ejz" firstAttribute="top" secondItem="vQm-n3-HXs" secondAttribute="bottom" constant="8" id="quC-qe-kOs"/>
                             <constraint firstItem="d51-16-Ek7" firstAttribute="top" secondItem="m2L-sA-8Ag" secondAttribute="top" constant="10" id="vwe-HQ-lTd"/>
-                            <constraint firstAttribute="trailing" secondItem="MXJ-Gs-ByY" secondAttribute="trailing" constant="10" id="yHl-Xx-9CM"/>
+                            <constraint firstAttribute="trailing" secondItem="MXJ-Gs-ByY" secondAttribute="trailing" constant="8" id="yHl-Xx-9CM"/>
                             <constraint firstAttribute="trailing" secondItem="squ-L2-I3n" secondAttribute="trailing" constant="9" id="ztS-Ia-coW"/>
                         </constraints>
                     </view>
@@ -157,7 +150,7 @@
                 <outlet property="buttonView" destination="MXJ-Gs-ByY" id="Hog-Sl-Lfl"/>
                 <outlet property="stateTitleLabel" destination="d51-16-Ek7" id="QhY-SE-rt1"/>
             </connections>
-            <point key="canvasLocation" x="129.59999999999999" y="205.09745127436284"/>
+            <point key="canvasLocation" x="164.80000000000001" y="205.09745127436284"/>
         </tableViewCell>
     </objects>
     <resources>

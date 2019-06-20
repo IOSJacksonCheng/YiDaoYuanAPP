@@ -11,6 +11,7 @@
 #import "SureOrderCourseTableViewCell.h"
 #import "PayMoneyWaysTableViewCell.h"
 #import "SureOrderMoneyTableViewCell.h"
+#import "YiDaoYuanZheKouTableViewCell.h"
 @interface SureOrderViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *surePayButton;
@@ -36,6 +37,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:CSCellName(SureOrderCourseTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(SureOrderCourseTableViewCell)];
       [self.tableView registerNib:[UINib nibWithNibName:CSCellName(SureOrderMoneyTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(SureOrderMoneyTableViewCell)];
     
+     [self.tableView registerNib:[UINib nibWithNibName:CSCellName(YiDaoYuanZheKouTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(YiDaoYuanZheKouTableViewCell)];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
@@ -68,7 +70,7 @@
         return 2;
     }
     if (section == 1) {
-        return 4;
+        return 5;
     }
     return 3;
 }
@@ -82,6 +84,12 @@
         return cell;
     }
     if (indexPath.section == 1) {
+        
+        if (indexPath.row == 2) {
+            YiDaoYuanZheKouTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(YiDaoYuanZheKouTableViewCell)];
+            return cell;
+        }
+        
         PayMoneyWaysTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(PayMoneyWaysTableViewCell)];
         cell.explainLabel.hidden = YES;
         if (indexPath.row == 0) {
@@ -91,10 +99,10 @@
             cell.titleImageView.image = DotaImageName(@"icon_yidaoyuan");
             cell.titleLabel.text = @"易道源支付";
             cell.explainLabel.hidden = NO;
-        } else if (indexPath.row == 2) {
+        } else if (indexPath.row == 3) {
             cell.titleImageView.image = DotaImageName(@"icon_zhifubao");
             cell.titleLabel.text = @"支付宝支付";
-        } else if (indexPath.row == 3) {
+        } else if (indexPath.row == 4) {
             cell.titleImageView.image = DotaImageName(@"icon_weixin");
             cell.titleLabel.text = @"微信支付";
         }
@@ -123,7 +131,7 @@
         if (indexPath.row == 0) {
             return 73;
         }
-        return 227.5;
+        return 237;
     }
     if (indexPath.section == 1) {
 

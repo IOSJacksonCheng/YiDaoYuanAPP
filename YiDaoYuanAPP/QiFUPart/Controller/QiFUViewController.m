@@ -18,6 +18,18 @@
 
 - (IBAction)clickQingShengButtonDone:(id)sender;
 - (IBAction)clickQingFuoButtonDone:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *leftView;
+@property (weak, nonatomic) IBOutlet UILabel *leftViewLabel;
+@property (weak, nonatomic) IBOutlet UIView *rightView;
+@property (weak, nonatomic) IBOutlet UILabel *rightViewLabel;
+@property (weak, nonatomic) IBOutlet UILabel *leftTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *leftSubTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *rightTitleLabel;
+- (IBAction)clickJingShiButtonDone:(id)sender;
+@property (nonatomic, assign) BOOL currentClickShenXian;
+
+@property (weak, nonatomic) IBOutlet UIImageView *animationImageView;
+- (IBAction)clickDaoCaiButtonDone:(id)sender;
 
 @end
 
@@ -39,15 +51,69 @@
     [self configNavigationBar];
     
     [self configTableView];
+    
+    [self clickLeftView];
 }
 
 - (void)configTableView {
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickRightView)];
+    tap.numberOfTapsRequired = 1;
+    tap.numberOfTouchesRequired = 1;
     
+    [self.rightView addGestureRecognizer:tap];
 }
 - (void)configSubViews {
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickLeftView)];
+    tap.numberOfTapsRequired = 1;
+    tap.numberOfTouchesRequired = 1;
+    
+    [self.leftView addGestureRecognizer:tap];
+    
+    
+    NSMutableArray *allImage = @[].mutableCopy;
+    
+    for (int i = 1; i < 8; i ++) {
+        
+        NSString *rightCellName = [NSString stringWithFormat:@"daocai%d",i];
+        
+        UIImage *image = DotaImageName(rightCellName);
+        
+        [allImage addObject:image];
+        
+    }
+    
+    [self.animationImageView setAnimationImages:allImage];
+    
+    self.animationImageView.animationRepeatCount = 1;
+    self.animationImageView.animationDuration = 1;
+
+}
+- (void)clickLeftView {
+    
+    self.currentClickShenXian = NO;
+    self.leftViewLabel.textColor = [UIColor colorWithHexString:@"#CC211D"];
+    self.rightViewLabel.textColor = cs333333Color;
+    
+    self.leftTitleLabel.textColor = [UIColor colorWithHexString:@"#FCD65F"];
+    self.leftSubTitleLabel.textColor = [UIColor colorWithHexString:@"#FEEBAF"];
+    self.rightTitleLabel.textColor = [UIColor colorWithHexString:@"#FCD65F"];
+    self.leftTitleLabel.text = @"祈\n愿\n累\n计\n天\n数";
+    self.leftSubTitleLabel.text = @"1天";
     
 }
+- (void)clickRightView {
+    
+    self.currentClickShenXian = YES;
 
+    self.rightViewLabel.textColor = [UIColor colorWithHexString:@"#CC211D"];
+    self.leftViewLabel.textColor = cs333333Color;
+    self.leftTitleLabel.textColor = [UIColor colorWithHexString:@"#FCD65F"];
+    self.leftSubTitleLabel.textColor = [UIColor colorWithHexString:@"#FEEBAF"];
+    self.rightTitleLabel.textColor = [UIColor colorWithHexString:@"#FCD65F"];
+    self.leftTitleLabel.text = @"燃\n香\n时\n长";
+    self.leftSubTitleLabel.text = @"1H";
+    
+}
 - (void)configNavigationBar {
     
     
@@ -55,6 +121,8 @@
     
  
     [self.navigationController.navigationBar setBackgroundImage:DotaImageName(@"img_dingbu") forBarMetrics:UIBarMetricsDefault];
+    
+    [self.navigationController.navigationBar setShadowImage:[CSUtility createImageWithColor:[UIColor colorWithHexString:@"#180C0A"]]];
     
     UIColor *whiteColor = UIColor.whiteColor;
     
@@ -99,7 +167,13 @@
 }
 
 - (IBAction)qiYuanJiLuButtonDone:(id)sender {
-    
+   
+    if (self.currentClickShenXian) {
+        
+        
+         [self performSegueWithIdentifier:@"FirstShenXianQiYuanJiLuViewController" sender:self];
+        return;
+    }
     [self performSegueWithIdentifier:@"FirstQiYuanJiLuViewController" sender:self];
 }
 
@@ -132,12 +206,23 @@
 }
 
 - (IBAction)clickQingShengButtonDone:(id)sender {
-    
-      [self performSegueWithIdentifier:@"QingShengViewController" sender:self];
+    [self performSegueWithIdentifier:@"QingFoViewController" sender:self];
+     
 }
 
 - (IBAction)clickQingFuoButtonDone:(id)sender {
     
     [self performSegueWithIdentifier:@"QingFoViewController" sender:self];
+}
+- (IBAction)clickJingShiButtonDone:(id)sender {
+    self.passString = @"敬食";
+    [self performSegueWithIdentifier:@"AddXiangViewController" sender:self];
+}
+- (IBAction)clickDaoCaiButtonDone:(id)sender {
+    
+    self.animationImageView.hidden = NO;
+    
+    [self.animationImageView startAnimating];
+    
 }
 @end

@@ -43,6 +43,7 @@
 }
 
 - (void)configTableView {
+    self.searchTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.searchTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.searchTableView.backgroundColor = [UIColor colorWithHexString:@"F3F3F3"];
     [self.searchTableView registerNib:[UINib nibWithNibName:CSCellName(CSSearchTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(CSSearchTableViewCell)];

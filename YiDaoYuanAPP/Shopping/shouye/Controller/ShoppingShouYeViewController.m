@@ -110,4 +110,52 @@
     }
     return 259;
 }
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UIView *view = UIView.new;
+    
+    view.backgroundColor = UIColor.whiteColor;
+    
+    UILabel *label = [UILabel new];
+    
+    
+    [view addSubview:label];
+    
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(10);
+        make.top.mas_equalTo(20);
+    }];
+    
+        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"热门推荐" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFang-SC-Medium" size: 18],NSForegroundColorAttributeName: [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1.0]}];
+        
+        label.attributedText = string;
+    
+    UIView *lineView = UIView.new;
+    lineView.backgroundColor = [UIColor colorWithHexString:@"f5f5f5"];
+    [view addSubview:lineView];
+    [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(0);
+        make.right.mas_equalTo(0);
+        make.top.mas_equalTo(5);
+        make.height.mas_equalTo(2);
+    }];
+    
+    return view;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return 0;
+    }
+    return 50;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.section == 0 && indexPath.row == 1) {
+        
+         [self performSegueWithIdentifier:@"ShopManyProductViewController" sender:self];
+        return;
+    }
+    
+    [self performSegueWithIdentifier:@"ShopProductDetailViewController" sender:self];
+}
 @end

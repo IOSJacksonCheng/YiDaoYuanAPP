@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="87.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_dashi" translatesAutoresizingMaskIntoConstraints="NO" id="rG3-T8-dYN">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_dashi_2" translatesAutoresizingMaskIntoConstraints="NO" id="rG3-T8-dYN">
                         <rect key="frame" x="13" y="16.5" width="55" height="55"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="55" id="m9C-mX-JNY"/>
@@ -65,6 +65,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="img_dashi" width="89" height="80"/>
+        <image name="img_dashi_2" width="86" height="75"/>
     </resources>
 </document>

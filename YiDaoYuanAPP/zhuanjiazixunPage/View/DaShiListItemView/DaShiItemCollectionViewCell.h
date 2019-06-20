@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DaShiItemCollectionViewCell : UICollectionViewCell
 @property (nonatomic, strong) DaShiListItemModel *model;
+
+@property (nonatomic, strong) DaShiListItemModel *wishModel;
 @end
 
 NS_ASSUME_NONNULL_END

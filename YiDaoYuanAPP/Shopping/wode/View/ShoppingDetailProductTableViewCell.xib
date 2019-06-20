@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ShoppingDetailProductTableViewCell" rowHeight="111" id="KGk-i7-Jjw" customClass="ShoppingDetailProductTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="109"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="108.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开光马粉水晶：蜜蜡吊坠 招桃花旺姻缘必备" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePJ-TV-YDw">
+                        <rect key="frame" x="104" y="10" width="201" height="36"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_shangpin" translatesAutoresizingMaskIntoConstraints="NO" id="hxz-Ps-Wxd">
+                        <rect key="frame" x="10" y="10" width="85" height="85"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="85" id="6tv-JP-Yik"/>
+                            <constraint firstAttribute="width" constant="85" id="KDg-GX-aBA"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ScM-GV-9r6">
+                        <rect key="frame" x="0.0" y="105.5" width="320" height="3"/>
+                        <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="3" id="yLx-5S-YcO"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X1" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNF-EP-jtf">
+                        <rect key="frame" x="291" y="54" width="14" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="属马（大势至菩萨）" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KVt-rc-ZFh">
+                        <rect key="frame" x="104" y="54" width="110.5" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2019-02-23   12:00" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gjo-qA-x1w">
+                        <rect key="frame" x="105" y="80.5" width="111" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥200" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gjk-gt-eDS">
+                        <rect key="frame" x="268" y="77" width="37" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.80392156859999997" green="0.047058823530000002" blue="0.047058823530000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="gjk-gt-eDS" secondAttribute="trailing" constant="15" id="0Hn-tK-WkB"/>
+                    <constraint firstItem="hxz-Ps-Wxd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="6qE-Sq-hWJ"/>
+                    <constraint firstItem="ePJ-TV-YDw" firstAttribute="leading" secondItem="hxz-Ps-Wxd" secondAttribute="trailing" constant="9" id="AW2-6j-h4e"/>
+                    <constraint firstItem="KVt-rc-ZFh" firstAttribute="top" secondItem="ePJ-TV-YDw" secondAttribute="bottom" constant="8" id="D1o-6B-XF2"/>
+                    <constraint firstItem="KVt-rc-ZFh" firstAttribute="leading" secondItem="hxz-Ps-Wxd" secondAttribute="trailing" constant="9" id="EzD-zq-Sof"/>
+                    <constraint firstItem="gjk-gt-eDS" firstAttribute="bottom" secondItem="hxz-Ps-Wxd" secondAttribute="bottom" id="I7N-UZ-sSz"/>
+                    <constraint firstItem="ePJ-TV-YDw" firstAttribute="top" secondItem="hxz-Ps-Wxd" secondAttribute="top" id="Pg6-jR-twn"/>
+                    <constraint firstItem="Gjo-qA-x1w" firstAttribute="bottom" secondItem="hxz-Ps-Wxd" secondAttribute="bottom" id="RNj-iK-NCW"/>
+                    <constraint firstAttribute="trailing" secondItem="ScM-GV-9r6" secondAttribute="trailing" id="TkG-k8-6Wc"/>
+                    <constraint firstAttribute="trailing" secondItem="xNF-EP-jtf" secondAttribute="trailing" constant="15" id="WAi-1W-M3U"/>
+                    <constraint firstItem="ScM-GV-9r6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="dIq-k0-0OI"/>
+                    <constraint firstItem="Gjo-qA-x1w" firstAttribute="leading" secondItem="hxz-Ps-Wxd" secondAttribute="trailing" constant="10" id="eqN-RD-AM0"/>
+                    <constraint firstAttribute="bottom" secondItem="ScM-GV-9r6" secondAttribute="bottom" id="fX1-QV-eyi"/>
+                    <constraint firstItem="xNF-EP-jtf" firstAttribute="centerY" secondItem="KVt-rc-ZFh" secondAttribute="centerY" id="u9n-ii-nnR"/>
+                    <constraint firstAttribute="trailing" secondItem="ePJ-TV-YDw" secondAttribute="trailing" constant="15" id="vcj-cg-qVQ"/>
+                    <constraint firstItem="hxz-Ps-Wxd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="xyY-iB-5fb"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <point key="canvasLocation" x="73.599999999999994" y="84.107946026986511"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="img_shangpin" width="85" height="85"/>
+    </resources>
+</document>

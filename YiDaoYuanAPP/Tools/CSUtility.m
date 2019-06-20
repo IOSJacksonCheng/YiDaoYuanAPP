@@ -8,7 +8,13 @@
 
 #import "CSUtility.h"
 #import "CSCommonTabBarController.h"
+#import "AppDelegate.h"
+
+#define LOAD_LABEL                     NSLocalizedString(@"登录过期，请重新登录",)
 @implementation CSUtility
+{
+    MBProgressHUD *_mbProgressHUD;
+}
 + (UIViewController *)getCurrentViewController {
     UIWindow * window = [[UIApplication sharedApplication] keyWindow];
     if (window.windowLevel != UIWindowLevelNormal){
@@ -77,6 +83,58 @@
     }
     
     return NO;
+    
+}
++ (void) showWrongMessageWithTitle:(NSString *)title
+{
+    [[self alloc] showWrongMessageWithTitle:title];
+    
+}
+
+- (void) showWrongMessageWithTitle:(NSString *)title
+{
+    
+    
+    AppDelegate* delegate = nil;
+    delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    _mbProgressHUD = [MBProgressHUD showHUDAddedTo:delegate.window animated:YES];
+    _mbProgressHUD.mode = MBProgressHUDModeText;
+    
+    _mbProgressHUD.color = CSColorRGBA(228, 228, 229, 1);
+    
+    _mbProgressHUD.labelFont = csCharacterFont_14;
+    _mbProgressHUD.labelColor = UIColor.blackColor;
+    
+    _mbProgressHUD.detailsLabelFont = csCharacterFont_14;
+    
+    _mbProgressHUD.detailsLabelColor = UIColor.blackColor;
+    
+    if (![title isKindOfClass:[NSString class]]) {
+        
+        title = [NSString stringWithFormat:@"%@", title];
+        
+        
+    }
+    
+    if([self characterIsBlankString:title])
+    {
+        _mbProgressHUD.detailsLabelText = LOAD_LABEL;
+    }
+    else
+    {
+        if (title.length > 19) {
+            
+            _mbProgressHUD.detailsLabelText = title;
+            
+        } else {
+            
+            _mbProgressHUD.labelText = title;
+            
+        }
+        
+    }
+    
+    [_mbProgressHUD hide:YES afterDelay:1.5];
     
 }
 @end

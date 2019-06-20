@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="QingFoViewCollectionViewCell" id="gTV-IL-0wX" customClass="QingFoViewCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="110" height="134"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="110" height="134"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3hg-0p-tHb">
+                        <rect key="frame" x="0.0" y="0.0" width="110" height="134"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="796-d4-nJe">
+                        <rect key="frame" x="8" y="68" width="94" height="45"/>
+                        <color key="backgroundColor" red="0.90588235294117647" green="0.81568627450980391" blue="0.72549019607843135" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="94" id="KA9-yo-gva"/>
+                            <constraint firstAttribute="height" constant="45" id="nqy-Yr-x5N"/>
+                        </constraints>
+                        <string key="text">光明、理智
+大日如来</string>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.4392156862745098" green="0.1764705882352941" blue="0.11764705882352941" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="3hg-0p-tHb" secondAttribute="bottom" id="54y-dT-b5e"/>
+                <constraint firstItem="3hg-0p-tHb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Th3-3Q-WpR"/>
+                <constraint firstItem="796-d4-nJe" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Wwy-cL-mjF"/>
+                <constraint firstItem="3hg-0p-tHb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Ykz-Eg-Wug"/>
+                <constraint firstAttribute="trailing" secondItem="3hg-0p-tHb" secondAttribute="trailing" id="cON-2O-UnT"/>
+                <constraint firstAttribute="bottom" secondItem="796-d4-nJe" secondAttribute="bottom" constant="21" id="fNK-Sy-EII"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <size key="customSize" width="110" height="134"/>
+            <connections>
+                <outlet property="csImageView" destination="3hg-0p-tHb" id="jmy-up-LlJ"/>
+                <outlet property="csTitleLabel" destination="796-d4-nJe" id="Z43-uz-Zb9"/>
+            </connections>
+            <point key="canvasLocation" x="88" y="84.557721139430285"/>
+        </collectionViewCell>
+    </objects>
+</document>
