@@ -20,6 +20,7 @@ typedef void(^failureBlock)(NSError *error);
 + (void)sendPutRequestWithNeedToken:(BOOL)needToken Url:(NSString *)urlStr Pameters:(id)paramDic success:(successBlock)success failure:(failureBlock)failure;
 /** 发送Delete请求 */
 + (void)sendDeleteRequestWithNeedToken:(BOOL)needToken Url:(NSString *)urlStr Pameters:(NSMutableDictionary *)paramDic success:(successBlock)success failure:(failureBlock)failure;
++ (void)sendPostForUploadImageWithUrl:(NSString *)urlStr headerImageFilePath:(NSString *)filePath fileName:(NSString *)fileName parpameters:(NSDictionary *)paramDic success:(successBlock)success failure:(failureBlock)failure;
 @end
 
 NS_ASSUME_NONNULL_END

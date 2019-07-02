@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface QuickWishViewController : BaseViewController
+@property (nonatomic, assign) NSInteger passTag;
 
 @end
 

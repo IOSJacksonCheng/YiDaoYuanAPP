@@ -7,7 +7,7 @@
 //
 
 #import "QingShengViewController.h"
-
+#import "MingDengViewController.h"
 @interface QingShengViewController ()
 - (IBAction)clickQingShengGongFengButtonDone:(id)sender;
 
@@ -62,5 +62,13 @@
 
 - (IBAction)clickQingShengGongFengButtonDone:(id)sender {
     [self performSegueWithIdentifier:@"MingDengViewController" sender:self];
+}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"MingDengViewController"]) {
+        MingDengViewController *new = segue.destinationViewController;
+        new.passTag = self.passTag;
+        
+    }
 }
 @end

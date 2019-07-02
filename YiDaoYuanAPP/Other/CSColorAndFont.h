@@ -34,4 +34,6 @@
 
 #define DotaImageName(name) [UIImage imageNamed:name]
 #define PlaceHolderImage [UIImage imageNamed:@"banner"]
+
+#define CSUserImagePlaceHolder [UIImage imageNamed:@"img_user_zhanwei"]
 #endif /* CSColorAndFont_h */

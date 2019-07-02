@@ -96,6 +96,10 @@
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_collect" translatesAutoresizingMaskIntoConstraints="NO" id="v6J-4j-f63">
                                 <rect key="frame" x="96" y="48" width="18" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="18" id="MmN-lE-fjW"/>
+                                    <constraint firstAttribute="height" constant="18" id="nqq-v2-yNK"/>
+                                </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_collect" translatesAutoresizingMaskIntoConstraints="NO" id="GvK-C5-IMM">
                                 <rect key="frame" x="119" y="48" width="18" height="18"/>
@@ -155,21 +159,28 @@
                             <constraint firstItem="Szp-GE-T1P" firstAttribute="leading" secondItem="7rm-tt-fkL" secondAttribute="trailing" constant="8" id="5a0-zF-P0Q"/>
                             <constraint firstItem="KkF-Ow-FKh" firstAttribute="leading" secondItem="7rm-tt-fkL" secondAttribute="trailing" constant="9" id="7bC-CY-8vf"/>
                             <constraint firstItem="PSA-s8-9qB" firstAttribute="centerY" secondItem="Szp-GE-T1P" secondAttribute="centerY" id="974-Mu-y7q"/>
+                            <constraint firstItem="RcW-AS-Cxc" firstAttribute="width" secondItem="ZWM-qY-9sB" secondAttribute="width" id="9aW-5n-NKZ"/>
                             <constraint firstItem="HMK-sw-5sN" firstAttribute="leading" secondItem="RcW-AS-Cxc" secondAttribute="trailing" constant="5" id="CXQ-Lu-7Fm"/>
                             <constraint firstItem="Szp-GE-T1P" firstAttribute="top" secondItem="7rm-tt-fkL" secondAttribute="top" id="DFA-HA-pPd"/>
                             <constraint firstItem="ZWM-qY-9sB" firstAttribute="bottom" secondItem="7rm-tt-fkL" secondAttribute="bottom" constant="3" id="E2S-5r-ojb"/>
                             <constraint firstItem="v6J-4j-f63" firstAttribute="centerY" secondItem="ZWM-qY-9sB" secondAttribute="centerY" id="Eut-7d-Xeh"/>
                             <constraint firstItem="HMK-sw-5sN" firstAttribute="centerY" secondItem="ZWM-qY-9sB" secondAttribute="centerY" id="GBq-c1-Go0"/>
+                            <constraint firstItem="v6J-4j-f63" firstAttribute="width" secondItem="ZWM-qY-9sB" secondAttribute="width" id="KHd-vI-PFL"/>
                             <constraint firstItem="PSA-s8-9qB" firstAttribute="leading" secondItem="Szp-GE-T1P" secondAttribute="trailing" constant="5" id="Lj0-ZZ-33a"/>
+                            <constraint firstItem="HMK-sw-5sN" firstAttribute="width" secondItem="ZWM-qY-9sB" secondAttribute="width" id="MeK-0x-IKD"/>
+                            <constraint firstItem="v6J-4j-f63" firstAttribute="height" secondItem="ZWM-qY-9sB" secondAttribute="height" id="NRP-4z-BcS"/>
                             <constraint firstItem="wt5-It-DsE" firstAttribute="centerY" secondItem="LL7-Cm-lJQ" secondAttribute="centerY" id="Ogt-zf-svU"/>
                             <constraint firstItem="v6J-4j-f63" firstAttribute="leading" secondItem="ZWM-qY-9sB" secondAttribute="trailing" constant="5" id="PYp-lg-QOd"/>
                             <constraint firstItem="wt5-It-DsE" firstAttribute="leading" secondItem="Rbd-Yg-l6c" secondAttribute="trailing" constant="8" id="QWq-wj-MDb"/>
+                            <constraint firstItem="GvK-C5-IMM" firstAttribute="height" secondItem="ZWM-qY-9sB" secondAttribute="height" id="Tbz-5j-n4w"/>
                             <constraint firstItem="LL7-Cm-lJQ" firstAttribute="centerY" secondItem="KkF-Ow-FKh" secondAttribute="centerY" id="TnS-5S-JMH"/>
                             <constraint firstItem="GvK-C5-IMM" firstAttribute="centerY" secondItem="ZWM-qY-9sB" secondAttribute="centerY" id="V6g-zW-4pu"/>
                             <constraint firstItem="yVo-ya-RV3" firstAttribute="centerY" secondItem="HMK-sw-5sN" secondAttribute="centerY" id="VWO-Ms-sWL"/>
                             <constraint firstItem="RcW-AS-Cxc" firstAttribute="leading" secondItem="GvK-C5-IMM" secondAttribute="trailing" constant="5" id="W6d-zI-Ba3"/>
+                            <constraint firstItem="GvK-C5-IMM" firstAttribute="width" secondItem="ZWM-qY-9sB" secondAttribute="width" id="Wwb-gM-3E9"/>
                             <constraint firstItem="7rm-tt-fkL" firstAttribute="top" secondItem="V8r-96-ahi" secondAttribute="top" constant="8" id="aWT-qE-2T9"/>
                             <constraint firstItem="RcW-AS-Cxc" firstAttribute="centerY" secondItem="ZWM-qY-9sB" secondAttribute="centerY" id="aYM-aC-2Ff"/>
+                            <constraint firstItem="RcW-AS-Cxc" firstAttribute="height" secondItem="ZWM-qY-9sB" secondAttribute="height" id="bOa-RV-yN9"/>
                             <constraint firstItem="LL7-Cm-lJQ" firstAttribute="leading" secondItem="KkF-Ow-FKh" secondAttribute="trailing" constant="11" id="cWC-Qf-w3e"/>
                             <constraint firstItem="ZWM-qY-9sB" firstAttribute="leading" secondItem="6cX-Da-ICf" secondAttribute="leading" id="cru-bM-cBf"/>
                             <constraint firstItem="GvK-C5-IMM" firstAttribute="leading" secondItem="v6J-4j-f63" secondAttribute="trailing" constant="5" id="den-qv-10x"/>
@@ -182,6 +193,7 @@
                             <constraint firstItem="7rm-tt-fkL" firstAttribute="leading" secondItem="V8r-96-ahi" secondAttribute="leading" constant="9" id="mzp-ep-43C"/>
                             <constraint firstItem="cg2-eN-70O" firstAttribute="leading" secondItem="LL7-Cm-lJQ" secondAttribute="trailing" constant="8" id="oHP-2V-NER"/>
                             <constraint firstItem="Rbd-Yg-l6c" firstAttribute="centerY" secondItem="LL7-Cm-lJQ" secondAttribute="centerY" id="r55-4X-0Kx"/>
+                            <constraint firstItem="HMK-sw-5sN" firstAttribute="height" secondItem="ZWM-qY-9sB" secondAttribute="height" id="ru1-f5-dcf"/>
                             <constraint firstItem="6cX-Da-ICf" firstAttribute="top" secondItem="KkF-Ow-FKh" secondAttribute="bottom" constant="24" id="vB4-FZ-7jO"/>
                             <constraint firstItem="wt5-It-DsE" firstAttribute="trailing" secondItem="6cX-Da-ICf" secondAttribute="trailing" id="vQg-PW-mP8"/>
                         </constraints>
@@ -212,10 +224,24 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="danshuLabel" destination="qIB-Tw-oyL" id="iYP-Xc-y1b"/>
                 <outlet property="firstImageView" destination="Lqh-2G-Vk7" id="soE-UC-1rA"/>
                 <outlet property="firstLabel" destination="LJ6-mO-ax0" id="QxD-Yw-Dqt"/>
+                <outlet property="firstShanChangLabel" destination="LL7-Cm-lJQ" id="TDb-ls-N4L"/>
+                <outlet property="fiveXingImageView" destination="HMK-sw-5sN" id="pnF-Bu-Q5o"/>
+                <outlet property="fourXingImageView" destination="RcW-AS-Cxc" id="Ctd-aQ-Drb"/>
+                <outlet property="gaojirenzhengImageView" destination="PSA-s8-9qB" id="A0b-CN-uMq"/>
+                <outlet property="headImageView" destination="7rm-tt-fkL" id="g28-qC-jmu"/>
+                <outlet property="nameLabel" destination="Szp-GE-T1P" id="oYJ-bO-0MQ"/>
+                <outlet property="oneXingImageView" destination="ZWM-qY-9sB" id="Ckh-oH-2vA"/>
+                <outlet property="pingfenLabel" destination="yVo-ya-RV3" id="ib3-dE-f8Y"/>
+                <outlet property="renshuLabel" destination="CZw-ZL-xb1" id="4wU-i8-OjQ"/>
+                <outlet property="secondShanChangLabel" destination="gg7-kZ-CZS" id="TZY-df-guu"/>
+                <outlet property="thirdShanChangLabel" destination="wt5-It-DsE" id="WMM-tc-VSV"/>
+                <outlet property="threeXingImageView" destination="GvK-C5-IMM" id="pmc-LM-AFt"/>
                 <outlet property="titleView" destination="6cX-Da-ICf" id="DYX-d9-yFQ"/>
                 <outlet property="titleViewTopConstraint" destination="vB4-FZ-7jO" id="jQB-pN-nI0"/>
+                <outlet property="twoXingImageView" destination="v6J-4j-f63" id="1dg-4K-193"/>
             </connections>
             <point key="canvasLocation" x="119.2" y="46.776611694152926"/>
         </tableViewCell>

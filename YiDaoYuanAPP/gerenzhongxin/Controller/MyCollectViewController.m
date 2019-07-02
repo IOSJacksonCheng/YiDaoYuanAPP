@@ -11,20 +11,44 @@
 #import "MyCollectTableViewCell.h"
 @interface MyCollectViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (nonatomic, strong) NSMutableArray *listArray;
 @end
 
 @implementation MyCollectViewController
 
 - (void)viewDidLoad {
+  
     [super viewDidLoad];
+  
+    self.listArray = @[].mutableCopy;
+   
     [self configSubViews];
     
     [self configNavigationBar];
     
     [self configTableView];
+    
+    [self sendGetRequest];
+    
 }
 
+- (void)sendGetRequest {
+    
+    NSMutableDictionary *para = @{}.mutableCopy;
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Favorites_My Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            self.listArray =  [CSParseManager getMyCollectModelArrayWithResponseObject:CSGetResult];
+            [self.tableView reloadData];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+    
+    
+}
 - (void)configTableView {
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -52,11 +76,12 @@
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return self.listArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MyCollectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(MyCollectTableViewCell)];
-   
+    MyCollectModel *model = self.listArray[indexPath.row];
+    cell.model = model;
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

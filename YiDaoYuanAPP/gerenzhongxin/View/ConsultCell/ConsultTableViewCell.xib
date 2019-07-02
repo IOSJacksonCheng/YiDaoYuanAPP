@@ -209,7 +209,21 @@
             <connections>
                 <outlet property="bgView" destination="ymB-hq-vHG" id="yus-ey-Y1b"/>
                 <outlet property="buttonView" destination="GtI-fa-O2m" id="czJ-Vi-AFh"/>
+                <outlet property="firstShanChangLabel" destination="lCG-RI-JxD" id="oAg-ir-jDa"/>
+                <outlet property="fiveXingImageView" destination="d9t-VX-7wr" id="LYN-hp-RDa"/>
+                <outlet property="fourXingImageView" destination="CCA-ho-dCn" id="UTe-f9-nhl"/>
+                <outlet property="headImageView" destination="gg6-UP-BYU" id="eFm-dt-vUW"/>
+                <outlet property="hejiLabel" destination="fuw-5G-a7s" id="ehB-TA-Sr4"/>
+                <outlet property="nameLabel" destination="Pa3-mc-W8f" id="nK7-zf-Pvu"/>
+                <outlet property="oneXingImageView" destination="Jyo-VX-4XN" id="sfv-od-DOf"/>
+                <outlet property="orderIdLabel" destination="1zR-NK-QEe" id="mA2-eh-K1N"/>
+                <outlet property="pingFenLabel" destination="37y-5Z-Kcx" id="iua-Cj-0QN"/>
+                <outlet property="secondShanChangLabel" destination="5yn-YM-sdx" id="bxP-Fo-FN9"/>
                 <outlet property="stateTitleLabel" destination="YB3-Ir-hUg" id="Bt4-mG-3XU"/>
+                <outlet property="thirdShanChangLabel" destination="ltH-gy-YFV" id="kbk-3X-kXf"/>
+                <outlet property="threeXingImageView" destination="l0m-U0-AAq" id="Wbn-Rv-5ed"/>
+                <outlet property="twoXingImageView" destination="JBs-XE-3IX" id="gTd-LS-oue"/>
+                <outlet property="xiadanshijianLabel" destination="uBf-np-9Io" id="625-h9-MbW"/>
             </connections>
             <point key="canvasLocation" x="92.799999999999997" y="89.955022488755631"/>
         </tableViewCell>

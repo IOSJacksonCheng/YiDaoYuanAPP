@@ -18,28 +18,109 @@
 @property (nonatomic, strong) NSMutableArray *listArray;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 @property (nonatomic, strong) NSMutableArray *itemArray;
+- (IBAction)clickSubmitButtonDone:(id)sender;
 @end
 
 @implementation DaShiRuZhuViewController
 - (NSMutableArray *)itemArray {
     if (!_itemArray) {
         _itemArray = @[].mutableCopy;
-        
-        
-        NSArray *titleArray = @[@"金口诀", @"手面相", @"六爻", @"六壬" ,@"风水" ,@"测字",@"塔罗",@"数字能量",@"奇门遁甲", @"梅花易数"];
-        
-        for (NSString *string in titleArray) {
-            
-            DaShiListItemModel *model = [DaShiListItemModel new];
-            
-            model.title = string;
-            
-            [_itemArray addObject:model];
-        }
+
         
         
     }
     return _itemArray;
+}
+
+- (IBAction)clickSubmitButtonDone:(id)sender {
+    
+    NSMutableDictionary *para = @{}.mutableCopy;
+
+    
+    for (int i = 0; i < self.listArray.count; i ++) {
+        
+        DaShiRuZhuModel *model = self.listArray[i];
+        
+        if (i == 3) {
+            
+            NSMutableArray *array = @[].mutableCopy;
+            
+            for (DaShiListItemModel *model in self.itemArray) {
+                if (model.choose) {
+                    [array addObject:model];
+                }
+            }
+            
+            for (int i = 0; i < array.count; i ++) {
+                DaShiListItemModel *model = array[i];
+                 para[[NSString stringWithFormat:@"skilled_id[%d]",i]] = model.idString;
+            }
+        } else if (i == 7) {
+            if (model.chooseLeft) {
+                
+                para[@"pay_term"] = @"0";
+
+            } else {
+                para[@"pay_term"] = @"1";
+
+            }
+
+            para[@"pay_name"] = model.Name;
+            para[@"pay_num"] = model.Card;
+
+            
+        }else if (i == 8) {
+           
+            
+            para[@"identity1"] = model.leftImageString;
+            para[@"identity2"] = model.rightimageString;
+            
+            
+        }else if (i == 9) {
+            
+            
+            para[@"qualification1"] = model.leftImageString;
+            para[@"qualification2"] = model.rightimageString;
+            
+            
+        }else if (i == 1) {
+            
+            if (csCharacterIsBlank(model.content)) {
+                para[model.pameterTitle] = @"0";
+
+            } else if ([model.content containsString:@"男"]) {
+                para[model.pameterTitle] = @"1";
+
+            }else if ([model.content containsString:@"女"]) {
+                para[model.pameterTitle] = @"2";
+                
+            } else {
+                para[model.pameterTitle] = @"0";
+
+            }
+            
+            
+        } else {
+            
+            para[model.pameterTitle] = model.content;
+
+        }
+        
+        
+        
+    }
+    
+    
+    [CSNetManager sendPostRequestWithNeedToken:YES Url:CSURL_Masterpost Pameters:para success:^(id  _Nonnull responseObject) {
+        if (CSInternetRequestSuccessful) {
+            CustomWrongMessage(@"提交成功！");
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+    
 }
 - (NSMutableArray *)listArray {
     if (!_listArray) {
@@ -50,44 +131,50 @@
         model1.title = @"姓名：";
         model1.cellType = TextFieldCellType;
         model1.placeHolder = @"请输入真实姓名";
-        
+        model1.pameterTitle = @"user_name";
         DaShiRuZhuModel *model2 = [DaShiRuZhuModel new];
         
         model2.title = @"性别：";
         model2.cellType = TextFieldCellType;
         model2.placeHolder = @"请输入您的性别";
-        
+        model2.pameterTitle = @"sex";
+
         DaShiRuZhuModel *model3 = [DaShiRuZhuModel new];
         
         model3.title = @"电话：";
         model3.cellType = TextFieldCellType;
          model3.placeHolder = @"请输入您的电话";
-        
+        model3.pameterTitle = @"phone";
+
         
         DaShiRuZhuModel *model4 = [DaShiRuZhuModel new];
         
         model4.title = @"擅长领域：";
         model4.cellType = CollectionCellType;
-        
+        model4.pameterTitle = @"skilled_id[]";
+
         
         DaShiRuZhuModel *model5 = [DaShiRuZhuModel new];
         
         model5.title = @"特长介绍：";
         model5.cellType = TextViewCellType;
         model5.placeHolder = @"一句话介绍自己擅长的方面的闪光点，最强势的亮点！自己的优势最好是有数据支撑；获得的荣誉头衔等";
-        
+        model5.pameterTitle = @"speciality";
+
         DaShiRuZhuModel *model6 = [DaShiRuZhuModel new];
         
         model6.title = @"详细介绍：";
         model6.cellType = TextViewCellType;
         model6.placeHolder = @"一句话介绍自己擅长的方面的闪光点，最强势的亮点！自己的优势最好是有数据支撑；获得的荣誉头衔等";
-        
+        model6.pameterTitle = @"detailed";
+
         DaShiRuZhuModel *model7 = [DaShiRuZhuModel new];
         
         model7.title = @"微信号：";
         model7.cellType = TextFieldCellType;
         model7.placeHolder = @"请输入您的微信号";
-        
+        model7.pameterTitle = @"wechat";
+
         DaShiRuZhuModel *model8 = [DaShiRuZhuModel new];
         
         model8.title = @"收款方式：";
@@ -108,6 +195,7 @@
         
         
         [_listArray addObject:model1];
+        
         [_listArray addObject:model2];
 
         [_listArray addObject:model3];
@@ -129,6 +217,7 @@
     }
     return _listArray;
 }
+
 - (void)viewWillAppear:(BOOL)animated {
     [self configNavigationBar];
     [super viewWillAppear:animated];
@@ -143,8 +232,25 @@
     
     [self configTableView];
     
+    [self sendGetRequsetForShanChangLingYu];
 }
-
+- (void)sendGetRequsetForShanChangLingYu {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Master_Skilled_field Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            
+            self.itemArray = [CSParseManager getDaShiListItemModelArrayWithResponseObject:CSGetResult[@"lists"]];
+            
+            [self.tableView reloadData];
+            
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+}
 - (void)configTableView {
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];

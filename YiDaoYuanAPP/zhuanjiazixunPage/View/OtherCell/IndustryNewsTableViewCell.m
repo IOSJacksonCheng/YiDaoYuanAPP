@@ -7,7 +7,13 @@
 //
 
 #import "IndustryNewsTableViewCell.h"
+@interface IndustryNewsTableViewCell()
+@property (weak, nonatomic) IBOutlet UIImageView *csImageView;
+@property (weak, nonatomic) IBOutlet UILabel *csTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *csContentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *csTimeLabel;
 
+@end
 @implementation IndustryNewsTableViewCell
 
 - (void)awakeFromNib {
@@ -20,5 +26,18 @@
 
     // Configure the view for the selected state
 }
-
+- (void)setModel:(IndustryNewsModel *)model {
+    _model = model;
+    
+    [self.csImageView sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:PlaceHolderImage];
+    
+    self.csTimeLabel.text = model.ctime;
+    
+    self.csTitleLabel.text = model.title;
+    
+    self.csContentLabel.text = model.excerpt;
+    
+    
+    
+}
 @end

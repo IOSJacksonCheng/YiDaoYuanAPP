@@ -275,6 +275,9 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_zhongbu" translatesAutoresizingMaskIntoConstraints="NO" id="Cl8-qO-yAE" customClass="img_zhongbu">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_hengban" translatesAutoresizingMaskIntoConstraints="NO" id="lLi-bM-I2p" customClass="bg_hengban">
+                                <rect key="frame" x="0.0" y="409" width="375" height="125"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rl8-t7-IAs">
                                 <rect key="frame" x="112.5" y="68" width="70" height="85"/>
                                 <subviews>
@@ -329,8 +332,8 @@
                                     <constraint firstAttribute="height" constant="56" id="c3D-tO-xly"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RIk-xi-iWn">
-                                <rect key="frame" x="131.5" y="138" width="112" height="265"/>
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RIk-xi-iWn">
+                                <rect key="frame" x="131.5" y="128" width="112" height="265"/>
                                 <state key="normal" image="img_qingshen"/>
                                 <connections>
                                     <action selector="clickQingShengButtonDone:" destination="6c6-O1-FSb" eventType="touchUpInside" id="G9V-sm-eWN"/>
@@ -373,6 +376,10 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FcH-Dv-3Kx">
                                 <rect key="frame" x="208" y="429" width="60" height="73"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="73" id="AvL-dg-jG5"/>
+                                    <constraint firstAttribute="width" constant="60" id="NDV-nG-wbE"/>
+                                </constraints>
                                 <state key="normal" image="img_chahu"/>
                                 <connections>
                                     <action selector="clickDaoCaiButtonDone:" destination="6c6-O1-FSb" eventType="touchUpInside" id="6vv-22-eSW"/>
@@ -380,6 +387,10 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pTR-25-F8A">
                                 <rect key="frame" x="132.5" y="360" width="110" height="110"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="110" id="bV9-Kh-EpZ"/>
+                                    <constraint firstAttribute="width" constant="110" id="nKl-CD-OLI"/>
+                                </constraints>
                                 <state key="normal" image="img_zuotai"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C3P-cp-8uF">
@@ -393,24 +404,30 @@
                                 <rect key="frame" x="18" y="609" width="55" height="36"/>
                                 <state key="normal" image="img_dizuo"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nIJ-mP-3L5">
-                                <rect key="frame" x="5.5" y="551" width="80" height="65"/>
-                                <state key="normal" image="img_1_fo"/>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nIJ-mP-3L5">
+                                <rect key="frame" x="28" y="531" width="35" height="85"/>
+                                <state key="normal" image="img_qingfo"/>
+                                <connections>
+                                    <action selector="clickQingFuoButtonDone:" destination="6c6-O1-FSb" eventType="touchUpInside" id="Xmd-67-uCA"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yFE-pU-KsC">
-                                <rect key="frame" x="96.5" y="609" width="55" height="36"/>
+                                <rect key="frame" x="74" y="609" width="55" height="36"/>
                                 <state key="normal" image="img_dizuo"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I6j-HU-tUc">
-                                <rect key="frame" x="84" y="549" width="80" height="65"/>
-                                <state key="normal" image="6224b89e5f84f5166d86634a5f4329126f0244992110f-y3ErPl_fw658"/>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I6j-HU-tUc">
+                                <rect key="frame" x="84" y="529" width="35" height="85"/>
+                                <state key="normal" image="img_qingfo"/>
+                                <connections>
+                                    <action selector="clickQingFuoButtonDone:" destination="6c6-O1-FSb" eventType="touchUpInside" id="zA2-Ln-JxZ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Es9-9m-G6G">
-                                <rect key="frame" x="162.5" y="609" width="55" height="36"/>
+                                <rect key="frame" x="140" y="609" width="55" height="36"/>
                                 <state key="normal" image="img_dizuo"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mr8-S7-B0w">
-                                <rect key="frame" x="172.5" y="529" width="35" height="85"/>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mr8-S7-B0w">
+                                <rect key="frame" x="150" y="529" width="35" height="85"/>
                                 <state key="normal" image="img_qingfo"/>
                                 <connections>
                                     <action selector="clickQingFuoButtonDone:" destination="6c6-O1-FSb" eventType="touchUpInside" id="zOd-8g-c7P"/>
@@ -489,8 +506,12 @@
                                     <constraint firstAttribute="trailing" secondItem="dI0-H3-seO" secondAttribute="trailing" id="v90-fa-gDy"/>
                                 </constraints>
                             </view>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="倒茶1" translatesAutoresizingMaskIntoConstraints="NO" id="2sL-FN-JIs">
-                                <rect key="frame" x="65.5" y="231.5" width="244" height="204"/>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="daocai1" translatesAutoresizingMaskIntoConstraints="NO" id="2sL-FN-JIs">
+                                <rect key="frame" x="208" y="429" width="60" height="73"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="hgH-mR-3cO"/>
+                                    <constraint firstAttribute="height" constant="73" id="tq6-f3-4I1"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -506,6 +527,7 @@
                             <constraint firstAttribute="bottom" secondItem="ghM-gA-Vym" secondAttribute="bottom" id="7pY-H0-amb"/>
                             <constraint firstItem="Es9-9m-G6G" firstAttribute="top" secondItem="mr8-S7-B0w" secondAttribute="bottom" constant="-5" id="8dt-67-pcT"/>
                             <constraint firstItem="yFE-pU-KsC" firstAttribute="leading" secondItem="nIJ-mP-3L5" secondAttribute="trailing" constant="11" id="9hF-ov-gW5"/>
+                            <constraint firstItem="lLi-bM-I2p" firstAttribute="top" secondItem="YxH-Y5-z0F" secondAttribute="bottom" constant="-40" id="9qF-rR-sBq"/>
                             <constraint firstItem="CKK-hR-AQv" firstAttribute="top" secondItem="sXT-zJ-gY0" secondAttribute="top" constant="347" id="AYX-2V-1GF"/>
                             <constraint firstItem="YxH-Y5-z0F" firstAttribute="top" secondItem="fWr-27-x24" secondAttribute="bottom" constant="58" id="BRK-me-i31"/>
                             <constraint firstItem="sXT-zJ-gY0" firstAttribute="trailing" secondItem="LTn-V2-bX4" secondAttribute="trailing" constant="12" id="Dlk-4L-C9E"/>
@@ -516,26 +538,28 @@
                             <constraint firstItem="xEO-qk-Gz2" firstAttribute="bottom" secondItem="rl8-t7-IAs" secondAttribute="bottom" id="IHW-vs-jNU"/>
                             <constraint firstItem="sXT-zJ-gY0" firstAttribute="trailing" secondItem="ghM-gA-Vym" secondAttribute="trailing" id="Ig9-35-Tta"/>
                             <constraint firstItem="xEO-qk-Gz2" firstAttribute="top" secondItem="rl8-t7-IAs" secondAttribute="top" id="Oa4-Au-ne9"/>
+                            <constraint firstItem="FcH-Dv-3Kx" firstAttribute="centerY" secondItem="2sL-FN-JIs" secondAttribute="centerY" id="RDg-lb-8nN"/>
                             <constraint firstItem="sXT-zJ-gY0" firstAttribute="bottom" secondItem="Cl8-qO-yAE" secondAttribute="bottom" id="SqW-L2-NbV"/>
                             <constraint firstItem="sXT-zJ-gY0" firstAttribute="bottom" secondItem="X9L-MY-EVR" secondAttribute="bottom" constant="22" id="T21-1p-Gbw"/>
+                            <constraint firstItem="pTR-25-F8A" firstAttribute="top" secondItem="RIk-xi-iWn" secondAttribute="bottom" constant="-33" id="Tn7-x9-TCI"/>
+                            <constraint firstItem="FcH-Dv-3Kx" firstAttribute="centerX" secondItem="2sL-FN-JIs" secondAttribute="centerX" id="UEX-iD-0La"/>
                             <constraint firstItem="fWr-27-x24" firstAttribute="leading" secondItem="5yr-z0-eRg" secondAttribute="leading" id="VkW-G6-nJH"/>
                             <constraint firstItem="sXT-zJ-gY0" firstAttribute="trailing" secondItem="CKK-hR-AQv" secondAttribute="trailing" constant="55" id="W2W-50-Eb9"/>
-                            <constraint firstItem="2sL-FN-JIs" firstAttribute="centerX" secondItem="5yr-z0-eRg" secondAttribute="centerX" id="Xv2-cC-PG0"/>
                             <constraint firstItem="yFE-pU-KsC" firstAttribute="centerX" secondItem="I6j-HU-tUc" secondAttribute="centerX" id="Xw9-5c-G1T"/>
                             <constraint firstItem="Cl8-qO-yAE" firstAttribute="leading" secondItem="sXT-zJ-gY0" secondAttribute="leading" id="Xwh-Od-G1z"/>
                             <constraint firstItem="aQ5-Qa-V11" firstAttribute="top" secondItem="fWr-27-x24" secondAttribute="bottom" constant="105" id="ZPb-wP-bgr"/>
-                            <constraint firstItem="C3P-cp-8uF" firstAttribute="top" secondItem="RIk-xi-iWn" secondAttribute="bottom" id="aeo-Bi-EBe"/>
                             <constraint firstAttribute="trailing" secondItem="s12-nv-hzR" secondAttribute="trailing" constant="9" id="bhH-AV-yT2"/>
                             <constraint firstItem="sXT-zJ-gY0" firstAttribute="trailing" secondItem="FcH-Dv-3Kx" secondAttribute="trailing" constant="107" id="cmG-nH-YwE"/>
-                            <constraint firstItem="2sL-FN-JIs" firstAttribute="centerY" secondItem="5yr-z0-eRg" secondAttribute="centerY" id="dKq-lu-gAk"/>
                             <constraint firstItem="X9L-MY-EVR" firstAttribute="top" secondItem="nIJ-mP-3L5" secondAttribute="bottom" constant="-7" id="e5z-vs-Z6l"/>
                             <constraint firstItem="pTR-25-F8A" firstAttribute="top" secondItem="rl8-t7-IAs" secondAttribute="bottom" constant="207" id="ecO-7F-ue2"/>
-                            <constraint firstItem="RIk-xi-iWn" firstAttribute="top" secondItem="sXT-zJ-gY0" secondAttribute="top" constant="74" id="hVb-ha-2Wb"/>
+                            <constraint firstItem="sXT-zJ-gY0" firstAttribute="trailing" secondItem="lLi-bM-I2p" secondAttribute="trailing" id="giH-XM-EIw"/>
+                            <constraint firstItem="C3P-cp-8uF" firstAttribute="top" secondItem="RIk-xi-iWn" secondAttribute="bottom" constant="10" id="jGj-h2-pfQ"/>
                             <constraint firstItem="YxH-Y5-z0F" firstAttribute="leading" secondItem="sXT-zJ-gY0" secondAttribute="leading" id="jVB-q1-Dwf"/>
                             <constraint firstItem="s12-nv-hzR" firstAttribute="top" secondItem="sXT-zJ-gY0" secondAttribute="top" constant="7" id="jnt-oX-Smt"/>
                             <constraint firstItem="yFE-pU-KsC" firstAttribute="top" secondItem="I6j-HU-tUc" secondAttribute="bottom" constant="-5" id="kFB-ar-3cj"/>
                             <constraint firstItem="Es9-9m-G6G" firstAttribute="centerY" secondItem="yFE-pU-KsC" secondAttribute="centerY" id="lfk-fk-xa5"/>
                             <constraint firstItem="LTn-V2-bX4" firstAttribute="top" secondItem="s12-nv-hzR" secondAttribute="bottom" constant="199" id="nzq-tm-NS3"/>
+                            <constraint firstItem="lLi-bM-I2p" firstAttribute="leading" secondItem="sXT-zJ-gY0" secondAttribute="leading" id="pFS-k0-RBt"/>
                             <constraint firstItem="aQ5-Qa-V11" firstAttribute="leading" secondItem="sXT-zJ-gY0" secondAttribute="leading" constant="61" id="rTu-X4-bsc"/>
                             <constraint firstItem="pTR-25-F8A" firstAttribute="centerX" secondItem="5yr-z0-eRg" secondAttribute="centerX" id="u2O-He-rB3"/>
                             <constraint firstItem="RIk-xi-iWn" firstAttribute="centerX" secondItem="5yr-z0-eRg" secondAttribute="centerX" id="vre-tj-9Df"/>
@@ -549,6 +573,11 @@
                     <navigationItem key="navigationItem" id="gQW-q0-K0G"/>
                     <connections>
                         <outlet property="animationImageView" destination="2sL-FN-JIs" id="BMi-Gc-A0U"/>
+                        <outlet property="bottomFirstButton" destination="nIJ-mP-3L5" id="hBm-n7-6z8"/>
+                        <outlet property="bottomSecondButton" destination="I6j-HU-tUc" id="myp-6k-LTA"/>
+                        <outlet property="bottomThirdButton" destination="mr8-S7-B0w" id="eok-EH-IQZ"/>
+                        <outlet property="caiButton" destination="FcH-Dv-3Kx" id="weQ-IY-PVU"/>
+                        <outlet property="centerFoButton" destination="RIk-xi-iWn" id="ZJO-Ot-CJ2"/>
                         <outlet property="leftSubTitleLabel" destination="kay-Qp-I14" id="KWc-Uc-DtD"/>
                         <outlet property="leftTitleLabel" destination="EJC-ou-3H9" id="2Sh-Cz-Ybb"/>
                         <outlet property="leftView" destination="rl8-t7-IAs" id="6ny-z1-5s9"/>
@@ -1343,7 +1372,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="button"/>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_pingan" translatesAutoresizingMaskIntoConstraints="NO" id="Exp-SL-AQi">
+                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_pingan" translatesAutoresizingMaskIntoConstraints="NO" id="Exp-SL-AQi">
                                         <rect key="frame" x="0.0" y="20" width="375" height="460"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="460" id="hWF-bS-RhG"/>
@@ -1413,8 +1442,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="6224b89e5f84f5166d86634a5f4329126f0244992110f-y3ErPl_fw658" width="80" height="65"/>
         <image name="bg-3" width="375" height="447"/>
+        <image name="bg_hengban" width="375" height="125"/>
         <image name="bg_jieshao" width="330" height="215"/>
         <image name="bg_jilu" width="375" height="518"/>
         <image name="bg_pingan" width="365" height="460"/>
@@ -1423,12 +1452,12 @@
         <image name="button" width="188" height="50"/>
         <image name="button_gongqing" width="190" height="45"/>
         <image name="button_qingsheng" width="195" height="50"/>
+        <image name="daocai1" width="244" height="204"/>
         <image name="icon_guanbi" width="18" height="18"/>
         <image name="icon_guanbi-1" width="30" height="30"/>
         <image name="icon_weixuanze-2" width="130" height="35"/>
         <image name="icon_xuazne" width="130" height="35"/>
         <image name="icon_xuyuan" width="200" height="60"/>
-        <image name="img_1_fo" width="80" height="65"/>
         <image name="img_chahu" width="60" height="73"/>
         <image name="img_deng" width="101" height="117"/>
         <image name="img_diandeng" width="350" height="284"/>
@@ -1456,7 +1485,6 @@
         <image name="img_yinying" width="375" height="667"/>
         <image name="img_zhongbu" width="375" height="546"/>
         <image name="img_zuotai" width="110" height="110"/>
-        <image name="倒茶1" width="244" height="204"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="syZ-Ki-Yn3"/>

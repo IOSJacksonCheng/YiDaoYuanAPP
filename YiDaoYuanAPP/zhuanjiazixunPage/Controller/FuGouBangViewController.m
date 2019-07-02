@@ -24,6 +24,11 @@ typedef NS_ENUM(NSInteger, ListType) {
 @property (weak, nonatomic) IBOutlet UIImageView *topImageView;
 
 @property (nonatomic, assign) ListType currentType;
+@property (nonatomic, strong) NSString *recordRankType;
+
+@property (nonatomic, strong) NSMutableArray *firstArray;
+@property (nonatomic, strong) NSMutableArray *secondArray;
+@property (nonatomic, strong) NSMutableArray *thirdArray;
 @end
 
 @implementation FuGouBangViewController
@@ -31,8 +36,13 @@ typedef NS_ENUM(NSInteger, ListType) {
     [super viewWillAppear:animated];
     [self configNavigationBar];
 }
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self configNavigationBar];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+   
     [self configSubViews];
     
     [self configNavigationBar];
@@ -50,7 +60,9 @@ typedef NS_ENUM(NSInteger, ListType) {
     
 }
 - (void)configSubViews {
-    
+    self.firstArray = @[].mutableCopy;
+    self.secondArray = @[].mutableCopy;
+    self.thirdArray = @[].mutableCopy;
 }
 - (void)configNavigationBar {
     
@@ -66,11 +78,35 @@ typedef NS_ENUM(NSInteger, ListType) {
 - (IBAction)clickTopViewButtonDone:(UIButton *)sender {
     [self changeButtonStatusWithTag:sender.tag];
 }
+- (void)sendGetRequest {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    para[@"rankType"] = self.recordRankType;
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_portal_Master_Rank Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            [self handleData:CSGetResult[@"lists"]];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+}
+- (void)handleData:(id)responseObject {
+    if (self.currentType == HaoPingBangType) {
+        self.firstArray = [CSParseManager getFuGouBangModelArrayWithResponseObject:responseObject];
+    } else if (self.currentType == FuGouBangType) {
+        self.secondArray = [CSParseManager getFuGouBangModelArrayWithResponseObject:responseObject];
+    } else if (self.currentType == QianLiBangType) {
+        self.thirdArray = [CSParseManager getFuGouBangModelArrayWithResponseObject:responseObject];
+    }
+    [self.listTableView reloadData];
+}
 - (void)changeButtonStatusWithTag:(NSUInteger)tag {
     
     
     if (tag == 0) {
-        //全部付款
+        self.recordRankType = @"good";
         [self.firstButton setTitleColor:csBlueColor forState:UIControlStateNormal];
         self.firstButton.titleLabel.font = csCharacterFont_18;
     } else {
@@ -79,7 +115,7 @@ typedef NS_ENUM(NSInteger, ListType) {
     }
     
     if (tag == 1) {
-        //待付款
+        self.recordRankType = @"repeat";
         [self.secondButton setTitleColor:csBlueColor forState:UIControlStateNormal];
         self.secondButton.titleLabel.font = csCharacterFont_18;
 
@@ -92,7 +128,7 @@ typedef NS_ENUM(NSInteger, ListType) {
     
     
     if (tag == 2) {
-        //进行中
+        self.recordRankType = @"potential";
         [self.thirdButton setTitleColor:csBlueColor forState:UIControlStateNormal];
         self.thirdButton.titleLabel.font = csCharacterFont_18;
 
@@ -117,19 +153,56 @@ typedef NS_ENUM(NSInteger, ListType) {
     } completion:^(BOOL finished) {
         
     }];
+    
     self.currentType = tag;
-    [self.listTableView reloadData];
+    
+    if ([self getCurrentArray].count == 0) {
+        [self sendGetRequest];
+
+    } else {
+        [self.listTableView reloadData];
+    }
+    
+    
+}
+- (FuGouBangModel *)getCurrentModel:(NSIndexPath *)indexPath {
+    
+    
+    if (self.currentType == HaoPingBangType) {
+        
+        return  self.firstArray[indexPath.row];
+        
+    } else if (self.currentType == FuGouBangType) {
+      
+        return   self.secondArray[indexPath.row];
+    
+    }
+    
+    return  self.thirdArray[indexPath.row];
+    
+    
+}
+- (NSMutableArray *)getCurrentArray {
+    if (self.currentType == HaoPingBangType) {
+        return  self.firstArray;
+    } else if (self.currentType == FuGouBangType) {
+        return   self.secondArray;
+    } else if (self.currentType == QianLiBangType) {
+        return  self.thirdArray;
+    }
+    return @[].mutableCopy;
 }
 #pragma mark --UITableViewDelegate/DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return [self getCurrentArray].count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     FuGouBangTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(FuGouBangTableViewCell)];
+    cell.model = [self getCurrentModel:indexPath];
     if (self.currentType == HaoPingBangType) {
         cell.titleView.hidden = YES;
     } else if (self.currentType == FuGouBangType) {

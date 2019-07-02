@@ -37,8 +37,16 @@ NSString * const jingShiString = @"敬食";
     
     [self configTableView];
     
+    
 }
-
+- (void)getMoreData {
+    
+    
+}
+- (void)getNewData {
+    
+    
+}
 - (void)configTableView {
   
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];

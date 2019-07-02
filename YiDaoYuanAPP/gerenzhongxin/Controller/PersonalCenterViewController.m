@@ -14,6 +14,9 @@
 #import "UserJudgeViewController.h"
 #import "NewPersonalCenterViewTableViewCell.h"
 #import "PersonalFirstRowTableViewCell.h"
+
+#import "WkWebViewViewController.h"
+
 @interface PersonalCenterViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSMutableArray *itemMutableArray;
@@ -24,7 +27,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (nonatomic, assign) BOOL userIsDaShi;
+@property (nonatomic, strong) NSString *recordTitle;
+@property (nonatomic, strong) NSString *recordUrl;
 @end
 
 @implementation PersonalCenterViewController
@@ -188,9 +192,21 @@
     
     [self configTableView];
     
-    
+    [self sendGetRequest];
 }
-
+- (void)sendGetRequest {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_Consult Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+}
 - (void)configTableView {
     
 //    [self.itemCollectionView registerNib:[UINib nibWithNibName:CSCellName(PersonalCollectionViewCell) bundle:nil] forCellWithReuseIdentifier:CSCellName(PersonalCollectionViewCell)];
@@ -222,11 +238,11 @@
      [self performSegueWithIdentifier:@"MoneyHistoryViewController" sender:self];
 }
 - (void)clickHeaderViewDone {
-    self.userIsDaShi = !self.userIsDaShi;
-    if (self.userIsDaShi) {
-        self.title = @"个人中心大师端";
-    }else {
-        self.title = @"个人中心";
+    
+    if (CS_UserIsMaster) {
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"CS_UserIsMaster"];
+    } else {
+         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"CS_UserIsMaster"];
     }
     [self.tableView reloadData];
 }
@@ -234,7 +250,7 @@
     
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
-    if (self.userIsDaShi) {
+    if (CS_UserIsMaster) {
         [self performSegueWithIdentifier:@"DaShiDuanZiXunViewController" sender:self];
         return;
     }
@@ -245,14 +261,14 @@
     [self.navigationController pushViewController:new animated:YES];
 }
 - (void)clickMyCollectViewDone {
-    [[CSUtility getCurrentViewController]  performSegueWithIdentifier:@"MyCollectViewController" sender:self];
+    [self  performSegueWithIdentifier:@"MyCollectViewController" sender:self];
 }
 - (void)clickConsultViewDone {
-    if (self.userIsDaShi) {
-        [[CSUtility getCurrentViewController]  performSegueWithIdentifier:@"DaShiDuanZiXunViewController" sender:self];
+    if (CS_UserIsMaster) {
+        [self  performSegueWithIdentifier:@"DaShiDuanZiXunViewController" sender:self];
         return;
     }
-    [[CSUtility getCurrentViewController]  performSegueWithIdentifier:@"ConsultOrderViewController" sender:self];
+    [self  performSegueWithIdentifier:@"ConsultOrderViewController" sender:self];
     
 }
 - (void)configNavigationBar {
@@ -294,7 +310,7 @@
         return 1;
     }
    
-    if (self.userIsDaShi) {
+    if (CS_UserIsMaster) {
      
         return self.daShiMutableArray.count;
    
@@ -307,6 +323,10 @@
     if (indexPath.section == 0) {
         PersonalFirstRowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(PersonalFirstRowTableViewCell) forIndexPath:indexPath];
         
+        cell.yidaoYuanLabel.text = [NSString stringWithFormat:@"%@元",CS_Coin];
+        cell.yueYuanLabel.text = [NSString stringWithFormat:@"%@元",CS_Balance];
+        [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:CS_Avatar] placeholderImage:CSUserImagePlaceHolder];
+        cell.nameLabel.text = [NSString stringWithFormat:@"%@",CS_User_Nickname];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickConsultViewDone)];
         
         tap.numberOfTapsRequired = 1;
@@ -365,7 +385,7 @@
    
     PersonalModel *model = [PersonalModel new];
     
-    if (self.userIsDaShi) {
+    if (CS_UserIsMaster) {
         model = self.daShiMutableArray[indexPath.row];
     } else {
         model = self.itemMutableArray[indexPath.row];
@@ -388,7 +408,7 @@
     }
     PersonalModel *model = [PersonalModel new];
     
-    if (self.userIsDaShi) {
+    if (CS_UserIsMaster) {
         model = self.daShiMutableArray[indexPath.row];
     } else {
         model = self.itemMutableArray[indexPath.row];
@@ -412,99 +432,28 @@
         UserJudgeViewController *new = [mainStoryboard instantiateViewControllerWithIdentifier:@"UserJudgeViewController"];
         
         [self.navigationController pushViewController:new animated:YES];
+    }else if ([model.title isEqualToString:@"关于我们"]) {
+        self.recordUrl = [NSString stringWithFormat:@"%@%@", BASE_URL, CSURL_About_Us];
+        self.recordTitle = @"关于我们";
+        [self performSegueWithIdentifier:@"WkWebViewViewController" sender:self];
+
+    }else if ([model.title isEqualToString:@"意见反馈"])  {
+        
+         [self performSegueWithIdentifier:@"UserSuggestViewController" sender:self];
     }
 }
-//#pragma mark -- UICollectionViewDataSource/Delegate
-//// UIEdgeInsets insets = {top, left, bottom, right};
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-//
-//
-//
-//    return CGSizeMake((MainScreenWidth - 10 * 5) / 4.0, 80);
-//
-//}
-//- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-//
-//    return UIEdgeInsetsMake(10, 15, 10, 15);
-//    //    return UIEdgeInsetsMake(0, 0, 0, 0);
-//
-//}
-//
-//- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-//
-//    return 5;
-//}
-//- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-//
-//    return 5;
-//}
-//- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-//    return 1;
-//}
-//
-//- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-//    if (self.userIsDaShi) {
-//        return self.daShiMutableArray.count;
-//    }
-//    return self.itemMutableArray.count;
-//}
-//- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-//
-//    PersonalCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CSCellName(PersonalCollectionViewCell) forIndexPath:indexPath];
-//
-//    PersonalModel *model = [PersonalModel new];
-//
-//    if (self.userIsDaShi) {
-//        model = self.daShiMutableArray[indexPath.row];
-//    } else {
-//         model = self.itemMutableArray[indexPath.row];
-//    }
-//
-//    cell.csImageView.image = DotaImageName(model.image);
-//    cell.csTitleLabel.text = model.title;
-//
-//
-//    return cell;
-//
-//}
-//
-//- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-//
-//
-//    PersonalModel *model = [PersonalModel new];
-//
-//    if (self.userIsDaShi) {
-//        model = self.daShiMutableArray[indexPath.row];
-//    } else {
-//        model = self.itemMutableArray[indexPath.row];
-//    }
-//
-//    if ([model.title isEqualToString:@"充值"]) {
-//        [self performSegueWithIdentifier:@"ChongZhiViewController" sender:self];
-//    } else if ([model.title isEqualToString:@"大师入驻"]) {
-//        [self performSegueWithIdentifier:@"DaShiRuZhuViewController" sender:self];
-//    } else if ([model.title isEqualToString:@"城市合伙人"]) {
-//        [self performSegueWithIdentifier:@"ChengShiHeHuoRenViewController" sender:self];
-//    }else if ([model.title isEqualToString:@"邀请分享"]) {
-//        [self performSegueWithIdentifier:@"ShareViewController" sender:self];
-//    }else if ([model.title isEqualToString:@"商城"])  {
-//        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"shopping" bundle:nil];
-//
-//        [UIApplication sharedApplication].keyWindow.rootViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"shoppingStoryboard"];
-//    } else if ([model.title isEqualToString:@"我的评价"]) {
-//        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//
-//        UserJudgeViewController *new = [mainStoryboard instantiateViewControllerWithIdentifier:@"UserJudgeViewController"];
-//
-//        [self.navigationController pushViewController:new animated:YES];
-//    }
-//}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"MoneyHistoryViewController"]) {
         
         MoneyHistoryViewController *new = segue.destinationViewController;
         
         new.passString = self.recordYuEOrYiDaoYunTitle;;
+    }else if ([segue.identifier isEqualToString:@"WkWebViewViewController"]) {
+        WkWebViewViewController *new = segue.destinationViewController;
+        new.passTitle = self.recordTitle;
+        new.passUrl = self.recordUrl;
+        
     }
     
 }

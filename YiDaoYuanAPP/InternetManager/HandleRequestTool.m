@@ -10,7 +10,7 @@
 
 @implementation HandleRequestTool
 + (BOOL)requestIsSuccessful:(id)responseObject {
-    int state = [responseObject[@"status"] intValue];
+    int state = [responseObject[@"code"] intValue];
     
     if (state == SuccessfulCode) {
         return YES;
@@ -19,7 +19,7 @@
 }
 
 + (BOOL)requestNotSubmit:(id)responseObject {
-    int state = [responseObject[@"errno"] intValue];
+    int state = [responseObject[@"code"] intValue];
     if (state == NotSubmitCode) {
         return YES;
     }

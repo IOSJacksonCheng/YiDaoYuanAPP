@@ -34,6 +34,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *Name;
 @property (nonatomic, strong) NSString *Card;
+
+@property (nonatomic, strong) NSString *pameterTitle;
+
+@property (nonatomic, strong) UIImage *leftImage;
+
+@property (nonatomic, strong) UIImage *rightImage;
 @end
 
 NS_ASSUME_NONNULL_END

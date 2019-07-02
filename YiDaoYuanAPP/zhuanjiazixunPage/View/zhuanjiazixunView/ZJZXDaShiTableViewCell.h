@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZJZXDaShiTableViewCell : UITableViewCell
-
+@property (nonatomic, strong) NSMutableArray *daShiArray;
 @end
 
 NS_ASSUME_NONNULL_END

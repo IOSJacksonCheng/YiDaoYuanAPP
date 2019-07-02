@@ -9,18 +9,24 @@
 #import "PersonalSetViewController.h"
 
 #import "PersonalSetTableViewCell.h"
+#import "WkWebViewViewController.h"
 
 @interface PersonalSetViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *shareView;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *listArray;
+@property (nonatomic, strong) NSString *recordTitle;
+@property (nonatomic, strong) NSString *recordUrl;
+
+@property (weak, nonatomic) IBOutlet UIView *disappearView;
+
 @end
 
 @implementation PersonalSetViewController
 - (NSMutableArray *)listArray {
     if (!_listArray) {
-        _listArray = @[@"个人信息",@"新手指南",@"关于我们",@"分享APP"].mutableCopy;
+        _listArray = @[@"个人信息",@"新手指南",@"分享APP"].mutableCopy;
     }
     return _listArray;
 }
@@ -50,9 +56,19 @@
     
 }
 
+- (void)clickdisappearView {
+    self.shareView.hidden = YES;
+}
+
 - (void)configSubViews {
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickdisappearView)];
     
+    tap.numberOfTapsRequired = 1;
+    
+    tap.numberOfTouchesRequired = 1;
+    
+    [self.disappearView addGestureRecognizer:tap];
 }
 
 - (void)configNavigationBar {
@@ -86,9 +102,26 @@
     if ([title isEqualToString:@"个人信息"]) {
         [self performSegueWithIdentifier:@"PersonalInfomationViewController" sender:self];
     } else if ([title isEqualToString:@"新手指南"]) {
-         
+        self.recordUrl = [NSString stringWithFormat:@"%@%@", BASE_URL, CSURL_New_Fish];
+        self.recordTitle = @"新手指南";
+          [self performSegueWithIdentifier:@"WkWebViewViewController" sender:self];
+    }else if ([title isEqualToString:@"关于我们"]) {
+        
+        self.recordUrl = [NSString stringWithFormat:@"%@%@", BASE_URL, CSURL_About_Us];
+        self.recordTitle = @"关于我们";
+        
+ [self performSegueWithIdentifier:@"WkWebViewViewController" sender:self];
+        
     }else if ([title isEqualToString:@"分享APP"]) {
         self.shareView.hidden = NO;
+    }
+}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"WkWebViewViewController"]) {
+        WkWebViewViewController *new = segue.destinationViewController;
+        new.passTitle = self.recordTitle;
+        new.passUrl = self.recordUrl;
+
     }
 }
 @end

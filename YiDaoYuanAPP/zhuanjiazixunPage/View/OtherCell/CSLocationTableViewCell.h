@@ -7,11 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CSAreaModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
+@protocol CSLocationTableViewCellDelegate <NSObject>
 
+- (void)GetLocationModel:(CSAreaModel *)model;
+
+@end
 @interface CSLocationTableViewCell : UITableViewCell
-
+@property (nonatomic, strong) NSMutableArray *itemMutableArray;
+@property (nonatomic, weak) id<CSLocationTableViewCellDelegate> csDelegate;
 @end
 
 NS_ASSUME_NONNULL_END

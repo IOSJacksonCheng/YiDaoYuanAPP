@@ -33,6 +33,16 @@ typedef NS_ENUM(NSInteger, CellType) {
 @property (nonatomic, strong) NSMutableArray *yiwanchengArray;
 @property (nonatomic, strong) NSMutableArray *tuikuanArray;
 @property (nonatomic, assign) CellType currentCellType;
+
+@property (nonatomic, assign) int recordFirstPage;
+@property (nonatomic, assign) int recordSecondPage;
+
+@property (nonatomic, assign) int recordThirdPage;
+
+@property (nonatomic, assign) int recordFourthPage;
+
+@property (nonatomic, assign) int recordFifthPage;
+
 @end
 
 @implementation ConsultOrderViewController
@@ -41,15 +51,6 @@ typedef NS_ENUM(NSInteger, CellType) {
     if (!_tuikuanArray) {
         _tuikuanArray = @[].mutableCopy;
         
-        ConsultModel *model1 = [ConsultModel new];
-        model1.state = @"4";
-        model1.statTitle = @"退款";
-        [_tuikuanArray addObject:model1];
-        
-        ConsultModel *model2 = [ConsultModel new];
-        model2.state = @"4";
-        model2.statTitle = @"退款";
-        [_tuikuanArray addObject:model2];
     }
     return _tuikuanArray;
 }
@@ -57,15 +58,6 @@ typedef NS_ENUM(NSInteger, CellType) {
     if (!_yiwanchengArray) {
         _yiwanchengArray = @[].mutableCopy;
         
-        ConsultModel *model1 = [ConsultModel new];
-        model1.state = @"3";
-         model1.statTitle = @"已完成";
-        [_yiwanchengArray addObject:model1];
-        
-        ConsultModel *model2 = [ConsultModel new];
-        model2.state = @"3";
-         model2.statTitle = @"已完成";
-        [_yiwanchengArray addObject:model2];
     }
     return _yiwanchengArray;
 }
@@ -73,17 +65,7 @@ typedef NS_ENUM(NSInteger, CellType) {
     if (!_jinxinzhongArray) {
         _jinxinzhongArray = @[].mutableCopy;
         
-        ConsultModel *model1 = [ConsultModel new];
-        model1.state = @"2";
-        model1.statTitle = @"进行中";
 
-        [_jinxinzhongArray addObject:model1];
-        
-        ConsultModel *model2 = [ConsultModel new];
-        model2.state = @"2";
-        model2.statTitle = @"进行中";
-
-        [_jinxinzhongArray addObject:model2];
     }
     return _jinxinzhongArray;
 }
@@ -92,17 +74,7 @@ typedef NS_ENUM(NSInteger, CellType) {
     if (!_daifukuanArray) {
         _daifukuanArray = @[].mutableCopy;
         
-        ConsultModel *model1 = [ConsultModel new];
-        model1.state = @"1";
-        model1.statTitle = @"待付款";
-
-        [_daifukuanArray addObject:model1];
-        
-        ConsultModel *model2 = [ConsultModel new];
-        model2.state = @"1";
-        model2.statTitle = @"待付款";
-
-        [_daifukuanArray addObject:model2];
+      
     }
     return _daifukuanArray;
 }
@@ -110,30 +82,7 @@ typedef NS_ENUM(NSInteger, CellType) {
     if (!_allArray) {
         _allArray = @[].mutableCopy;
         
-        ConsultModel *model1 = [ConsultModel new];
-        model1.state = @"2";
-        model1.statTitle = @"进行中";
-
-        [_allArray addObject:model1];
         
-        ConsultModel *model2 = [ConsultModel new];
-        model2.state = @"3";
-        model2.statTitle = @"已完成";
-
-        [_allArray addObject:model2];
-        
-        ConsultModel *model3 = [ConsultModel new];
-        model3.state = @"4";
-        model3.statTitle = @"退款";
-
-        [_allArray addObject:model3];
-        
-        
-        ConsultModel *model5 = [ConsultModel new];
-        model5.state = @"1";
-        model5.statTitle = @"待付款";
-
-        [_allArray addObject:model5];
     }
     return _allArray;
 }
@@ -152,6 +101,10 @@ typedef NS_ENUM(NSInteger, CellType) {
     [self.listTableView registerNib:[UINib nibWithNibName:CSCellName(ConsultTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(ConsultTableViewCell)];
     self.listTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.listTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    self.listTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getNewData)];
+    
+    self.listTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreData)];
 }
 - (void)configSubViews {
     
@@ -170,7 +123,195 @@ typedef NS_ENUM(NSInteger, CellType) {
 
 - (void)sendGetRequestForInfomation:(NSInteger)tag {
     
+    self.currentCellType = tag;
+    
+    if ([self getCurrentArray].count == 0) {
+        [self getNewData];
+    } else {
+        [self.listTableView reloadData];
+    }
+    
+    
+    
 }
+- (void)endRefresh {
+    if (self.listTableView.mj_header.isRefreshing) {
+        [self.listTableView.mj_header endRefreshing];
+    }
+    if (self.listTableView.mj_footer.isRefreshing) {
+        [self.listTableView.mj_footer endRefreshing];
+    }
+}
+- (NSString *)getCurrentStatus {
+    
+    NSInteger tag = self.currentCellType;
+    
+    if (tag == 1) {
+        return @"0";
+        
+    } else if (tag == 2) {
+        return @"2";
+        
+    }else if (tag == 3) {
+        return @"10";
+        
+    }else if (tag == 4) {
+        return @"-2";
+        
+    }
+    return @"";
+}
+- (void)setCurrentPages {
+    
+    NSInteger tag = self.currentCellType;
+    
+    if (tag == 0) {
+        self.recordFirstPage = 1;
+        
+    } else if (tag == 1) {
+        self.recordSecondPage = 1;
+        
+    }else if (tag == 2) {
+        self.recordThirdPage = 1;
+        
+    }else if (tag == 3) {
+        self.recordFourthPage = 1;
+        
+    }
+    self.recordFifthPage = 1;
+}
+- (void)addCurrentPages {
+    NSInteger tag = self.currentCellType;
+    
+    if (tag == 0) {
+        self.recordFirstPage ++;
+        
+    } else if (tag == 1) {
+         self.recordSecondPage ++;
+        
+    }else if (tag == 2) {
+         self.recordThirdPage ++;
+        
+    }else if (tag == 3) {
+         self.recordFourthPage ++;
+        
+    }
+     self.recordFifthPage ++;
+}
+- (int)getCurrentPages {
+    
+    NSInteger tag = self.currentCellType;
+    
+    if (tag == 0) {
+        return self.recordFirstPage;
+        
+    } else if (tag == 1) {
+        return self.recordSecondPage;
+        
+    }else if (tag == 2) {
+        return self.recordThirdPage;
+        
+    }else if (tag == 3) {
+        return self.recordFourthPage;
+        
+    }
+    return self.recordFifthPage;
+}
+- (void)getNewData {
+    [self setCurrentPages];
+    NSMutableDictionary *para = @{}.mutableCopy;
+     para[@"status"] = [self getCurrentStatus];
+    
+    para[@"page"] = [NSString stringWithFormat:@"%d",[self getCurrentPages]];
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_User_Consult Pameters:para success:^(id  _Nonnull responseObject) {
+        [self endRefresh];
+        if (CSInternetRequestSuccessful) {
+            [self handleNewDataWithArray:[CSParseManager getConsultModelArrayWithResponseObject:CSGetResult[@"lists"]]];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+}
+- (void)handleNewDataWithArray:(NSMutableArray *)array {
+    
+    NSInteger tag = self.currentCellType;
+    
+    if (tag == 0) {
+       self.allArray = array;
+        
+    } else if (tag == 1) {
+        self.daifukuanArray = array;
+
+    }else if (tag == 2) {
+        self.jinxinzhongArray = array;
+
+    }else if (tag == 3) {
+        self.yiwanchengArray = array;
+
+    } else {
+        self.tuikuanArray = array;
+
+    }
+
+    
+    [self.listTableView reloadData];
+
+}
+- (void)handleMoreDataWithArray:(NSMutableArray *)array {
+    
+    if (array.count == 0) {
+        CustomWrongMessage(@"下面没有更多数据了");
+        return;
+    }
+    
+    NSInteger tag = self.currentCellType;
+    
+    if (tag == 0) {
+        [self.allArray addObjectsFromArray:array];;
+        
+    } else if (tag == 1) {
+        [self.daifukuanArray addObjectsFromArray:array];
+        
+    }else if (tag == 2) {
+        [self.jinxinzhongArray addObjectsFromArray:array];
+        
+    }else if (tag == 3) {
+        [self.yiwanchengArray addObjectsFromArray:array];
+        
+    } else {
+        [self.tuikuanArray addObjectsFromArray:array];
+        
+    }
+    
+    [self.listTableView reloadData];
+
+}
+- (void)getMoreData {
+    
+    [self addCurrentPages];
+    
+    NSMutableDictionary *para = @{}.mutableCopy;
+    
+    para[@"status"] = [self getCurrentStatus];
+    
+    para[@"page"] = [NSString stringWithFormat:@"%d",[self getCurrentPages]];
+    
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_User_Consult Pameters:para success:^(id  _Nonnull responseObject) {
+        [self endRefresh];
+        if (CSInternetRequestSuccessful) {
+            [self handleMoreDataWithArray:[CSParseManager getConsultModelArrayWithResponseObject:CSGetResult[@"lists"]]];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        [self endRefresh];
+
+        CSInternetFailure
+    }];
+}
+
 - (IBAction)clickTopViewButtonDone:(UIButton *)sender {
     
 
@@ -275,7 +416,7 @@ typedef NS_ENUM(NSInteger, CellType) {
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     ConsultModel *model = [self getCurrentModel:indexPath.row];
-    if (model.state.integerValue == TuiKuanCellType) {
+    if (model.status.integerValue == TuiKuanCellType) {
         return 181;
     }
     
@@ -286,13 +427,13 @@ typedef NS_ENUM(NSInteger, CellType) {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     ConsultModel *model = [self getCurrentModel:indexPath.row];
-     if (model.state.integerValue == JinXinZhongCellType) {
+     if (model.status.integerValue == JinXinZhongCellType) {
       
           [self performSegueWithIdentifier:@"ConsultJinXinZhongViewController" sender:self];
-     } else if (model.state.integerValue == TuiKuanCellType) {
+     } else if (model.status.integerValue == TuiKuanCellType) {
          
          [self performSegueWithIdentifier:@"ConsultTuiKuanViewController" sender:self];
-     }else if (model.state.integerValue == YiWanChengCellType) {
+     }else if (model.status.integerValue == YiWanChengCellType) {
          
          [self performSegueWithIdentifier:@"ConsultYiWanChengViewController" sender:self];
      }

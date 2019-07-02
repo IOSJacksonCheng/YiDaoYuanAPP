@@ -11,7 +11,15 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CSParseManager : NSObject
-
++ (NSMutableArray *)getAreaModelArrayWithResponseObject:(id)result;
++ (NSMutableArray *)getMyCollectModelArrayWithResponseObject:(id)result;
++ (NSMutableArray *)getDaShiListItemModelArrayWithResponseObject:(id)result;
++ (NSMutableArray *)getConsultModelArrayWithResponseObject:(id)result;
++ (NSMutableArray *)getUserPingLunFirstPageModelArrayWithResponseObject:(id)result;
++ (NSMutableArray *)getDaShiFirstPageModelArrayWithResponseObject:(id)result;
++ (NSMutableArray *)getIndustryNewsModelArrayWithResponseObject:(id)result;
++ (NSMutableArray *)getFuGouBangModelArrayWithResponseObject:(id)result;
++ (NSMutableArray *)getYiDaoYuanCollectionModelArrayWithResponseObject:(id)result;
 @end
 
 NS_ASSUME_NONNULL_END

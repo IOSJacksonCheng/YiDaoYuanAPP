@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CSNewsViewController : BaseViewController
-
+@property (nonatomic, strong) NSString *passUrl;
 @end
 
 NS_ASSUME_NONNULL_END

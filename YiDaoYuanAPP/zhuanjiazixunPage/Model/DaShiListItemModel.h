@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, getter=isChoose) BOOL choose;
 @property (nonatomic, strong) NSMutableArray *subArray;
+@property (nonatomic, strong) NSString *idString;
 @end
 
 NS_ASSUME_NONNULL_END

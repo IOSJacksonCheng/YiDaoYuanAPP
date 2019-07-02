@@ -9,6 +9,8 @@
 #import "MingDengViewController.h"
 
 #import "MindDengTableViewCell.h"
+
+#import "QuickWishViewController.h"
 @interface MingDengViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 - (IBAction)clickCloseButton:(id)sender;
@@ -72,7 +74,17 @@
 }
 
 - (IBAction)clickNextButtonDone:(UIButton *)sender {
+    
+    
     [self performSegueWithIdentifier:@"QuickWishViewController" sender:self];
+}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"QuickWishViewController"]) {
+        QuickWishViewController *new = segue.destinationViewController;
+        new.passTag = self.passTag;
+        
+    }
 }
 #pragma mark --UITableViewDelegate/DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

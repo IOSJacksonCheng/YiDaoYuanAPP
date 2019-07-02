@@ -23,7 +23,39 @@
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
- 
+
+#define CSWeChatAppId @"wx1bcd934b9617f59c"
+
+#define CSAliPayAppId @"2019061265486927"
+
+
+
+#define CSGetToken [[NSUserDefaults standardUserDefaults] valueForKey:@"CSGetToken"]
+
+#define CS_UserID [[NSUserDefaults standardUserDefaults] valueForKey:@"CS_UserID"]
+
+/** 性别;0:保密,1:男,2:女 */
+#define CS_Sex [[NSUserDefaults standardUserDefaults] valueForKey:@"CS_Sex"]
+
+
+#define CS_Birthday [[NSUserDefaults standardUserDefaults] valueForKey:@"CS_Birthday"]
+
+#define CS_Coin [[NSUserDefaults standardUserDefaults] valueForKey:@"CS_Coin"]
+
+
+#define CS_Balance [[NSUserDefaults standardUserDefaults] valueForKey:@"CS_Balance"]
+
+#define CS_User_Nickname [[NSUserDefaults standardUserDefaults] valueForKey:@"CS_User_Nickname"]
+
+#define CS_Avatar [[NSUserDefaults standardUserDefaults] valueForKey:@"CS_Avatar"]
+
+#define CS_Mobile [[NSUserDefaults standardUserDefaults] valueForKey:@"CS_Mobile"]
+#define CS_UserIsMaster [[NSUserDefaults standardUserDefaults] boolForKey:@"CS_UserIsMaster"]
+
+
+
+
+
 #define WhiteNavigationBarColor [self.navigationController.navigationBar setBackgroundImage:[CSUtility createImageWithColor:[UIColor colorWithHexString:@"FFFFFF"]] forBarMetrics:UIBarMetricsDefault];[self.navigationController.navigationBar setShadowImage:[CSUtility createImageWithColor:[UIColor colorWithHexString:@"FFFFFF"]]];
 #define F3f3f3NavigationBarColor [self.navigationController.navigationBar setBackgroundImage:[CSUtility createImageWithColor:[UIColor colorWithHexString:@"f3f3f3"]] forBarMetrics:UIBarMetricsDefault];[self.navigationController.navigationBar setShadowImage:[CSUtility createImageWithColor:[UIColor colorWithHexString:@"f3f3f3"]]];
 
@@ -37,6 +69,16 @@
 
 #define CSCellName(message)  NSStringFromClass([message class])
 
+#define CS_CenterFoImage [[NSUserDefaults standardUserDefaults] valueForKey:@"CS_CenterFoImage"]
+
+#define CS_BottomFirstShenImage [[NSUserDefaults standardUserDefaults] valueForKey:@"CS_BottomFirstShenImage"]
+
+#define CS_BottomSecondShenImage [[NSUserDefaults standardUserDefaults] valueForKey:@"CS_BottomSecondShenImage"]
+
+#define CS_BottomThirdShenImage [[NSUserDefaults standardUserDefaults] valueForKey:@"CS_BottomThirdShenImage"]
+
+
+#define CSIsLogin  [[NSUserDefaults standardUserDefaults] boolForKey:@"CSIsLogin"]
 
 #define IPHONE_X \
 ({BOOL isPhoneX = NO;\

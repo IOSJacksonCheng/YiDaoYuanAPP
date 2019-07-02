@@ -11,6 +11,9 @@
 @property (weak, nonatomic) IBOutlet UIView *whiteBgView;
 @property (weak, nonatomic) IBOutlet UIImageView *greenImageView;
 @property (weak, nonatomic) IBOutlet UIView *redCircleView;
+
+
+
 @end
 @implementation PersonalFirstRowTableViewCell
 
@@ -24,6 +27,9 @@
     self.redCircleView.layer.cornerRadius = 4;
     
     self.redCircleView.layer.masksToBounds = YES;
+    
+    self.headImageView.layer.cornerRadius = 68 * 0.5;
+    self.headImageView.layer.masksToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

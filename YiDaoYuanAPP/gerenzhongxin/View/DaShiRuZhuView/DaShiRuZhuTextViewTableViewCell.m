@@ -8,8 +8,9 @@
 
 #import "DaShiRuZhuTextViewTableViewCell.h"
 @interface DaShiRuZhuTextViewTableViewCell()<UITextViewDelegate>
-@property (weak, nonatomic) IBOutlet ValuationTextView *csTextView;
+@property (weak, nonatomic) IBOutlet UITextView *csTextView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *placeholderLabel;
 
 @end
 @implementation DaShiRuZhuTextViewTableViewCell
@@ -28,12 +29,24 @@
 - (void)setModel:(DaShiRuZhuModel *)model {
     _model = model;
     self.csTextView.text = model.content;
-    self.csTextView.placeholder = model.placeHolder;
-    self.csTextView.placeholderColor = cs999999Color;
     self.titleLabel.text = model.title;
+    self.placeholderLabel.text = model.placeHolder;
+    if (csCharacterIsBlank(model.content)) {
+        self.placeholderLabel.hidden = NO;
+    } else {
+        self.placeholderLabel.hidden = YES;
+    }
 }
 - (void)textViewDidEndEditing:(UITextView *)textView {
      self.model.content = textView.text;
 }
+- (void)textViewDidChange:(UITextView *)textView {
+    if (csCharacterIsBlank(textView.text)) {
+        self.placeholderLabel.hidden = NO;
 
+    } else {
+        self.placeholderLabel.hidden = YES;
+
+    }
+}
 @end

@@ -68,6 +68,10 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="csTitleImageVIew" destination="Suw-NA-1am" id="KvU-iY-ACK"/>
+                <outlet property="judgeLabel" destination="ICy-jN-Edn" id="1G3-8n-WfK"/>
+                <outlet property="nameLabel" destination="3ac-gI-Yd6" id="Cv6-v1-hd1"/>
+                <outlet property="timeLabel" destination="cx6-aJ-lgr" id="EMD-TF-0W9"/>
+                <outlet property="typeLabel" destination="lPW-aH-uKc" id="alt-sf-UBh"/>
             </connections>
         </tableViewCell>
     </objects>

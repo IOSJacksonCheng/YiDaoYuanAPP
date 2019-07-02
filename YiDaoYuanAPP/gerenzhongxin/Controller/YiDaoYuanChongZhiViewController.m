@@ -12,12 +12,21 @@
 #import "YiDaoYuanChongZhiTitleTableViewCell.h"
 #import "PayMoneyWaysTableViewCell.h"
 #import "YiDaoYuanCollectionModel.h"
+
+#import "WXApi.h"
+
+#import <AlipaySDK/AlipaySDK.h>
 @interface YiDaoYuanChongZhiViewController ()<UITableViewDelegate, UITableViewDataSource, YiDaoYuanCollectionTableViewCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *sureButton;
 - (IBAction)clickSureButtonDone:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *successView;
 @property (nonatomic, strong) NSMutableArray *itemMutableArray;
+
+@property (nonatomic, assign) BOOL chooseAlipay;
+
+@property (nonatomic, strong) YiDaoYuanCollectionModel *currentModel;
+
 @end
 
 @implementation YiDaoYuanChongZhiViewController
@@ -25,88 +34,6 @@
     if (!_itemMutableArray) {
         
         _itemMutableArray = @[].mutableCopy;
-        
-        YiDaoYuanCollectionModel *model1 = [YiDaoYuanCollectionModel new];
-        model1.choose = YES;
-        model1.money = @"10";
-        model1.RMB = @"10";
-        model1.showSales = NO;
-        model1.sales = @"9.0";
-        [_itemMutableArray addObject:model1];
-        
-        YiDaoYuanCollectionModel *model2 = [YiDaoYuanCollectionModel new];
-        model2.choose = NO;
-        model2.money = @"10";
-        model2.RMB = @"10";
-        model2.showSales = NO;
-        model2.sales = @"9.0";
-        [_itemMutableArray addObject:model2];
-        
-        YiDaoYuanCollectionModel *model3 = [YiDaoYuanCollectionModel new];
-        model3.choose = NO;
-        model3.money = @"10";
-        model3.RMB = @"10";
-        model3.showSales = YES;
-        model3.sales = @"9.0";
-        [_itemMutableArray addObject:model3];
-        
-        YiDaoYuanCollectionModel *model4 = [YiDaoYuanCollectionModel new];
-        model4.choose = NO;
-        model4.money = @"10";
-        model4.RMB = @"10";
-        model4.showSales = YES;
-        model4.sales = @"9.0";
-        [_itemMutableArray addObject:model4];
-        
-        YiDaoYuanCollectionModel *model5 = [YiDaoYuanCollectionModel new];
-        model5.choose = NO;
-        model5.money = @"10";
-        model5.RMB = @"10";
-        model5.showSales = YES;
-        model5.sales = @"9.0";
-        [_itemMutableArray addObject:model5];
-        
-        
-        
-        YiDaoYuanCollectionModel *model6 = [YiDaoYuanCollectionModel new];
-        model6.choose = NO;
-        model6.money = @"10";
-        model6.RMB = @"1000";
-        model6.showSales = YES;
-        model6.sales = @"9.0";
-        [_itemMutableArray addObject:model6];
-        
-        YiDaoYuanCollectionModel *model7 = [YiDaoYuanCollectionModel new];
-        model7.choose = NO;
-        model7.money = @"10";
-        model7.RMB = @"10";
-        model7.showSales = YES;
-        model7.sales = @"9.0";
-        [_itemMutableArray addObject:model7];
-        
-        YiDaoYuanCollectionModel *model8 = [YiDaoYuanCollectionModel new];
-        model8.choose = NO;
-        model8.money = @"10";
-        model8.RMB = @"10";
-        model8.showSales = YES;
-        model8.sales = @"9.0";
-        [_itemMutableArray addObject:model8];
-        
-        YiDaoYuanCollectionModel *model9 = [YiDaoYuanCollectionModel new];
-        model9.choose = NO;
-        model9.money = @"10";
-        model9.RMB = @"10";
-        model9.showSales = YES;
-        model9.sales = @"9.0";
-        [_itemMutableArray addObject:model9];
-        
-        YiDaoYuanCollectionModel *model10 = [YiDaoYuanCollectionModel new];
-        model10.choose = NO;
-        model10.money = @"10";
-        model10.RMB = @"1000";
-        model10.showSales = YES;
-        model10.sales = @"9.0";
-        [_itemMutableArray addObject:model10];
         
     }
     return _itemMutableArray;
@@ -119,6 +46,21 @@
     [self configNavigationBar];
     
     [self configTableView];
+    [self sendGetRequest];
+}
+- (void)sendGetRequest {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_User_Profile_Coindiscount Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            self.itemMutableArray = [CSParseManager getYiDaoYuanCollectionModelArrayWithResponseObject:CSGetResult];
+            [self.tableView reloadData];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
 }
 - (void)configTableView {
     
@@ -132,16 +74,17 @@
 }
 
 - (void)configSubViews {
+    
     self.successView.hidden = YES;
     self.successView.layer.cornerRadius = 5;
     self.successView.layer.masksToBounds = YES;
     
     
     
-    
+    self.chooseAlipay = YES;
     self.sureButton.layer.cornerRadius = 5;
     
-    
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(execute:) name:@"WXpayResult_Notification" object:nil];
 }
 - (void)configNavigationBar {
     F3f3f3NavigationBarColor
@@ -154,6 +97,132 @@
     [self.navigationController.navigationBar setTitleTextAttributes:dic];
 }
 - (IBAction)clickSureButtonDone:(id)sender {
+    
+ 
+    
+    
+    if (csCharacterIsBlank(self.currentModel.RMB)) {
+        CustomWrongMessage(@"请选择要充值的金额");
+        return;
+    }
+    
+    NSMutableDictionary *para = @{}.mutableCopy;
+    para[@"price"] = self.currentModel.RMB;
+    para[@"type"] = @"1";
+    if (self.chooseAlipay) {
+        para[@"pay_type"] = @"3";
+        
+    } else {
+        para[@"pay_type"] = @"4";
+        
+    }
+    [CSNetManager sendPostRequestWithNeedToken:YES Url:CSURL_User_Recharge Pameters:para success:^(id  _Nonnull responseObject) {
+        if (CSInternetRequestSuccessful) {
+            if (!self.chooseAlipay) {
+                [self getWeiXinPay:CSGetResult];
+                
+            } else {
+                [self getAlipayPay:CSGetResult];
+            }
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+    
+    
+}
+- (void)getAlipayPay:(id)responseObject {
+    
+    NSString *string = responseObject[@"code"];
+    
+    NSString *appScheme = @"alisdkdemo";
+    
+    [[AlipaySDK defaultService] payOrder:string fromScheme:appScheme callback:^(NSDictionary *resultDic) {
+        
+        int resultStatus = [[resultDic objectForKey:@"resultStatus"]intValue];
+        
+        if (resultStatus == 9000) {
+            
+            self.successView.hidden = NO;
+            
+           
+            [self updateCurrentMoney];
+        }
+        
+        CSLog(@"reslut = %@",resultDic);
+        
+    }];
+    
+}
+- (void)getWeiXinPay:(id)responseObject {
+    PayReq* wxreq             = [[PayReq alloc] init];
+    //                    wxreq.openID              = responseObject[@"params"][@""];
+    wxreq.partnerId           = [NSString stringWithFormat:@"%@",responseObject[@"code"][@"partnerid"]];;
+    wxreq.prepayId            = [NSString stringWithFormat:@"%@",responseObject[@"code"][@"prepayid"]];
+    wxreq.nonceStr            = [NSString stringWithFormat:@"%@",responseObject[@"code"][@"noncestr"]];
+    
+    UInt32 timeStamp    = [[NSString stringWithFormat:@"%@", responseObject[@"code"][@"timestamp"]] intValue];
+    
+    wxreq.timeStamp           = timeStamp; //timeStamp
+    
+    wxreq.package             = [NSString stringWithFormat:@"%@",responseObject[@"code"][@"package"]];
+    
+    wxreq.sign                = [NSString stringWithFormat:@"%@",responseObject[@"code"][@"sign"]];
+    
+    if ([WXApi isWXAppInstalled]) {
+        CSLog(@"安装了");
+    } else {
+        CSLog(@"没有安装了");
+    }
+    
+    if ([WXApi sendReq:wxreq]) {
+        CSLog(@"微信支付调起成功");
+    } else {
+        CSLog(@"微信支付调起失败");
+    }
+    
+}
+- (void)execute:(NSNotification *)notification {
+    if([notification.name isEqualToString:@"WXpayResult_Notification"])
+    {
+        [self payResult:[notification.object boolValue]];
+    }
+}
+- (void) payResult:(BOOL)result
+{
+    
+    if (result) {
+        
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:@"WXpayResult_Notification" object:nil];//注销通知接收
+        self.successView.hidden = NO;
+        
+    
+        
+        [self updateCurrentMoney];
+        
+        
+    } else {
+        
+        CustomWrongMessage(@"支付失败！");
+    }
+}
+- (void) dealloc
+{
+    
+    
+    //注销通知接收
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"WXpayResult_Notification" object:nil];//注销通知接收
+    
+}
+- (void)updateCurrentMoney {
+    [CSUtility updateCurrentMoney:^(BOOL updateSuccess) {
+        if (updateSuccess) {
+            [self.tableView reloadData];
+        }
+    }];
 }
 #pragma mark --UITableViewDelegate/DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -169,6 +238,7 @@
     for (int i = 0; i < self.itemMutableArray.count; i ++) {
         YiDaoYuanCollectionModel *model = self.itemMutableArray[i];
         if (i == row) {
+            self.currentModel = model;
             model.choose = YES;
         } else {
             model.choose = NO;
@@ -193,12 +263,35 @@
     cell.explainLabel.hidden = YES;
     if (indexPath.row == 0) {
         cell.titleImageView.image = DotaImageName(@"icon_zhifubao");
+        if (self.chooseAlipay) {
+            cell.chooseImageView.image = DotaImageName(@"icon_xuanze");
+        } else {
+            cell.chooseImageView.image = DotaImageName(@"icon_weixuanze");
+        }
         cell.titleLabel.text = @"支付宝支付";
     } else if (indexPath.row == 1) {
         cell.titleImageView.image = DotaImageName(@"icon_weixing");
         cell.titleLabel.text = @"微信支付";
+        if (self.chooseAlipay) {
+           cell.chooseImageView.image = DotaImageName(@"icon_weixuanze");
+        } else {
+              cell.chooseImageView.image = DotaImageName(@"icon_xuanze");
+           
+        }
     }
     return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.section == 2) {
+        if (indexPath.row == 0) {
+            self.chooseAlipay = YES;
+        } else {
+            self.chooseAlipay = NO;
+        }
+        
+        [self.tableView reloadData];
+    }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {

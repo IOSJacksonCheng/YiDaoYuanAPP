@@ -19,54 +19,27 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="63.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jio-bz-iET">
-                        <rect key="frame" x="10" y="17" width="39" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="39" id="WAc-Ty-dR2"/>
-                            <constraint firstAttribute="height" constant="30" id="kL3-rj-gZ2"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <state key="normal" title="上海">
-                            <color key="titleColor" red="0.050980392159999999" green="0.4431372549" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </state>
-                    </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YBy-8d-keL">
-                        <rect key="frame" x="67" y="17" width="39" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="30" id="4zr-pk-VQ8"/>
-                            <constraint firstAttribute="width" constant="39" id="qJB-j8-jV2"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <state key="normal" title="上海">
-                            <color key="titleColor" red="0.050980392159999999" green="0.4431372549" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </state>
-                    </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CEx-4e-lKt">
-                        <rect key="frame" x="124" y="17" width="39" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="39" id="1df-JM-96a"/>
-                            <constraint firstAttribute="height" constant="30" id="B1U-xP-lt7"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <state key="normal" title="上海">
-                            <color key="titleColor" red="0.050980392159999999" green="0.4431372549" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </state>
-                    </button>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="q6u-YS-43z">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="63.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dju-vq-b5C">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="CEx-4e-lKt" firstAttribute="leading" secondItem="YBy-8d-keL" secondAttribute="trailing" constant="18" id="K8U-sT-9Rj"/>
-                    <constraint firstItem="Jio-bz-iET" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="R3D-2g-PBY"/>
-                    <constraint firstItem="YBy-8d-keL" firstAttribute="centerY" secondItem="Jio-bz-iET" secondAttribute="centerY" id="Vw3-6R-WiR"/>
-                    <constraint firstItem="CEx-4e-lKt" firstAttribute="centerY" secondItem="Jio-bz-iET" secondAttribute="centerY" id="fb3-X7-j1i"/>
-                    <constraint firstItem="Jio-bz-iET" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="gEr-hw-ANJ"/>
-                    <constraint firstItem="YBy-8d-keL" firstAttribute="leading" secondItem="Jio-bz-iET" secondAttribute="trailing" constant="18" id="hdx-Vl-Hx0"/>
+                    <constraint firstItem="q6u-YS-43z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="DeI-Rw-WAv"/>
+                    <constraint firstAttribute="bottom" secondItem="q6u-YS-43z" secondAttribute="bottom" id="RXt-sD-c5z"/>
+                    <constraint firstAttribute="trailing" secondItem="q6u-YS-43z" secondAttribute="trailing" id="j7y-re-Iyj"/>
+                    <constraint firstItem="q6u-YS-43z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="sBT-dx-Mm2"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
-                <outlet property="onebutton" destination="Jio-bz-iET" id="OaO-5c-ZdM"/>
-                <outlet property="threeButton" destination="CEx-4e-lKt" id="brb-TA-ngd"/>
-                <outlet property="twoButton" destination="YBy-8d-keL" id="xv6-i6-s4H"/>
+                <outlet property="collectionView" destination="q6u-YS-43z" id="rbB-Ri-pvN"/>
             </connections>
         </tableViewCell>
     </objects>

@@ -137,4 +137,58 @@
     [_mbProgressHUD hide:YES afterDelay:1.5];
     
 }
++ (NSDate *)convertStringIntoDate:(NSString *)dateString {
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    format.dateFormat = @"yyyy-MM-dd";
+    NSDate *date = [format dateFromString:dateString];
+    return date;
+}
++ (NSString *)convertDateIntoString:(NSDate *)date {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init]; //初始化格式器。
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    
+    NSString *currentTime = [formatter stringFromDate:date];
+    
+    return currentTime;
+}
++ (NSString *) getCurrentDate {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init]; //初始化格式器。
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    
+    NSString *currentTime = [formatter stringFromDate:[NSDate date]];
+    
+    
+    return currentTime;
+}
++ (BOOL) handleNumber:(NSNumber *)string {
+    if ([string isEqualToNumber:@1]) {
+        return YES;
+    }
+    return NO;
+}
++ (void)updateCurrentMoney:(updateRequestBlock)update {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_User_Profile_Account Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            
+            [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",CSGetResult[@"coin"]] forKey:@"CS_Coin"];
+            
+            
+            [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",CSGetResult[@"balance"]] forKey:@"CS_Balance"];
+            update(NO);
+            
+        }else {
+            update(NO);
+
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        update(NO);
+
+        CSInternetFailure
+    }];
+}
+
 @end

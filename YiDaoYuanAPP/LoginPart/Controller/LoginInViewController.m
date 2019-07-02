@@ -8,7 +8,8 @@
 
 #import "LoginInViewController.h"
 
-@interface LoginInViewController ()
+#import "WXApi.h"
+@interface LoginInViewController ()<WXApiDelegate>
 - (IBAction)ckickRegisterButtonDone:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
 @property (weak, nonatomic) IBOutlet UITextField *secureTextField;
@@ -40,11 +41,20 @@
 
 - (void)configSubViews {
     self.loginButton.layer.cornerRadius = 24;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getLoginCode:) name:@"WXLoginstatus_Notification" object:nil];
+}
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 - (void)configNavigationBar {
     
 }
+- (void)getLoginCode:(NSNotification *)info {
 
+
+    [self sendPostRequestWithCodeInfo:info.object];
+}
 
 - (IBAction)ckickRegisterButtonDone:(id)sender {
     
@@ -52,41 +62,41 @@
     
 }
 - (IBAction)clickLoginButtonDone:(id)sender {
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+
     
-                [UIApplication sharedApplication].keyWindow.rootViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"MainStoryboard"];
+    [self sendPostRequest];
+    
+    
+}
+- (void)sendPostRequest {
+    
 //    if (csCharacterIsBlank(self.phoneTextField.text) || csCharacterIsBlank(self.secureTextField.text)) {
 //
 //        CustomWrongMessage(@"请填写完整信息")
 //        return;
 //    }
-//
-//    NSMutableDictionary *para = @{}.mutableCopy;
-//    para[@"cspameter"] = self.phoneTextField.text;
+    
+    NSMutableDictionary *para = @{}.mutableCopy;
+    para[@"username"] = @"18320760679";
+    para[@"password"] = @"123123";
+//    para[@"username"] = self.phoneTextField.text;
 //    para[@"password"] = self.secureTextField.text;
-//    para[@"device_type"] = @"iphone";
-//    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Login Pameters:para success:^(id  _Nonnull responseObject) {
-//
-//        if (CSInternetRequestSuccessful) {
-//
-//
-//            [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",CSGetResult[@"token"]] forKey:@"CSGetToken"];
-//
-//              [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",CSGetResult[@"token"]] forKey:@"CSGetToken"];
-//
-//            UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//
-//            [UIApplication sharedApplication].keyWindow.rootViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"MainStoryboard"];
-//        }else {
-//
-//            CSShowWrongMessage
-//
-//        }
-//    } failure:^(NSError * _Nonnull error) {
-//        CSInternetFailure
-//    }];
-    
-    
+    para[@"device_type"] = @"iphone";
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Login Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            
+            
+            [self handleResult:CSGetResult];
+            
+        }else {
+            
+            CSShowWrongMessage
+            
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
 }
 - (IBAction)clickShowSecureButtonDone:(UIButton *)sender {
     sender.selected = !sender.selected;
@@ -106,5 +116,79 @@
 
 - (IBAction)clickForgetSecureNumberDone:(id)sender {
     
+}
+
+- (IBAction)clickWechatButtonDone:(UIButton *)sender {
+    [self sendWXAuthReq];
+    
+    
+    
+    
+}
+- (void)sendWXAuthReq{
+    
+    if([WXApi isWXAppInstalled]){//判断用户是否已安装微信App
+        
+        SendAuthReq *req = [[SendAuthReq alloc] init];
+        req.state = @"wx_oauth_authorization_state";//用于保持请求和回调的状态，授权请求或原样带回
+        req.scope = @"snsapi_userinfo";//授权作用域：获取用户个人信息
+        
+        [WXApi sendReq:req];//发起微信授权请求
+    }else{
+        
+        //提示：未安装微信应用或版本过低
+    }
+}
+
+
+- (void)sendPostRequestWithCodeInfo:(NSString *)codeInfo {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    para[@"code"] = codeInfo;
+    para[@"device_type"] = @"iphone";
+
+    [CSNetManager sendPostRequestWithNeedToken:YES Url:CSURL_Login_wechat Pameters:para success:^(id  _Nonnull responseObject) {
+        if (CSInternetRequestSuccessful) {
+            [self handleResult:CSGetResult];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+}
+- (IBAction)clickQQButtonDone:(id)sender {
+    
+    
+    
+}
+- (void)handleResult:(id)result {
+    [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",result[@"token"]] forKey:@"CSGetToken"];
+    
+    [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",result[@"user"][@"id"]] forKey:@"CS_UserID"];
+    
+    [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",result[@"user"][@"sex"]] forKey:@"CS_Sex"];
+    
+    [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",result[@"user"][@"birthday"]] forKey:@"CS_Birthday"];
+    
+    [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",result[@"user"][@"coin"]] forKey:@"CS_Coin"];
+    
+    
+    [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",result[@"user"][@"balance"]] forKey:@"CS_Balance"];
+    
+    [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",result[@"user"][@"user_nickname"]] forKey:@"CS_User_Nickname"];
+    
+    
+    [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",result[@"user"][@"avatar"]] forKey:@"CS_Avatar"];
+    
+    [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",result[@"user"][@"mobile"]] forKey:@"CS_Mobile"];
+    
+    
+    [[NSUserDefaults standardUserDefaults] setBool:[CSUtility handleNumber:result[@"user"][@"is_master"]] forKey:@"CS_UserIsMaster"];
+    
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"CSIsLogin"];
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    [UIApplication sharedApplication].keyWindow.rootViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"MainStoryboard"];
 }
 @end

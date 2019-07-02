@@ -72,6 +72,12 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="csContentLabel" destination="tIQ-M4-BUP" id="y3X-1h-Say"/>
+                <outlet property="csImageView" destination="ZOz-E8-vyy" id="Vxc-er-Vwq"/>
+                <outlet property="csTimeLabel" destination="Z8u-9i-Rll" id="Q6i-tM-ds8"/>
+                <outlet property="csTitleLabel" destination="xey-g7-QUA" id="vcY-J7-HXh"/>
+            </connections>
             <point key="canvasLocation" x="52.799999999999997" y="49.475262368815599"/>
         </tableViewCell>
     </objects>

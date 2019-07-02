@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FirstPageModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZJZXJudgeTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *csTitleImageVIew;
-
+@property (nonatomic, strong) FirstPageModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

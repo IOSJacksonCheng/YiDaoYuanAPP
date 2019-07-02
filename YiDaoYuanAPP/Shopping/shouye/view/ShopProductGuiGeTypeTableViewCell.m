@@ -23,7 +23,10 @@
     [self.collectionView registerNib:[UINib nibWithNibName:CSCellName(ShopProductGuiGeCollectionViewCell) bundle:nil] forCellWithReuseIdentifier:CSCellName(ShopProductGuiGeCollectionViewCell)];
     
     self.collectionView.showsHorizontalScrollIndicator = NO;
-    self.collectionView.showsVerticalScrollIndicator = NO;}
+    self.collectionView.showsVerticalScrollIndicator = NO;
+    
+    
+}
 
 #pragma mark -- UICollectionViewDataSource/Delegate
 // UIEdgeInsets insets = {top, left, bottom, right};

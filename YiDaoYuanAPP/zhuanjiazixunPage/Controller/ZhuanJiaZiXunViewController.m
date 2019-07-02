@@ -17,11 +17,19 @@
 #import "ZJZXJudgeTableViewCell.h"
 #import "ZJZXMoreTableViewCell.h"
 #import "ZJZXBannerTableViewCell.h"
+
+#import "CoreLocation/CoreLocation.h"
+
 CGFloat const AD_Height = 160;
-@interface ZhuanJiaZiXunViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface ZhuanJiaZiXunViewController ()<UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 
+@property (strong, nonatomic) CLLocationManager* locationManager;
 
+@property (nonatomic, strong) UIBarButtonItem *leftItem;
+
+@property (nonatomic, strong) NSMutableArray *daShiArray;
+@property (nonatomic, strong) NSMutableArray *userJudgeArray;
 @end
 
 @implementation ZhuanJiaZiXunViewController
@@ -30,7 +38,8 @@ CGFloat const AD_Height = 160;
 - (void)viewWillAppear:(BOOL)animated {
     [self configNavigationBar];
     [super viewWillDisappear:animated];
-
+NSString *location = [[NSUserDefaults standardUserDefaults] stringForKey:@"CSLocationCity"];
+    [self configLeftItem:location];
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -46,13 +55,125 @@ CGFloat const AD_Height = 160;
     
     [self configTableView];
     
+    NSString *location = [[NSUserDefaults standardUserDefaults] stringForKey:@"CSLocationCity"];
    
+    [self configLeftItem:location];
+    
+    self.daShiArray = @[].mutableCopy;
+    self.userJudgeArray = @[].mutableCopy;
+    
+    [self sendGetRequest];
+}
+- (void)sendGetRequest {
+
+    [self getHotDaShi];
+    [self getUserPingLun];
+}
+- (void)getUserPingLun {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Index_Bask Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            
+            self.userJudgeArray = [CSParseManager getUserPingLunFirstPageModelArrayWithResponseObject:CSGetResult[@"lists"]];
+            
+            [self.mainTableView reloadData];
+
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+}
+- (void)getHotDaShi {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_Re Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+             self.daShiArray = [CSParseManager getDaShiFirstPageModelArrayWithResponseObject:CSGetResult[@"lists"]];
+            [self.mainTableView reloadData];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+}
+-(void)startLocation{
+    
+    if ([CLLocationManager locationServicesEnabled]) {//判断定位操作是否被允许
+        
+        self.locationManager = [[CLLocationManager alloc] init];
+        
+        self.locationManager.delegate = self;//遵循代理
+        
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        
+        self.locationManager.distanceFilter = 10.0f;
+        
+        [_locationManager requestWhenInUseAuthorization];//使用程序其间允许访问位置数据（iOS8以上版本定位需要）
+        
+        [self.locationManager startUpdatingLocation];//开始定位
+        
+    }else{//不能定位用户的位置的情况再次进行判断，并给与用户提示
+        
+        //1.提醒用户检查当前的网络状况
+        
+        //2.提醒用户打开定位开关
+        
+    }
     
 }
+#pragma mark -- CLLocationManagerDelegate
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
+    
+    //当前所在城市的坐标值
+    CLLocation *currLocation = [locations lastObject];
+    
+    CSLog(@"经度=%f 纬度=%f 高度=%f", currLocation.coordinate.latitude, currLocation.coordinate.longitude, currLocation.altitude);
+    
+    //根据经纬度反向地理编译出地址信息
+    CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
+    
+    [geoCoder reverseGeocodeLocation:currLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+        
+        for (CLPlacemark * placemark in placemarks) {
+            
+            NSDictionary *address = [placemark addressDictionary];
+            
+            //  Country(国家)  State(省)  City（市）
+           
+            CSLog(@"#####%@",address);
+            
+            CSLog(@"%@", [address objectForKey:@"Country"]);
+            
+            CSLog(@"%@", [address objectForKey:@"State"]);
+            
+            CSLog(@"%@", [address objectForKey:@"City"]);
+           
+            [self configLeftItem:[address objectForKey:@"City"]];
 
+            [[NSUserDefaults standardUserDefaults] setValue:[address objectForKey:@"City"] forKey:@"CSLocationCity"];
+        }
+        
+    }];
+    
+}
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    
+    if ([error code] == kCLErrorDenied){
+        //访问被拒绝
+    }
+    if ([error code] == kCLErrorLocationUnknown) {
+        //无法获取位置信息
+    }
+}
 - (void)configTableView {
     
     self.mainTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.mainTableView.showsVerticalScrollIndicator = NO;
+    self.mainTableView.showsHorizontalScrollIndicator = NO;
     
     [self.mainTableView registerNib:[UINib nibWithNibName:CSCellName(ZJZXFirstRowTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(ZJZXFirstRowTableViewCell)];
     [self.mainTableView registerNib:[UINib nibWithNibName:CSCellName(ZJZXDaShiTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(ZJZXDaShiTableViewCell)];
@@ -85,18 +206,31 @@ CGFloat const AD_Height = 160;
     self.navigationItem.titleView = searchView;
     
     
+    [self configLeftItem:@"深圳市"];
+    
+}
+- (void)configLeftItem:(NSString *)title {
     UIButton *leftButton = [[UIButton alloc] init];
     
-    [leftButton setTitle:@"北京" forState:UIControlStateNormal];
+   
     
     [leftButton setImage:DotaImageName(@"icon_dingwei") forState:UIControlStateNormal];
     
     [leftButton setTitleColor:cs999999Color forState:UIControlStateNormal];
-    leftButton.titleLabel.font = csCharacterFont_15;
+    leftButton.titleLabel.font = csCharacterFont_12;
     
     [leftButton addTarget:self action:@selector(clickLocationButtonDone) forControlEvents:UIControlEventTouchDown];
     
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
+    if (csCharacterIsBlank(title)) {
+         [leftButton setTitle:@"中国" forState:UIControlStateNormal];
+    } else {
+        if (title.length > 3) {
+            title = [title substringToIndex:3];
+        }
+         [leftButton setTitle:title forState:UIControlStateNormal];
+    }
+    
+    self.leftItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     
     
     
@@ -104,10 +238,9 @@ CGFloat const AD_Height = 160;
     UIBarButtonItem *lineItem =  [[UIBarButtonItem alloc] initWithTitle:@"|" style:UIBarButtonItemStylePlain target:self action:@selector(clickLocationButtonDone)];
     
     [lineItem setTintColor:[UIColor colorWithHexString:@"0D71C8"]];
-
-   
-    self.navigationItem.leftBarButtonItems = @[leftItem, lineItem];
     
+    
+    self.navigationItem.leftBarButtonItems = @[self.leftItem, lineItem];
 }
 - (void)clickLocationButtonDone {
     
@@ -123,11 +256,14 @@ CGFloat const AD_Height = 160;
     }else if (section == 1) {
         return 2;
     }else if (section == 2) {
+        if (self.daShiArray.count == 0) {
+            return 0;
+        }
         return 1;
     }else if (section == 3) {
         return 2;
     }
-    return 1;
+    return self.userJudgeArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
@@ -148,7 +284,7 @@ CGFloat const AD_Height = 160;
         return cell;
     } else if (indexPath.section == 2) {
         ZJZXDaShiTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(ZJZXDaShiTableViewCell)];
-        
+        cell.daShiArray = self.daShiArray;
         return cell;
     }else if (indexPath.section == 3) {
         if (indexPath.row == 1) {
@@ -162,6 +298,8 @@ CGFloat const AD_Height = 160;
     }
     
     ZJZXJudgeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(ZJZXJudgeTableViewCell)];
+    FirstPageModel *model = self.userJudgeArray[indexPath.row];
+    cell.model = model;
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -188,6 +326,10 @@ CGFloat const AD_Height = 160;
         }
         return 54;
     } else if (indexPath.section == 2) {
+        if (self.daShiArray.count == 1) {
+            return 140;
+            
+        }
         return 340;
     } else if (indexPath.section == 3) {
         if (indexPath.row == 1) {

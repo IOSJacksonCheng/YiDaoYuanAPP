@@ -8,6 +8,9 @@
 
 #import "QiFUViewController.h"
 #import "AddXiangViewController.h"
+
+#import "QingFoViewController.h"
+
 @interface QiFUViewController ()
 - (IBAction)qiYuanJiLuButtonDone:(id)sender;
 - (IBAction)mingdengxuyuanButtonDone:(id)sender;
@@ -30,6 +33,12 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *animationImageView;
 - (IBAction)clickDaoCaiButtonDone:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *centerFoButton;
+@property (weak, nonatomic) IBOutlet UIButton *bottomFirstButton;
+@property (weak, nonatomic) IBOutlet UIButton *bottomSecondButton;
+@property (weak, nonatomic) IBOutlet UIButton *bottomThirdButton;
+@property (nonatomic, assign) NSInteger recordBottomTag;
+@property (weak, nonatomic) IBOutlet UIButton *caiButton;
 
 @end
 
@@ -39,6 +48,7 @@
     [super viewWillAppear:animated];
     
     [self configNavigationBar];
+    [self refreshFoAndShenXianImage];
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -53,8 +63,22 @@
     [self configTableView];
     
     [self clickLeftView];
+    
+    [self sendGetRequest];
 }
-
+- (void)sendGetRequest {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_Consecrate_Being Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+}
 - (void)configTableView {
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickRightView)];
     tap.numberOfTapsRequired = 1;
@@ -62,7 +86,38 @@
     
     [self.rightView addGestureRecognizer:tap];
 }
+- (void)refreshFoAndShenXianImage {
+   
+    if (csCharacterIsBlank(CS_CenterFoImage)) {
+        [self.centerFoButton setImage:DotaImageName(@"img_qingshen") forState:UIControlStateNormal];
+    } else {
+         [self.centerFoButton setImage:DotaImageName(CS_CenterFoImage) forState:UIControlStateNormal];
+    }
+    
+    if (csCharacterIsBlank(CS_BottomFirstShenImage)) {
+        [self.bottomFirstButton setImage:DotaImageName(@"img_qingfo") forState:UIControlStateNormal];
+    } else {
+        CSLog(@"%@", CS_BottomFirstShenImage);
+
+        [self.bottomFirstButton setImage:DotaImageName(CS_BottomFirstShenImage) forState:UIControlStateNormal];
+    }
+    if (csCharacterIsBlank(CS_BottomSecondShenImage)) {
+        [self.bottomSecondButton setImage:DotaImageName(@"img_qingfo") forState:UIControlStateNormal];
+    } else {
+        [self.bottomSecondButton setImage:DotaImageName(CS_BottomSecondShenImage) forState:UIControlStateNormal];
+    }
+    
+    if (csCharacterIsBlank(CS_BottomThirdShenImage)) {
+        [self.bottomThirdButton setImage:DotaImageName(@"img_qingfo") forState:UIControlStateNormal];
+    } else {
+        [self.bottomThirdButton setImage:DotaImageName(CS_BottomThirdShenImage) forState:UIControlStateNormal];
+    }
+    
+}
 - (void)configSubViews {
+    
+    [self refreshFoAndShenXianImage];
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickLeftView)];
     tap.numberOfTapsRequired = 1;
     tap.numberOfTouchesRequired = 1;
@@ -193,12 +248,7 @@
     
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"AddXiangViewController"]) {
-        AddXiangViewController *new = segue.destinationViewController;
-        new.passString = self.passString;
-    }
-}
+
 - (IBAction)clickXianHuaButtonDone:(id)sender {
      self.passString = @"献花";
      [self performSegueWithIdentifier:@"AddXiangViewController" sender:self];
@@ -206,12 +256,13 @@
 }
 
 - (IBAction)clickQingShengButtonDone:(id)sender {
+    self.recordBottomTag = 0;
     [self performSegueWithIdentifier:@"QingFoViewController" sender:self];
      
 }
 
-- (IBAction)clickQingFuoButtonDone:(id)sender {
-    
+- (IBAction)clickQingFuoButtonDone:(UIButton *)sender {
+    self.recordBottomTag = sender.tag;
     [self performSegueWithIdentifier:@"QingFoViewController" sender:self];
 }
 - (IBAction)clickJingShiButtonDone:(id)sender {
@@ -221,8 +272,19 @@
 - (IBAction)clickDaoCaiButtonDone:(id)sender {
     
     self.animationImageView.hidden = NO;
-    
+    self.caiButton.hidden = YES;
     [self.animationImageView startAnimating];
     
+}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"QingFoViewController"]) {
+        QingFoViewController *new = segue.destinationViewController;
+        new.passTag = self.recordBottomTag;
+        
+    }else if ([segue.identifier isEqualToString:@"AddXiangViewController"]) {
+        AddXiangViewController *new = segue.destinationViewController;
+        new.passString = self.passString;
+    }
 }
 @end

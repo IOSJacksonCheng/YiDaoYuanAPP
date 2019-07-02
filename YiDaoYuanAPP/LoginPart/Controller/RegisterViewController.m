@@ -49,23 +49,74 @@
     self.bgView.layer.masksToBounds = YES;
 }
 - (IBAction)ckickRegisterButtonDone:(id)sender {
+    if (!self.agreenButton.selected) {
+        CustomWrongMessage(@"没有同意《服务条款》");
+        return;
+    }
+    if (csCharacterIsBlank(self.phoneTextField.text) || csCharacterIsBlank(self.secureTextField.text) || csCharacterIsBlank(self.secureCodeTextField.text)) {
+        CustomWrongMessage(@"填写完整信息");
+        return;
+    }
     
-    self.successView.hidden = NO;
+    NSMutableDictionary *para = @{}.mutableCopy;
+    para[@"username"] = self.phoneTextField.text;
+    para[@"password"] = self.secureTextField.text;
+    para[@"verification_code"] = self.secureCodeTextField.text;
+
+    [CSNetManager sendPostRequestWithNeedToken:NO Url:CSURL_Register Pameters:para success:^(id  _Nonnull responseObject) {
+        if (CSInternetRequestSuccessful) {
+            
+            self.successView.hidden = NO;
+
+            
+        }else {
+            CSShowWrongMessage
+
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+    
+   
 }
 - (IBAction)clickSecureNumberDone:(id)sender {
     
-    [self startTime];
+    if (csCharacterIsBlank(self.phoneTextField.text)) {
+        CustomWrongMessage(@"填写手机号码");
+        return;
+    }
+    
+    NSMutableDictionary *para = @{}.mutableCopy;
+    para[@"username"] = self.phoneTextField.text;
+    [CSNetManager sendPostRequestWithNeedToken:NO Url:CSURL_Verification_code Pameters:para success:^(id  _Nonnull responseObject) {
+        if (CSInternetRequestSuccessful) {
+            CustomWrongMessage(@"验证码已经发送到你手机");
+            [self startTime];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+
+    
     
 }
 - (IBAction)clickAgreenButtonDone:(UIButton *)sender {
+    
     sender.selected = !sender.selected;
+    
 }
 
 - (IBAction)clickWechatButtonDone:(UIButton *)sender {
     
+    
+    
 }
 
 - (IBAction)clickQQButtonDone:(id)sender {
+    
+    
     
 }
 
@@ -112,7 +163,7 @@
                 //NSLog(@"____%@",strTime);
                 [UIView beginAnimations:nil context:nil];
                 [UIView setAnimationDuration:1];
-                [self.secureNumberButton setTitle:[NSString stringWithFormat:@"%@秒后重新发送",strTime] forState:UIControlStateNormal];
+                [self.secureNumberButton setTitle:[NSString stringWithFormat:@"%@秒重新发送",strTime] forState:UIControlStateNormal];
                 [UIView commitAnimations];
                 self.secureNumberButton.userInteractionEnabled = NO;
             });

@@ -26,6 +26,7 @@
 - (IBAction)clickShowCodeButtonDone:(UIButton *)sender;
 
 @property (weak, nonatomic) IBOutlet UITextField *secureCodeTextField;
+- (IBAction)clickSureButtonDone:(id)sender;
 @end
 
 @implementation ForgetCodeViewController
@@ -40,8 +41,24 @@
 }
 
 - (IBAction)clickSecureNumberDone:(id)sender {
+    if (csCharacterIsBlank(self.phoneTextField.text)) {
+        CustomWrongMessage(@"填写手机号码");
+        return;
+    }
     
-    [self startTime];
+    NSMutableDictionary *para = @{}.mutableCopy;
+    para[@"username"] = self.phoneTextField.text;
+    [CSNetManager sendPostRequestWithNeedToken:NO Url:CSURL_Verification_code Pameters:para success:^(id  _Nonnull responseObject) {
+        if (CSInternetRequestSuccessful) {
+            CustomWrongMessage(@"验证码已经发送到你手机");
+            [self startTime];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+
     
 }
 
@@ -77,7 +94,7 @@
                 //NSLog(@"____%@",strTime);
                 [UIView beginAnimations:nil context:nil];
                 [UIView setAnimationDuration:1];
-                [self.secureNumberButton setTitle:[NSString stringWithFormat:@"%@秒后重新发送",strTime] forState:UIControlStateNormal];
+                [self.secureNumberButton setTitle:[NSString stringWithFormat:@"%@秒重新发送",strTime] forState:UIControlStateNormal];
                 [UIView commitAnimations];
                 self.secureNumberButton.userInteractionEnabled = NO;
             });
@@ -118,5 +135,31 @@
         }
     }
     
+}
+- (IBAction)clickSureButtonDone:(id)sender {
+    
+    if (csCharacterIsBlank(self.phoneTextField.text) || csCharacterIsBlank(self.secureTextField.text) || csCharacterIsBlank(self.secureCodeTextField.text) || csCharacterIsBlank(self.secureTwoTextField.text)) {
+        CustomWrongMessage(@"填写完整信息");
+        return;
+    }
+    if (![self.secureTextField.text isEqualToString:self.secureTwoTextField.text]) {
+        CustomWrongMessage(@"两次输入密码不一致!");
+        return;
+    }
+    NSMutableDictionary *para = @{}.mutableCopy;
+    para[@"username"] = self.phoneTextField.text;
+    para[@"password"] = self.secureTextField.text;
+    para[@"verification_code"] = self.secureCodeTextField.text;
+    
+    [CSNetManager sendPostRequestWithNeedToken:NO Url:CSURL_PasswordReset Pameters:para success:^(id  _Nonnull responseObject) {
+        if (CSInternetRequestSuccessful) {
+            CustomWrongMessage(@"密码重置成功，请重新登录");
+            [self.navigationController popViewControllerAnimated:YES];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
 }
 @end

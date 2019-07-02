@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "FuGouBangModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FuGouBangTableViewCell : UITableViewCell
@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIView *titleView;
 @property (weak, nonatomic) IBOutlet UIImageView *firstImageView;
 @property (weak, nonatomic) IBOutlet UILabel *firstLabel;
-
+@property (nonatomic, strong) FuGouBangModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

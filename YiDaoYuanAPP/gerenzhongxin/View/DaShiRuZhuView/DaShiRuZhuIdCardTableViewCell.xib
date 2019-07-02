@@ -32,7 +32,7 @@
                             <constraint firstAttribute="height" constant="1" id="2PD-BW-AMJ"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C0D-32-U7r">
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C0D-32-U7r">
                         <rect key="frame" x="36" y="52" width="129" height="85"/>
                         <color key="backgroundColor" red="0.69803921568627447" green="0.69803921568627447" blue="0.69803921568627447" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -40,7 +40,7 @@
                             <constraint firstAttribute="height" constant="85" id="IOU-8i-cKM"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cbx-08-H2H">
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cbx-08-H2H">
                         <rect key="frame" x="193" y="52" width="129" height="85"/>
                         <color key="backgroundColor" red="0.69803921570000005" green="0.69803921570000005" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -64,6 +64,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="leftImageView" destination="C0D-32-U7r" id="W3f-GW-gya"/>
+                <outlet property="rightImageView" destination="cbx-08-H2H" id="w0K-am-dkN"/>
                 <outlet property="titleLabel" destination="p9I-0y-atg" id="fvw-wF-KBh"/>
             </connections>
             <point key="canvasLocation" x="57.600000000000001" y="82.758620689655174"/>

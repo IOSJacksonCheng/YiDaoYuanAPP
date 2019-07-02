@@ -49,6 +49,17 @@
 
 - (IBAction)clickRightNowWishButtonDone:(id)sender {
     
+    
+    if (self.passTag == 0) {
+        [[NSUserDefaults standardUserDefaults] setValue:@"img_guangming_3" forKey:@"CS_CenterFoImage"];
+    } else if (self.passTag == 1) {
+        [[NSUserDefaults standardUserDefaults] setValue:@"img_1_fo" forKey:@"CS_BottomFirstShenImage"];
+    }else if (self.passTag == 2) {
+        [[NSUserDefaults standardUserDefaults] setValue:@"chooseFo" forKey:@"CS_BottomSecondShenImage"];
+    }else if (self.passTag == 3) {
+        [[NSUserDefaults standardUserDefaults] setValue:@"img_1_fo" forKey:@"CS_BottomThirdShenImage"];
+    }
+    
     [self.navigationController popToRootViewControllerAnimated:YES];
     
 }
@@ -99,6 +110,8 @@
     
 }
 - (void)clickLeftButtonDone {
+    
+   
     [self.navigationController popViewControllerAnimated:YES];
 }
 

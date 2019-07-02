@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IndustryNewsModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface IndustryNewsTableViewCell : UITableViewCell
-
+@property (nonatomic, strong) IndustryNewsModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

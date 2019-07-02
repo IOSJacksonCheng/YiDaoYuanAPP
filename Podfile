@@ -12,4 +12,7 @@ pod 'AFNetworking', '~> 3.1.0'
  pod 'IQKeyboardManager', '~> 4.0.3'
  pod  'MJRefresh', '~> 3.1.0'
 pod 'SDWebImage', '~> 3.7'
+pod 'WechatOpenSDK'
+pod 'AlipaySDK-iOS'
+
 end

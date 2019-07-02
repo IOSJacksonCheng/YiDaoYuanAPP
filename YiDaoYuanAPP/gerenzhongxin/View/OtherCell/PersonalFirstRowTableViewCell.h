@@ -15,12 +15,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIView *consultView;
 @property (weak, nonatomic) IBOutlet UIView *answerView;
 @property (weak, nonatomic) IBOutlet UIView *myCollectView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
 
 @property (weak, nonatomic) IBOutlet UIImageView *headImageView;
 @property (weak, nonatomic) IBOutlet UIView *yuEView;
 @property (weak, nonatomic) IBOutlet UIView *yidaoyuanView;
-
+@property (weak, nonatomic) IBOutlet UILabel *yueYuanLabel;
+@property (weak, nonatomic) IBOutlet UILabel *yidaoYuanLabel;
 @end
 
 NS_ASSUME_NONNULL_END

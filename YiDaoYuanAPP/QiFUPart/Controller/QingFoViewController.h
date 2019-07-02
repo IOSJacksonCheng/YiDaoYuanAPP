@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface QingFoViewController : BaseViewController
+@property (nonatomic, assign) NSInteger passTag;
 
 @end
 

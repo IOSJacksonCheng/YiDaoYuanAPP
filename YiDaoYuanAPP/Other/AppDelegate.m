@@ -8,14 +8,15 @@
 
 #import "AppDelegate.h"
 
+#import "WXApi.h"
 
-
+#import <AlipaySDK/AlipaySDK.h>
 
 NSString * const HuanXinAppkey = @"";
 
 NSString * const HuanXinApnsCertName = @"";
 
-@interface AppDelegate ()
+@interface AppDelegate ()<WXApiDelegate>
 
 @end
 
@@ -24,11 +25,20 @@ NSString * const HuanXinApnsCertName = @"";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-  
-    [[UITabBar appearance] setShadowImage:[[UIImage alloc]init]];
     
-    [[UITabBar appearance] setBackgroundImage:[[UIImage alloc]init]];
-
+    [WXApi startLogByLevel:WXLogLevelNormal logBlock:^(NSString *log) {
+        NSLog(@"！！！！！！log : %@", log);
+    }];
+    if ([WXApi registerApp:CSWeChatAppId enableMTA:YES]) {
+        CSLog(@"注册微信支付成功");
+    } else {
+        CSLog(@"注册微信支付失败");
+    }
+    if (!CSIsLogin) {
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+        
+        self.window.rootViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"CSLoginNavigationController"];
+    }
     return YES;
 }
 
@@ -59,5 +69,54 @@ NSString * const HuanXinApnsCertName = @"";
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+#pragma mark - 微信支付回调
+
+// NOTE: 9.0以后使用新API接口
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
+{
+    if ([url.host isEqualToString:@"safepay"]) {
+        //跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            NSLog(@"result = %@",resultDic);
+        }];
+    }
+    //微信支付
+    if([url.host isEqualToString:@"pay"]  || [url.host isEqualToString:@"oauth"]) {
+        return [WXApi handleOpenURL:url delegate:self];
+    }
+    return YES;
+}
+- (void)onResp:(BaseResp *)resp
+{
+    //支付返回结果，实际支付结果需要去微信服务器端查询
+    if ([resp isKindOfClass:[PayResp class]])
+    {
+        PayResp *response = (PayResp *)resp;
+        switch (response.errCode) {
+            case WXSuccess:
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"WXpayResult_Notification" object:[NSNumber numberWithBool:YES]];
+                break;
+            default:
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"WXpayResult_Notification" object:[NSNumber numberWithBool:NO]];
+                break;
+        }
+    } else  if([resp isKindOfClass:[SendAuthResp class]]){//判断是否为授权登录类
+        
+        SendAuthResp *req = (SendAuthResp *)resp;
+        if([req.state isEqualToString:@"wx_oauth_authorization_state"]){//微信授权成功
+            
+            if(req.errCode == 0){
+                
+                CSLog(@"获取code：%@", req.code);
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"WXLoginstatus_Notification" object:req.code];
+                
+//                [self sendPostRequestWithCodeInfo:req.code];
+                //                req.code;
+            }
+        }
+    }
+    
+}
 
 @end

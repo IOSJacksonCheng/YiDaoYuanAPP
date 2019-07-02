@@ -26,12 +26,14 @@
 @implementation DaShiListViewController
 - (void)viewWillAppear:(BOOL)animated {
     
-    [self configNavigationBar];
     [super viewWillAppear:animated];
+    [self configNavigationBar];
+
 }
 - (void)viewDidAppear:(BOOL)animated {
-    [self configNavigationBar];
     [super viewDidAppear:animated];
+    [self configNavigationBar];
+
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,12 +57,7 @@
     self.itemCollectionView.csDelegate = self;
     [self.tabBarController.view addSubview:self.itemCollectionView];
 
-//    [self.itemCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(0);
-//        make.right.mas_equalTo(0);
-//        make.top.mas_equalTo(0);
-//        make.bottom.mas_equalTo(0);
-//    }];
+
     self.itemCollectionView.hidden = YES;
 NSString *imageString = [[NSUserDefaults standardUserDefaults] objectForKey:@"imageString"];
     if (!csCharacterIsBlank(imageString)) {
@@ -70,13 +67,14 @@ NSString *imageString = [[NSUserDefaults standardUserDefaults] objectForKey:@"im
     
 }
 - (void)configNavigationBar {
+    WhiteNavigationBarColor
     self.title = @"大师列表";
     UIColor *whiteColor = [UIColor colorWithHexString:@"333333"];
     
     NSDictionary *dic = [NSDictionary dictionaryWithObject:whiteColor forKey:NSForegroundColorAttributeName];
     
     [self.navigationController.navigationBar setTitleTextAttributes:dic];
-    WhiteNavigationBarColor
+    
 }
 #pragma mark -- DaShiListItemViewDelegate
 - (void)clickCloseViewDone {

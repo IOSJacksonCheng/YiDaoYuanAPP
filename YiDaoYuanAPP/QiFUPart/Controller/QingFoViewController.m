@@ -10,6 +10,8 @@
 
 
 #import "QingFoViewCollectionViewCell.h"
+
+#import "QingShengViewController.h"
 @interface QingFoViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (weak, nonatomic) IBOutlet UIButton *shengxiaoButton;
@@ -143,5 +145,13 @@
      
     self.yiyuanmanguirenImageView.image = DotaImageName(@"img_xuanzhong-1");
     self.yiyuanmanguirenTopConstraint.constant = 20;
+}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"QingShengViewController"]) {
+        QingShengViewController *new = segue.destinationViewController;
+        new.passTag = self.passTag;
+        
+    }
 }
 @end

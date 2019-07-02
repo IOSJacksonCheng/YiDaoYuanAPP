@@ -22,6 +22,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.nameTextField.delegate = self;
+    self.cardTextField.delegate = self;
     [self.leftButton addTarget:self action:@selector(clickLeftDone) forControlEvents:UIControlEventTouchDown];
     
     [self.rightButton addTarget:self action:@selector(clickRightDone) forControlEvents:UIControlEventTouchDown];
