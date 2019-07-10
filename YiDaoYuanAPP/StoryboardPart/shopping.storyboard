@@ -361,7 +361,7 @@
         <!--Shop Sure Order Pay Money Way View Controller-->
         <scene sceneID="Mev-Dn-dRo">
             <objects>
-                <viewController id="0aq-86-Ubs" customClass="ShopSureOrderPayMoneyWayViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShopSureOrderPayMoneyWayViewController" id="0aq-86-Ubs" customClass="ShopSureOrderPayMoneyWayViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bTB-Yr-sN9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -378,7 +378,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="clickAddressButtonDone:" destination="csn-3B-r5G" eventType="touchUpInside" id="ZOQ-VW-Nce"/>
+                                    <action selector="clickSureButtonDone:" destination="0aq-86-Ubs" eventType="touchUpInside" id="gCo-QH-0lk"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ozz-mK-PUi">
@@ -888,20 +888,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4ca-JP-jxX">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="512"/>
+                                <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Wdj-Mv-L1C" id="miR-Tx-py0"/>
                                     <outlet property="delegate" destination="Wdj-Mv-L1C" id="Mes-Te-mpZ"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VJE-Rd-LNr">
+                                <rect key="frame" x="94" y="576" width="187.5" height="29"/>
+                                <string key="text">Copyright©2019
+易道源文化传播有限公司 版权所有</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.73725490196078436" green="0.73725490196078436" blue="0.73725490196078436" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="VJE-Rd-LNr" firstAttribute="centerX" secondItem="KVN-ej-E5m" secondAttribute="centerX" id="3Qv-Cu-3us"/>
                             <constraint firstItem="4ca-JP-jxX" firstAttribute="leading" secondItem="Bl8-se-bgd" secondAttribute="leading" id="6QR-nn-dfA"/>
                             <constraint firstItem="Bl8-se-bgd" firstAttribute="trailing" secondItem="4ca-JP-jxX" secondAttribute="trailing" id="C6f-Ps-xf6"/>
+                            <constraint firstItem="Bl8-se-bgd" firstAttribute="bottom" secondItem="VJE-Rd-LNr" secondAttribute="bottom" constant="13" id="PcM-iT-m2Q"/>
+                            <constraint firstItem="VJE-Rd-LNr" firstAttribute="top" secondItem="4ca-JP-jxX" secondAttribute="bottom" id="Twn-Ih-g8z"/>
                             <constraint firstItem="4ca-JP-jxX" firstAttribute="top" secondItem="Bl8-se-bgd" secondAttribute="top" id="XXd-n2-LQN"/>
-                            <constraint firstItem="Bl8-se-bgd" firstAttribute="bottom" secondItem="4ca-JP-jxX" secondAttribute="bottom" id="cnR-6n-xvd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Bl8-se-bgd"/>
                     </view>
@@ -913,7 +923,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wx4-r0-i5C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="185" y="1794"/>
+            <point key="canvasLocation" x="184.80000000000001" y="1793.2533733133434"/>
         </scene>
         <!--Shopping Have Finished View Controller-->
         <scene sceneID="2V3-Wo-JVS">

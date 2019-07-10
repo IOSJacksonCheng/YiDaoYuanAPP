@@ -27,6 +27,9 @@
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_1-3" translatesAutoresizingMaskIntoConstraints="NO" id="iha-wV-Y61">
                         <rect key="frame" x="10" y="81" width="173" height="108"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="108" id="lt3-b7-Ta9"/>
+                        </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_guanzhu" translatesAutoresizingMaskIntoConstraints="NO" id="hFz-2p-lwb">
                         <rect key="frame" x="10" y="198" width="15" height="15"/>
@@ -39,6 +42,9 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标题内容三行标题标题内容三行标题标题内容三行标题标题内容三行标题标题内容三行标题标题内容三行标题" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bOb-0E-NNl">
                         <rect key="frame" x="10" y="10" width="300" height="61"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="61" id="wBw-NZ-mKb"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -69,6 +75,12 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="csImageView" destination="iha-wV-Y61" id="ri0-Bo-1GN"/>
+                <outlet property="csTitleLabel" destination="bOb-0E-NNl" id="epy-kz-sxL"/>
+                <outlet property="guanzhuLabel" destination="8FZ-Ee-sI0" id="kzP-2C-FNc"/>
+                <outlet property="timeLabel" destination="Gy3-kc-2dQ" id="Ssx-xZ-iHt"/>
+            </connections>
             <point key="canvasLocation" x="40" y="46.326836581709152"/>
         </tableViewCell>
     </objects>

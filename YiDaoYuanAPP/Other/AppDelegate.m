@@ -12,6 +12,9 @@
 
 #import <AlipaySDK/AlipaySDK.h>
 
+#import <TencentOpenAPI/QQApiInterface.h>
+
+#import <TencentOpenAPI/TencentOAuth.h>
 NSString * const HuanXinAppkey = @"";
 
 NSString * const HuanXinApnsCertName = @"";
@@ -57,6 +60,7 @@ NSString * const HuanXinApnsCertName = @"";
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"cswillenterForeground" object:nil];
 }
 
 
@@ -74,10 +78,21 @@ NSString * const HuanXinApnsCertName = @"";
 // NOTE: 9.0以后使用新API接口
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
 {
+    
+   
+    
+    if (YES == [TencentOAuth CanHandleOpenURL:url])
+    {
+        return [TencentOAuth HandleOpenURL:url];
+    }
+    
     if ([url.host isEqualToString:@"safepay"]) {
         //跳转支付宝钱包进行支付，处理支付结果
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-            NSLog(@"result = %@",resultDic);
+            CSLog(@"result = %@",resultDic);
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"AlipayResult_Notification"
+                                                                object:resultDic];
         }];
     }
     //微信支付

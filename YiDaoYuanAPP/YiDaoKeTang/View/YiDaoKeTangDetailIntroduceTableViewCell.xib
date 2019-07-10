@@ -40,6 +40,10 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="introLabel" destination="II0-BL-3tb" id="2t8-Kb-2cF"/>
+                <outlet property="ketangImageView" destination="L6n-Wj-Kfi" id="pSp-8S-KjQ"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>

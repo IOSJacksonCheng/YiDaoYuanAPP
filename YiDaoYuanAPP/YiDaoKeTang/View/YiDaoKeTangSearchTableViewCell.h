@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YiDaoKeTangModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YiDaoKeTangSearchTableViewCell : UITableViewCell
+@property (nonatomic, strong) YiDaoKeTangModel *model;
 
 @end
 

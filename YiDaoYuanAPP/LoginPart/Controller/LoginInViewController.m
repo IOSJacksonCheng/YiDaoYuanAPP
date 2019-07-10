@@ -9,7 +9,10 @@
 #import "LoginInViewController.h"
 
 #import "WXApi.h"
-@interface LoginInViewController ()<WXApiDelegate>
+
+#import <TencentOpenAPI/TencentOAuth.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+@interface LoginInViewController ()<WXApiDelegate, TencentSessionDelegate>
 - (IBAction)ckickRegisterButtonDone:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
 @property (weak, nonatomic) IBOutlet UITextField *secureTextField;
@@ -18,6 +21,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *showSecureButton;
 - (IBAction)clickShowSecureButtonDone:(id)sender;
 - (IBAction)clickForgetSecureNumberDone:(id)sender;
+@property (nonatomic,strong) TencentOAuth *tencentOAuth;
+
 
 @end
 
@@ -69,7 +74,7 @@
     
 }
 - (void)sendPostRequest {
-    
+//
 //    if (csCharacterIsBlank(self.phoneTextField.text) || csCharacterIsBlank(self.secureTextField.text)) {
 //
 //        CustomWrongMessage(@"请填写完整信息")
@@ -158,9 +163,73 @@
 }
 - (IBAction)clickQQButtonDone:(id)sender {
     
-    
+    [self qqLogin];
     
 }
+
+- (void)qqLogin
+{
+    self.tencentOAuth = [[TencentOAuth alloc]initWithAppId:@"1108888010" andDelegate:self];
+    
+    NSMutableArray *permission = [@[] mutableCopy];
+    
+    permission = [NSMutableArray arrayWithObjects:@"get_user_info",@"get_simple_userinfo",nil];
+    
+    [self.tencentOAuth authorize:permission inSafari:NO];
+}
+
+#pragma mark --------- qq登录状态回调  TencentSessionDelegate-------
+- (void)tencentDidLogin{
+    if (!_tencentOAuth.accessToken){
+        CSLog(@"%@ == %@",_tencentOAuth.accessToken,_tencentOAuth.openId);
+        [self.tencentOAuth getUserInfo];
+        
+    } else {
+        
+            CSLog(@"登录失败！没有获取到accessToken");
+        
+    }
+    
+}
+
+- (void)tencentDidNotLogin:(BOOL)cancelled
+
+{
+    
+    if (cancelled)
+        
+    {
+        
+        CSLog(@"用户取消登录");
+        
+    }
+    
+    else
+        
+    {
+        
+        CSLog(@"登录失败");
+        
+    }
+    
+}
+
+- (void)tencentDidNotNetWork
+
+{
+    
+    CSLog(@"没有网络，无法登录");
+    
+}
+- (void)getUserInfoResponse:(APIResponse *)response
+
+{
+    
+    CSLog(@"%@",response.jsonResponse);
+    
+}
+
+
 - (void)handleResult:(id)result {
     [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",result[@"token"]] forKey:@"CSGetToken"];
     

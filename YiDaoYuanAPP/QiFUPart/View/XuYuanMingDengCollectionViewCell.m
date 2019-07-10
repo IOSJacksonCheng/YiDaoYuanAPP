@@ -19,11 +19,11 @@
     [super awakeFromNib];
     // Initialization code
 }
-- (void)setModel:(XuYuanMingDengModel *)model {
+- (void)setModel:(DengModel *)model {
     
     _model = model;
+    [self.csImageView sd_setImageWithURL:[NSURL URLWithString:model.icon] placeholderImage:PlaceHolderImage];
     
-    self.csImageView.image = DotaImageName(model.imageString);
-    self.csTitleLabel.text =  model.title;
+    self.csTitleLabel.text =  model.name;
 }
 @end

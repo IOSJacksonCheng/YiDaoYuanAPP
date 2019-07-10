@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface QiFuJiLuTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIView *topView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 
 @end
 

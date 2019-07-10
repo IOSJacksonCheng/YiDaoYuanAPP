@@ -7,9 +7,14 @@
 //
 
 #import "QingShengViewController.h"
-#import "MingDengViewController.h"
+#import "QuickWishViewController.h"
 @interface QingShengViewController ()
 - (IBAction)clickQingShengGongFengButtonDone:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *foImageView;
+@property (weak, nonatomic) IBOutlet UILabel *foNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *introduceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *subTitleLabel;
 
 @end
 
@@ -36,6 +41,21 @@
 }
 - (void)configSubViews {
     
+    self.foNameLabel.text = self.passModel.title;
+    
+    [self.foImageView sd_setImageWithURL:[NSURL URLWithString:self.passModel.img] placeholderImage:PlaceHolderImage];
+    
+    self.introduceLabel.text = self.passModel.intro;
+    
+    if (self.passModel.power.length >= 4) {
+        self.titleLabel.text = [self.passModel.power substringToIndex:4];
+        self.subTitleLabel.text = [self.passModel.power substringFromIndex:4];
+    } else {
+        self.titleLabel.text = self.passModel.power;
+
+    }
+    
+    
 }
 - (void)configNavigationBar {
     
@@ -61,13 +81,13 @@
 }
 
 - (IBAction)clickQingShengGongFengButtonDone:(id)sender {
-    [self performSegueWithIdentifier:@"MingDengViewController" sender:self];
+    [self performSegueWithIdentifier:@"QuickWishViewController" sender:self];
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    if ([segue.identifier isEqualToString:@"MingDengViewController"]) {
-        MingDengViewController *new = segue.destinationViewController;
-        new.passTag = self.passTag;
+    if ([segue.identifier isEqualToString:@"QuickWishViewController"]) {
+        QuickWishViewController *new = segue.destinationViewController;
+        new.passBuddaId = self.passModel.buddha_id;
         
     }
 }

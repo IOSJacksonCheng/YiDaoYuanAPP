@@ -72,6 +72,8 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="contentLabel" destination="aP6-QW-bb6" id="cqT-WS-SHG"/>
+                <outlet property="titleLabel" destination="pm9-Lf-n2x" id="0Qg-YO-Urk"/>
                 <outlet property="topView" destination="NC9-lS-XFq" id="gvB-rT-noL"/>
             </connections>
             <point key="canvasLocation" x="132.80000000000001" y="149.32533733133434"/>

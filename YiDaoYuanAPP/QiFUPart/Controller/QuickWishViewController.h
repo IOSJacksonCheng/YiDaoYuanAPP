@@ -11,8 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface QuickWishViewController : BaseViewController
-@property (nonatomic, assign) NSInteger passTag;
-
+@property (nonatomic, strong) NSString *passBuddaId;
+@property (nonatomic, strong) NSString *passPriceId;
+@property (nonatomic, assign) BOOL fromDeng;
 @end
 
 NS_ASSUME_NONNULL_END

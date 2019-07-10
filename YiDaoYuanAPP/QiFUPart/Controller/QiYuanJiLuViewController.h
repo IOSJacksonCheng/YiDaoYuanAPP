@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface QiYuanJiLuViewController : BaseViewController
-
+@property (nonatomic, strong) NSString *pass_ID;
 @end
 
 NS_ASSUME_NONNULL_END

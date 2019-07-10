@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 @interface YiDaoKeTangDetailButtonTableViewCell : UITableViewCell
 @property (nonatomic, weak) id<YiDaoKeTangDetailButtonTableViewCellDelegate> csDelegate;
+@property (weak, nonatomic) IBOutlet UIButton *pinglunLabel;
 @end
 
 NS_ASSUME_NONNULL_END

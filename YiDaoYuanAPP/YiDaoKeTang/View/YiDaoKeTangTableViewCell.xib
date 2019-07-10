@@ -42,6 +42,9 @@
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标题内容三行标题标题内容三行标题标题内容三行标题标题内容三行标题标题内容三行标题标题内容三行标题" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M2F-fy-7K9">
                         <rect key="frame" x="10" y="176" width="300" height="61"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="61" id="4W3-i5-6TY"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -78,6 +81,12 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="csImageView" destination="tyi-GE-8qm" id="5s5-es-NN2"/>
+                <outlet property="leftTimeLabel" destination="FZl-tW-EYC" id="aea-ho-ddu"/>
+                <outlet property="leftguanzhuLabel" destination="EWF-Uc-fEi" id="xqT-JE-an9"/>
+                <outlet property="titleLabel" destination="M2F-fy-7K9" id="BJS-k4-cDL"/>
+            </connections>
             <point key="canvasLocation" x="129.59999999999999" y="120.53973013493254"/>
         </tableViewCell>
     </objects>

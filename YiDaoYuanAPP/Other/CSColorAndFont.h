@@ -33,7 +33,7 @@
 #define csLineColor [UIColor colorWithHexString:@"F0F1F2"]
 
 #define DotaImageName(name) [UIImage imageNamed:name]
-#define PlaceHolderImage [UIImage imageNamed:@"banner"]
+#define PlaceHolderImage [UIImage imageNamed:@"img_zhanwei"]
 
 #define CSUserImagePlaceHolder [UIImage imageNamed:@"img_user_zhanwei"]
 #endif /* CSColorAndFont_h */

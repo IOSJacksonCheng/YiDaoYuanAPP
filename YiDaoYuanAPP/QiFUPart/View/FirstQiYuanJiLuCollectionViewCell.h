@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QiYuanJiLuModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FirstQiYuanJiLuCollectionViewCell : UICollectionViewCell
-
+@property (nonatomic, strong) QiYuanJiLuModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

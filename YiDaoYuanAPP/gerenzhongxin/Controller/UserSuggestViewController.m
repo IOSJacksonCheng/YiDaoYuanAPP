@@ -86,6 +86,22 @@
         return;
     }
     
+    if (self.fromShopping) {
+        NSMutableDictionary *para = @{}.mutableCopy;
+        para[@"contact"] = self.inputTextField.text;
+        para[@"describe"] = self.inputTextView.text;
+        
+        [CSNetManager sendPostRequestWithNeedToken:YES Url:CSURL_Goods_Idea Pameters:para success:^(id  _Nonnull responseObject) {
+            if (CSInternetRequestSuccessful) {
+                CustomWrongMessage(@"提交成功");
+            }else {
+                CSShowWrongMessage
+            }
+        } failure:^(NSError * _Nonnull error) {
+            CSInternetFailure
+        }];
+        return;
+    }
     NSMutableDictionary *para = @{}.mutableCopy;
     para[@"contact"] = self.inputTextField.text;
     para[@"describe"] = self.inputTextView.text;

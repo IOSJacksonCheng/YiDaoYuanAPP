@@ -13,6 +13,8 @@
 #import "ShoppingIconTableViewCell.h"
 #import "ShoppingAllOrderViewController.h"
 
+#import "WkWebViewViewController.h"
+#import "UserSuggestViewController.h"
 @interface ShoppingWoDeViewController ()<UITableViewDelegate, UITableViewDataSource, ShoppingWoDeOrderTableViewCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, assign) NSInteger passTag;
@@ -131,6 +133,34 @@
     
  
     return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 2 && indexPath.row == 2) {
+        //
+        
+        
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        
+    
+        WkWebViewViewController *new = [mainStoryboard instantiateViewControllerWithIdentifier:@"WkWebViewViewController"];
+        
+        new.passUrl = [NSString stringWithFormat:@"%@%@", BASE_URL, CSURL_Portal_Site_Goodsabout];
+        
+        new.passTitle = @"关于我们";
+        
+        [self.navigationController pushViewController:new animated:YES];
+    } else if (indexPath.section == 2 && indexPath.row == 1) {
+        
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        
+        
+        UserSuggestViewController *new = [mainStoryboard instantiateViewControllerWithIdentifier:@"UserSuggestViewController"];
+        
+        
+        new.fromShopping = YES;
+        
+        [self.navigationController pushViewController:new animated:YES];
+    }
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *view = UIView.new;

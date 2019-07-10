@@ -14,7 +14,11 @@
 #import "PersonalTopCollectionViewCell.h"
 
 #import "PersonalSubTitleCollectionViewCell.h"
-@interface YiDaoKeTangViewController ()<UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+#import "YiDaoKeTangHotTableViewCell.h"
+
+#import "YiDaoKeTangListViewController.h"
+#import "YiDaoKeTangDetailViewController.h"
+@interface YiDaoKeTangViewController ()<UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, YiDaoKeTangHotTableViewCellDelegate>
 @property (weak, nonatomic) IBOutlet UIView *searchView;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
@@ -27,24 +31,43 @@
 @property (nonatomic, strong) NSMutableArray *shiArray;
 @property (nonatomic, strong) NSMutableArray *ziArray;
 @property (nonatomic, strong) NSMutableArray *jiArray;
+@property (nonatomic, assign) NSInteger currentNumber;
 
+@property (nonatomic, strong) YiDaoKeTangModel *hotModel;
+@property (nonatomic, strong) NSMutableArray *fufeiArray;
+@property (nonatomic, strong) NSString *recordVideoId;
+@property (nonatomic, strong) NSString *recordHot;
+@property (nonatomic, strong) NSString *recordFree;
+@property (nonatomic, strong) NSString *recordCategoryId;
 @end
 
 @implementation YiDaoKeTangViewController
+- (YiDaoKeTangModel *)hotModel {
+    if (!_hotModel) {
+        _hotModel = YiDaoKeTangModel.new;
+    }
+    return _hotModel;
+}
+- (NSMutableArray *)fufeiArray {
+    if (!_fufeiArray) {
+        _fufeiArray = @[].mutableCopy;
+    }
+    return _fufeiArray;
+}
 - (NSMutableArray *)jiArray {
     if (!_jiArray) {
         _jiArray = @[].mutableCopy;
 
-        NSArray *titleArray = @[@"文集",@"道经",@"佛经"];
-        
-        for (NSString *title in titleArray) {
-            PersonalTitleCollectionModel *model = [PersonalTitleCollectionModel new];
-            model.title = title;
-            model.choose = NO;
-            [_jiArray addObject:model];
-        }
-        PersonalTitleCollectionModel *model = _jiArray[0];
-        model.choose = YES;
+//        NSArray *titleArray = @[@"文集",@"道经",@"佛经"];
+//
+//        for (NSString *title in titleArray) {
+//            PersonalTitleCollectionModel *model = [PersonalTitleCollectionModel new];
+//            model.title = title;
+//            model.choose = NO;
+//            [_jiArray addObject:model];
+//        }
+//        PersonalTitleCollectionModel *model = _jiArray[0];
+//        model.choose = YES;
         
     }
     return _jiArray;
@@ -53,17 +76,7 @@
     if (!_ziArray) {
         _ziArray = @[].mutableCopy;
 
-        NSArray *titleArray = @[@"儒家",@"道家",@"法家",@"名家",@"墨家"];
-        
-        for (NSString *title in titleArray) {
-            PersonalTitleCollectionModel *model = [PersonalTitleCollectionModel new];
-            model.title = title;
-            model.choose = NO;
-            [_ziArray addObject:model];
-        }
-        PersonalTitleCollectionModel *model = _ziArray[0];
-        model.choose = YES;
-        
+      
     }
     return _ziArray;
 }
@@ -71,16 +84,7 @@
     if (!_shiArray) {
         _shiArray = @[].mutableCopy;
 
-        NSArray *titleArray = @[@"上古",@"中古",@"近古",@"近现代"];
-        
-        for (NSString *title in titleArray) {
-            PersonalTitleCollectionModel *model = [PersonalTitleCollectionModel new];
-            model.title = title;
-            model.choose = NO;
-            [_shiArray addObject:model];
-        }
-        PersonalTitleCollectionModel *model = _shiArray[0];
-        model.choose = YES;
+      
         
     }
     return _shiArray;
@@ -88,16 +92,7 @@
 - (NSMutableArray *)jingArray {
     if (!_jingArray) {
         _jingArray = @[].mutableCopy;
-        NSArray *titleArray = @[@"易经",@"尚书",@"诗经",@"礼",@"乐",@"春秋",@"孝经",@"论语"];
         
-        for (NSString *title in titleArray) {
-            PersonalTitleCollectionModel *model = [PersonalTitleCollectionModel new];
-            model.title = title;
-            model.choose = NO;
-            [_jingArray addObject:model];
-        }
-        PersonalTitleCollectionModel *model = _jingArray[0];
-        model.choose = YES;
         
     }
     return _jingArray;
@@ -128,17 +123,109 @@
     }
     return _topArray;
 }
+- (void)viewWillAppear:(BOOL)animated {
+    [self configNavigationBar];
+    [super viewWillAppear:animated];
+}
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    self.currentNumber = 1;
     
     [self configSubViews];
     
     [self configNavigationBar];
     
     [self configTableView];
+   
     [self configCollectionView];
+    
+    [self sendGetRequest];
+}
+- (void)sendGetRequest {
+    
+    NSMutableDictionary *para = @{}.mutableCopy;
+   
+    para[@"type"] = [NSString stringWithFormat:@"%ld",(long)self.currentNumber];
+    
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Course_Category Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            
+            [self configArray:CSGetResult[@"lists"]];
+            
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+}
+- (void)configArray:(id)result {
+    
+    if (self.currentNumber == 1) {
+        //jing
+        self.jingArray = [CSParseManager getPersonalTitleCollectionModelArrayWithResponseObject:result];
+    } else if (self.currentNumber == 2) {
+        self.shiArray = [CSParseManager getPersonalTitleCollectionModelArrayWithResponseObject:result];
+    }else if (self.currentNumber == 3) {
+        self.ziArray = [CSParseManager getPersonalTitleCollectionModelArrayWithResponseObject:result];
+    }else if (self.currentNumber == 4) {
+        self.jiArray = [CSParseManager getPersonalTitleCollectionModelArrayWithResponseObject:result];
+    }
     [self reloadCollectionView];
+    
+}
+- (void)sendGetRequestWithId:(NSString *)idString {
+    NSMutableDictionary *para = @{}.mutableCopy;
+  
+    para[@"category_id"] = idString;
+  
+    para[@"is_hot"] = @"1";
+
+    para[@"pageSize"] = @"1";
+    
+    self.recordCategoryId = idString;
+    
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_Course Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            NSMutableArray *arrar = [CSParseManager getYiDaoKeTangModelArrayWithResponseObject:CSGetResult[@"lists"]];
+            if (arrar.count != 0) {
+                self.hotModel = arrar[0];
+            }
+            [self.tableview reloadData];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+    
+    [self sendGetFuFeiRequestWithId:idString];
+}
+- (void)sendGetFuFeiRequestWithId:(NSString *)idString {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    
+    para[@"category_id"] = idString;
+    
+    para[@"pageSize"] = @"2";
+    
+    para[@"is_fee"] = @"1";
+
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_Course Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            self.fufeiArray = [CSParseManager getYiDaoKeTangModelArrayWithResponseObject:CSGetResult[@"lists"]];
+           
+            [self.tableview reloadData];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
 }
 - (void)configCollectionView {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
@@ -170,6 +257,7 @@
     [self.tableview registerNib:[UINib nibWithNibName:CSCellName(ZJZXMoreTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(ZJZXMoreTableViewCell)];
     
     [self.tableview registerNib:[UINib nibWithNibName:CSCellName(YiDaoKeTangTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(YiDaoKeTangTableViewCell)];
+    [self.tableview registerNib:[UINib nibWithNibName:CSCellName(YiDaoKeTangHotTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(YiDaoKeTangHotTableViewCell)];
     
 }
 - (void)clickSearchView {
@@ -200,7 +288,11 @@
     
     F3f3f3NavigationBarColor
     
-
+    UIColor *whiteColor = [UIColor colorWithHexString:@"333333"];
+    
+    NSDictionary *dic = [NSDictionary dictionaryWithObject:whiteColor forKey:NSForegroundColorAttributeName];
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:dic];
     
 }
 #pragma mark --UICollectionDelegate/DataSource
@@ -211,8 +303,8 @@
     }
 //    return CGSizeMake(100, 35);
     PersonalTitleCollectionModel *model = [self getCurrentSubModelWithIndexPath:indexPath];
-
-    return CGSizeMake(40 * model.title.length, 35);
+   
+    return CGSizeMake(30 * model.title.length, 35);
 }
 - (PersonalTitleCollectionModel *)getCurrentSubModelWithIndexPath:(NSIndexPath *)indexPath {
     
@@ -225,9 +317,16 @@
             break;
         }
     }
+    PersonalTitleCollectionModel *model = [PersonalTitleCollectionModel new];
     
-    PersonalTitleCollectionModel *model = [self getCurrentArrayWithIndex:currentClick][indexPath.row];
-    return model;
+    NSMutableArray *array = [self getCurrentArrayWithIndex:currentClick];
+    
+    if (array.count == 0) {
+        return model;
+    }
+    
+    
+    return array[indexPath.row];
 }
 - (NSMutableArray *)getCurrentArrayWithIndex:(NSInteger)index {
     if (index == 0) {
@@ -307,16 +406,23 @@
         for (int i = 0; i < self.topArray.count; i ++) {
             PersonalTitleCollectionModel *model = self.topArray[i];
             if (i == indexPath.row) {
+                self.currentNumber = i + 1;
                 model.choose = YES;
             } else {
                 model.choose = NO;
             }
         }
-        [self reloadCollectionView];
+        if ([self getCurrenArray].count == 0) {
+           
+            [self sendGetRequest];
+
+        } else {
+            [self reloadCollectionView];
+        }
         return ;
     }
     NSMutableArray *currentArray = [self getCurrenArray];
-    
+   
     for (int i = 0; i < currentArray.count; i ++) {
         PersonalTitleCollectionModel *model = currentArray[i];
         if (i == indexPath.row) {
@@ -325,45 +431,114 @@
             model.choose = NO;
         }
     }
-   [self.itemCollectionView reloadData];
+    [self reloadCollectionView];
     
 }
 - (void)reloadCollectionView {
+    
+    NSMutableArray *currentArray = [self getCurrenArray];
+    PersonalTitleCollectionModel *newModel = [PersonalTitleCollectionModel new];
+    for (int i = 0; i < currentArray.count; i ++) {
+        PersonalTitleCollectionModel *model = currentArray[i];
+        if (model.choose) {
+            newModel = model;
+        }
+    }
+    [self sendGetRequestWithId:newModel.idString];
+    
      [self.topCollectionView reloadData];
     [self.itemCollectionView reloadData];
+    
    
 }
 #pragma mark --UITableViewDelegate/DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 4;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
         return 1;
     }
-    return 3;
+    if (section == 1) {
+        return 1;
+    }
+    if (section == 2) {
+        return 1;
+    }
+    if (self.fufeiArray.count == 0) {
+        return 0;
+    }
+    return 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         
         ZJZXMoreTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(ZJZXMoreTableViewCell)];
         cell.csTitleLabel.text = @"热门课堂";
-        cell.moreTitleLabel.hidden = YES;
+        cell.moreTitleLabel.hidden = NO;
+        cell.moreTitleLabel.text = @"查看更多 >";
+        return cell;
+    } else if (indexPath.section == 1) {
+        YiDaoKeTangTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(YiDaoKeTangTableViewCell)];
+        cell.model = self.hotModel;
+        return cell;
+    } else if (indexPath.section == 2) {
+        
+        ZJZXMoreTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(ZJZXMoreTableViewCell)];
+        cell.csTitleLabel.text = @"付费课堂";
+        cell.moreTitleLabel.hidden = NO;
+        cell.moreTitleLabel.text = @"查看更多 >";
         return cell;
     }
-    YiDaoKeTangTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(YiDaoKeTangTableViewCell)];
-   
+    
+    YiDaoKeTangHotTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(YiDaoKeTangHotTableViewCell) forIndexPath:indexPath];
+    cell.csDelegate = self;
+    cell.hotArray = self.fufeiArray;
     return cell;
-    
-    
+}
+- (void)goWhichIdString:(NSString *)classId {
+    self.recordVideoId = classId;
+     [self performSegueWithIdentifier:@"YiDaoKeTangDetailViewController" sender:self];
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//     [self performSegueWithIdentifier:@"YiDaoKeTangDetailViewController" sender:self];
+    
+    if (indexPath.section == 0) {
+        self.recordHot =@"1";
+        self.recordFree = @"";
+        [self performSegueWithIdentifier:@"YiDaoKeTangListViewController" sender:self];
+    } else if (indexPath.section == 1) {
+        self.recordVideoId = self.hotModel.class_id;
+        [self performSegueWithIdentifier:@"YiDaoKeTangDetailViewController" sender:self];
+    }else if (indexPath.section == 2) {
+        self.recordHot =@"";
+        self.recordFree = @"1";
+        [self performSegueWithIdentifier:@"YiDaoKeTangListViewController" sender:self];
+    }
+    
+
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         return 54;
     }
-     return 273;
+    if (indexPath.section == 1) {
+        return 273;
+    }
+    if (indexPath.section == 2) {
+        return 54;
+    }
+     return 333;
+}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"YiDaoKeTangListViewController"]) {
+        YiDaoKeTangListViewController *new = segue.destinationViewController;
+        new.passIdString = self.recordCategoryId;
+        new.isHot = self.recordHot;
+        new.isFree = self.recordFree;
+    }else if ([segue.identifier isEqualToString:@"YiDaoKeTangDetailViewController"]) {
+        YiDaoKeTangDetailViewController *new = segue.destinationViewController;
+        new.passId = self.recordVideoId;
+    }
 }
 @end

@@ -7,16 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "DengPriceModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MindDengTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *csImageView;
-@property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *xuanzhongImageView;
 
+@property (nonatomic, strong) DengPriceModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

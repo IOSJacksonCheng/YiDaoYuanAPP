@@ -19,8 +19,15 @@
 @property (weak, nonatomic) IBOutlet UIView *rightNowConsultView;
 @property (weak, nonatomic) IBOutlet UIView *playContactView;
 @property (weak, nonatomic) IBOutlet UIView *shoppingView;
-@property (weak, nonatomic) IBOutlet UIView *topLineView;
-@property (weak, nonatomic) IBOutlet UIView *bottomLineView;
+
+@property (weak, nonatomic) IBOutlet UIView *jiankanyangshengView;
+
+@property (weak, nonatomic) IBOutlet UIView *xingzuoyunshiView;
+@property (weak, nonatomic) IBOutlet UIView *laohuanliView;
+
+@property (weak, nonatomic) IBOutlet UIView *zhougongjiemengView;
+@property (weak, nonatomic) IBOutlet UIView *haomayuceView;
+
 @end
 @implementation ZJZXFirstRowTableViewCell
 
@@ -99,25 +106,70 @@
     [self.shoppingView addGestureRecognizer:newsTap7];
     
     
-    UITapGestureRecognizer *newsTap8 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToKeTangList)];
+    UITapGestureRecognizer *newsTap8 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickJianKangYangShengView)];
     
     newsTap8.numberOfTapsRequired = 1;
     
     newsTap8.numberOfTouchesRequired = 1;
     
-    [self.topLineView addGestureRecognizer:newsTap8];
+    [self.jiankanyangshengView addGestureRecognizer:newsTap8];
     
-    [self.bottomLineView addGestureRecognizer:newsTap8];
+    
+    UITapGestureRecognizer *newsTap9 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickZhouGongJieMengView)];
+    
+    newsTap9.numberOfTapsRequired = 1;
+    
+    newsTap9.numberOfTouchesRequired = 1;
+    
+    [self.zhougongjiemengView addGestureRecognizer:newsTap9];
+    
+    UITapGestureRecognizer *newsTap10 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(xingZuoYunShiView)];
+    
+    newsTap10.numberOfTapsRequired = 1;
+    
+    newsTap10.numberOfTouchesRequired = 1;
+    
+    [self.xingzuoyunshiView addGestureRecognizer:newsTap10];
+    
+    UITapGestureRecognizer *newsTap11 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickhaomayuceView)];
+    
+    newsTap11.numberOfTapsRequired = 1;
+    
+    newsTap11.numberOfTouchesRequired = 1;
+    
+    [self.haomayuceView addGestureRecognizer:newsTap11];
+    
+    UITapGestureRecognizer *newsTap12 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clicklaohuanliView)];
+    
+    newsTap12.numberOfTapsRequired = 1;
+    
+    newsTap12.numberOfTouchesRequired = 1;
+    
+    [self.laohuanliView addGestureRecognizer:newsTap12];
+    
 }
-- (void)goToKeTangList {
-    
-    
-     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    
-    YiDaoKeTangListViewController *new = [mainStoryboard instantiateViewControllerWithIdentifier:@"YiDaoKeTangListViewController"];
-    
-    [[CSUtility getCurrentViewController].navigationController pushViewController:new animated:YES];
+
+- (void)clicklaohuanliView {
+    [[NSUserDefaults standardUserDefaults] setValue:@"banner-1" forKey:@"imageString"];
+    [[CSUtility getCurrentViewController]  performSegueWithIdentifier:@"DaShiListViewController" sender:self];
 }
+- (void)clickhaomayuceView {
+    [[NSUserDefaults standardUserDefaults] setValue:@"banner-1" forKey:@"imageString"];
+    [[CSUtility getCurrentViewController]  performSegueWithIdentifier:@"DaShiListViewController" sender:self];
+}
+- (void)xingZuoYunShiView {
+    [[NSUserDefaults standardUserDefaults] setValue:@"banner-1" forKey:@"imageString"];
+    [[CSUtility getCurrentViewController]  performSegueWithIdentifier:@"DaShiListViewController" sender:self];
+}
+- (void)clickZhouGongJieMengView {
+    [[NSUserDefaults standardUserDefaults] setValue:@"banner-1" forKey:@"imageString"];
+    [[CSUtility getCurrentViewController]  performSegueWithIdentifier:@"DaShiListViewController" sender:self];
+}
+- (void)clickJianKangYangShengView {
+    [[NSUserDefaults standardUserDefaults] setValue:@"banner-1" forKey:@"imageString"];
+    [[CSUtility getCurrentViewController]  performSegueWithIdentifier:@"DaShiListViewController" sender:self];
+}
+
 - (void)clickShoppingViewDone {
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"shopping" bundle:nil];
     

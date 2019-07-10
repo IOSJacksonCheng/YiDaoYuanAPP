@@ -11,6 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YiDaoKeTangDetailIntroduceTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *ketangImageView;
+@property (weak, nonatomic) IBOutlet UILabel *introLabel;
 
 @end
 

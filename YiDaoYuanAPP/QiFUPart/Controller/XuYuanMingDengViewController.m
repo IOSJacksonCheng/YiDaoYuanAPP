@@ -10,8 +10,8 @@
 #import "XuYuanMingDengCollectionViewCell.h"
 #import "FirstQiYuanJiLuCollectionViewCell.h"
 
-#import "XuYuanMingDengModel.h"
-
+#import "QiYuanJiLuViewController.h"
+#import "MingDengViewController.h"
 @interface XuYuanMingDengViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 - (IBAction)clickMyWishButtonDone:(id)sender;
 - (IBAction)clickChooseMingDengButtonDone:(id)sender;
@@ -25,6 +25,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *mingdengButton;
 @property (weak, nonatomic) IBOutlet UIButton *mywishButton;
 @property (nonatomic, strong) NSMutableArray *dengArray;
+
+@property (nonatomic, strong) NSString *recordPassId;
+@property (nonatomic, strong) NSString *recordLampId;
+
 @end
 
 @implementation XuYuanMingDengViewController
@@ -34,31 +38,6 @@
     if (!_dengArray) {
        
         _dengArray = @[].mutableCopy;
-        for (int i = 0; i < 2; i ++) {
-            XuYuanMingDengModel *model = [XuYuanMingDengModel new];
-            model.imageString = @"img_pingan";
-            model.title = @"平安灯";
-            [_dengArray addObject:model];
-            
-            XuYuanMingDengModel *model1 = [XuYuanMingDengModel new];
-            model1.imageString = @"img_shiye-1";
-            model1.title = @"事业灯";
-            [_dengArray addObject:model1];
-            
-            
-            
-            XuYuanMingDengModel *model2 = [XuYuanMingDengModel new];
-            model2.imageString = @"img_yinyuan";
-            model2.title = @"姻缘灯";
-            [_dengArray addObject:model2];
-            
-            XuYuanMingDengModel *model3 = [XuYuanMingDengModel new];
-            model3.imageString = @"img_jiankang";
-            model3.title = @"健康灯";
-            [_dengArray addObject:model3];
-        }
-        
-        
        
     }
     
@@ -74,8 +53,46 @@
     
     [self configTableView];
     
+    [self sendGetDengRequest];
+    
 }
-
+- (void)getNewData {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    
+    
+    para[@"status"] = @"1";
+        
+   
+    para[@"pageSize"] = @"30";
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_Consecrate_Record Pameters:para success:^(id  _Nonnull responseObject) {
+        if (CSInternetRequestSuccessful) {
+            self.dengArray = [CSParseManager getQiYuanJiLuModelArrayWithResponseObject:CSGetResult[@"lists"]];
+            [self.collectionView reloadData];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        
+        CSInternetFailure
+    }];
+}
+- (void)sendGetDengRequest {
+    
+    NSMutableDictionary *para = @{}.mutableCopy;
+    
+    [CSNetManager sendGetRequestWithNeedToken:NO Url:CSURL_Portal_Consecrate_Lamp Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            self.dengArray = [CSParseManager getDengModelArrayWithResponseObject:CSGetResult[@"lists"]];
+            [self.collectionView reloadData];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+    
+}
 - (void)configTableView {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
@@ -141,8 +158,7 @@
     self.title = @"我的愿望";
     self.mingdengButton.titleLabel.font = [UIFont systemFontOfSize:17];
     self.mywishButton.titleLabel.font = [UIFont systemFontOfSize:20];
-    [self.collectionView reloadData];
-
+    [self getNewData];
 }
 
 - (IBAction)clickChooseMingDengButtonDone:(id)sender {
@@ -153,7 +169,9 @@
 
     self.xuanzemingdengImageView.image = DotaImageName(@"icon_xuazne");
     self.wodeyuanwangImageView.image = DotaImageName(@"icon_weixuanze-2");
-     [self.collectionView reloadData];
+
+    [self sendGetDengRequest];
+    
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (self.currentClickMyWish) {
@@ -191,21 +209,39 @@ return 5;
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (self.currentClickMyWish) {
         FirstQiYuanJiLuCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CSCellName(FirstQiYuanJiLuCollectionViewCell) forIndexPath:indexPath];
+        QiYuanJiLuModel *model = self.dengArray[indexPath.row];
         
+        cell.model = model;
         
         return cell;
     }
     XuYuanMingDengCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CSCellName(XuYuanMingDengCollectionViewCell) forIndexPath:indexPath];
-    XuYuanMingDengModel *model = self.dengArray[indexPath.row];
+    DengModel *model = self.dengArray[indexPath.row];
     cell.model = model;
     return cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (self.currentClickMyWish) {
+        
+        QiYuanJiLuModel *model = self.dengArray[indexPath.row];
+        
+        self.recordPassId = model.supplication_id;
            [self performSegueWithIdentifier:@"QiYuanJiLuViewController" sender:self];
         return;
     }
+    DengModel *model = self.dengArray[indexPath.row];
+    self.recordLampId = model.lamp_id;
     [self performSegueWithIdentifier:@"MingDengViewController" sender:self];
     
+}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"QiYuanJiLuViewController"]) {
+        QiYuanJiLuViewController *new = segue.destinationViewController;
+        new.pass_ID = self.recordPassId;
+    } else if ([segue.identifier isEqualToString:@"MingDengViewController"]) {
+        MingDengViewController *new = segue.destinationViewController;
+        new.passLampId = self.recordLampId;
+        new.passBuddahaId = self.passBuddahaId;
+    }
 }
 @end

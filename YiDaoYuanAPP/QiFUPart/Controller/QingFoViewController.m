@@ -25,28 +25,64 @@
 - (IBAction)clickYiYuanManGuiRenButtonDone:(id)sender;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *yixuxinyuanTopConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *yiyuanmanguirenTopConstraint;
-@property (nonatomic, strong) NSMutableArray *imageArray;
+@property (nonatomic, strong) NSMutableArray *leftArray;
+
+@property (nonatomic, strong) NSMutableArray *rightArray;
+
+@property (nonatomic, assign) BOOL clickLeftButton;
+
+@property (nonatomic, strong) FoAndShenXianModel *recordModel;
 @end
 
 @implementation QingFoViewController
-- (NSMutableArray *)imageArray {
-    if (!_imageArray) {
-        _imageArray = @[@"img_guangming_1",@"img_guangming_2",@"img_guangming_3",@"img_guangming_1",@"img_guangming_2",@"img_guangming_3"].mutableCopy;
+- (FoAndShenXianModel *)recordModel {
+    if (!_recordModel) {
+        _recordModel = [FoAndShenXianModel new];
     }
-    return _imageArray;
+    return _recordModel;
 }
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
+    self.clickLeftButton = YES;
     [self configSubViews];
     
     [self configNavigationBar];
     
     [self configTableView];
     
+    [self sendGetRequest];
+    
 }
+- (void)sendGetRequest {
+    NSMutableDictionary *para = @{}.mutableCopy;
+   
+    para[@"type_id"] = self.passTag;
+    
+    [CSNetManager sendGetRequestWithNeedToken:NO Url:CSURL_Portal_Consecrate_Buddha Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            
+            
+            NSArray *listArray = CSGetResult[@"lists"];
+            
+            if (listArray.count == 0) {
+                return;
+            }
+            [self.fozuButton setTitle:[NSString stringWithFormat:@"%@",listArray[0][@"title"]] forState:UIControlStateNormal];
+            self.leftArray = [CSParseManager getFoAndShenXianModelArrayWithResponseObject:listArray[0][@"buddhas"]];
+            
+            self.rightArray = [CSParseManager getFoAndShenXianModelArrayWithResponseObject:listArray[1][@"buddhas"]];
+            [self.shengxiaoButton setTitle:[NSString stringWithFormat:@"%@",listArray[1][@"title"]] forState:UIControlStateNormal];
 
+            [self.collectionView reloadData];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+}
 - (void)configTableView {
     
     
@@ -66,6 +102,9 @@
 
 - (void)configSubViews {
     
+    self.leftArray = @[].mutableCopy;
+    
+    self.rightArray = @[].mutableCopy;
 }
 - (void)configNavigationBar {
     
@@ -105,24 +144,47 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.imageArray.count;
+    if (self.clickLeftButton) {
+        return self.leftArray.count;
+    }
+    return self.rightArray.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     QingFoViewCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CSCellName(QingFoViewCollectionViewCell) forIndexPath:indexPath];
-    NSString *image = self.imageArray[indexPath.row];
-    cell.csImageView.image = DotaImageName(image);
+    FoAndShenXianModel *model = [FoAndShenXianModel new];
+    
+    
+    if (self.clickLeftButton) {
+        model =  self.leftArray[indexPath.row];
+    } else {
+        model =  self.rightArray[indexPath.row];
+
+    }
+    cell.model = model;
+
     return cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
+    
+    FoAndShenXianModel *model = [FoAndShenXianModel new];
+    
+    
+    if (self.clickLeftButton) {
+        model =  self.leftArray[indexPath.row];
+    } else {
+        model =  self.rightArray[indexPath.row];
+        
+    }
+    self.recordModel = model;
    [self performSegueWithIdentifier:@"QingShengViewController" sender:self];
     
 }
 
 
 - (IBAction)clickYiXuXinYuanButtonDone:(id)sender {
-    
+    self.clickLeftButton = YES;
     self.yixuxinyuanImageView.image = DotaImageName(@"img_xuanzhong-1");
     self.yixuxinyuanTopConstraint.constant = 20;
     
@@ -131,11 +193,14 @@
     [self.shengxiaoButton setTitleColor:[UIColor colorWithHexString:@"4D3D1C"] forState:UIControlStateNormal];
     self.yiyuanmanguirenImageView.image = DotaImageName(@"img_weixuanzhong");
     self.yiyuanmanguirenTopConstraint.constant = 10;
-    
+    [self.collectionView reloadData];
+
 }
 
 - (IBAction)clickYiYuanManGuiRenButtonDone:(id)sender {
     
+    self.clickLeftButton = NO;
+
     self.yixuxinyuanImageView.image = DotaImageName(@"img_weixuanzhong");
     self.yixuxinyuanTopConstraint.constant = 10;
     
@@ -145,13 +210,14 @@
      
     self.yiyuanmanguirenImageView.image = DotaImageName(@"img_xuanzhong-1");
     self.yiyuanmanguirenTopConstraint.constant = 20;
+    
+    [self.collectionView reloadData];
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if ([segue.identifier isEqualToString:@"QingShengViewController"]) {
         QingShengViewController *new = segue.destinationViewController;
-        new.passTag = self.passTag;
-        
+        new.passModel = self.recordModel;
     }
 }
 @end

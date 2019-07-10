@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="GongPingCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="138" height="258"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="138" height="258"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cX5-m3-mAX">
+                        <rect key="frame" x="0.0" y="0.0" width="138" height="258"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_xiang" translatesAutoresizingMaskIntoConstraints="NO" id="czA-O2-Dqc">
+                                <rect key="frame" x="26.5" y="8" width="85" height="112"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="112" id="tQp-7l-grJ"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uiO-tZ-8Zd">
+                                <rect key="frame" x="26.5" y="129" width="85" height="123"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_pingan" translatesAutoresizingMaskIntoConstraints="NO" id="LMG-L3-Pp9">
+                                        <rect key="frame" x="0.0" y="0.0" width="85" height="123"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="123" id="ave-xr-0yA"/>
+                                            <constraint firstAttribute="width" constant="85" id="xv3-St-9o6"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CFw-PF-EDl">
+                                        <rect key="frame" x="12.5" y="0.0" width="17.5" height="103"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="17.5" id="HIS-0p-dw6"/>
+                                        </constraints>
+                                        <string key="text">平
+安
+吉
+祥</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.93333333330000001" green="0.90980392160000001" blue="0.70980392160000005" alpha="0.5" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yu1-l4-5tc">
+                                        <rect key="frame" x="53.5" y="0.0" width="20.5" height="103"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20.5" id="dxO-XA-yY2"/>
+                                        </constraints>
+                                        <string key="text">20
+易
+道元</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.93333333330000001" green="0.90980392160000001" blue="0.70980392160000005" alpha="0.5" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="LMG-L3-Pp9" firstAttribute="top" secondItem="uiO-tZ-8Zd" secondAttribute="top" id="HJU-r5-8GX"/>
+                                    <constraint firstItem="LMG-L3-Pp9" firstAttribute="leading" secondItem="uiO-tZ-8Zd" secondAttribute="leading" id="KY9-pd-q4a"/>
+                                    <constraint firstItem="Yu1-l4-5tc" firstAttribute="top" secondItem="uiO-tZ-8Zd" secondAttribute="top" id="QUA-q8-Nqw"/>
+                                    <constraint firstAttribute="bottom" secondItem="LMG-L3-Pp9" secondAttribute="bottom" id="VUT-B3-FUR"/>
+                                    <constraint firstAttribute="bottom" secondItem="CFw-PF-EDl" secondAttribute="bottom" constant="20" id="VrP-4D-YX0"/>
+                                    <constraint firstAttribute="width" constant="85" id="hxs-t0-WGG"/>
+                                    <constraint firstItem="CFw-PF-EDl" firstAttribute="centerX" secondItem="uiO-tZ-8Zd" secondAttribute="centerX" multiplier="0.5" id="lAq-tC-tYV"/>
+                                    <constraint firstItem="Yu1-l4-5tc" firstAttribute="centerX" secondItem="uiO-tZ-8Zd" secondAttribute="centerX" multiplier="1.5" id="mva-Tu-ANa"/>
+                                    <constraint firstAttribute="bottom" secondItem="Yu1-l4-5tc" secondAttribute="bottom" constant="20" id="pV1-A2-YOr"/>
+                                    <constraint firstAttribute="trailing" secondItem="LMG-L3-Pp9" secondAttribute="trailing" id="s94-pH-7vX"/>
+                                    <constraint firstItem="CFw-PF-EDl" firstAttribute="top" secondItem="uiO-tZ-8Zd" secondAttribute="top" id="sEW-Wd-HeX"/>
+                                    <constraint firstAttribute="height" constant="123" id="xbi-n2-3TQ"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="czA-O2-Dqc" firstAttribute="centerX" secondItem="cX5-m3-mAX" secondAttribute="centerX" id="2m3-Hs-W6m"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="czA-O2-Dqc" secondAttribute="trailing" id="Gr7-0G-vpK"/>
+                            <constraint firstItem="uiO-tZ-8Zd" firstAttribute="centerX" secondItem="cX5-m3-mAX" secondAttribute="centerX" id="Ko0-5v-ZE0"/>
+                            <constraint firstItem="uiO-tZ-8Zd" firstAttribute="centerY" secondItem="cX5-m3-mAX" secondAttribute="centerY" constant="61.5" id="O5q-Ki-FCo"/>
+                            <constraint firstItem="czA-O2-Dqc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cX5-m3-mAX" secondAttribute="leading" id="goF-ed-o91"/>
+                            <constraint firstItem="czA-O2-Dqc" firstAttribute="top" secondItem="cX5-m3-mAX" secondAttribute="top" constant="8" id="x6L-Hm-UsH"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="cX5-m3-mAX" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="7oh-OK-NVQ"/>
+                <constraint firstAttribute="bottom" secondItem="cX5-m3-mAX" secondAttribute="bottom" id="Lf6-5V-l72"/>
+                <constraint firstItem="cX5-m3-mAX" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="NN4-P6-6Vg"/>
+                <constraint firstAttribute="trailing" secondItem="cX5-m3-mAX" secondAttribute="trailing" id="sVm-CB-Jbs"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <size key="customSize" width="138" height="258"/>
+            <connections>
+                <outlet property="labelTitleLabel" destination="CFw-PF-EDl" id="KfA-Zm-Ze1"/>
+                <outlet property="moneyLabel" destination="Yu1-l4-5tc" id="5rg-tu-8ik"/>
+                <outlet property="xiangImageView" destination="czA-O2-Dqc" id="GAt-x9-FXm"/>
+            </connections>
+            <point key="canvasLocation" x="200" y="247.37631184407797"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="icon_pingan" width="85" height="123"/>
+        <image name="img_xiang" width="85" height="125"/>
+    </resources>
+</document>

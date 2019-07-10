@@ -252,7 +252,11 @@ static AFHTTPSessionManager *CSManager = nil;
     NSString *code = [NSString stringWithFormat:@"%@",result[@"code"]];
     
     if ([code isEqualToString:@"10001"]) {
+       
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"CSIsLogin"];
+        
         [self cancelRequest];
+        
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
         
         

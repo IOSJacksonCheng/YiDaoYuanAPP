@@ -20,13 +20,14 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *sureButton;
 - (IBAction)clickSureButtonDone:(id)sender;
-@property (weak, nonatomic) IBOutlet UIView *successView;
 @property (nonatomic, strong) NSMutableArray *itemMutableArray;
 
 @property (nonatomic, assign) BOOL chooseAlipay;
 
 @property (nonatomic, strong) YiDaoYuanCollectionModel *currentModel;
-
+- (IBAction)clickHideButtonDone:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *successView;
+@property (weak, nonatomic) IBOutlet UILabel *successLabel;
 @end
 
 @implementation YiDaoYuanChongZhiViewController
@@ -53,7 +54,7 @@
     [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_User_Profile_Coindiscount Pameters:para success:^(id  _Nonnull responseObject) {
         
         if (CSInternetRequestSuccessful) {
-            self.itemMutableArray = [CSParseManager getYiDaoYuanCollectionModelArrayWithResponseObject:CSGetResult];
+            self.itemMutableArray = [CSParseManager getYiDaoYuanCollectionModelArrayWithResponseObject:CSGetResult[@"lists"]];
             [self.tableView reloadData];
         }else {
             CSShowWrongMessage
@@ -85,6 +86,7 @@
     self.sureButton.layer.cornerRadius = 5;
     
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(execute:) name:@"WXpayResult_Notification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(execute:) name:@"AlipayResult_Notification" object:nil];
 }
 - (void)configNavigationBar {
     F3f3f3NavigationBarColor
@@ -141,17 +143,7 @@
     
     [[AlipaySDK defaultService] payOrder:string fromScheme:appScheme callback:^(NSDictionary *resultDic) {
         
-        int resultStatus = [[resultDic objectForKey:@"resultStatus"]intValue];
-        
-        if (resultStatus == 9000) {
-            
-            self.successView.hidden = NO;
-            
-           
-            [self updateCurrentMoney];
-        }
-        
-        CSLog(@"reslut = %@",resultDic);
+       
         
     }];
     
@@ -185,7 +177,25 @@
     
 }
 - (void)execute:(NSNotification *)notification {
-    if([notification.name isEqualToString:@"WXpayResult_Notification"])
+    if([notification.name isEqualToString:@"AlipayResult_Notification"])
+    {
+        NSDictionary *result=notification.object;
+        if(result)
+        {
+            int resultStatus = [[result objectForKey:@"resultStatus"]intValue];
+            
+            if (resultStatus == 9000) {
+                
+                 [self payResult:YES];
+                
+                
+            } else {
+                [self payResult:NO];
+            }
+            
+            
+        }
+    } else if([notification.name isEqualToString:@"WXpayResult_Notification"])
     {
         [self payResult:[notification.object boolValue]];
     }
@@ -199,8 +209,7 @@
         [[NSNotificationCenter defaultCenter] removeObserver:self name:@"WXpayResult_Notification" object:nil];//注销通知接收
         self.successView.hidden = NO;
         
-    
-        
+        self.successLabel.text = [NSString stringWithFormat:@"已为您的账户充值%@易道元",self.currentModel.money];
         [self updateCurrentMoney];
         
         
@@ -298,7 +307,14 @@
         return 92;
     }
     if (indexPath.section == 1) {
-        return 85 * 4 + 10 * 5;
+        
+        NSInteger count = self.itemMutableArray.count / 3;
+        
+        if (self.itemMutableArray.count % 3 != 0) {
+            count += 1;
+        }
+        
+        return 85 * count + 10 * (count + 1);
     }
     return 55;
 }
@@ -334,5 +350,9 @@
         return 0;
     }
     return 50;
+}
+- (IBAction)clickHideButtonDone:(id)sender {
+    
+    self.successView.hidden = YES;
 }
 @end

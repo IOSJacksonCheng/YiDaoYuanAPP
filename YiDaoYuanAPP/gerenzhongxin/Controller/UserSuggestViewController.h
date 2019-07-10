@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UserSuggestViewController : BaseViewController
-
+@property (nonatomic, assign) BOOL fromShopping;
 @end
 
 NS_ASSUME_NONNULL_END

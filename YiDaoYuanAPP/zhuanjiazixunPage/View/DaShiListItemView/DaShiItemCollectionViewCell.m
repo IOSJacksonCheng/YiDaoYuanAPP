@@ -38,11 +38,11 @@
        
         
        
-        self.csTitleLabel.textColor = [UIColor colorWithHexString:@"#42231E"];
+        self.csTitleLabel.textColor = csBlueColor;
        
         self.layer.cornerRadius = 5;
         
-        self.layer.borderColor = [UIColor colorWithHexString:@"#42231E"].CGColor;
+        self.layer.borderColor = csBlueColor.CGColor;
         
         self.layer.borderWidth = 1;
         

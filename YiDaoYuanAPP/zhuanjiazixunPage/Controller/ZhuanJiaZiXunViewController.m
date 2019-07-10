@@ -322,7 +322,7 @@ NSString *location = [[NSUserDefaults standardUserDefaults] stringForKey:@"CSLoc
     }
     if (indexPath.section == 1) {
         if (indexPath.row == 0) {
-            return 454.5;
+            return 377;
         }
         return 54;
     } else if (indexPath.section == 2) {

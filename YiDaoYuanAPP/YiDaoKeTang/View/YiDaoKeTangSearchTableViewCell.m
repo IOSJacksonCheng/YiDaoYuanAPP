@@ -7,7 +7,14 @@
 //
 
 #import "YiDaoKeTangSearchTableViewCell.h"
+@interface YiDaoKeTangSearchTableViewCell()
+@property (weak, nonatomic) IBOutlet UILabel *csTitleLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *csImageView;
+@property (weak, nonatomic) IBOutlet UILabel *guanzhuLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
+
+@end
 @implementation YiDaoKeTangSearchTableViewCell
 
 - (void)awakeFromNib {
@@ -20,5 +27,18 @@
 
     // Configure the view for the selected state
 }
+- (void)setModel:(YiDaoKeTangModel *)model {
+    
+    _model = model;
+    
+    self.csTitleLabel.text = [NSString stringWithFormat:@"%@%@",model.title, model.intro];
+    
+    
 
+    
+    [self.csImageView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:PlaceHolderImage];
+    self.timeLabel.text = model.ctime;
+    self.guanzhuLabel.text = [NSString stringWithFormat:@"%@关注",model.focus];
+    
+}
 @end

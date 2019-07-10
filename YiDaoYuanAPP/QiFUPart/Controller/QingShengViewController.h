@@ -7,12 +7,11 @@
 //
 
 #import "BaseViewController.h"
-
+#import "FoAndShenXianModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface QingShengViewController : BaseViewController
-@property (nonatomic, assign) NSInteger passTag;
-
+@property (nonatomic, strong) FoAndShenXianModel *passModel;
 @end
 
 NS_ASSUME_NONNULL_END

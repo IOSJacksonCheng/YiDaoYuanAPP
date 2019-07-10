@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "JudgeModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YiDaoKeTangDetailJudgeTableViewCell : UITableViewCell
-
+@property (nonatomic, strong) JudgeModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

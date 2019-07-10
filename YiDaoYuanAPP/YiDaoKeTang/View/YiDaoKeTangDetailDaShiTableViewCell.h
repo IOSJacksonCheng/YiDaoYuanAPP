@@ -11,7 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YiDaoKeTangDetailDaShiTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *csImageView;
 
+@property (weak, nonatomic) IBOutlet UILabel *dashiNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dashiJieSaoLabel;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -175,6 +175,12 @@
     [super viewWillAppear:animated];
     [self configNavigationBar];
     
+    [CSUtility updateCurrentMoney:^(BOOL updateSuccess) {
+        if (updateSuccess) {
+            [self.tableView reloadData];
+        }
+    }];
+    
 }
 - (void)viewDidAppear:(BOOL)animated {
    

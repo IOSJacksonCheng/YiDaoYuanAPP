@@ -8,35 +8,66 @@
 
 #import "MingDengExplainViewController.h"
 #import "MingDengExplainTableViewCell.h"
-@interface MingDengExplainViewController ()
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+#import <WebKit/WebKit.h>
+
+@interface MingDengExplainViewController ()<WKUIDelegate,WKNavigationDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) WKWebView *wkWebView;
+@property (nonatomic, strong) WKWebViewConfiguration *wkConfig;
+@property (nonatomic, strong) UIProgressView *progressView;
 @end
 
 @implementation MingDengExplainViewController
+- (WKWebViewConfiguration *)wkConfig {
+    if (!_wkConfig) {
+        _wkConfig = [[WKWebViewConfiguration alloc] init];
+        _wkConfig.allowsInlineMediaPlayback = YES;
+        _wkConfig.allowsPictureInPictureMediaPlayback = YES;
+        
+        //设置configur对象的preferences属性的信息
+        WKPreferences *preferences = [[WKPreferences alloc] init];
+        _wkConfig.preferences = preferences;
+        
+        //是否允许与js进行交互，默认是YES的，如果设置为NO，js的代码就不起作用了
+        preferences.javaScriptEnabled = YES;
+        //        preferences.javaScriptCanOpenWindowsAutomatically = YES;
+        
+    }
+    return _wkConfig;
+}
 
+- (WKWebView *)wkWebView {
+    if (!_wkWebView) {
+        
+        if (IPHONE_X) {
+            _wkWebView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, MainScreenWidth, MainScreenHeight - 1 - 84 - 22) configuration:self.wkConfig];
+        }else {
+            _wkWebView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, MainScreenWidth, MainScreenHeight - 1 - 64) configuration:self.wkConfig];
+        }
+        
+        
+        
+        _wkWebView.navigationDelegate = self;
+        _wkWebView.UIDelegate = self;
+        [self.view addSubview:_wkWebView];
+    }
+    return _wkWebView;
+}
+- (void)dealloc {
+    [self.wkWebView removeObserver:self forKeyPath:@"estimatedProgress"];
+}
 - (void)viewDidLoad {
     
     [super viewDidLoad];
     
-    [self configSubViews];
-    
     [self configNavigationBar];
-    
-    [self configTableView];
+    [self configSubViews];
+    [self startLoad];
     
 }
 
-- (void)configTableView {
-    
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    
-    [self.tableView registerNib:[UINib nibWithNibName:CSCellName(MingDengExplainTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(MingDengExplainTableViewCell)];
-    self.tableView.rowHeight = 190;
-}
-- (void)configSubViews {
-    
-}
+
 - (void)configNavigationBar {
     
     self.title = @"供灯说明";
@@ -59,15 +90,92 @@
 - (void)clickLeftButtonDone {
     [self.navigationController popViewControllerAnimated:YES];
 }
-#pragma mark --UITableViewDelegate/DataSource
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+- (void)configSubViews {
+    
+    
+    self.progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 2)];
+    
+    self.progressView.backgroundColor = csBlueColor;
+    
+    //设置进度条的高度，下面这句代码表示进度条的宽度变为原来的1倍，高度变为原来的1.5倍.
+    self.progressView.transform = CGAffineTransformMakeScale(1.0f, 1.5f);
+    
+    [self.view addSubview:self.progressView];
+    
+    [self.wkWebView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
 }
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+- (void)startLoad {
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@", BASE_URL, CSURL_Portal_Site_Lamp];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    
+    request.timeoutInterval = 15.0f;
+    
+    [self.wkWebView loadRequest:request];
 }
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MingDengExplainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(MingDengExplainTableViewCell)];
-    return cell;
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"estimatedProgress"]) {
+        self.progressView.progress = self.wkWebView.estimatedProgress;
+        if (self.progressView.progress == 1) {
+            /*
+             *添加一个简单的动画，将progressView的Height变为1.4倍，在开始加载网页的代理中会恢复为1.5倍
+             *动画时长0.25s，延时0.3s后开始动画
+             *动画结束后将progressView隐藏
+             */
+            __weak typeof (self)weakSelf = self;
+            [UIView animateWithDuration:0.25f delay:0.3f options:UIViewAnimationOptionCurveEaseOut animations:^{
+                weakSelf.progressView.transform = CGAffineTransformMakeScale(1.0f, 1.4f);
+            } completion:^(BOOL finished) {
+                weakSelf.progressView.hidden = YES;
+                
+            }];
+        }
+    }else{
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
 }
+#pragma mark - WKWKNavigationDelegate Methods
+
+/*
+ *5.在WKWebViewd的代理中展示进度条，加载完成后隐藏进度条
+ */
+
+//开始加载
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
+    NSLog(@"开始加载网页");
+    //开始加载网页时展示出progressView
+    self.progressView.hidden = NO;
+    //开始加载网页的时候将progressView的Height恢复为1.5倍
+    self.progressView.transform = CGAffineTransformMakeScale(1.0f, 1.5f);
+    //防止progressView被网页挡住
+    [self.view bringSubviewToFront:self.progressView];
+    
+}
+
+//加载完成
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    NSLog(@"加载完成");
+    //加载完成后隐藏progressView
+    self.progressView.hidden = YES;
+}
+
+//加载失败
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
+    NSLog(@"加载失败");
+    //加载失败同样需要隐藏progressView
+    self.progressView.hidden = YES;
+}
+//#pragma mark --UITableViewDelegate/DataSource
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+//    return 1;
+//}
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//    return 2;
+//}
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    MingDengExplainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(MingDengExplainTableViewCell)];
+//    return cell;
+//}
 @end

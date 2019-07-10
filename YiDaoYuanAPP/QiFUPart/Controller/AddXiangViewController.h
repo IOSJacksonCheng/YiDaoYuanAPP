@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AddXiangViewController : BaseViewController
 @property (nonatomic, strong) NSString *passString;
+@property (nonatomic, strong) NSString *passCatId;
+@property (nonatomic, strong) NSString *passSuppliationId;
 @end
 
 NS_ASSUME_NONNULL_END

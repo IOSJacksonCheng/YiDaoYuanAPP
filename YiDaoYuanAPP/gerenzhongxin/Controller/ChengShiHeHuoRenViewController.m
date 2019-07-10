@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
 @property (weak, nonatomic) IBOutlet UITextField *cityTextField;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
+- (IBAction)clickSubmitDone:(id)sender;
 
 @end
 
@@ -70,4 +71,26 @@
 }
 
 
+- (IBAction)clickSubmitDone:(id)sender {
+    
+    if (csCharacterIsBlank(self.nameTextField.text) || csCharacterIsBlank(self.phoneTextField.text) || csCharacterIsBlank(self.cityTextField.text)) {
+        CustomWrongMessage(@"信息填写完整");
+        return;
+    }
+    NSMutableDictionary *para = @{}.mutableCopy;
+    para[@"img"] = @"1";
+    para[@"reserved_name"] = self.nameTextField.text;
+    para[@"telephone"] = self.phoneTextField.text;
+    para[@"agent_city"] = self.cityTextField.text;
+
+    [CSNetManager sendPostRequestWithNeedToken:YES Url:CSURL_User_City_Partner Pameters:para success:^(id  _Nonnull responseObject) {
+        if (CSInternetRequestSuccessful) {
+            CSShowWrongMessage
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+}
 @end

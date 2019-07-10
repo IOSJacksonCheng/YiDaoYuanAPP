@@ -62,6 +62,8 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="csImageView" destination="BPX-h5-oF2" id="U1V-WQ-RBD"/>
+                <outlet property="dashiJieSaoLabel" destination="Ng4-n4-kRE" id="aO3-P4-tOR"/>
+                <outlet property="dashiNameLabel" destination="5GO-hm-Ric" id="d8g-Ew-oM0"/>
             </connections>
             <point key="canvasLocation" x="129.59999999999999" y="120.53973013493254"/>
         </tableViewCell>

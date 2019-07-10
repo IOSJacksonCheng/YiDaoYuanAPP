@@ -30,12 +30,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *button8;
 @property (weak, nonatomic) IBOutlet UIButton *surePayButton;
 - (IBAction)clickMoneyButtonDone:(UIButton *)sender;
-@property (weak, nonatomic) IBOutlet UIView *successView;
+
 - (IBAction)clickSurePayButtonDone:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UIView *remindView;
 @property (weak, nonatomic) IBOutlet UILabel *yueLabel;
 - (IBAction)clickHideButtonDone:(id)sender;
-
+@property (weak, nonatomic) IBOutlet UIView *successView;
 @property (nonatomic, assign) int recordMoney;
 @property (weak, nonatomic) IBOutlet UILabel *successLabel;
 
@@ -87,7 +87,7 @@
 - (void)configSubViews {
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(execute:) name:@"WXpayResult_Notification" object:nil];
-    
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(execute:) name:@"AlipayResult_Notification" object:nil];
     self.chooseAlipay = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickZhifubao)];
     tap.numberOfTapsRequired = 1;
@@ -342,7 +342,25 @@
 }
 
 - (void)execute:(NSNotification *)notification {
-    if([notification.name isEqualToString:@"WXpayResult_Notification"])
+    if([notification.name isEqualToString:@"AlipayResult_Notification"])
+    {
+        NSDictionary *result=notification.object;
+        if(result)
+        {
+            int resultStatus = [[result objectForKey:@"resultStatus"]intValue];
+            
+            if (resultStatus == 9000) {
+                
+                [self payResult:YES];
+                
+                
+            } else {
+                [self payResult:NO];
+            }
+            
+            
+        }
+    } else if([notification.name isEqualToString:@"WXpayResult_Notification"])
     {
         [self payResult:[notification.object boolValue]];
     }

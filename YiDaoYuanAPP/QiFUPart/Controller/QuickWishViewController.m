@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NSMutableArray *itemMutableArray;
 - (IBAction)clickRightNowWishButtonDone:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *remindLabel;
+@property (weak, nonatomic) IBOutlet UITextView *wishTextView;
 
 @end
 
@@ -24,46 +25,70 @@
     
         _itemMutableArray = @[].mutableCopy;
         
-        DaShiListItemModel *model = [DaShiListItemModel new];
-        
-        model.title = @"保佑家人平安健康";
-        model.choose = NO;
-        [_itemMutableArray addObject:model];
-        
-        
-        
-        for (int i = 0; i < 4; i ++) {
-            DaShiListItemModel *model1 = [DaShiListItemModel new];
-            
-            model1.title = @"豪宅平安";
-            model1.choose = NO;
-            [_itemMutableArray addObject:model1];
-        }
-        
-        
-       
-        
     }
+    
     return _itemMutableArray;
 }
 
 - (IBAction)clickRightNowWishButtonDone:(id)sender {
     
     
-    if (self.passTag == 0) {
-        [[NSUserDefaults standardUserDefaults] setValue:@"img_guangming_3" forKey:@"CS_CenterFoImage"];
-    } else if (self.passTag == 1) {
-        [[NSUserDefaults standardUserDefaults] setValue:@"img_1_fo" forKey:@"CS_BottomFirstShenImage"];
-    }else if (self.passTag == 2) {
-        [[NSUserDefaults standardUserDefaults] setValue:@"chooseFo" forKey:@"CS_BottomSecondShenImage"];
-    }else if (self.passTag == 3) {
-        [[NSUserDefaults standardUserDefaults] setValue:@"img_1_fo" forKey:@"CS_BottomThirdShenImage"];
+    NSMutableDictionary *para = @{}.mutableCopy;
+    
+    para[@"buddha_id"] = self.passBuddaId;
+    
+    para[@"wish"] = self.wishTextView.text;
+
+    
+    NSMutableArray *array = @[].mutableCopy;
+    for (DaShiListItemModel *model in self.itemMutableArray) {
+        if (model.choose) {
+            [array addObject:model.idString];
+        }
     }
     
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    for (int i = 0; i < array.count; i ++) {
+        
+        para[[NSString stringWithFormat:@"wish_ids[%d]",i]] = array[i];
+
+    }
+    
+    [CSNetManager sendPostRequestWithNeedToken:YES Url:CSURL_Portal_Consecrate_Supplication Pameters:para success:^(id  _Nonnull responseObject) {
+        if (CSInternetRequestSuccessful) {
+            if (self.fromDeng) {
+                [self sendDianDengRequest:[NSString stringWithFormat:@"%@",CSGetResult[@"supplication_id"]]];
+            } else {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            }
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+    
+
     
 }
+- (void)sendDianDengRequest:(NSString *)supplicationId {
+    
+    NSMutableDictionary *para = @{}.mutableCopy;
+    
+    para[@"supplication_id"] = supplicationId;
+    para[@"price_id"] = self.passPriceId;
 
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Consecrate_Addlamp Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",CSGetResult[@"coin"]] forKey:@"CS_Coin"];
+            [self.navigationController popViewControllerAnimated:YES];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+}
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -74,8 +99,22 @@
     
     [self configTableView];
     
+    [self sendGetRequest];
 }
-
+- (void)sendGetRequest {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_Consecrate_Hotwish Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            self.itemMutableArray = [CSParseManager getQuickWishModelArrayWithResponseObject:CSGetResult[@"lists"]];
+            [self.itemCollectionView reloadData];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+}
 - (void)configTableView {
     self.itemCollectionView.delegate = self;
     self.itemCollectionView.dataSource = self;
@@ -121,7 +160,7 @@
     
     DaShiListItemModel *model = self.itemMutableArray[indexPath.row];
     
-    float wordWidth = 20;
+    float wordWidth = 15;
     
     
     
@@ -130,8 +169,8 @@
 }
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     
-    return UIEdgeInsetsMake(5, 5, 5, 5);
-    //    return UIEdgeInsetsMake(0, 0, 0, 0);
+//    return UIEdgeInsetsMake(5, 5, 5, 5);
+        return UIEdgeInsetsMake(0, 0, 0, 0);
     
 }
 

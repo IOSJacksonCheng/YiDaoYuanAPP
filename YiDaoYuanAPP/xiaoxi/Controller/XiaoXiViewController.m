@@ -12,6 +12,7 @@
 @interface XiaoXiViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *searchView;
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
+@property (weak, nonatomic) IBOutlet UIImageView *animationImageView;
 
 @end
 
@@ -20,8 +21,13 @@
     [super viewWillAppear:animated];
     [self configNavigationBar];
 }
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.animationImageView startAnimating];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+   
     [self configSubViews];
     
     [self configNavigationBar];
@@ -46,18 +52,49 @@
     F3f3f3NavigationBarColor
     
     
-    UIButton *rightButton = [[UIButton alloc] init];
-
-    [rightButton setTitle:@"论坛" forState:UIControlStateNormal];
-    [rightButton setTitleColor:csBlueColor forState:UIControlStateNormal];
-    rightButton.titleLabel.font = csCharacterFont_18;
+//    UIButton *rightButton = [[UIButton alloc] init];
+//
+//    [rightButton setTitle:@"论坛" forState:UIControlStateNormal];
+//    [rightButton setTitleColor:csBlueColor forState:UIControlStateNormal];
+//    rightButton.titleLabel.font = csCharacterFont_18;
+//
+//    [rightButton addTarget:self action:@selector(clickRightButtonDone) forControlEvents:UIControlEventTouchDown];
+//
+//    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+//
+//
+//    UIButton *rightButton1 = [[UIButton alloc] init];
+//
+//    [rightButton1 setImage:DotaImageName(@"icon_luntan") forState:UIControlStateNormal];
+//
+//
+//    [rightButton1 addTarget:self action:@selector(clickRightButtonDone) forControlEvents:UIControlEventTouchDown];
+//
+//    UIBarButtonItem *rightItem1 = [[UIBarButtonItem alloc] initWithCustomView:rightButton1];
+//
+//    self.navigationItem.rightBarButtonItems = @[rightItem, rightItem1];
     
-    [rightButton addTarget:self action:@selector(clickRightButtonDone) forControlEvents:UIControlEventTouchDown];
+    NSMutableArray *allImage = @[].mutableCopy;
     
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    for (int i = 1; i < 6; i ++) {
+        
+        NSString *rightCellName = [NSString stringWithFormat:@"论坛动图_%d",i];
+        
+        UIImage *image = DotaImageName(rightCellName);
+        
+        [allImage addObject:image];
+        
+    }
     
-    self.navigationItem.rightBarButtonItem = rightItem;
+    [self.animationImageView setAnimationImages:allImage];
     
+    self.animationImageView.animationRepeatCount = HUGE;
+    self.animationImageView.animationDuration = 2;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickRightButtonDone)];
+    tap.numberOfTapsRequired = 1;
+    tap.numberOfTouchesRequired = 1;
+    [self.animationImageView addGestureRecognizer:tap];
 }
 - (void)clickRightButtonDone {
     

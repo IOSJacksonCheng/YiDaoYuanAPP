@@ -18,6 +18,12 @@
 - (IBAction)clickBeginDianDengDone:(id)sender;
 - (IBAction)clickNextButtonDone:(UIButton *)sender;
 
+@property (nonatomic, strong) NSMutableArray *dengArray;
+@property (weak, nonatomic) IBOutlet UILabel *csTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *introduceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *suitPeopleLabl;
+@property (weak, nonatomic) IBOutlet UIImageView *dengImageView;
+@property (nonatomic, strong) NSString *recordPriceId;
 @end
 
 @implementation MingDengViewController
@@ -26,14 +32,35 @@
     
     [super viewDidLoad];
   
+    self.dengArray = @[].mutableCopy;
+    
     [self configSubViews];
     
     [self configNavigationBar];
     
     [self configTableView];
     
+    [self getRequest];
 }
-
+- (void)getRequest {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    
+    para[@"lamp_id"] = self.passLampId;
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_Consecrate_Lampinfo Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            self.csTitleLabel.text = [NSString stringWithFormat:@"%@",CSGetResult[@"name"]];
+            self.introduceLabel.text = [NSString stringWithFormat:@"%@",CSGetResult[@"intro"]];
+self.suitPeopleLabl.text = [NSString stringWithFormat:@"%@",CSGetResult[@"suit"]];
+            
+            [self.dengImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",CSGetResult[@"icon"]]] placeholderImage:PlaceHolderImage];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+}
 - (void)configTableView {
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -70,60 +97,57 @@
     self.diandengView.hidden = YES;
 }
 - (IBAction)clickBeginDianDengDone:(id)sender {
-    self.diandengView.hidden = NO;
+    [self getLampPrice];
 }
 
 - (IBAction)clickNextButtonDone:(UIButton *)sender {
-    
-    
+    BOOL goOn = NO;
+    for (DengPriceModel *model in self.dengArray) {
+
+        if (model.choose) {
+            goOn = YES;
+            break;
+        }
+    }
+    if (!goOn) {
+        CustomWrongMessage(@"请选择点灯类型");
+        return;
+    }
     [self performSegueWithIdentifier:@"QuickWishViewController" sender:self];
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if ([segue.identifier isEqualToString:@"QuickWishViewController"]) {
         QuickWishViewController *new = segue.destinationViewController;
-        new.passTag = self.passTag;
-        
+        new.passBuddaId = self.passBuddahaId;
+        new.passPriceId = self.recordPriceId;
+        new.fromDeng = YES;
     }
 }
 #pragma mark --UITableViewDelegate/DataSource
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    for (DengPriceModel *model in self.dengArray) {
+        model.choose = NO;
+    }
+    DengPriceModel *model = self.dengArray[indexPath.section];
+
+    model.choose = YES;
+    self.recordPriceId = model.price_id;
+    [self.tableView reloadData];
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return self.dengArray.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+   
     MindDengTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(MindDengTableViewCell)];
     
-    cell.xuanzhongImageView.hidden = YES;
-    
-    cell.csImageView.hidden = YES;
-    if (indexPath.section == 2) {
-        cell.csImageView.hidden = NO;
-    }
-    if (indexPath.section == 0) {
-        
-        cell.xuanzhongImageView.hidden = NO;
-        
-        cell.backgroundColor = [UIColor colorWithHexString:@"#F3861F"];
-        UIColor *titleColor = [UIColor colorWithHexString:@"#FAFBCB"];;
-        
-        cell.titleLabel.textColor = titleColor;
-        cell.moneyLabel.textColor = titleColor;
-        cell.timeLabel.textColor = titleColor;
-        
-    }else {
-        
-        cell.backgroundColor = [UIColor colorWithHexString:@"#FFFFAC"];
-        
-        UIColor *titleColor = [UIColor colorWithHexString:@"#BD5F4A"];;
-        
-        cell.titleLabel.textColor = titleColor;
-        cell.moneyLabel.textColor = titleColor;
-        cell.timeLabel.textColor = titleColor;
-
-    }
+    DengPriceModel *model = self.dengArray[indexPath.section];
+    cell.model = model;
     
     return cell;
 }
@@ -139,5 +163,25 @@
         return 0;
     }
     return 20;
+}
+- (void)getLampPrice {
+    
+    NSMutableDictionary *para = @{}.mutableCopy;
+    para[@"lamp_id"] = self.passLampId;
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Consecrate_Lampprice Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            self.dengArray = [CSParseManager getDengPriceModelArrayWithResponseObject:CSGetResult[@"lists"]];
+            [self.tableView reloadData];
+            self.diandengView.hidden = NO;
+
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+    
+    
 }
 @end

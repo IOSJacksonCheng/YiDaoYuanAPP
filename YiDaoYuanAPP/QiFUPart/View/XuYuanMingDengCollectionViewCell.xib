@@ -24,6 +24,10 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_pingan" translatesAutoresizingMaskIntoConstraints="NO" id="wBC-DT-tiw">
                                 <rect key="frame" x="5" y="23" width="84" height="132"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="84" id="Nd8-TF-W4j"/>
+                                    <constraint firstAttribute="height" constant="132" id="lyP-We-lCo"/>
+                                </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_cengban" translatesAutoresizingMaskIntoConstraints="NO" id="EUi-5M-hxR">
                                 <rect key="frame" x="0.0" y="0.0" width="94" height="39"/>

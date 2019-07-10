@@ -54,6 +54,24 @@
 //祈福
 #define CSURL_Portal_Consecrate_Category @"portal/consecrate/category"
 #define CSURL_Portal_Consecrate_Being @"portal/consecrate/being"
+#define CSURL_Portal_Consecrate @"portal/consecrate"
+
+#define CSURL_Portal_Consecrate_Delete @"portal/consecrate/delete"
+#define CSURL_Portal_Consecrate_Hotwish @"portal/consecrate/hotwish"
+#define CSURL_Portal_Consecrate_Supplication @"portal/consecrate/supplication"
+
+#define CSURL_Portal_Consecrate_Buddha @"portal/consecrate/buddha"
+#define CSURL_Portal_Consecrate_Record @"portal/consecrate/record"
+#define CSURL_Portal_Consecrate_History @"portal/consecrate/history"
+#define CSURL_Portal_Consecrate_Paytribute @"portal/consecrate/paytribute"
+#define CSURL_Portal_Consecrate_Lamp @"portal/consecrate/lamp"
+#define CSURL_Portal_Consecrate_Lampinfo @"portal/consecrate/lampinfo"
+
+#define CSURL_Portal_Site_Lamp @"portal/site/lamp"
+#define CSURL_Consecrate_Lampprice @"portal/consecrate/lampprice"
+#define CSURL_Consecrate_Addlamp @"portal/consecrate/addlamp"
+
+
 //祈福
 
 //首页
@@ -78,10 +96,25 @@
 #define CSURL_User_Feedback @"portal/user/feedback"
 #define CSURL_User_Profile_Account @"user/profile/account"
 #define CSURL_User_Profile_Coindiscount @"user/profile/coindiscount"
+#define CSURL_User_City_Partner @"portal/user/city_partner"
 
 //个人中心
 
 #define CSURL_Master_Skilled_field @"portal/master/skilled_field"
 #define CSURL_Masterpost @"portal/user/masterpost"
+
+//易道源课堂
+#define CSURL_Course_Category @"portal/course/category"
+#define CSURL_Portal_Course @"portal/course"
+#define CSURL_Course_Info @"portal/course/info"
+
+#define CSURL_Portal_Evaluatelists @"portal/course/evaluatelists"
+#define CSURL_Portal_Course_Order @"portal/course/order"
+#define CSURL_Portal_Course_Evaluate @"portal/course/evaluate"
+
+
+//商场
+#define CSURL_Portal_Site_Goodsabout @"portal/site/goodsabout"
+#define CSURL_Goods_Idea @"portal/goods/idea"
 
 #endif /* CSInterfaceAddress_h */

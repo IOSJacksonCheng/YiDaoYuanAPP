@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-   
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(rotationAnimation) name:@"cswillenterForeground" object:nil];
     self.delegate = self;
     for (UIViewController *vc in self.viewControllers)
     {
@@ -52,6 +52,9 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self rotationAnimation];
+}
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 - (void)rotationAnimation{
     if ([@"key" isEqualToString:[self.myTabBar.centerButton.layer animationKeys].firstObject]){

@@ -8,9 +8,10 @@
 
 #import "QiYuanJiLuViewController.h"
 #import "QiFuJiLuTableViewCell.h"
+#import "DaShiListItemModel.h"
 @interface QiYuanJiLuViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (nonatomic, strong) NSMutableArray *listArray;
 @end
 
 @implementation QiYuanJiLuViewController
@@ -23,8 +24,26 @@
     
     [self configTableView];
     
+    self.listArray = @[].mutableCopy;
+    
+    [self getNewData];
 }
 
+- (void)getNewData {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    para[@"supplication_id"] = self.pass_ID;
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_Consecrate_History Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            self.listArray = [CSParseManager getGongPingDetailArrayWithResponseObject:CSGetResult[@"lists"]];
+            [self.tableView reloadData];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+}
 - (void)configTableView {
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
@@ -57,7 +76,7 @@
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return self.listArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     QiFuJiLuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(QiFuJiLuTableViewCell)];
@@ -66,6 +85,9 @@
     } else {
         cell.topView.hidden = NO;
     }
+    DaShiListItemModel *model = self.listArray[indexPath.row];
+    cell.titleLabel.text = model.idString;
+    cell.contentLabel.text = model.title;
     return cell;
 }
 @end

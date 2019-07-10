@@ -177,7 +177,7 @@
             
             
             [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",CSGetResult[@"balance"]] forKey:@"CS_Balance"];
-            update(NO);
+            update(YES);
             
         }else {
             update(NO);

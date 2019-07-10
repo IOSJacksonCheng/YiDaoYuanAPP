@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL choose;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *imageString;
+@property (nonatomic, strong) NSString *idString;
 @end
 
 NS_ASSUME_NONNULL_END

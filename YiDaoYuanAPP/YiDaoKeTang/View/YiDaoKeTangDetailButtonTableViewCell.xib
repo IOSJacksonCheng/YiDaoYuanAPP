@@ -62,6 +62,7 @@
                 <outlet property="introduceButton" destination="0kT-5i-1e3" id="yYW-18-qnB"/>
                 <outlet property="judgeButton" destination="17m-Sq-8FT" id="FV5-3c-GJn"/>
                 <outlet property="litterView" destination="Tmd-pK-yGq" id="Feu-N8-9nu"/>
+                <outlet property="pinglunLabel" destination="17m-Sq-8FT" id="rjA-Ms-yBg"/>
             </connections>
             <point key="canvasLocation" x="129.59999999999999" y="120.53973013493254"/>
         </tableViewCell>

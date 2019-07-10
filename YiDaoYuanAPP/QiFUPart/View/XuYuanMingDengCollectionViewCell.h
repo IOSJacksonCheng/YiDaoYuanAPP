@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "XuYuanMingDengModel.h"
+#import "DengModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XuYuanMingDengCollectionViewCell : UICollectionViewCell
-@property (nonatomic, strong) XuYuanMingDengModel *model;
+@property (nonatomic, strong) DengModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

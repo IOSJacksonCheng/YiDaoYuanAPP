@@ -7,22 +7,26 @@
 //
 
 #import "AddXiangViewController.h"
-#import "AddXiangTableViewCell.h"
+#import "GongPingCollectionViewCell.h"
 
 NSString * const xianGuoString = @"献果";
 NSString * const xianXiangString = @"敬香";
 
 NSString * const xianHuaString = @"献花";
 NSString * const jingShiString = @"敬食";
-@interface AddXiangViewController ()
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@interface AddXiangViewController ()<UICollectionViewDelegate ,UICollectionViewDataSource>
+
 @property (weak, nonatomic) IBOutlet UIView *moneyView;
 - (IBAction)clickCloseButtonDone:(id)sender;
 @property (weak, nonatomic) IBOutlet UIImageView *otherFuFeiImageView;
 @property (weak, nonatomic) IBOutlet UILabel *otherFuFeiTitleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *otherFuFeiButton;
 @property (weak, nonatomic) IBOutlet UILabel *otherFuFeiSubLabel;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, strong) NSMutableArray *listArray;
 
+@property (nonatomic, strong) GongPingModel *currentModel;
+- (IBAction)clickSureButtonDone:(id)sender;
 @end
 
 @implementation AddXiangViewController
@@ -37,24 +41,48 @@ NSString * const jingShiString = @"敬食";
     
     [self configTableView];
     
+    [self getNewData];
     
 }
-- (void)getMoreData {
-    
-    
-}
+
 - (void)getNewData {
     
+    NSMutableDictionary *para = @{}.mutableCopy;
+    
+    para[@"cat_id"] = self.passCatId;
+   
+    para[@"pageSize"] = @"100";
+   
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_Consecrate Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            self.listArray = [CSParseManager getGongPingModelArrayWithResponseObject:CSGetResult[@"lists"]];
+            [self.collectionView reloadData];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
     
 }
 - (void)configTableView {
   
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+
+    self.listArray = @[].mutableCopy;
     
-    [self.tableView registerNib:[UINib nibWithNibName:CSCellName(AddXiangTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(AddXiangTableViewCell)];
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     
-    self.tableView.rowHeight = 270;
+    //创建UICollectionView
+    self.collectionView.collectionViewLayout = layout;
     
+    //设置位置和尺寸
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    //注册cell的ID#import "GongPingCollectionViewCell.h"
+
+    [self.collectionView registerNib:[UINib nibWithNibName:CSCellName(GongPingCollectionViewCell) bundle:nil] forCellWithReuseIdentifier:CSCellName(GongPingCollectionViewCell)];
 }
 - (void)configSubViews {
     
@@ -82,77 +110,86 @@ NSString * const jingShiString = @"敬食";
         
     }
 }
-#pragma mark --UITableViewDelegate/DataSource
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    AddXiangTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(AddXiangTableViewCell)];
-    
-    if ([self.passString isEqualToString:xianGuoString]) {
-        cell.firstImageView.image = DotaImageName(@"img_pingan-1");
-        cell.secondImageView.image = DotaImageName(@"img_pingguo");
-        cell.thirdImageView.image = DotaImageName(@"img_xigua");
-    } else if ([self.passString isEqualToString:xianHuaString]) {
-         cell.firstImageView.image = DotaImageName(@"img_hua_1");
-         cell.secondImageView.image = DotaImageName(@"img_hua_2");
-         cell.thirdImageView.image = DotaImageName(@"8059a809e52f57c038e7364a0d0322e604fd0e6fce57-Yoccmn_fw658");
-    } else if ([self.passString isEqualToString:jingShiString]){
-        cell.firstImageView.image = DotaImageName(@"img_1_hongguo");
-        cell.secondImageView.image = DotaImageName(@"img_2_huangguo");
-        cell.thirdImageView.image = DotaImageName(@"img_3_baiguo");
-    }
-    
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickFirstViewDone)];
-    tap.numberOfTapsRequired = 1;
-    tap.numberOfTouchesRequired = 1;
-    
-    [cell.firstView addGestureRecognizer:tap];
-    
-    
-    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickSecondViewDone)];
-    tap1.numberOfTapsRequired = 1;
-    tap1.numberOfTouchesRequired = 1;
-    
-    [cell.secondView addGestureRecognizer:tap1];
-    
-    
-    
-    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickThirdViewDone)];
-    tap2.numberOfTapsRequired = 1;
-    tap2.numberOfTouchesRequired = 1;
-    
-    [cell.thirdView addGestureRecognizer:tap2];
-    return cell;
-}
-- (void)clickFirstViewDone {
-    self.moneyView.hidden = NO;
-    [self.otherFuFeiButton setTitle:@"确定" forState:UIControlStateNormal];
-    
-    self.otherFuFeiTitleLabel.text = @"平安吉祥";
-}
-- (void)clickSecondViewDone {
-    self.moneyView.hidden = NO;
-    
-    [self.otherFuFeiButton setTitle:@"立即请购" forState:UIControlStateNormal];
-    
-    self.otherFuFeiTitleLabel.text = @"平安吉祥\n20易道元/10个";
-    
-}
-- (void)clickThirdViewDone {
-    self.moneyView.hidden = NO;
-    [self.otherFuFeiButton setTitle:@"立即请购" forState:UIControlStateNormal];
-    
-    self.otherFuFeiTitleLabel.text = @"平安吉祥\n20易道元/10个";
-    
-    
-}
+
 - (IBAction)clickCloseButtonDone:(id)sender {
     
     self.moneyView.hidden = YES;
     
+}
+
+#pragma mark --UICollectionDelegate/DataSource
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return CGSizeMake(MainScreenWidth * 0.333, 270);
+    
+}
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    
+    return UIEdgeInsetsMake(0, 0, 0, 0);
+    
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    
+    return 0;
+}
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    
+    return 0;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    
+    return self.listArray.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    GongPingCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CSCellName(GongPingCollectionViewCell) forIndexPath:indexPath];
+    
+    
+        GongPingModel *model = self.listArray[indexPath.row];
+    
+        cell.model = model;
+    
+    
+    return cell;
+    
+}
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    GongPingModel *model = self.listArray[indexPath.row];
+    
+    self.currentModel = model;
+    
+    [self.otherFuFeiImageView sd_setImageWithURL:[NSURL URLWithString:model.icon] placeholderImage:PlaceHolderImage];
+    
+    self.otherFuFeiTitleLabel.text = model.name;
+    self.otherFuFeiSubLabel.text = model.intro;
+    self.moneyView.hidden = NO;
+    
+}
+- (void)sendGongPing {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    
+    para[@"tribute_id"] = self.currentModel.idString;
+    para[@"supplication_id"] = self.passSuppliationId;;
+    
+    [CSNetManager sendPostRequestWithNeedToken:YES Url:CSURL_Portal_Consecrate_Paytribute Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",CSGetResult[@"coin"]] forKey:@"CS_Coin"];
+            [self.navigationController popViewControllerAnimated:YES];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+}
+- (IBAction)clickSureButtonDone:(id)sender {
+    
+    [self sendGongPing];
 }
 @end

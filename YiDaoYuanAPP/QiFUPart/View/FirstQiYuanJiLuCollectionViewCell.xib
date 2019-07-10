@@ -41,9 +41,12 @@
                         <color key="textColor" red="0.21960784310000001" green="0.090196078430000007" blue="0.058823529409999999" alpha="0.52322345889999999" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_1-10" translatesAutoresizingMaskIntoConstraints="NO" id="oIW-21-wbY">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_1-10" translatesAutoresizingMaskIntoConstraints="NO" id="oIW-21-wbY">
                         <rect key="frame" x="10" y="25" width="173" height="110"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="110" id="5fD-aF-DG5"/>
+                        </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="供养详情" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2gc-08-qfI">
                         <rect key="frame" x="61.5" y="219.5" width="50" height="15"/>
@@ -86,6 +89,13 @@
                 <constraint firstItem="S1R-ie-USa" firstAttribute="top" secondItem="2gc-08-qfI" secondAttribute="bottom" constant="25" id="vTt-B5-5aN"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <connections>
+                <outlet property="cTimeLabel" destination="GbH-8g-23Q" id="3B7-Pr-MkC"/>
+                <outlet property="csImageView" destination="oIW-21-wbY" id="NsU-hd-lmS"/>
+                <outlet property="haixuLabel" destination="iO0-fE-ufx" id="T9G-45-XXe"/>
+                <outlet property="leijihuanyuanLabel" destination="Yzn-yX-giS" id="1dd-tX-jvO"/>
+                <outlet property="wishLabel" destination="S1R-ie-USa" id="1Eg-5V-bdD"/>
+            </connections>
             <point key="canvasLocation" x="103.2" y="92.653673163418304"/>
         </collectionViewCell>
     </objects>

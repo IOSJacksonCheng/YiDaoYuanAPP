@@ -11,8 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MingDengViewController : BaseViewController
-@property (nonatomic, assign) NSInteger passTag;
-
+@property (nonatomic, strong) NSString *passLampId;
+@property (nonatomic, strong) NSString *passBuddahaId;
 @end
 
 NS_ASSUME_NONNULL_END

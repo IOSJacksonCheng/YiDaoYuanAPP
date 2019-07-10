@@ -8,7 +8,6 @@
 
 #import "YiDaoKeTangDetailDaShiTableViewCell.h"
 @interface YiDaoKeTangDetailDaShiTableViewCell()
-@property (weak, nonatomic) IBOutlet UIImageView *csImageView;
 
 
 @end
@@ -16,7 +15,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.csImageView.layer.cornerRadius = 84 * 0.5;
+    self.csImageView.layer.cornerRadius = 42;
     self.csImageView.layer.masksToBounds = YES;
 }
 
