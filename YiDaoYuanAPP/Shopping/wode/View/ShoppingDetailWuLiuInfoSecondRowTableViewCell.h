@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ShoppingDetailWuLiuInfoSecondRowTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIView *topLineView;
 @property (weak, nonatomic) IBOutlet UIView *bottomLineView;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @end
 
 NS_ASSUME_NONNULL_END

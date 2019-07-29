@@ -22,19 +22,19 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jEb-YL-czQ">
                         <rect key="frame" x="10" y="5" width="300" height="41.5"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123232" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vkS-mb-LdW">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="995-jx-kmg">
                                 <rect key="frame" x="5" y="0.0" width="295" height="41.5"/>
-                                <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="vkS-mb-LdW" firstAttribute="top" secondItem="jEb-YL-czQ" secondAttribute="top" id="bvz-HI-9II"/>
-                            <constraint firstAttribute="trailing" secondItem="vkS-mb-LdW" secondAttribute="trailing" id="il9-Uc-8Uj"/>
-                            <constraint firstItem="vkS-mb-LdW" firstAttribute="leading" secondItem="jEb-YL-czQ" secondAttribute="leading" constant="5" id="jdq-xH-NgT"/>
-                            <constraint firstAttribute="bottom" secondItem="vkS-mb-LdW" secondAttribute="bottom" id="u2g-c7-XX8"/>
+                            <constraint firstItem="995-jx-kmg" firstAttribute="leading" secondItem="jEb-YL-czQ" secondAttribute="leading" constant="5" id="0Ic-Ef-m83"/>
+                            <constraint firstAttribute="bottom" secondItem="995-jx-kmg" secondAttribute="bottom" id="Alw-9J-cXI"/>
+                            <constraint firstAttribute="trailing" secondItem="995-jx-kmg" secondAttribute="trailing" id="NPx-lj-Anc"/>
+                            <constraint firstItem="995-jx-kmg" firstAttribute="top" secondItem="jEb-YL-czQ" secondAttribute="top" id="nJi-ok-NpM"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -48,7 +48,7 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="bgView" destination="jEb-YL-czQ" id="tDr-9q-hkW"/>
-                <outlet property="inputTextField" destination="vkS-mb-LdW" id="iwB-4w-5PU"/>
+                <outlet property="cstextLabel" destination="995-jx-kmg" id="3KE-eM-1Zr"/>
             </connections>
         </tableViewCell>
     </objects>

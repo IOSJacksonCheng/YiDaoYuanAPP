@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ShopProductDetailViewController : BaseViewController
-
+@property (nonatomic, strong) NSString *passID;
 @end
 
 NS_ASSUME_NONNULL_END

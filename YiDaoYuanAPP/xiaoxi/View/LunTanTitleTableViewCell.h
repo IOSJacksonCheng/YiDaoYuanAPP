@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LunTanModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LunTanTitleTableViewCell : UITableViewCell
-
+@property (nonatomic, strong) LunTanModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

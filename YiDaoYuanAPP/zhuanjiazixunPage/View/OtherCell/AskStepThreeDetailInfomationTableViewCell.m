@@ -15,6 +15,7 @@
     // Initialization code
     self.inputView.layer.masksToBounds = YES;
     self.inputView.layer.cornerRadius = 5;
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

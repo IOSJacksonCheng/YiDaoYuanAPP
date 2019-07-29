@@ -90,6 +90,11 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="dikouLabel" destination="kNq-uZ-NEW" id="icb-Hs-ox8"/>
+                <outlet property="renmingbiLabel" destination="yHr-s7-Qzl" id="x6u-WS-LCg"/>
+                <outlet property="yidaoyuanLabel" destination="XJS-DU-MyU" id="mwh-Ld-rxX"/>
+            </connections>
             <point key="canvasLocation" x="129.59999999999999" y="150.67466266866569"/>
         </tableViewCell>
     </objects>

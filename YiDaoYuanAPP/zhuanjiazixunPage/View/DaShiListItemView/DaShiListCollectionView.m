@@ -37,12 +37,31 @@
 // UIEdgeInsets insets = {top, left, bottom, right};
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
   
-    DaShiListItemModel *model = self.itemMutableArray[indexPath.section];
-    DaShiListItemModel *subModel = model.subArray[indexPath.row];
-    
+    DaShiListItemModel *model = [DaShiListItemModel new];
+    if (indexPath.section == 0) {
+        model = self.shengxiaoArray[indexPath.row];
+        
+    } else if (indexPath.section == 1) {
+        model = self.mingLiArray[indexPath.row];
+        
+    }else if (indexPath.section == 2) {
+       model = self.qitaArray[indexPath.row];
+       
+        
+        
+    }
+
     float wordWidth = 48;
-    
-    return CGSizeMake(wordWidth * subModel.title.length, 26);
+ 
+    if (model.title.length == 2) {
+        wordWidth = 30;
+
+    }
+    if (model.title.length >= 4) {
+        wordWidth = 14;
+        
+    }
+    return CGSizeMake(wordWidth * model.title.length, 26);
     
 }
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
@@ -61,24 +80,39 @@
     return 5;
 }
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return self.itemMutableArray.count;
+    return 3;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    
-    DaShiListItemModel *model = self.itemMutableArray[section];
-    
-    return model.subArray.count;
+    if (section == 0) {
+        return 12;
+    }
+    if (section == 1) {
+        return self.mingLiArray.count;
+    }
+    return self.qitaArray.count;
 }
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     DaShiItemCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CSCellName(DaShiItemCollectionViewCell) forIndexPath:indexPath];
+    if (indexPath.section == 0) {
+        DaShiListItemModel *model = self.shengxiaoArray[indexPath.row];
+        cell.model = model;
+
+    } else if (indexPath.section == 1) {
+        DaShiListItemModel *model = self.mingLiArray[indexPath.row];
+        cell.model = model;
+        
+
+    }else if (indexPath.section == 2) {
+        DaShiListItemModel *model = self.qitaArray[indexPath.row];
+        cell.model = model;
+        
+
+    }
     
-    DaShiListItemModel *model = self.itemMutableArray[indexPath.section];
     
-    DaShiListItemModel *subModel = model.subArray[indexPath.row];
     
-    cell.model = subModel;
     
     
     return cell;
@@ -91,23 +125,50 @@
     
     DaShiItemCollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:CSCellName(DaShiItemCollectionReusableView) forIndexPath:indexPath];
     
-    DaShiListItemModel *model = self.itemMutableArray[indexPath.section];
+    if (indexPath.section == 0) {
+        
+        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"选择您的生肖" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFang-SC-Medium" size: 16],NSForegroundColorAttributeName: [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1.0]}];
+        
+        headerView.itemTitleLabel.attributedText = string;
+
+    } else if (indexPath.section == 1) {
+        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"命理（须知准确出生时辰）" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFang-SC-Medium" size: 16],NSForegroundColorAttributeName: [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1.0]}];
+        
+        [string addAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFang-SC-Medium" size: 12], NSForegroundColorAttributeName: [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1.0]} range:NSMakeRange(2, 10)];
+       
+        
+        headerView.itemTitleLabel.attributedText = string;
+
+    } else if (indexPath.section == 2) {
+        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"占卜类&其他（无需准确出生时辰）" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFang-SC-Medium" size: 16],NSForegroundColorAttributeName: [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1.0]}];
+        
+        [string addAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFang-SC-Medium" size: 12], NSForegroundColorAttributeName: [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1.0]} range:NSMakeRange(6, 10)];
+        headerView.itemTitleLabel.attributedText = string;
+
+    }
     
-    headerView.itemTitleLabel.text = model.title;
     
     return headerView;
     
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    
-    DaShiListItemModel *model = self.itemMutableArray[indexPath.section];
-    
-    DaShiListItemModel *subModel = model.subArray[indexPath.row];
-    
- 
-  
-    subModel.choose = !subModel.choose;
+    if (indexPath.section == 0) {
+        DaShiListItemModel *newmodel = self.shengxiaoArray[indexPath.row];
+        for (DaShiListItemModel *model in self.shengxiaoArray) {
+            model.choose = NO;
+        }
+        newmodel.choose = YES;
+    } else if (indexPath.section == 1) {
+        DaShiListItemModel *model = self.mingLiArray[indexPath.row];
+        model.choose = !model.choose;
+        
+    }else if (indexPath.section == 2) {
+        DaShiListItemModel *model = self.qitaArray[indexPath.row];
+        model.choose = !model.choose;
+
+        
+    }
     
     
     
@@ -115,41 +176,16 @@
     [self reloadData];
     
 }
-- (void)setItemMutableArray:(NSMutableArray *)itemMutableArray {
-    _itemMutableArray = itemMutableArray;
-    
-   
-    dispatch_async(dispatch_get_main_queue(), ^{
-        DaShiListItemModel *new = [DaShiListItemModel new];
-        new.title = @"选择您的生肖";
-        NSMutableArray *array = [NSMutableArray array];
-        for (int i = 0; i < 12; i ++) {
-            DaShiListItemModel *model = [DaShiListItemModel new];
-            model.title = @"虎";
-            if (i == 0) {
-                model.choose = YES;
-            } else {
-                model.choose = NO;
-            }
-            
-            [array addObject:model];
-        }
-        
-        new.subArray = array;
-        
-        NSMutableArray *supArray = [NSMutableArray array];
-        
-        [supArray addObject:new];
-        
-        [supArray addObject:new];
-        
-        [supArray addObject:new];
-        
-        self.itemMutableArray = supArray;
-        
-        [self reloadData];
-    });
-   
+- (void)setMingLiArray:(NSMutableArray *)mingLiArray {
+    _mingLiArray = mingLiArray;
+    [self reloadData];
 }
+- (void)setQitaArray:(NSMutableArray *)qitaArray {
+    _qitaArray = qitaArray;
+    [self reloadData];
+}
+- (void)refreshView {
+    [self reloadData];
 
+}
 @end

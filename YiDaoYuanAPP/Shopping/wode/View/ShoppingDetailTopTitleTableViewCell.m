@@ -7,7 +7,11 @@
 //
 
 #import "ShoppingDetailTopTitleTableViewCell.h"
+@interface ShoppingDetailTopTitleTableViewCell()
 
+
+
+@end
 @implementation ShoppingDetailTopTitleTableViewCell
 
 - (void)awakeFromNib {

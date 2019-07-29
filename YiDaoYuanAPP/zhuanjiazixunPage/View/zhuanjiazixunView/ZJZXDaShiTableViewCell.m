@@ -146,18 +146,31 @@
 }
 
 - (void)clickthirdDaShiViewDone {
+    FirstPageModel *model = self.daShiArray[3];
+    
+    [self.csDelegate passDaShiMasterId:model.master_id];
      [[CSUtility getCurrentViewController]  performSegueWithIdentifier:@"DaShiDetailViewController" sender:self];
 }
 - (void)clicksecondDaShiViewDone {
+    FirstPageModel *model = self.daShiArray[2];
+    
+    [self.csDelegate passDaShiMasterId:model.master_id];
      [[CSUtility getCurrentViewController]  performSegueWithIdentifier:@"DaShiDetailViewController" sender:self];
 }
 - (void)clickfirstDaShiViewDone {
     
+    FirstPageModel *model = self.daShiArray[1];
+    
+    [self.csDelegate passDaShiMasterId:model.master_id];
      [[CSUtility getCurrentViewController]  performSegueWithIdentifier:@"DaShiDetailViewController" sender:self];
+    
 
 }
 - (void)clicktopDaShiViewDone {
     
+    FirstPageModel *model = self.daShiArray[0];
+    
+    [self.csDelegate passDaShiMasterId:model.master_id];
      [[CSUtility getCurrentViewController]  performSegueWithIdentifier:@"DaShiDetailViewController" sender:self];
 
 }
@@ -208,34 +221,34 @@
     
     
     if (model.grade.intValue == 0) {
-        self.topFirstXingImageView.image = DotaImageName(@"icon_collect-1");
-        self.topSecondXingImageView.image = DotaImageName(@"icon_collect-1");
-        self.topThirdXingImageView.image = DotaImageName(@"icon_collect-1");
-        self.topFourthXingImageView.image = DotaImageName(@"icon_collect-1");
-        self.topFifthImageView.image = DotaImageName(@"icon_collect-1");
+        self.topFirstXingImageView.image = DotaImageName(@"icon_weishou");
+        self.topSecondXingImageView.image = DotaImageName(@"icon_weishou");
+        self.topThirdXingImageView.image = DotaImageName(@"icon_weishou");
+        self.topFourthXingImageView.image = DotaImageName(@"icon_weishou");
+        self.topFifthImageView.image = DotaImageName(@"icon_weishou");
         
     } else if (model.grade.intValue == 1) {
         self.topFirstXingImageView.image = DotaImageName(@"icon_collect");
-        self.topSecondXingImageView.image = DotaImageName(@"icon_collect-1");
-        self.topThirdXingImageView.image = DotaImageName(@"icon_collect-1");
-        self.topFourthXingImageView.image = DotaImageName(@"icon_collect-1");
-        self.topFifthImageView.image = DotaImageName(@"icon_collect-1");
+        self.topSecondXingImageView.image = DotaImageName(@"icon_weishou");
+        self.topThirdXingImageView.image = DotaImageName(@"icon_weishou");
+        self.topFourthXingImageView.image = DotaImageName(@"icon_weishou");
+        self.topFifthImageView.image = DotaImageName(@"icon_weishou");
         
         
     }else if (model.grade.intValue == 2) {
         self.topFirstXingImageView.image = DotaImageName(@"icon_collect");
         self.topSecondXingImageView.image = DotaImageName(@"icon_collect");
-        self.topThirdXingImageView.image = DotaImageName(@"icon_collect-1");
-        self.topFourthXingImageView.image = DotaImageName(@"icon_collect-1");
-        self.topFifthImageView.image = DotaImageName(@"icon_collect-1");
+        self.topThirdXingImageView.image = DotaImageName(@"icon_weishou");
+        self.topFourthXingImageView.image = DotaImageName(@"icon_weishou");
+        self.topFifthImageView.image = DotaImageName(@"icon_weishou");
         
         
     }else if (model.grade.intValue == 3) {
         self.topFirstXingImageView.image = DotaImageName(@"icon_collect");
         self.topSecondXingImageView.image = DotaImageName(@"icon_collect");
         self.topThirdXingImageView.image = DotaImageName(@"icon_collect");
-        self.topFourthXingImageView.image = DotaImageName(@"icon_collect-1");
-        self.topFifthImageView.image = DotaImageName(@"icon_collect-1");
+        self.topFourthXingImageView.image = DotaImageName(@"icon_weishou");
+        self.topFifthImageView.image = DotaImageName(@"icon_weishou");
         
         
     }else if (model.grade.intValue == 4) {
@@ -243,10 +256,10 @@
         self.topSecondXingImageView.image = DotaImageName(@"icon_collect");
         self.topThirdXingImageView.image = DotaImageName(@"icon_collect");
         self.topFourthXingImageView.image = DotaImageName(@"icon_collect");
-        self.topFifthImageView.image = DotaImageName(@"icon_collect-1");
+        self.topFifthImageView.image = DotaImageName(@"icon_weishou");
         
         
-    }else if (model.grade.intValue == 54) {
+    }else if (model.grade.intValue == 5) {
         self.topFirstXingImageView.image = DotaImageName(@"icon_collect");
         self.topSecondXingImageView.image = DotaImageName(@"icon_collect");
         self.topThirdXingImageView.image = DotaImageName(@"icon_collect");
@@ -300,34 +313,34 @@
     
     
     if (model.grade.intValue == 0) {
-        self.bottomFirstXingImageView.image = DotaImageName(@"icon_collect-1");
-        self.bottomSecondXingImageView.image = DotaImageName(@"icon_collect-1");
-        self.bottomtopThirdXingImageView.image = DotaImageName(@"icon_collect-1");
-        self.bottomFourthXingImageView.image = DotaImageName(@"icon_collect-1");
-        self.bottomFifthImageView.image = DotaImageName(@"icon_collect-1");
+        self.bottomFirstXingImageView.image = DotaImageName(@"icon_weishou");
+        self.bottomSecondXingImageView.image = DotaImageName(@"icon_weishou");
+        self.bottomtopThirdXingImageView.image = DotaImageName(@"icon_weishou");
+        self.bottomFourthXingImageView.image = DotaImageName(@"icon_weishou");
+        self.bottomFifthImageView.image = DotaImageName(@"icon_weishou");
         
     } else if (model.grade.intValue == 1) {
         self.bottomFirstXingImageView.image = DotaImageName(@"icon_collect");
-        self.bottomSecondXingImageView.image = DotaImageName(@"icon_collect-1");
-        self.bottomtopThirdXingImageView.image = DotaImageName(@"icon_collect-1");
-        self.bottomFourthXingImageView.image = DotaImageName(@"icon_collect-1");
-        self.bottomFifthImageView.image = DotaImageName(@"icon_collect-1");
+        self.bottomSecondXingImageView.image = DotaImageName(@"icon_weishou");
+        self.bottomtopThirdXingImageView.image = DotaImageName(@"icon_weishou");
+        self.bottomFourthXingImageView.image = DotaImageName(@"icon_weishou");
+        self.bottomFifthImageView.image = DotaImageName(@"icon_weishou");
         
         
     }else if (model.grade.intValue == 2) {
         self.bottomFirstXingImageView.image = DotaImageName(@"icon_collect");
         self.bottomSecondXingImageView.image = DotaImageName(@"icon_collect");
-        self.bottomtopThirdXingImageView.image = DotaImageName(@"icon_collect-1");
-        self.bottomFourthXingImageView.image = DotaImageName(@"icon_collect-1");
-        self.bottomFifthImageView.image = DotaImageName(@"icon_collect-1");
+        self.bottomtopThirdXingImageView.image = DotaImageName(@"icon_weishou");
+        self.bottomFourthXingImageView.image = DotaImageName(@"icon_weishou");
+        self.bottomFifthImageView.image = DotaImageName(@"icon_weishou");
         
         
     }else if (model.grade.intValue == 3) {
         self.bottomFirstXingImageView.image = DotaImageName(@"icon_collect");
         self.bottomSecondXingImageView.image = DotaImageName(@"icon_collect");
         self.bottomtopThirdXingImageView.image = DotaImageName(@"icon_collect");
-        self.bottomFourthXingImageView.image = DotaImageName(@"icon_collect-1");
-        self.bottomFifthImageView.image = DotaImageName(@"icon_collect-1");
+        self.bottomFourthXingImageView.image = DotaImageName(@"icon_weishou");
+        self.bottomFifthImageView.image = DotaImageName(@"icon_weishou");
         
         
     }else if (model.grade.intValue == 4) {
@@ -335,10 +348,10 @@
         self.bottomSecondXingImageView.image = DotaImageName(@"icon_collect");
         self.bottomtopThirdXingImageView.image = DotaImageName(@"icon_collect");
         self.bottomFourthXingImageView.image = DotaImageName(@"icon_collect");
-        self.bottomFifthImageView.image = DotaImageName(@"icon_collect-1");
+        self.bottomFifthImageView.image = DotaImageName(@"icon_weishou");
         
         
-    }else if (model.grade.intValue == 54) {
+    }else if (model.grade.intValue == 5) {
         self.bottomFirstXingImageView.image = DotaImageName(@"icon_collect");
         self.bottomSecondXingImageView.image = DotaImageName(@"icon_collect");
         self.bottomtopThirdXingImageView.image = DotaImageName(@"icon_collect");
@@ -393,34 +406,34 @@
     
     
     if (model2.grade.intValue == 0) {
-        self.bottomFirstXingImageView2.image = DotaImageName(@"icon_collect-1");
-        self.bottomSecondXingImageView2.image = DotaImageName(@"icon_collect-1");
-        self.bottomtopThirdXingImageView2.image = DotaImageName(@"icon_collect-1");
-        self.bottomFourthXingImageView2.image = DotaImageName(@"icon_collect-1");
-        self.bottomFifthImageView2.image = DotaImageName(@"icon_collect-1");
+        self.bottomFirstXingImageView2.image = DotaImageName(@"icon_weishou");
+        self.bottomSecondXingImageView2.image = DotaImageName(@"icon_weishou");
+        self.bottomtopThirdXingImageView2.image = DotaImageName(@"icon_weishou");
+        self.bottomFourthXingImageView2.image = DotaImageName(@"icon_weishou");
+        self.bottomFifthImageView2.image = DotaImageName(@"icon_weishou");
         
     } else if (model2.grade.intValue == 1) {
         self.bottomFirstXingImageView2.image = DotaImageName(@"icon_collect");
-        self.bottomSecondXingImageView2.image = DotaImageName(@"icon_collect-1");
-        self.bottomtopThirdXingImageView2.image = DotaImageName(@"icon_collect-1");
-        self.bottomFourthXingImageView2.image = DotaImageName(@"icon_collect-1");
-        self.bottomFifthImageView2.image = DotaImageName(@"icon_collect-1");
+        self.bottomSecondXingImageView2.image = DotaImageName(@"icon_weishou");
+        self.bottomtopThirdXingImageView2.image = DotaImageName(@"icon_weishou");
+        self.bottomFourthXingImageView2.image = DotaImageName(@"icon_weishou");
+        self.bottomFifthImageView2.image = DotaImageName(@"icon_weishou");
         
         
     }else if (model2.grade.intValue == 2) {
         self.bottomFirstXingImageView2.image = DotaImageName(@"icon_collect");
         self.bottomSecondXingImageView2.image = DotaImageName(@"icon_collect");
-        self.bottomtopThirdXingImageView2.image = DotaImageName(@"icon_collect-1");
-        self.bottomFourthXingImageView2.image = DotaImageName(@"icon_collect-1");
-        self.bottomFifthImageView2.image = DotaImageName(@"icon_collect-1");
+        self.bottomtopThirdXingImageView2.image = DotaImageName(@"icon_weishou");
+        self.bottomFourthXingImageView2.image = DotaImageName(@"icon_weishou");
+        self.bottomFifthImageView2.image = DotaImageName(@"icon_weishou");
         
         
     }else if (model2.grade.intValue == 3) {
         self.bottomFirstXingImageView2.image = DotaImageName(@"icon_collect");
         self.bottomSecondXingImageView2.image = DotaImageName(@"icon_collect");
         self.bottomtopThirdXingImageView2.image = DotaImageName(@"icon_collect");
-        self.bottomFourthXingImageView2.image = DotaImageName(@"icon_collect-1");
-        self.bottomFifthImageView2.image = DotaImageName(@"icon_collect-1");
+        self.bottomFourthXingImageView2.image = DotaImageName(@"icon_weishou");
+        self.bottomFifthImageView2.image = DotaImageName(@"icon_weishou");
         
         
     }else if (model2.grade.intValue == 4) {
@@ -428,7 +441,7 @@
         self.bottomSecondXingImageView2.image = DotaImageName(@"icon_collect");
         self.bottomtopThirdXingImageView2.image = DotaImageName(@"icon_collect");
         self.bottomFourthXingImageView2.image = DotaImageName(@"icon_collect");
-        self.bottomFifthImageView2.image = DotaImageName(@"icon_collect-1");
+        self.bottomFifthImageView2.image = DotaImageName(@"icon_weishou");
         
         
     }else if (model2.grade.intValue == 54) {
@@ -483,34 +496,34 @@
     
     
     if (model3.grade.intValue == 0) {
-        self.bottomFirstXingImageView3.image = DotaImageName(@"icon_collect-1");
-        self.bottomSecondXingImageView3.image = DotaImageName(@"icon_collect-1");
-        self.bottomtopThirdXingImageView3.image = DotaImageName(@"icon_collect-1");
-        self.bottomFourthXingImageView3.image = DotaImageName(@"icon_collect-1");
-        self.bottomFifthImageView3.image = DotaImageName(@"icon_collect-1");
+        self.bottomFirstXingImageView3.image = DotaImageName(@"icon_weishou");
+        self.bottomSecondXingImageView3.image = DotaImageName(@"icon_weishou");
+        self.bottomtopThirdXingImageView3.image = DotaImageName(@"icon_weishou");
+        self.bottomFourthXingImageView3.image = DotaImageName(@"icon_weishou");
+        self.bottomFifthImageView3.image = DotaImageName(@"icon_weishou");
         
     } else if (model3.grade.intValue == 1) {
         self.bottomFirstXingImageView3.image = DotaImageName(@"icon_collect");
-        self.bottomSecondXingImageView3.image = DotaImageName(@"icon_collect-1");
-        self.bottomtopThirdXingImageView3.image = DotaImageName(@"icon_collect-1");
-        self.bottomFourthXingImageView3.image = DotaImageName(@"icon_collect-1");
-        self.bottomFifthImageView3.image = DotaImageName(@"icon_collect-1");
+        self.bottomSecondXingImageView3.image = DotaImageName(@"icon_weishou");
+        self.bottomtopThirdXingImageView3.image = DotaImageName(@"icon_weishou");
+        self.bottomFourthXingImageView3.image = DotaImageName(@"icon_weishou");
+        self.bottomFifthImageView3.image = DotaImageName(@"icon_weishou");
         
         
     }else if (model3.grade.intValue == 2) {
         self.bottomFirstXingImageView3.image = DotaImageName(@"icon_collect");
         self.bottomSecondXingImageView3.image = DotaImageName(@"icon_collect");
-        self.bottomtopThirdXingImageView3.image = DotaImageName(@"icon_collect-1");
-        self.bottomFourthXingImageView3.image = DotaImageName(@"icon_collect-1");
-        self.bottomFifthImageView3.image = DotaImageName(@"icon_collect-1");
+        self.bottomtopThirdXingImageView3.image = DotaImageName(@"icon_weishou");
+        self.bottomFourthXingImageView3.image = DotaImageName(@"icon_weishou");
+        self.bottomFifthImageView3.image = DotaImageName(@"icon_weishou");
         
         
     }else if (model3.grade.intValue == 3) {
         self.bottomFirstXingImageView3.image = DotaImageName(@"icon_collect");
         self.bottomSecondXingImageView3.image = DotaImageName(@"icon_collect");
         self.bottomtopThirdXingImageView3.image = DotaImageName(@"icon_collect");
-        self.bottomFourthXingImageView3.image = DotaImageName(@"icon_collect-1");
-        self.bottomFifthImageView3.image = DotaImageName(@"icon_collect-1");
+        self.bottomFourthXingImageView3.image = DotaImageName(@"icon_weishou");
+        self.bottomFifthImageView3.image = DotaImageName(@"icon_weishou");
         
         
     }else if (model3.grade.intValue == 4) {
@@ -518,7 +531,7 @@
         self.bottomSecondXingImageView3.image = DotaImageName(@"icon_collect");
         self.bottomtopThirdXingImageView3.image = DotaImageName(@"icon_collect");
         self.bottomFourthXingImageView3.image = DotaImageName(@"icon_collect");
-        self.bottomFifthImageView3.image = DotaImageName(@"icon_collect-1");
+        self.bottomFifthImageView3.image = DotaImageName(@"icon_weishou");
         
         
     }else if (model3.grade.intValue == 54) {

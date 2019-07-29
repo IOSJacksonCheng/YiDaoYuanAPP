@@ -11,7 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PayMoneyTitleTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *titleImageView;
 
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
 @end
 
 NS_ASSUME_NONNULL_END

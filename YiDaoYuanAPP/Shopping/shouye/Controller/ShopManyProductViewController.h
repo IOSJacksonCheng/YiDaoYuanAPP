@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ShopManyProductViewController : BaseViewController
-
+@property (nonatomic, strong) NSString *passCategoryId;
+@property (nonatomic, strong) NSString *passKeyword;
 @end
 
 NS_ASSUME_NONNULL_END

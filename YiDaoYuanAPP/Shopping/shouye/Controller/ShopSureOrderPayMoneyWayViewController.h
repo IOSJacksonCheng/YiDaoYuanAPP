@@ -17,6 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ShopSureOrderPayMoneyWayViewController : BaseViewController
 @property (nonatomic, strong) NSString *passVideoId;
 @property (nonatomic, weak) id<ShopSureOrderPayMoneyWayViewControllerDelegate> csDelegate;
+@property (nonatomic, strong) NSString *passOrderId;
+//0咨询订单 1问答订单 2充值 3课堂订单 4商城订单 5赞赏订单
+@property (nonatomic, strong) NSString *passOrderType;
 @end
 
 NS_ASSUME_NONNULL_END

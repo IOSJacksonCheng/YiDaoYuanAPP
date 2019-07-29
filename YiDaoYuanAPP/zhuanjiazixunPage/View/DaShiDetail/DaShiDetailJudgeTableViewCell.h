@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "UserJudgeArray.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DaShiDetailJudgeTableViewCell : UITableViewCell
-
+@property (nonatomic, strong) UserJudgeArray *model;
 @end
 
 NS_ASSUME_NONNULL_END

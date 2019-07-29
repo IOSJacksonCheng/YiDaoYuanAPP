@@ -12,6 +12,8 @@
 
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <TencentOpenAPI/QQApiInterface.h>
+
+
 @interface LoginInViewController ()<WXApiDelegate, TencentSessionDelegate>
 - (IBAction)ckickRegisterButtonDone:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
@@ -74,20 +76,28 @@
     
 }
 - (void)sendPostRequest {
-//
-//    if (csCharacterIsBlank(self.phoneTextField.text) || csCharacterIsBlank(self.secureTextField.text)) {
-//
-//        CustomWrongMessage(@"请填写完整信息")
-//        return;
-//    }
+
+    if (csCharacterIsBlank(self.phoneTextField.text) || csCharacterIsBlank(self.secureTextField.text)) {
+
+        CustomWrongMessage(@"请填写完整信息")
+        return;
+    }
     
     NSMutableDictionary *para = @{}.mutableCopy;
-    para[@"username"] = @"18320760679";
-    para[@"password"] = @"123123";
-//    para[@"username"] = self.phoneTextField.text;
-//    para[@"password"] = self.secureTextField.text;
+    
+//    if ([self.phoneTextField.text isEqualToString:@"1"]) {
+//        para[@"username"] = @"13267054052";
+//        para[@"password"] = @"123456";
+//
+//    } else{
+//        para[@"username"] = @"18320760679";
+//        para[@"password"] = @"123123";
+//    }
+//
+    para[@"username"] = self.phoneTextField.text;
+    para[@"password"] = self.secureTextField.text;
     para[@"device_type"] = @"iphone";
-    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Login Pameters:para success:^(id  _Nonnull responseObject) {
+    [CSNetManager sendPostRequestWithNeedToken:NO Url:CSURL_Login Pameters:para success:^(id  _Nonnull responseObject) {
         
         if (CSInternetRequestSuccessful) {
             
@@ -151,7 +161,7 @@
     para[@"code"] = codeInfo;
     para[@"device_type"] = @"iphone";
 
-    [CSNetManager sendPostRequestWithNeedToken:YES Url:CSURL_Login_wechat Pameters:para success:^(id  _Nonnull responseObject) {
+    [CSNetManager sendPostRequestWithNeedToken:NO Url:CSURL_Login_wechat Pameters:para success:^(id  _Nonnull responseObject) {
         if (CSInternetRequestSuccessful) {
             [self handleResult:CSGetResult];
         }else {
@@ -169,7 +179,7 @@
 
 - (void)qqLogin
 {
-    self.tencentOAuth = [[TencentOAuth alloc]initWithAppId:@"1108888010" andDelegate:self];
+    self.tencentOAuth = [[TencentOAuth alloc]initWithAppId:CSQQAppId andDelegate:self];
     
     NSMutableArray *permission = [@[] mutableCopy];
     
@@ -180,10 +190,28 @@
 
 #pragma mark --------- qq登录状态回调  TencentSessionDelegate-------
 - (void)tencentDidLogin{
-    if (!_tencentOAuth.accessToken){
+    if (_tencentOAuth.accessToken){
         CSLog(@"%@ == %@",_tencentOAuth.accessToken,_tencentOAuth.openId);
-        [self.tencentOAuth getUserInfo];
-        
+//        [self.tencentOAuth getUserInfo];
+        NSMutableDictionary *para = @{}.mutableCopy;
+        para[@"accesstoken"] = _tencentOAuth.accessToken;
+        para[@"openid"] = _tencentOAuth.openId;
+        para[@"device_type"] = @"iphone";
+        [CSNetManager sendPostRequestWithNeedToken:NO Url:CSURL_Login_QQ Pameters:para success:^(id  _Nonnull responseObject) {
+            
+            if (CSInternetRequestSuccessful) {
+                
+                
+                [self handleResult:CSGetResult];
+                
+            }else {
+                
+                CSShowWrongMessage
+                
+            }
+        } failure:^(NSError * _Nonnull error) {
+            CSInternetFailure
+        }];
     } else {
         
             CSLog(@"登录失败！没有获取到accessToken");
@@ -226,7 +254,7 @@
 {
     
     CSLog(@"%@",response.jsonResponse);
-    
+   
 }
 
 
@@ -234,6 +262,7 @@
     [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",result[@"token"]] forKey:@"CSGetToken"];
     
     [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",result[@"user"][@"id"]] forKey:@"CS_UserID"];
+    
     
     [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",result[@"user"][@"sex"]] forKey:@"CS_Sex"];
     
@@ -253,6 +282,8 @@
     
     
     [[NSUserDefaults standardUserDefaults] setBool:[CSUtility handleNumber:result[@"user"][@"is_master"]] forKey:@"CS_UserIsMaster"];
+    
+    
     
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"CSIsLogin"];
     

@@ -7,11 +7,11 @@
 //
 
 #import "BaseViewController.h"
-
+#import "DaShiOrderInfoModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SureOrderWriteMessageViewController : BaseViewController
-
+@property (nonatomic, strong) DaShiOrderInfoModel *infoModel;
 @end
 
 NS_ASSUME_NONNULL_END

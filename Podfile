@@ -14,5 +14,5 @@ pod 'AFNetworking', '~> 3.1.0'
 pod 'SDWebImage', '~> 3.7'
 pod 'WechatOpenSDK'
 pod 'AlipaySDK-iOS'
-
+pod 'EaseUILite', :git =>'https://github.com/easemob/easeui-ios-hyphenate-cocoapods.git', :tag => '3.5.1'
 end

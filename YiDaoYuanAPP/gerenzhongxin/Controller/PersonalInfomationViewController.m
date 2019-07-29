@@ -8,9 +8,12 @@
 
 #import "PersonalInfomationViewController.h"
 #import "PersonalSetTableViewCell.h"
+
+#import "DaShiWorkTableViewCell.h"
 @interface PersonalInfomationViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *listArray;
+@property (nonatomic, assign) NSInteger tag;
 @end
 
 @implementation PersonalInfomationViewController
@@ -29,7 +32,7 @@
     [self configNavigationBar];
     
     [self configTableView];
-    
+    self.tag = [[NSUserDefaults standardUserDefaults] integerForKey:@"workstatus"];
      [self.tableView reloadData];
 }
 
@@ -38,8 +41,8 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     [self.tableView registerNib:[UINib nibWithNibName:CSCellName(PersonalSetTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(PersonalSetTableViewCell)];
+      [self.tableView registerNib:[UINib nibWithNibName:CSCellName(DaShiWorkTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(DaShiWorkTableViewCell)];
     
-    self.tableView.rowHeight = 66;
     
 }
 
@@ -61,10 +64,47 @@
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (CS_UserIsMaster) {
+        return 3;
+    }
    return self.listArray.count;
 }
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)clickWorkStatus:(UIButton *)sender {
     
+    NSMutableDictionary *para = @{}.mutableCopy;
+    
+    
+    para[@"work_status"] = [NSString stringWithFormat:@"%ld",self.tag];
+   
+    [CSNetManager sendPostRequestWithNeedToken:YES Url:CSURL_Profile_UserInfo Pameters:para success:^(id  _Nonnull responseObject) {
+        if (CSInternetRequestSuccessful) {
+            
+            self.tag = sender.tag;
+            [[NSUserDefaults standardUserDefaults] setInteger:sender.tag forKey:@"workstatus"];
+            [self.tableView reloadData];
+            
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+    
+  
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 2) {
+        DaShiWorkTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(DaShiWorkTableViewCell)];
+        [cell.firstButton addTarget:self action:@selector(clickWorkStatus:) forControlEvents:UIControlEventTouchDown];
+        
+        [cell.secondButton addTarget:self action:@selector(clickWorkStatus:) forControlEvents:UIControlEventTouchDown];
+        [cell.thirdButton addTarget:self action:@selector(clickWorkStatus:) forControlEvents:UIControlEventTouchDown];
+        cell.firstButton.selected = (self.tag == cell.firstButton.tag);
+        cell.secondButton.selected = (self.tag == cell.secondButton.tag);
+        cell.thirdButton.selected = (self.tag == cell.thirdButton.tag);
+        return cell;
+        
+    }
     PersonalSetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(PersonalSetTableViewCell)];
     
     NSString *title = self.listArray[indexPath.row];
@@ -82,5 +122,10 @@
         [self performSegueWithIdentifier:@"ChangePasswordViewController" sender:self];
     }
 }
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 2) {
+        return 123;
+    }
+    return 66;
+}
 @end

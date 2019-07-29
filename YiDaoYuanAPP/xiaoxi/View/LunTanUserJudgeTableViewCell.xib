@@ -41,8 +41,8 @@
                                 <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户讨论话题内容用户讨论话题内容用户讨论话题内容用户讨论话题内容，用户讨论话题内容用户讨论话题内容" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wyw-ea-Xqb">
-                                <rect key="frame" x="9" y="95" width="274" height="34.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wyw-ea-Xqb">
+                                <rect key="frame" x="9" y="95" width="274" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -50,7 +50,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="wyw-ea-Xqb" secondAttribute="bottom" id="6w3-uM-JSr"/>
                             <constraint firstItem="9dK-A2-jr0" firstAttribute="top" secondItem="lP6-hV-oJX" secondAttribute="top" constant="8" id="8m1-6k-9W8"/>
                             <constraint firstItem="wyw-ea-Xqb" firstAttribute="leading" secondItem="lP6-hV-oJX" secondAttribute="leading" constant="9" id="AMw-Cd-PUZ"/>
                             <constraint firstItem="4RL-JG-jjv" firstAttribute="top" secondItem="lP6-hV-oJX" secondAttribute="top" constant="16" id="Du6-Hi-sKd"/>
@@ -72,6 +71,12 @@
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="iconIV" destination="9dK-A2-jr0" id="DV4-9v-XM6"/>
+                <outlet property="nameLabel" destination="4RL-JG-jjv" id="Vpo-Oy-yfU"/>
+                <outlet property="neironLL" destination="wyw-ea-Xqb" id="OeF-Hn-DJ2"/>
+                <outlet property="timeLL" destination="e9i-Wn-xrf" id="0hL-VM-pEm"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>

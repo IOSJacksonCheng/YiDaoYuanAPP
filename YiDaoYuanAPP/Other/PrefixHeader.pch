@@ -28,7 +28,7 @@
 
 #define CSAliPayAppId @"2019061265486927"
 
-
+#define CSQQAppId @"101716025"
 
 #define CSGetToken [[NSUserDefaults standardUserDefaults] valueForKey:@"CSGetToken"]
 

@@ -28,6 +28,9 @@
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开光马粉水晶：蜜蜡吊坠 招桃花旺姻缘必备" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ArY-Sp-9sE">
                         <rect key="frame" x="104" y="14" width="158" height="36"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="36" id="yZl-Tu-mks"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -58,6 +61,11 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="cellImageView" destination="o8X-5E-Hkb" id="M4q-yR-gAn"/>
+                <outlet property="csTitleLabel" destination="ArY-Sp-9sE" id="mW8-TN-tc2"/>
+                <outlet property="priceLabel" destination="0LO-j9-L3U" id="M0r-TL-v55"/>
+            </connections>
             <point key="canvasLocation" x="129.59999999999999" y="186.65667166416793"/>
         </tableViewCell>
     </objects>

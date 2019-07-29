@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GoodsModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ShoppingSureOrderProductTableViewCell : UITableViewCell
-
+@property (nonatomic, strong) GoodsModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

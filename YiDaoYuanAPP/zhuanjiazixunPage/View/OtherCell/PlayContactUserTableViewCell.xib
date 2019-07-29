@@ -44,7 +44,7 @@
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="易大师真的很准，帮助我避过了事业上的困难，真的太神了!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FIW-nL-ycF">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="易大师真的很准，帮助我避过了事业上的困难，真的太神了!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FIW-nL-ycF">
                         <rect key="frame" x="77" y="56" width="227" height="31.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -66,6 +66,13 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="csImgView" destination="4Ah-Nj-24K" id="tvY-QR-aZc"/>
+                <outlet property="csSubTitleLabel" destination="Fsw-up-r5V" id="6p4-ny-Osx"/>
+                <outlet property="csTimeLabel" destination="dDv-dC-UaI" id="U9b-VY-xHr"/>
+                <outlet property="csTitleLabel" destination="dbU-Ff-xYN" id="eXJ-qZ-0CO"/>
+                <outlet property="userJudgeLabel" destination="FIW-nL-ycF" id="n8N-Dc-ggf"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>

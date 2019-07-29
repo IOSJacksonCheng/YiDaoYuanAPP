@@ -11,7 +11,14 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PayMoneyViewController : BaseViewController
-
+@property (nonatomic, strong) NSString *master_id;
+@property (nonatomic, strong) NSString *masterName;
+@property (nonatomic, strong) NSString *masterIcon;
+@property (nonatomic, strong) NSString *content;
+@property (nonatomic, strong) NSString *orderId;
+@property (nonatomic, strong) NSString *money;
+@property (nonatomic, strong) NSString *dashangren;
+@property (nonatomic, strong) NSString *dashangqian;
 @end
 
 NS_ASSUME_NONNULL_END

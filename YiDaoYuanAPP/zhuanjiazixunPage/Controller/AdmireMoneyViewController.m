@@ -7,8 +7,8 @@
 //
 
 #import "AdmireMoneyViewController.h"
-
-@interface AdmireMoneyViewController ()
+#import "PayMoneyViewController.h"
+@interface AdmireMoneyViewController ()<UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *titleImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *button1;
@@ -22,7 +22,22 @@
 @property (weak, nonatomic) IBOutlet UIButton *surePayButton;
 - (IBAction)clickMoneyButtonDone:(UIButton *)sender;
 - (IBAction)clickSurePayButtonDone:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UILabel *totalMoneyLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *totalPeopleLabel;
+
+@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
+
+@property (weak, nonatomic) IBOutlet UILabel *explainLabel;
+@property (weak, nonatomic) IBOutlet UITextView *inputTextView;
+@property (nonatomic, strong) NSString *recordId;
+@property (weak, nonatomic) IBOutlet UIScrollView *bgScrollView;
+
+@property (nonatomic, strong) NSString *recorMoney;
+
+@property (nonatomic, strong) UITextView *contentTextView;
+
+@property (nonatomic, strong) UILabel *csexplainLabel;
 @end
 
 @implementation AdmireMoneyViewController
@@ -36,11 +51,45 @@
     
     [self configTableView];
     
+    [self getHistoryRequest];
+}
+- (void)getHistoryRequest {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    para[@"master_id"] = self.master_id;
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_total_praise Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            self.totalPeopleLabel.text = [NSString stringWithFormat:@"共%@人打赏",CSGetResult[@"c"]];
+            self.totalMoneyLabel.text = [NSString stringWithFormat:@"打赏金额%@元",CSGetResult[@"total"]];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
 }
 - (void)configTableView {
     
 }
 - (void)configSubViews {
+    
+    self.bgScrollView.contentSize = CGSizeMake(MainScreenWidth, 137);
+    
+    self.contentTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, 10, MainScreenWidth, 137)];
+    self.contentTextView.delegate = self;
+    self.contentTextView.textColor = [UIColor colorWithHexString:@"999999"];
+    self.contentTextView.backgroundColor = [UIColor colorWithHexString:@"F7F7F7"];
+    self.contentTextView.font = csCharacterFont_15;
+    [self.bgScrollView addSubview:self.contentTextView];
+    self.csexplainLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 15, 200, 40)];
+    self.csexplainLabel.text = @"大师说的很好，赞一个！";
+    self.csexplainLabel.textColor = [UIColor colorWithHexString:@"999999"];
+    
+    self.csexplainLabel.font = csCharacterFont_15;
+    [self.bgScrollView addSubview:self.csexplainLabel];
+    self.recorMoney = @"10";
+    [self.titleImageView sd_setImageWithURL:[NSURL URLWithString:self.masterIcon] placeholderImage:PlaceHolderImage];
+    self.titleLabel.text = self.masterName;
     [self changeButtonStatus:1];
     
     self.titleImageView.layer.cornerRadius = 76 * 0.5;
@@ -82,6 +131,8 @@
     self.button8.layer.borderColor = csBlueColor.CGColor;
     self.button8.layer.cornerRadius = 5;
     
+    
+    self.inputTextView.delegate = self;
 }
 
 - (void)configNavigationBar {
@@ -97,13 +148,48 @@
 
 - (IBAction)clickMoneyButtonDone:(UIButton *)sender {
     
+    NSString *money = sender.titleLabel.text;
+    
+    money = [money substringFromIndex:1];
+    
+    self.recorMoney = money;
     [self changeButtonStatus:sender.tag];
     
 }
-
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"PayMoneyViewController"]) {
+        PayMoneyViewController *new = segue.destinationViewController;
+        new.master_id = self.master_id;
+        new.masterIcon = self.masterIcon;
+        new.masterName = self.masterName;
+        new.orderId = self.recordId;
+        new.money = self.recorMoney;
+        new.dashangren = self.totalPeopleLabel.text;
+        new.dashangqian = self.totalMoneyLabel.text;
+    }
+}
 - (IBAction)clickSurePayButtonDone:(UIButton *)sender {
+    if (self.recorMoney.floatValue <= 0) {
+        CustomWrongMessage(@"请选择金额");
+        return;
+    }
+    NSMutableDictionary *para = @{}.mutableCopy;
+    para[@"master_id"] = self.master_id;
+    para[@"price"] = self.recorMoney;
+    para[@"content"] = self.contentTextView.text;
+
+    [CSNetManager sendPostRequestWithNeedToken:YES Url:CSURL_Portal_master_praise Pameters:para success:^(id  _Nonnull responseObject) {
+        if (CSInternetRequestSuccessful) {
+            self.recordId = [NSString stringWithFormat:@"%@",CSGetResult[@"order_id"]];
+            [self performSegueWithIdentifier:@"PayMoneyViewController" sender:self];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
     
-    [self performSegueWithIdentifier:@"PayMoneyViewController" sender:self];
+    
     
 }
 - (void)changeButtonStatus:(NSInteger)tag {
@@ -176,4 +262,12 @@
     
     
 }
+- (void)textViewDidChange:(UITextView *)textView {
+    if (textView.text.length > 0) {
+        self.csexplainLabel.hidden = YES;
+    } else {
+        self.csexplainLabel.hidden = NO;
+    }
+}
+
 @end

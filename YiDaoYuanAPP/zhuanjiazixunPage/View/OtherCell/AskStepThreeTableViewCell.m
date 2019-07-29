@@ -10,7 +10,9 @@
 @interface AskStepThreeTableViewCell()
 
 @property (weak, nonatomic) IBOutlet UIView *bgView;
-@property (weak, nonatomic) IBOutlet UITextField *inputTextField;
+
+@property (weak, nonatomic) IBOutlet UILabel *cstextLabel;
+
 @end
 @implementation AskStepThreeTableViewCell
 
@@ -19,7 +21,6 @@
     // Initialization code
     self.bgView.layer.cornerRadius = 5;
     self.bgView.layer.masksToBounds = YES;
-    self.inputTextField.font = csCharacterFont_15;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -27,35 +28,24 @@
 
     // Configure the view for the selected state
 }
-- (void)setModel:(PlayContactStepThreeModel *)model {
+- (void)setModel:(QuestionId *)model {
     _model = model;
-    if (model.isTextField) {
-        self.bgView.layer.borderWidth = 1;
-        self.bgView.layer.borderColor = csBlueColor.CGColor;
-        self.inputTextField.text = model.title;
-        self.bgView.backgroundColor = UIColor.whiteColor;
-        self.inputTextField.enabled = YES;
-        self.inputTextField.textColor = cs333333Color;
-        return;
-    }
+
     
     if (model.choose) {
         self.bgView.layer.borderWidth = 1;
         self.bgView.layer.borderColor = csBlueColor.CGColor;
-        self.inputTextField.text = model.title;
+        self.cstextLabel.text = model.title;
         self.bgView.backgroundColor = csBlueColor;
-        self.inputTextField.enabled = NO;
-        self.inputTextField.textColor = UIColor.whiteColor;
+        self.cstextLabel.textColor = UIColor.whiteColor;
         return;
     }
     
     self.bgView.layer.borderWidth = 1;
     self.bgView.layer.borderColor = [UIColor colorWithHexString:@"#C2C2C2"].CGColor;
-    self.inputTextField.text = model.title;
+    self.cstextLabel.text = model.title;
     self.bgView.backgroundColor = UIColor.whiteColor;
-    self.inputTextField.textColor = cs333333Color;
-    
-    self.inputTextField.enabled = NO;
-    
+    self.cstextLabel.textColor = cs333333Color;
+        
 }
 @end

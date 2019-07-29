@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ShopManyProductModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ShengXiaoProductTableViewCell : UITableViewCell
-
+@property (nonatomic, strong) ShopManyProductModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

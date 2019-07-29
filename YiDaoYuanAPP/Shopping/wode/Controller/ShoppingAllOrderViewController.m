@@ -7,15 +7,23 @@
 //
 
 #import "ShoppingAllOrderViewController.h"
+
 #import "ShoppingAllOrderTableViewCell.h"
+#import "ShoppingAllOrderTitleTableViewCell.h"
+#import "ShoppingAllOrderButtonTableViewCell.h"
+
+#import "ShopSureOrderPayMoneyWayViewController.h"
+#import "ShoppingHaveFinishedViewController.h"
+#import "ShoppingWaitReceiveGoodsViewController.h"
+#import "EasyUIChatViewController.h"
 typedef NS_ENUM(NSInteger, CSCellType) {
-    AllCSCellType = 0,
-    DaiFuKuanCSCellType,
-    DaiFaHuoCSCellType,
-    DaiShouHuoCSCellType,
-    YiWanChengCSCellType
+    DaiFuKuanCSCellType = 0,
+    DaiFaHuoCSCellType = 1,
+    DaiShouHuoCSCellType = 2,
+    YiWanChengCSCellType = 10,
+    AllCSCellType = 100
 };
-@interface ShoppingAllOrderViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface ShoppingAllOrderViewController ()<UITableViewDelegate, UITableViewDataSource,ShoppingAllOrderButtonTableViewCellDelegate, ShopSureOrderPayMoneyWayViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *firstButton;
 @property (weak, nonatomic) IBOutlet UIButton *secondButton;
 @property (weak, nonatomic) IBOutlet UIButton *thirdButton;
@@ -31,37 +39,36 @@ typedef NS_ENUM(NSInteger, CSCellType) {
 @property (nonatomic, strong) NSMutableArray *daishouhuoArray;
 @property (nonatomic, strong) NSMutableArray *yiwanchengArray;
 @property (nonatomic, assign) CSCellType currentCSCellType;
+
+@property (nonatomic, assign) int recordFirstPage;
+@property (nonatomic, assign) int recordSecondPage;
+
+@property (nonatomic, assign) int recordThirdPage;
+
+@property (nonatomic, assign) int recordFourthPage;
+
+@property (nonatomic, assign) int recordFifthPage;
+
+@property (nonatomic, strong) NSString *recordOrderId;
+
+@property (nonatomic, strong) NSString *recordStatus;
+
+- (IBAction)clickKefuButtonDone:(id)sender;
+
 @end
 
 @implementation ShoppingAllOrderViewController
 - (NSMutableArray *)yiwanchengArray {
     if (!_yiwanchengArray) {
         _yiwanchengArray = @[].mutableCopy;
-        
-        AllOrderModel *model1 = [AllOrderModel new];
-        model1.state = @"4";
-        
-        [_yiwanchengArray addObject:model1];
-        
-        AllOrderModel *model2 = [AllOrderModel new];
-        model2.state = @"4";
-        [_yiwanchengArray addObject:model2];
+
     }
     return _yiwanchengArray;
 }
 - (NSMutableArray *)daishouhuoArray {
     if (!_daishouhuoArray) {
         _daishouhuoArray = @[].mutableCopy;
-        
-        AllOrderModel *model1 = [AllOrderModel new];
-        model1.state = @"3";
-        model1.statTitle = @"待收货";
-        [_daishouhuoArray addObject:model1];
-        
-        AllOrderModel *model2 = [AllOrderModel new];
-        model2.state = @"3";
-        model2.statTitle = @"待收货";
-        [_daishouhuoArray addObject:model2];
+
     }
     return _daishouhuoArray;
 }
@@ -69,17 +76,6 @@ typedef NS_ENUM(NSInteger, CSCellType) {
     if (!_daifahuoArray) {
         _daifahuoArray = @[].mutableCopy;
         
-        AllOrderModel *model1 = [AllOrderModel new];
-        model1.state = @"2";
-        model1.statTitle = @"待发货";
-        
-        [_daifahuoArray addObject:model1];
-        
-        AllOrderModel *model2 = [AllOrderModel new];
-        model2.state = @"2";
-        model2.statTitle = @"待发货";
-        
-        [_daifahuoArray addObject:model2];
     }
     return _daifahuoArray;
 }
@@ -88,17 +84,6 @@ typedef NS_ENUM(NSInteger, CSCellType) {
     if (!_daifukuanArray) {
         _daifukuanArray = @[].mutableCopy;
         
-        AllOrderModel *model1 = [AllOrderModel new];
-        model1.state = @"1";
-        model1.statTitle = @"待付款";
-        
-        [_daifukuanArray addObject:model1];
-        
-        AllOrderModel *model2 = [AllOrderModel new];
-        model2.state = @"1";
-        model2.statTitle = @"待付款";
-        
-        [_daifukuanArray addObject:model2];
     }
     return _daifukuanArray;
 }
@@ -106,20 +91,13 @@ typedef NS_ENUM(NSInteger, CSCellType) {
     if (!_allArray) {
         _allArray = @[].mutableCopy;
         
-        AllOrderModel *model1 = [AllOrderModel new];
-        model1.state = @"1";
-        model1.statTitle = @"待付款";
-        
-        [_allArray addObject:model1];
-        
-        AllOrderModel *model2 = [AllOrderModel new];
-        model2.state = @"3";
-        model2.statTitle = @"待收货";
-        
-        [_allArray addObject:model2];
-        
     }
     return _allArray;
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self sendGetRequestForInfomation:self.currentCSCellType];
+
 }
 - (void)viewDidLoad {
     
@@ -130,17 +108,30 @@ typedef NS_ENUM(NSInteger, CSCellType) {
     [self configNavigationBar];
     
     [self configTableView];
+   
     self.currentCSCellType = self.passTag;
+    
+    [self sendGetRequestForInfomation:self.currentCSCellType];
     [self changeButtonStatusWithTag:self.currentCSCellType];
 }
 
 - (void)configTableView {
+    
     [self.listTableView registerNib:[UINib nibWithNibName:CSCellName(ShoppingAllOrderTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(ShoppingAllOrderTableViewCell)];
+    
+    [self.listTableView registerNib:[UINib nibWithNibName:CSCellName(ShoppingAllOrderTitleTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(ShoppingAllOrderTitleTableViewCell)];
+    
+    [self.listTableView registerNib:[UINib nibWithNibName:CSCellName(ShoppingAllOrderButtonTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(ShoppingAllOrderButtonTableViewCell)];
+
     self.listTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.listTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    self.listTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getNewData)];
+    
+    self.listTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreData)];
 }
 - (void)configSubViews {
-    
+   
 }
 - (void)configNavigationBar {
     
@@ -154,9 +145,7 @@ typedef NS_ENUM(NSInteger, CSCellType) {
     [self.navigationController.navigationBar setTitleTextAttributes:dic];
 }
 
-- (void)sendGetRequestForInfomation:(NSInteger)tag {
-    
-}
+
 - (IBAction)clickTopViewButtonDone:(UIButton *)sender {
     
     
@@ -167,14 +156,14 @@ typedef NS_ENUM(NSInteger, CSCellType) {
 - (void)changeButtonStatusWithTag:(NSUInteger)tag {
     
     self.currentCSCellType = tag;
-    if (tag == 0) {
+    if (tag == AllCSCellType) {
         //全部付款
         [self.firstButton setTitleColor:csBlueColor forState:UIControlStateNormal];
     } else {
         [self.firstButton setTitleColor:cs333333Color forState:UIControlStateNormal];
     }
     
-    if (tag == 1) {
+    if (tag == DaiFuKuanCSCellType) {
         //待付款
         [self.secondButton setTitleColor:csBlueColor forState:UIControlStateNormal];
     }else {
@@ -183,14 +172,14 @@ typedef NS_ENUM(NSInteger, CSCellType) {
     
     
     
-    if (tag == 2) {
+    if (tag == DaiFaHuoCSCellType) {
         //进行中
         [self.thirdButton setTitleColor:csBlueColor forState:UIControlStateNormal];
     }else {
         [self.thirdButton setTitleColor:cs333333Color forState:UIControlStateNormal];
     }
     
-    if (tag == 3) {
+    if (tag == DaiShouHuoCSCellType) {
         //已完成
         [self.fourthButton setTitleColor:csBlueColor forState:UIControlStateNormal];
     }else {
@@ -198,7 +187,7 @@ typedef NS_ENUM(NSInteger, CSCellType) {
     }
     
     
-    if (tag == 4) {
+    if (tag == YiWanChengCSCellType) {
         //退款
         [self.fifthButton setTitleColor:csBlueColor forState:UIControlStateNormal];
     }else {
@@ -209,27 +198,27 @@ typedef NS_ENUM(NSInteger, CSCellType) {
         
         CGFloat width = MainScreenWidth * 0.2;
         
-        if (tag == 0) {
+        if (tag == AllCSCellType) {
             
             self.lineViewWidth.constant = 60;
             
-            self.lineViewLeftConstraint.constant = width * tag + width * 0.5 - 60 * 0.5;
+            self.lineViewLeftConstraint.constant = width * 0 + width * 0.5 - 60 * 0.5;
             
             
-        } else if (tag == 4) {
+        } else if (tag == YiWanChengCSCellType) {
             
             self.lineViewWidth.constant = 30;
-            self.lineViewLeftConstraint.constant = width * tag + width * 0.5 - 30 * 0.5;
-        }  else if (tag == 1) {
+            self.lineViewLeftConstraint.constant = width * 4 + width * 0.5 - 30 * 0.5;
+        }  else if (tag == DaiFuKuanCSCellType) {
             self.lineViewWidth.constant = 45;
-            self.lineViewLeftConstraint.constant = width * tag + width * 0.5 - 45 * 0.5;
-        } else if (tag == 2) {
+            self.lineViewLeftConstraint.constant = width * 1 + width * 0.5 - 45 * 0.5;
+        } else if (tag == DaiFaHuoCSCellType) {
             self.lineViewWidth.constant = 45;
-            self.lineViewLeftConstraint.constant = width * tag + width * 0.5 - 45* 0.5;
-        }  else if (tag == 3) {
+            self.lineViewLeftConstraint.constant = width * 2 + width * 0.5 - 45* 0.5;
+        }  else if (tag == DaiShouHuoCSCellType) {
             
             self.lineViewLeftConstraint.constant = self.lineViewWidth.constant = 45;
-            self.lineViewLeftConstraint.constant = width * tag + width * 0.5 - 45 * 0.5;
+            self.lineViewLeftConstraint.constant = width * 3 + width * 0.5 - 45 * 0.5;
             
         }
         [self.view layoutIfNeeded];
@@ -240,49 +229,84 @@ typedef NS_ENUM(NSInteger, CSCellType) {
         
     }];
     
-    [self.listTableView reloadData];
+    
 }
 #pragma mark --UITableViewDelegate/DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return [self getCurrentArray].count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self getCurrentArray].count;
+    
+    AllOrderModel *model = [self getCurrentModel:section];
+    
+    return model.goods.count + 2;
+    
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    AllOrderModel *model = [self getCurrentModel:indexPath.section];
+    if (indexPath.row == 0) {
+        ShoppingAllOrderTitleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(ShoppingAllOrderTitleTableViewCell)];
+       
+        cell.model = model;
+        return cell;
+    }
+    if (indexPath.row == model.goods.count + 2 - 1) {
+        ShoppingAllOrderButtonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(ShoppingAllOrderButtonTableViewCell)];
+        cell.csDelegate = self;
+        cell.model = model;
+        return cell;
+    }
     
     ShoppingAllOrderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(ShoppingAllOrderTableViewCell)];
     
-    AllOrderModel *model = [self getCurrentModel:indexPath.row];
-    cell.model = model;
-    return cell;
+    if (indexPath.row - 1 >= 0 && indexPath.row - 1 < model.goods.count) {
+        AllOrderModel *subModel = model.goods[indexPath.row - 1];
+        
+        cell.model = subModel;
+
+    }
+        return cell;
     
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    AllOrderModel *model = [self getCurrentModel:indexPath.row];
-    if (model.state.integerValue == YiWanChengCSCellType) {
-        return 181;
-    }
     
-    return 209;
+    if (indexPath.row == 0) {
+        return 48;
+    }
+    AllOrderModel *model = [self getCurrentModel:indexPath.section];
+    if (indexPath.row == model.goods.count + 2 - 1) {
+        if (model.status.integerValue == YiWanChengCSCellType || [model.status isEqualToString:@"-2"] || [model.status isEqualToString:@"-1"] || [model.status isEqualToString:@"-3"] || [model.status isEqualToString:@"1"]) {
+            return 36;
+        }
+        return 82;
+    }
+   
+    
+    return 99;
     
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    AllOrderModel *model = [self getCurrentModel:indexPath.row];
-    if (model.state.intValue == YiWanChengCSCellType) {
-         [self performSegueWithIdentifier:@"ShoppingHaveFinishedViewController" sender:self];
-    } else if (model.state.intValue == DaiShouHuoCSCellType) {
-        
-         [self performSegueWithIdentifier:@"ShoppingWaitReceiveGoodsViewController" sender:self];
-    }
-   
+    AllOrderModel *model = [self getCurrentModel:indexPath.section];
+//    if (model.status.intValue == YiWanChengCSCellType) {
+//        self.recordOrderId = model.order_id;
+//         [self performSegueWithIdentifier:@"ShoppingHaveFinishedViewController" sender:self];
+//    } else if (model.status.intValue == DaiShouHuoCSCellType) {
+//        self.recordOrderId = model.order_id;
+//         [self performSegueWithIdentifier:@"ShoppingWaitReceiveGoodsViewController" sender:self];
+//    }
+    self.recordOrderId = model.order_id;
+    self.recordStatus = model.status;
+             [self performSegueWithIdentifier:@"ShoppingWaitReceiveGoodsViewController" sender:self];
 }
 - (AllOrderModel *)getCurrentModel:(NSInteger)row {
     NSMutableArray *array = [self getCurrentArray];
-    
+    if (array.count == 0 || row >= array.count) {
+        return [AllOrderModel new];
+    }
     return array[row];
 }
 - (NSMutableArray *)getCurrentArray {
@@ -300,6 +324,216 @@ typedef NS_ENUM(NSInteger, CSCellType) {
         return self.yiwanchengArray;
     }
     return self.daishouhuoArray;
+}
+
+- (void)sendGetRequestForInfomation:(NSInteger)tag {
+    
+    self.currentCSCellType = tag;
+    
+   [self getNewData];
+    
+}
+
+- (void)endRefresh {
+    if (self.listTableView.mj_header.isRefreshing) {
+        [self.listTableView.mj_header endRefreshing];
+    }
+    if (self.listTableView.mj_footer.isRefreshing) {
+        [self.listTableView.mj_footer endRefreshing];
+    }
+}
+
+- (void)setCurrentPages {
+    
+    NSInteger tag = self.currentCSCellType;
+    
+    if (tag == AllCSCellType) {
+        self.recordFirstPage = 1;
+        
+    } else if (tag == DaiFuKuanCSCellType) {
+        self.recordSecondPage = 1;
+        
+    }else if (tag == DaiFaHuoCSCellType) {
+        self.recordThirdPage = 1;
+        
+    }else if (tag == DaiShouHuoCSCellType) {
+        self.recordFourthPage = 1;
+        
+    }
+    self.recordFifthPage = 1;
+}
+- (void)addCurrentPages {
+    NSInteger tag = self.currentCSCellType;
+    
+    if (tag == AllCSCellType) {
+        self.recordFirstPage ++;
+        
+    } else if (tag == DaiFuKuanCSCellType) {
+        self.recordSecondPage ++;
+        
+    }else if (tag == DaiFaHuoCSCellType) {
+        self.recordThirdPage ++;
+        
+    }else if (tag == DaiShouHuoCSCellType) {
+        self.recordFourthPage ++;
+        
+    }
+    self.recordFifthPage ++;
+}
+- (int)getCurrentPages {
+    
+    NSInteger tag = self.currentCSCellType;
+    
+    if (tag == AllCSCellType) {
+        return self.recordFirstPage;
+        
+    } else if (tag == DaiFuKuanCSCellType) {
+        return self.recordSecondPage;
+        
+    }else if (tag == DaiFaHuoCSCellType) {
+        return self.recordThirdPage;
+        
+    }else if (tag == DaiShouHuoCSCellType) {
+        return self.recordFourthPage;
+        
+    }
+    return self.recordFifthPage;
+}
+- (void)getNewData {
+    [self setCurrentPages];
+    NSMutableDictionary *para = @{}.mutableCopy;
+    if (self.currentCSCellType != AllCSCellType) {
+        para[@"status"] = [NSString stringWithFormat:@"%ld",self.currentCSCellType];
+    }
+    
+    
+    para[@"page"] = [NSString stringWithFormat:@"%d",[self getCurrentPages]];
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Cart_order_list Pameters:para success:^(id  _Nonnull responseObject) {
+        [self endRefresh];
+        if (CSInternetRequestSuccessful) {
+            [self handleNewDataWithArray:[CSParseManager getAllOrderModelArrayWithResponseObject:CSGetResult[@"lists"]]];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+}
+- (void)handleNewDataWithArray:(NSMutableArray *)array {
+    
+    NSInteger tag = self.currentCSCellType;
+    
+    if (tag == DaiFuKuanCSCellType) {
+        self.daifukuanArray = array;
+        
+    } else if (tag == DaiFaHuoCSCellType) {
+        self.daifahuoArray = array;
+        
+    }else if (tag == DaiShouHuoCSCellType) {
+        self.daishouhuoArray = array;
+        
+    }else if (tag == YiWanChengCSCellType) {
+        self.yiwanchengArray = array;
+        
+    } else {
+        self.allArray = array;
+        
+    }
+    
+    
+    [self.listTableView reloadData];
+    
+}
+- (void)handleMoreDataWithArray:(NSMutableArray *)array {
+    
+    if (array.count == 0) {
+        CustomWrongMessage(@"下面没有更多数据了");
+        return;
+    }
+    
+    NSInteger tag = self.currentCSCellType;
+    
+    if (tag == DaiFuKuanCSCellType) {
+        [self.daifukuanArray addObjectsFromArray:array];;
+        
+    } else if (tag == DaiFaHuoCSCellType) {
+        [self.daifahuoArray addObjectsFromArray:array];
+        
+    }else if (tag == DaiShouHuoCSCellType) {
+        [self.daishouhuoArray addObjectsFromArray:array];
+        
+    }else if (tag == YiWanChengCSCellType) {
+        [self.yiwanchengArray addObjectsFromArray:array];
+        
+    } else {
+        [self.allArray addObjectsFromArray:array];
+        
+    }
+    
+    [self.listTableView reloadData];
+    
+}
+- (void)getMoreData {
+    
+    [self addCurrentPages];
+    
+    NSMutableDictionary *para = @{}.mutableCopy;
+    
+    if (self.currentCSCellType != AllCSCellType) {
+        para[@"status"] = [NSString stringWithFormat:@"%ld",self.currentCSCellType];
+    }
+    
+    para[@"page"] = [NSString stringWithFormat:@"%d",[self getCurrentPages]];
+    
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Cart_order_list Pameters:para success:^(id  _Nonnull responseObject) {
+        [self endRefresh];
+        if (CSInternetRequestSuccessful) {
+            [self handleMoreDataWithArray:[CSParseManager getAllOrderModelArrayWithResponseObject:CSGetResult[@"lists"]]];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        [self endRefresh];
+        
+        CSInternetFailure
+    }];
+}
+#pragma mark -- ShoppingAllOrderButtonTableViewCellDelegate
+- (void)clickCheckWuLiu {
+    
+}
+- (void)clickCancelOrderDone {
+    [self sendGetRequestForInfomation:self.currentCSCellType];
+}
+- (void)passOrderId:(NSString *)orderID {
+    self.recordOrderId = orderID;
+    [self performSegueWithIdentifier:@"ShopSureOrderPayMoneyWayViewController" sender:nil];
+}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"ShopSureOrderPayMoneyWayViewController"]) {
+        ShopSureOrderPayMoneyWayViewController *new = segue.destinationViewController;
+        new.passOrderId = self.recordOrderId;
+        new.passOrderType = @"4";
+        new.csDelegate = self;
+    } else if ([segue.identifier isEqualToString:@"ShoppingWaitReceiveGoodsViewController"]){
+        ShoppingWaitReceiveGoodsViewController *new = segue.destinationViewController;
+        new.passOrderId = self.recordOrderId;
+        new.passStatus = self.recordStatus;
+    }
+    /**else if ([segue.identifier isEqualToString:@"ShoppingHaveFinishedViewController"]) {
+     ShoppingHaveFinishedViewController *new = segue.destinationViewController;
+     new.passOrderId = self.recordOrderId;
+     }*/
+}
+- (void)successGoBack {
+    [self sendGetRequestForInfomation:self.currentCSCellType];
+
+}
+- (IBAction)clickKefuButtonDone:(id)sender {
+    
+    [CSUtility shoppingGoToKefuController];
+    
+    
 }
 
 

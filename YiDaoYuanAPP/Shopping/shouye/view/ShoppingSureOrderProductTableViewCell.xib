@@ -76,6 +76,13 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="csImageView" destination="IOn-TS-xIv" id="dYg-d1-KgY"/>
+                <outlet property="feathureLabel" destination="PJg-d6-5rf" id="rRs-6N-QQN"/>
+                <outlet property="moneyLabel" destination="Cd8-9q-RkG" id="Vj9-lk-y6o"/>
+                <outlet property="numLabel" destination="EEb-Rd-1pu" id="llL-6K-o5B"/>
+                <outlet property="titleLabel" destination="ruy-2n-wsw" id="W5T-08-31u"/>
+            </connections>
             <point key="canvasLocation" x="188.80000000000001" y="191.6041979010495"/>
         </tableViewCell>
     </objects>

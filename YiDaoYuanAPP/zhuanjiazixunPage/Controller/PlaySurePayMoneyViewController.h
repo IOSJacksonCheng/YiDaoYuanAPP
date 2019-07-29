@@ -11,7 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PlaySurePayMoneyViewController : BaseViewController
-
+@property (nonatomic, strong) NSString *dashiID;
+@property (nonatomic, strong) NSString *csCat_id;
+@property (nonatomic, strong) NSString *passQuestion_id;
+@property (nonatomic, strong) NSString *personalQuestion;
 @end
 
 NS_ASSUME_NONNULL_END

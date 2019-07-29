@@ -26,15 +26,15 @@
                             <constraint firstAttribute="height" constant="1" id="8IA-dy-9b8"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_user-1" translatesAutoresizingMaskIntoConstraints="NO" id="TM4-46-PPF">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TM4-46-PPF">
                         <rect key="frame" x="16" y="13.5" width="68" height="68"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="68" id="dpv-ck-zkg"/>
+                            <constraint firstAttribute="height" constant="68" id="EMS-uj-Yh2"/>
                             <constraint firstAttribute="width" constant="68" id="mdz-dc-ePN"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="徐达" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ncU-3V-vVC">
-                        <rect key="frame" x="101" y="36.5" width="37" height="22"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ncU-3V-vVC">
+                        <rect key="frame" x="101" y="47.5" width="0.0" height="0.0"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -56,11 +56,14 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="nameLabel" destination="ncU-3V-vVC" id="pVs-xY-Yex"/>
+                <outlet property="titleImageView" destination="TM4-46-PPF" id="7H3-Be-QvV"/>
+            </connections>
             <point key="canvasLocation" x="57.600000000000001" y="132.23388305847078"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="icon_more-1" width="25" height="25"/>
-        <image name="img_user-1" width="68" height="68"/>
     </resources>
 </document>

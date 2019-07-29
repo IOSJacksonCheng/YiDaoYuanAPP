@@ -10,10 +10,7 @@
 
 @interface PayMoneyTitleTableViewCell()
 
-@property (weak, nonatomic) IBOutlet UIImageView *titleImageView;
 
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
 
 @end
 @implementation PayMoneyTitleTableViewCell

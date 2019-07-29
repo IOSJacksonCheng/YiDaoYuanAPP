@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PlayContactNextStepViewController : BaseViewController
-
+@property (nonatomic, strong) NSString *passCatId;
+@property (nonatomic, strong) NSString *passTitle;
 @end
 
 NS_ASSUME_NONNULL_END

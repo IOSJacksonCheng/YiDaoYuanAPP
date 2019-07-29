@@ -73,6 +73,9 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="chooseImageView" destination="iLt-b3-RaQ" id="PEP-KO-oir"/>
+                <outlet property="dashiImageView" destination="piX-VE-lAQ" id="CWQ-j8-lCL"/>
+                <outlet property="moneyLabel" destination="axs-4N-Vdt" id="C6k-eR-iNd"/>
                 <outlet property="numLabel" destination="xEi-a3-eVB" id="2MF-6g-jJu"/>
             </connections>
             <point key="canvasLocation" x="129.59999999999999" y="118.29085457271366"/>

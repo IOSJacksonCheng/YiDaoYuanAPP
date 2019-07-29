@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ShoppingShouYeCollectionViewCell" id="gTV-IL-0wX" customClass="ShoppingShouYeCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="64" height="98"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="64" height="98"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iMv-sm-a16">
+                        <rect key="frame" x="0.0" y="0.0" width="64" height="98"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_1_remen" translatesAutoresizingMaskIntoConstraints="NO" id="tWz-Yc-AtQ">
+                                <rect key="frame" x="9" y="14" width="46" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="c0K-DI-MD4"/>
+                                    <constraint firstAttribute="height" constant="46" id="jjl-wz-e66"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="热门推荐" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TmJ-EW-geB">
+                                <rect key="frame" x="5" y="70" width="54" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="TmJ-EW-geB" firstAttribute="centerX" secondItem="iMv-sm-a16" secondAttribute="centerX" id="4hG-f8-7FL"/>
+                            <constraint firstItem="TmJ-EW-geB" firstAttribute="top" secondItem="tWz-Yc-AtQ" secondAttribute="bottom" constant="10" id="AiZ-cy-eb2"/>
+                            <constraint firstItem="tWz-Yc-AtQ" firstAttribute="top" secondItem="iMv-sm-a16" secondAttribute="top" constant="14" id="UHD-WF-Hdg"/>
+                            <constraint firstItem="tWz-Yc-AtQ" firstAttribute="centerX" secondItem="iMv-sm-a16" secondAttribute="centerX" id="YTH-bx-Xk4"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="iMv-sm-a16" secondAttribute="trailing" id="IWM-72-QCe"/>
+                <constraint firstItem="iMv-sm-a16" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="bz8-92-iRd"/>
+                <constraint firstAttribute="bottom" secondItem="iMv-sm-a16" secondAttribute="bottom" id="iWM-ZS-V4B"/>
+                <constraint firstItem="iMv-sm-a16" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="jfI-jQ-L6l"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <connections>
+                <outlet property="csTitleLabel" destination="TmJ-EW-geB" id="Ldl-b8-Bhp"/>
+                <outlet property="iconImageView" destination="tWz-Yc-AtQ" id="spb-56-cEV"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="icon_1_remen" width="46" height="46"/>
+    </resources>
+</document>

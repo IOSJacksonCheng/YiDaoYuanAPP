@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AllOrderModel.h"
+#import "ConsultModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DaShiDuanZiXunTableViewCell : UITableViewCell
-@property (nonatomic, strong) AllOrderModel *model;
-
+@property (nonatomic, strong) ConsultModel *model;
+@property (nonatomic, assign) BOOL zixun;
 @end
 
 NS_ASSUME_NONNULL_END

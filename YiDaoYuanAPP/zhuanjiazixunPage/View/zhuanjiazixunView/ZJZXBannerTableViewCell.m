@@ -7,7 +7,8 @@
 //
 
 #import "ZJZXBannerTableViewCell.h"
-#import "ZJZXFirstRowModel.h"
+#import "HomePageADModel.h"
+#import "ShopProductDetailViewController.h"
 @interface ZJZXBannerTableViewCell() <UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *bannerScrollView;
@@ -29,7 +30,7 @@
     // Initialization code
     
     self.bannerScrollView.contentSize = CGSizeMake(MainScreenWidth * 3, 160);
-    self.bannerScrollView.backgroundColor = csBlueColor;
+    self.bannerScrollView.backgroundColor = UIColor.whiteColor;
     self.bannerScrollView.contentOffset = CGPointMake(MainScreenWidth, 0);
     self.bannerScrollView.bounces = NO;
     
@@ -46,31 +47,29 @@
         return;
     }
     if (_imageCount == 1) {
-        //        ZJZXFirstRowModel *model = self.adImageArray[0];
-        self.leftImageView.image = DotaImageName(@"banner");
-        self.centerImageView.image = DotaImageName(@"banner");
-        self.rightImageView.image = DotaImageName(@"banner");
-        //        [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:PlaceHolderImage];
-        //
-        //
-        //        [self.centerImageView sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:PlaceHolderImage];
-        //
-        //        [self.rightImageView sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:PlaceHolderImage];
+                HomePageADModel *model = self.adImageArray[0];
+       
+                [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:model.image] placeholderImage:PlaceHolderImage];
+        
+        
+                [self.centerImageView sd_setImageWithURL:[NSURL URLWithString:model.image] placeholderImage:PlaceHolderImage];
+        
+                [self.rightImageView sd_setImageWithURL:[NSURL URLWithString:model.image] placeholderImage:PlaceHolderImage];
         
     } else {
         
-        ZJZXFirstRowModel *model = self.adImageArray[_imageCount - 1];
+        HomePageADModel *model = self.adImageArray[_imageCount - 1];
         
-        [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:PlaceHolderImage];
+        [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:model.image] placeholderImage:PlaceHolderImage];
         
         
         model = self.adImageArray[0];
-        [self.centerImageView sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:PlaceHolderImage];
+        [self.centerImageView sd_setImageWithURL:[NSURL URLWithString:model.image] placeholderImage:PlaceHolderImage];
         
         
         model = self.adImageArray[1];
         
-        [self.rightImageView sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:PlaceHolderImage];
+        [self.rightImageView sd_setImageWithURL:[NSURL URLWithString:model.image] placeholderImage:PlaceHolderImage];
         
     }
     // 记录当前页
@@ -88,7 +87,11 @@
         self.leftImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, MainScreenWidth, 160)];
         self.leftImageView.backgroundColor = UIColor.whiteColor;
         self.leftImageView.contentMode = UIViewContentModeScaleToFill;
-        
+    self.leftImageView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickCurrentView)];
+    tap.numberOfTapsRequired = 1;
+    tap.numberOfTouchesRequired = 1;
+    [self.leftImageView addGestureRecognizer:tap];
         [self.bannerScrollView addSubview:self.leftImageView];
         
   
@@ -100,7 +103,10 @@
         self.centerImageView.contentMode = UIViewContentModeScaleToFill;
         
         [self.bannerScrollView addSubview:_centerImageView];
-        
+    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickCurrentView)];
+    tap1.numberOfTapsRequired = 1;
+    tap1.numberOfTouchesRequired = 1;
+    [self.centerImageView addGestureRecognizer:tap1];
     
     
     
@@ -111,7 +117,29 @@
         self.rightImageView .contentMode = UIViewContentModeScaleToFill
         ;
         [self.bannerScrollView addSubview:self.rightImageView ];
-  
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickCurrentView)];
+    tap2.numberOfTapsRequired = 1;
+    tap2.numberOfTouchesRequired = 1;
+    [self.rightImageView addGestureRecognizer:tap2];
+}
+- (void)clickCurrentView {
+    
+    if (self.currentImageIndex >= self.adImageArray.count) {
+        return;
+    }
+    
+    if (self.fromShopping) {
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"shopping" bundle:nil];
+        
+        
+        ShopProductDetailViewController *new = [mainStoryboard instantiateViewControllerWithIdentifier:@"ShopProductDetailViewController"];
+        HomePageADModel *model = self.adImageArray[self.currentImageIndex];
+        
+        new.passID = model.goods_id;
+        
+        [[CSUtility getCurrentViewController].navigationController pushViewController:new animated:YES];
+    }
+   
 }
 -(void)addPageControl
 {
@@ -178,19 +206,19 @@
         self.currentImageIndex = (self.currentImageIndex + self.imageCount - 1) % self.imageCount;
     }
     
-    ZJZXFirstRowModel *centerModel = self.adImageArray[self.currentImageIndex];
+    HomePageADModel *centerModel = self.adImageArray[self.currentImageIndex];
     
-    [self.centerImageView sd_setImageWithURL:[NSURL URLWithString:centerModel.url] placeholderImage:PlaceHolderImage];
+    [self.centerImageView sd_setImageWithURL:[NSURL URLWithString:centerModel.image] placeholderImage:PlaceHolderImage];
     
     
     leftImageIndex = (_currentImageIndex+_imageCount-1)%_imageCount;
     rightImageIndex = (_currentImageIndex+1)%_imageCount;
     
-    ZJZXFirstRowModel *leftModel = self.adImageArray[leftImageIndex];
-    [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:leftModel.url] placeholderImage:PlaceHolderImage];
+    HomePageADModel *leftModel = self.adImageArray[leftImageIndex];
+    [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:leftModel.image] placeholderImage:PlaceHolderImage];
     
-    ZJZXFirstRowModel *rightModel = self.adImageArray[rightImageIndex];
-    [self.rightImageView sd_setImageWithURL:[NSURL URLWithString:rightModel.url] placeholderImage:PlaceHolderImage];
+    HomePageADModel *rightModel = self.adImageArray[rightImageIndex];
+    [self.rightImageView sd_setImageWithURL:[NSURL URLWithString:rightModel.image] placeholderImage:PlaceHolderImage];
     
 }
 - (void)setAdImageArray:(NSMutableArray *)adImageArray {

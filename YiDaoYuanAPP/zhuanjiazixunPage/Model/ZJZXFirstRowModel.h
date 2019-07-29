@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZJZXFirstRowModel : NSObject
-@property (nonatomic, strong) NSString *url;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *images;
 @end
 
 NS_ASSUME_NONNULL_END

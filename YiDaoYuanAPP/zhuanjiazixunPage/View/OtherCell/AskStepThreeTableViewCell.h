@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PlayContactStepThreeModel.h"
+#import "QuestionId.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AskStepThreeTableViewCell : UITableViewCell
 
-@property (nonatomic, strong) PlayContactStepThreeModel *model;
+@property (nonatomic, strong) QuestionId *model;
 @end
 
 NS_ASSUME_NONNULL_END

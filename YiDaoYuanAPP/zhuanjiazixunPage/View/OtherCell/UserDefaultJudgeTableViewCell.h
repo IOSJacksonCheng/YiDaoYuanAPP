@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserJudgeArray.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UserDefaultJudgeTableViewCell : UITableViewCell
+@property (nonatomic, strong) UserJudgeArray *model;
 
 @end
 

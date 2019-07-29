@@ -11,6 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ShoppingSureOrderMoneyTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *freightLabel;
+@property (weak, nonatomic) IBOutlet UILabel *totalLabel;
 
 @end
 

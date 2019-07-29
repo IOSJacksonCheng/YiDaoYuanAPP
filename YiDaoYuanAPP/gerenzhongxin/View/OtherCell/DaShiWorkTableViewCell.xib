@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DaShiWorkTableViewCell" rowHeight="121" id="KGk-i7-Jjw" customClass="DaShiWorkTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="123"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="122.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y05-7E-qVE">
+                        <rect key="frame" x="0.0" y="120.5" width="320" height="2"/>
+                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="2" id="Xle-I4-Bz9"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="工作设置" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JiP-RY-zwv">
+                        <rect key="frame" x="18" y="26" width="74" height="22"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chy-fn-bgB">
+                        <rect key="frame" x="18" y="72" width="81" height="19"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <state key="normal" title="线上咨询" image="icon_weixuanzhong">
+                            <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <state key="selected" image="icon_xuanzhong"/>
+                    </button>
+                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FhM-xL-lp4">
+                        <rect key="frame" x="113.5" y="70.5" width="93" height="22"/>
+                        <state key="normal" title="线下约见" image="icon_weixuanzhong">
+                            <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <state key="selected" image="icon_xuanzhong"/>
+                    </button>
+                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ow-Rf-HWI">
+                        <rect key="frame" x="197" y="70.5" width="93" height="22"/>
+                        <state key="normal" title="忙碌状态" image="icon_weixuanzhong">
+                            <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <state key="selected" image="icon_xuanzhong"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="FhM-xL-lp4" firstAttribute="centerY" secondItem="chy-fn-bgB" secondAttribute="centerY" id="75U-S3-Fvh"/>
+                    <constraint firstItem="chy-fn-bgB" firstAttribute="leading" secondItem="JiP-RY-zwv" secondAttribute="leading" id="7cs-b6-6f1"/>
+                    <constraint firstAttribute="trailing" secondItem="y05-7E-qVE" secondAttribute="trailing" id="AKl-CC-zji"/>
+                    <constraint firstItem="FhM-xL-lp4" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="ISW-4c-RG8"/>
+                    <constraint firstItem="y05-7E-qVE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="IcL-9p-fh2"/>
+                    <constraint firstAttribute="trailing" secondItem="9ow-Rf-HWI" secondAttribute="trailing" constant="30" id="ZtC-PB-gMZ"/>
+                    <constraint firstItem="JiP-RY-zwv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="26" id="aia-cl-jts"/>
+                    <constraint firstItem="9ow-Rf-HWI" firstAttribute="centerY" secondItem="chy-fn-bgB" secondAttribute="centerY" id="b6Z-TU-ePT"/>
+                    <constraint firstItem="JiP-RY-zwv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="18" id="fHu-YI-tPm"/>
+                    <constraint firstItem="chy-fn-bgB" firstAttribute="top" secondItem="JiP-RY-zwv" secondAttribute="bottom" constant="24" id="ocS-E6-xoh"/>
+                    <constraint firstAttribute="bottom" secondItem="y05-7E-qVE" secondAttribute="bottom" id="uam-6c-Xlh"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="firstButton" destination="chy-fn-bgB" id="aM8-xG-zUa"/>
+                <outlet property="secondButton" destination="FhM-xL-lp4" id="u5A-WI-S4Y"/>
+                <outlet property="thirdButton" destination="9ow-Rf-HWI" id="tD1-by-Ao5"/>
+            </connections>
+            <point key="canvasLocation" x="112" y="112.89355322338831"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icon_weixuanzhong" width="19" height="19"/>
+        <image name="icon_xuanzhong" width="19" height="19"/>
+    </resources>
+</document>

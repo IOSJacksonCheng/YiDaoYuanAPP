@@ -14,8 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *csImageView;
 @property (weak, nonatomic) IBOutlet UILabel *csTitleLabel;
 @property (weak, nonatomic) IBOutlet UIView *buttonView;
-@property (weak, nonatomic) IBOutlet UILabel *explainLabel;
-@property (weak, nonatomic) IBOutlet UIView *hideView;
+@property (weak, nonatomic) IBOutlet UIButton *boyButton;
+@property (weak, nonatomic) IBOutlet UIButton *girlButton;
+@property (weak, nonatomic) IBOutlet UITextField *csTitletextField;
 
 @end
 

@@ -11,6 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UserJudgeDetailImageTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *firstImage;
+@property (weak, nonatomic) IBOutlet UIImageView *secondImage;
 
 @end
 

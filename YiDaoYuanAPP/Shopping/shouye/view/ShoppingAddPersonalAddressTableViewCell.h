@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AddressModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ShoppingAddPersonalAddressTableViewCell : UITableViewCell
+@property (nonatomic, strong) AddressModel *model;
+@property (weak, nonatomic) IBOutlet UIImageView *moreIconImageView;
+
 
 @end
 

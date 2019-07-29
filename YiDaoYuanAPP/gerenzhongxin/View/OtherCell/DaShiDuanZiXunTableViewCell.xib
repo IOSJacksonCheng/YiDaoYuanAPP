@@ -23,7 +23,7 @@
                         <rect key="frame" x="10" y="10" width="300" height="247.5"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G5h-mF-iiT">
-                                <rect key="frame" x="0.0" y="36" width="300" height="89"/>
+                                <rect key="frame" x="0.0" y="60.5" width="300" height="89"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_dashi" translatesAutoresizingMaskIntoConstraints="NO" id="Rzk-8e-6m7">
                                         <rect key="frame" x="9" y="8" width="72" height="72"/>
@@ -79,33 +79,41 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下单时间：2019-03-03" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uGD-gL-hc6">
-                                <rect key="frame" x="9" y="135" width="141" height="16"/>
+                                <rect key="frame" x="9" y="159.5" width="141" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="合计：¥300" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3mc-P3-B0H">
-                                <rect key="frame" x="208" y="133" width="83" height="18"/>
+                                <rect key="frame" x="208" y="157.5" width="83" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.01176470588" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="03I-SL-zxz">
-                                <rect key="frame" x="10" y="170" width="282" height="28"/>
+                                <rect key="frame" x="10" y="214.5" width="282" height="28"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="YcT-YD-HeF"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4n-hV-gOX">
+                                <rect key="frame" x="10" y="38" width="273" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="h4n-hV-gOX" secondAttribute="trailing" constant="17" id="04j-Aw-wB0"/>
+                            <constraint firstAttribute="bottom" secondItem="03I-SL-zxz" secondAttribute="bottom" constant="5" id="1iP-we-I3B"/>
                             <constraint firstAttribute="trailing" secondItem="3mc-P3-B0H" secondAttribute="trailing" constant="9" id="3bG-w3-INa"/>
+                            <constraint firstItem="h4n-hV-gOX" firstAttribute="leading" secondItem="EBB-pT-4hH" secondAttribute="leading" constant="10" id="5Y8-B8-VXX"/>
                             <constraint firstItem="3mc-P3-B0H" firstAttribute="bottom" secondItem="uGD-gL-hc6" secondAttribute="bottom" id="8LD-y0-lpN"/>
                             <constraint firstItem="zDy-I2-IQp" firstAttribute="top" secondItem="EBB-pT-4hH" secondAttribute="top" constant="10" id="D68-AR-6Y2"/>
-                            <constraint firstItem="03I-SL-zxz" firstAttribute="top" secondItem="uGD-gL-hc6" secondAttribute="bottom" constant="19" id="Gxl-Nk-ezl"/>
                             <constraint firstItem="uGD-gL-hc6" firstAttribute="top" secondItem="G5h-mF-iiT" secondAttribute="bottom" constant="10" id="JrW-Ew-T6T"/>
-                            <constraint firstItem="G5h-mF-iiT" firstAttribute="top" secondItem="zDy-I2-IQp" secondAttribute="bottom" constant="8" id="LEb-St-zvp"/>
+                            <constraint firstItem="G5h-mF-iiT" firstAttribute="top" secondItem="h4n-hV-gOX" secondAttribute="bottom" constant="8" id="SRz-At-SzQ"/>
                             <constraint firstItem="uGD-gL-hc6" firstAttribute="leading" secondItem="EBB-pT-4hH" secondAttribute="leading" constant="9" id="XcX-Yg-QMB"/>
                             <constraint firstAttribute="trailing" secondItem="nxk-Ed-ae9" secondAttribute="trailing" constant="8" id="Yo0-d6-UyY"/>
                             <constraint firstItem="f1F-VP-zOE" firstAttribute="leading" secondItem="Rzk-8e-6m7" secondAttribute="trailing" constant="8" id="a9l-Ka-5Zs"/>
@@ -113,6 +121,7 @@
                             <constraint firstItem="zDy-I2-IQp" firstAttribute="leading" secondItem="EBB-pT-4hH" secondAttribute="leading" constant="8" id="fTg-K4-Inc"/>
                             <constraint firstAttribute="trailing" secondItem="03I-SL-zxz" secondAttribute="trailing" constant="8" id="k7E-JI-cmZ"/>
                             <constraint firstItem="03I-SL-zxz" firstAttribute="leading" secondItem="EBB-pT-4hH" secondAttribute="leading" constant="10" id="qq5-x7-Ctr"/>
+                            <constraint firstItem="h4n-hV-gOX" firstAttribute="top" secondItem="zDy-I2-IQp" secondAttribute="bottom" constant="10" id="rqI-ff-fgp"/>
                             <constraint firstItem="nxk-Ed-ae9" firstAttribute="top" secondItem="EBB-pT-4hH" secondAttribute="top" constant="10" id="s3p-vk-RBN"/>
                             <constraint firstAttribute="trailing" secondItem="G5h-mF-iiT" secondAttribute="trailing" id="sMu-8A-xy7"/>
                             <constraint firstItem="f1F-VP-zOE" firstAttribute="top" secondItem="Rzk-8e-6m7" secondAttribute="top" id="uD4-Gl-gQN"/>
@@ -131,7 +140,14 @@
             <connections>
                 <outlet property="bgView" destination="EBB-pT-4hH" id="N5Z-gL-eSu"/>
                 <outlet property="buttonView" destination="03I-SL-zxz" id="d1D-a8-TTM"/>
+                <outlet property="headImageView" destination="Rzk-8e-6m7" id="ggX-QE-L3V"/>
+                <outlet property="hejiLabel" destination="3mc-P3-B0H" id="VUq-vh-H8a"/>
+                <outlet property="itemLabel" destination="Bfh-cm-Gvh" id="0CG-E6-9TY"/>
+                <outlet property="nameLabel" destination="f1F-VP-zOE" id="lcj-wM-FtB"/>
+                <outlet property="orderLabel" destination="zDy-I2-IQp" id="O6w-oZ-tlf"/>
+                <outlet property="questionLabel" destination="h4n-hV-gOX" id="fIm-JU-vdY"/>
                 <outlet property="stateTitleLabel" destination="nxk-Ed-ae9" id="tXW-6m-lYb"/>
+                <outlet property="timeLabel" destination="uGD-gL-hc6" id="gnL-29-Pg5"/>
             </connections>
             <point key="canvasLocation" x="129.59999999999999" y="250.07496251874065"/>
         </tableViewCell>

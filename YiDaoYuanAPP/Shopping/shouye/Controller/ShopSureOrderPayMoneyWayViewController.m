@@ -158,6 +158,29 @@
 }
 - (IBAction)clickSureButtonDone:(id)sender {
     
+    
+    if (!csCharacterIsBlank(self.passOrderId)) {
+        
+        NSMutableDictionary *para = @{}.mutableCopy;
+        para[@"order_id"] = self.passOrderId;
+        para[@"payType"] = [NSString stringWithFormat:@"%d",self.currentClickIndex];
+         para[@"orderType"] = self.passOrderType;
+        
+        [CSNetManager sendPostRequestWithNeedToken:YES Url:CSURL_Index_Createpay Pameters:para success:^(id  _Nonnull responseObject) {
+            
+            if (CSInternetRequestSuccessful) {
+                [self configMoneyWith:CSGetResult];
+            }else {
+                CSShowWrongMessage
+            }
+        } failure:^(NSError * _Nonnull error) {
+            CSInternetFailure
+        }];
+        
+        
+        return;
+    }
+    
     if (!csCharacterIsBlank(self.passVideoId)) {
         
         NSMutableDictionary *para = @{}.mutableCopy;
@@ -223,7 +246,7 @@
         int resultStatus = [[resultDic objectForKey:@"resultStatus"]intValue];
         
         if (resultStatus == 9000) {
-            
+          
             [self.csDelegate successGoBack];
             [self.navigationController popViewControllerAnimated:YES];
         }

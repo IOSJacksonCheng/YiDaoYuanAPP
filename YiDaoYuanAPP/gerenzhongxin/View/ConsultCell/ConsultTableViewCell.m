@@ -8,29 +8,39 @@
 
 #import "ConsultTableViewCell.h"
 
+#import "AfterChatJudgeViewController.h"
+
+#import "ShopSureOrderPayMoneyWayViewController.h"
+//        //-2已退款 -1已取消 0 未支付 1 已支付等待填写信息 2进行中 3申请退款中 10已完成
+#import "GoToJudgeViewController.h"
 NSString *daifukuang = @"0";
 NSString *jinxingzhong = @"2";
 NSString *yiwancheng = @"10";
 NSString *tuikuang = @"-2";
-@interface ConsultTableViewCell()
+@interface ConsultTableViewCell()<ShopSureOrderPayMoneyWayViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *buttonView;
 
 @property (weak, nonatomic) IBOutlet UIView *bgView;
 @property (weak, nonatomic) IBOutlet UILabel *stateTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *orderIdLabel;
+
 @property (weak, nonatomic) IBOutlet UIImageView *headImageView;
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *xiadanshijianLabel;
-@property (weak, nonatomic) IBOutlet UILabel *hejiLabel;
-@property (weak, nonatomic) IBOutlet UILabel *pingFenLabel;
 @property (weak, nonatomic) IBOutlet UILabel *firstShanChangLabel;
 @property (weak, nonatomic) IBOutlet UILabel *secondShanChangLabel;
 @property (weak, nonatomic) IBOutlet UILabel *thirdShanChangLabel;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+
+
+@property (weak, nonatomic) IBOutlet UILabel *xiadanshijianLabel;
+@property (weak, nonatomic) IBOutlet UILabel *hejiLabel;
+@property (weak, nonatomic) IBOutlet UILabel *pingFenLabel;
+
 @property (weak, nonatomic) IBOutlet UIImageView *oneXingImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *twoXingImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *threeXingImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *fourXingImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *fiveXingImageView;
+@property (weak, nonatomic) IBOutlet UILabel *qaLabel;
 
 @end
 @implementation ConsultTableViewCell
@@ -52,9 +62,9 @@ NSString *tuikuang = @"-2";
     
     self.stateTitleLabel.text = model.statusTitle;
     
-    
+    self.qaLabel.text = model.content;
     self.nameLabel.text = model.name;
-    
+     [self.headImageView sd_setImageWithURL:[NSURL URLWithString:model.avatar] placeholderImage:CSUserImagePlaceHolder];
     if (model.skille.count == 0) {
         
         self.firstShanChangLabel.text = @"";
@@ -84,7 +94,7 @@ NSString *tuikuang = @"-2";
     
     self.orderIdLabel.text = [NSString stringWithFormat:@"订单编号:%@",model.order_id];
     
-    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:model.avatar] placeholderImage:CSUserImagePlaceHolder];
+   
    
     self.hejiLabel.text = [NSString stringWithFormat:@"合计:%@",model.price];
    
@@ -95,34 +105,34 @@ NSString *tuikuang = @"-2";
     self.pingFenLabel.text = model.grade;
     
     if (model.grade.intValue == 0) {
-        self.oneXingImageView.image = DotaImageName(@"icon_collect-1");
-        self.twoXingImageView.image = DotaImageName(@"icon_collect-1");
-        self.threeXingImageView.image = DotaImageName(@"icon_collect-1");
-        self.fourXingImageView.image = DotaImageName(@"icon_collect-1");
-        self.fiveXingImageView.image = DotaImageName(@"icon_collect-1");
+        self.oneXingImageView.image = DotaImageName(@"icon_weishou");
+        self.twoXingImageView.image = DotaImageName(@"icon_weishou");
+        self.threeXingImageView.image = DotaImageName(@"icon_weishou");
+        self.fourXingImageView.image = DotaImageName(@"icon_weishou");
+        self.fiveXingImageView.image = DotaImageName(@"icon_weishou");
 
     } else if (model.grade.intValue == 1) {
         self.oneXingImageView.image = DotaImageName(@"icon_collect");
-        self.twoXingImageView.image = DotaImageName(@"icon_collect-1");
-        self.threeXingImageView.image = DotaImageName(@"icon_collect-1");
-        self.fourXingImageView.image = DotaImageName(@"icon_collect-1");
-        self.fiveXingImageView.image = DotaImageName(@"icon_collect-1");
+        self.twoXingImageView.image = DotaImageName(@"icon_weishou");
+        self.threeXingImageView.image = DotaImageName(@"icon_weishou");
+        self.fourXingImageView.image = DotaImageName(@"icon_weishou");
+        self.fiveXingImageView.image = DotaImageName(@"icon_weishou");
         
         
     }else if (model.grade.intValue == 2) {
         self.oneXingImageView.image = DotaImageName(@"icon_collect");
         self.twoXingImageView.image = DotaImageName(@"icon_collect");
-        self.threeXingImageView.image = DotaImageName(@"icon_collect-1");
-        self.fourXingImageView.image = DotaImageName(@"icon_collect-1");
-        self.fiveXingImageView.image = DotaImageName(@"icon_collect-1");
+        self.threeXingImageView.image = DotaImageName(@"icon_weishou");
+        self.fourXingImageView.image = DotaImageName(@"icon_weishou");
+        self.fiveXingImageView.image = DotaImageName(@"icon_weishou");
         
         
     }else if (model.grade.intValue == 3) {
         self.oneXingImageView.image = DotaImageName(@"icon_collect");
         self.twoXingImageView.image = DotaImageName(@"icon_collect");
         self.threeXingImageView.image = DotaImageName(@"icon_collect");
-        self.fourXingImageView.image = DotaImageName(@"icon_collect-1");
-        self.fiveXingImageView.image = DotaImageName(@"icon_collect-1");
+        self.fourXingImageView.image = DotaImageName(@"icon_weishou");
+        self.fiveXingImageView.image = DotaImageName(@"icon_weishou");
         
         
     }else if (model.grade.intValue == 4) {
@@ -130,10 +140,10 @@ NSString *tuikuang = @"-2";
         self.twoXingImageView.image = DotaImageName(@"icon_collect");
         self.threeXingImageView.image = DotaImageName(@"icon_collect");
         self.fourXingImageView.image = DotaImageName(@"icon_collect");
-        self.fiveXingImageView.image = DotaImageName(@"icon_collect-1");
+        self.fiveXingImageView.image = DotaImageName(@"icon_weishou");
         
         
-    }else if (model.grade.intValue == 54) {
+    }else if (model.grade.intValue == 5) {
         self.oneXingImageView.image = DotaImageName(@"icon_collect");
         self.twoXingImageView.image = DotaImageName(@"icon_collect");
         self.threeXingImageView.image = DotaImageName(@"icon_collect");
@@ -174,7 +184,7 @@ NSString *tuikuang = @"-2";
         
         [buttonMutableArray addObject:button1];
         
-    } else if ([model.status isEqualToString:jinxingzhong]) {
+    } else if ([model.status isEqualToString:jinxingzhong] && self.zixun) {
         UIButton *button = [self getTypeButtonWithTitle:@"申请退款" WithCount:1];
         
         [buttonMutableArray addObject:button];
@@ -266,8 +276,111 @@ NSString *tuikuang = @"-2";
 - (void)clickBottomViewButtonDone:(UIButton *)sender {
     
     if ([sender.titleLabel.text isEqualToString:@"确认支付"]) {
-        [[CSUtility getCurrentViewController] performSegueWithIdentifier:@"SureOrderViewController" sender:self];
-    } 
-}
+        [self.simpleDelegate passModel:self.model];
+        if (self.zixun) {
+            [[CSUtility getCurrentViewController] performSegueWithIdentifier:@"SureOrderViewController" sender:self];
+            
+            
+            return;
+        }
+        UIStoryboard *shopping = [UIStoryboard storyboardWithName:@"shopping" bundle:nil];
+        ShopSureOrderPayMoneyWayViewController *new = [shopping instantiateViewControllerWithIdentifier:@"ShopSureOrderPayMoneyWayViewController"];
+        new.csDelegate = self;
+        new.passOrderId = self.model.order_id;
+       
+            new.passOrderType = @"1";
 
+        
+        [[CSUtility getCurrentViewController].navigationController pushViewController:new animated:YES];
+    } else if ([sender.titleLabel.text isEqualToString:@"取消订单"]) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"确定取消订单吗？" preferredStyle:UIAlertControllerStyleAlert];
+        //2.创建界面上的按钮
+        UIAlertAction *actionYes = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self sendCancelGetRequest];
+        }];
+        UIAlertAction *actionNo = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        //3.将按钮添加到AlertController中
+        [alert addAction:actionNo];
+        [alert addAction:actionYes];
+        //5.显示AlertController
+        [[CSUtility getCurrentViewController] presentViewController:alert animated:YES completion:nil];
+        
+    } else if ([sender.titleLabel.text isEqualToString:@"申请退款"]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"确定退款吗？" preferredStyle:UIAlertControllerStyleAlert];
+        //2.创建界面上的按钮
+        UIAlertAction *actionYes = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self sendTuiKuanGetRequest];
+        }];
+        UIAlertAction *actionNo = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        //3.将按钮添加到AlertController中
+        [alert addAction:actionNo];
+        [alert addAction:actionYes];
+        //5.显示AlertController
+        [[CSUtility getCurrentViewController] presentViewController:alert animated:YES completion:nil];
+    }else if ([sender.titleLabel.text isEqualToString:@"评价"]) {
+//        [self.simpleDelegate passModel:self.model];
+//
+//        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//
+//        AfterChatJudgeViewController *new = [mainStoryboard instantiateViewControllerWithIdentifier:@"AfterChatJudgeViewController"];
+//
+//        new.model = self.model;
+        GoToJudgeViewController *new = [GoToJudgeViewController new];
+        new.order_id = self.model.order_id;
+        if (self.zixun) {
+            new.typestring = @"1";
+
+        }else {
+            new.typestring = @"3";
+        }
+
+        [[CSUtility getCurrentViewController].navigationController pushViewController:new animated:YES];
+    }
+}
+- (void)sendTuiKuanGetRequest {
+    
+    NSMutableDictionary *para = @{}.mutableCopy;
+    para[@"order_id"] = self.model.order_id;
+    NSString *url = CSURL_consult_refund;
+   
+    [CSNetManager sendPostRequestWithNeedToken:YES Url:url Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            CustomWrongMessage(@"申请退款提交成功!");
+            [self.simpleDelegate refreshCurrentView];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+}
+- (void)sendCancelGetRequest {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    para[@"order_id"] = self.model.order_id;
+    NSString *url = CSURL_consult_cancel;
+    if (!self.zixun) {
+        url = CSURL_qa_cancel;
+        
+    }
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:url Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            CustomWrongMessage(@"订单取消成功!");
+            [self.simpleDelegate refreshCurrentView];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+}
+- (void)successGoBack {
+    [self.simpleDelegate refreshCurrentView];
+}
 @end

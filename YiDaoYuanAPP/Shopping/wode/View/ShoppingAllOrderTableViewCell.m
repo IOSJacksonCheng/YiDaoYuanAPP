@@ -8,18 +8,19 @@
 
 #import "ShoppingAllOrderTableViewCell.h"
 
-NSString *csdaifukuang = @"1";
-NSString *csdaifahuo = @"2";
-NSString *csdaishouhuo = @"3";
-NSString *csyiwancheng = @"4";
 
 
 
 @interface ShoppingAllOrderTableViewCell()
-@property (weak, nonatomic) IBOutlet UIView *buttonView;
 
 @property (weak, nonatomic) IBOutlet UIView *bgView;
-@property (weak, nonatomic) IBOutlet UILabel *stateTitleLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *goodsNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *shuxingLabel;
+@property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
+@property (weak, nonatomic) IBOutlet UILabel *numLabel;
+
+@property (weak, nonatomic) IBOutlet UIImageView *csImageView;
 @end
 
 @implementation ShoppingAllOrderTableViewCell
@@ -39,137 +40,21 @@ NSString *csyiwancheng = @"4";
     
     _model = model;
     
-    self.stateTitleLabel.text = model.statTitle;
+   
+    self.goodsNameLabel.text = model.goods_name;
     
-    if ([model.state isEqualToString:csyiwancheng]) {
-        self.buttonView.hidden = YES;
-        self.stateTitleLabel.hidden = YES;
-        return;
-    }
-    self.stateTitleLabel.hidden = NO;
-    self.buttonView.hidden = NO;
+    self.shuxingLabel.text = [NSString stringWithFormat:@"%@(%@)",model.goods_attr_name, model.goods_attr_value];
     
-    for (UIView *view in self.buttonView.subviews) {
-        
-        if ([view isKindOfClass:[UIButton class]]) {
-            [view removeFromSuperview];
-        }else if ([view isKindOfClass:[UIImageView class]]) {
-            [view removeFromSuperview];
-        }
-        
-    }
+    self.moneyLabel.text = [NSString stringWithFormat:@"¥%@",model.goods_price];
+    self.numLabel.text = [NSString stringWithFormat:@"X%@",model.quantity];
+   
     
-    NSMutableArray *buttonMutableArray = [NSMutableArray array];
+    [self.csImageView sd_setImageWithURL:[NSURL URLWithString:model.goods_img] placeholderImage:PlaceHolderImage];
     
-    
-    if ([model.state isEqualToString:csdaifukuang]) {
-        
-        
-        UIButton *button = [self getTypeButtonWithTitle:@"立即付款" WithCount:2];
-        
-        [buttonMutableArray addObject:button];
-        UIButton *button1 = [self getTypeButtonWithTitle:@"取消订单" WithCount:2];
-        
-        [buttonMutableArray addObject:button1];
-        
-    } else if ([model.state isEqualToString:csdaishouhuo]) {
-        UIButton *button = [self getTypeButtonWithTitle:@"确认收货" WithCount:2];
-        
-        [buttonMutableArray addObject:button];
-        
-        
-        UIButton *button1 = [self getTypeButtonWithTitle:@"查看物流" WithCount:2];
-        
-        [buttonMutableArray addObject:button1];
-    }else if ([model.state isEqualToString:csdaifahuo]) {
-        
-        UIButton *button = [self getTypeButtonWithTitle:@"取消订单" WithCount:1];
-        
-        [buttonMutableArray addObject:button];
-        
-    }
-    
-    
-    [self configBottomViewWithButtonArray:buttonMutableArray];
+   
     
     
     
-    
-}
-- (void)configBottomViewWithButtonArray:(NSMutableArray *)newMutableArray {
-    
-    
-    CGFloat buttonHeight = 30;
-    
-    CGFloat buttonInterval_X = 10;
-    
-    CGFloat buttonWidth = 90;
-    
-    if (newMutableArray.count == 1) {
-        UIButton *button = newMutableArray[0];
-        [self.buttonView addSubview:button];
-        [button mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(0);
-            make.centerY.mas_equalTo(0);
-            make.height.mas_equalTo(buttonHeight);
-            make.width.mas_equalTo(buttonWidth);
-        }];
-        return;
-    }
-    
-    for (int i = 0; i < newMutableArray.count; i++) {
-        
-        UIButton *button = newMutableArray[i];
-        
-        [self.buttonView addSubview:button];
-        
-        [button mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(0 - (buttonInterval_X + buttonWidth) * i);
-            make.height.mas_equalTo(buttonHeight);
-            make.width.mas_equalTo(buttonWidth);
-            make.centerY.mas_equalTo(0);
-            
-        }];
-    }
-    
-}
-
-- (UIButton *)getTypeButtonWithTitle:(NSString *)title WithCount:(int)count {
-    
-    UIButton *button = [[UIButton alloc] init];
-    
-    button.layer.cornerRadius = 14;
-    
-    button.titleLabel.font = csCharacterFont_14;
-    
-    button.layer.borderWidth = 1;
-    
-    
-    [button setTitle:title forState:UIControlStateNormal];
-    
-    [button addTarget:self action:@selector(clickBottomViewButtonDone:) forControlEvents:UIControlEventTouchDown];
-    
-    if ([title isEqualToString:@"取消订单"] || [title isEqualToString:@"申请退款"] || [title isEqualToString:@"查看物流"]) {
-        
-        [button setTitleColor:cs999999Color forState:UIControlStateNormal];
-        
-        button.layer.borderColor = cs999999Color.CGColor;
-    } else {
-        [button setTitleColor:csBlueColor forState:UIControlStateNormal];
-        
-        button.layer.borderColor = csBlueColor.CGColor;
-    }
-    
-    
-    
-    return button;
-}
-
-- (void)clickBottomViewButtonDone:(UIButton *)sender {
-    
-    if ([sender.titleLabel.text isEqualToString:@"确认支付"]) {
-        [[CSUtility getCurrentViewController] performSegueWithIdentifier:@"SureOrderViewController" sender:self];
-    }
 }
 
 @end

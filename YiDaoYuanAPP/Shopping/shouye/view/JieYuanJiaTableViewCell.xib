@@ -21,6 +21,9 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_remen tuijian" translatesAutoresizingMaskIntoConstraints="NO" id="qYx-mX-ih0">
                         <rect key="frame" x="10" y="10" width="309" height="145"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="145" id="oX4-Ie-Rwi"/>
+                        </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开光铜葫芦：镇宅化煞  辟邪消灾  祛病纳福  催桃花  催婚姻  增进夫妻感情（附开光图片）" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rR3-AT-GHu">
                         <rect key="frame" x="10" y="165" width="297" height="54"/>
@@ -66,7 +69,9 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="csImageView" destination="qYx-mX-ih0" id="N5C-K3-BSn"/>
                 <outlet property="priceLabel" destination="m04-4x-axX" id="svg-dv-qIM"/>
+                <outlet property="titleLabel" destination="rR3-AT-GHu" id="FvH-1r-yFG"/>
             </connections>
             <point key="canvasLocation" x="135.19999999999999" y="145.27736131934034"/>
         </tableViewCell>

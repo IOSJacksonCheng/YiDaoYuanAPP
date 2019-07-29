@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UserJudgeListDetailViewController : BaseViewController
-
+@property (nonatomic, strong) NSString *passId;
 @end
 
 NS_ASSUME_NONNULL_END

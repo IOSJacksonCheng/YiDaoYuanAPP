@@ -11,11 +11,21 @@
 #import "DaShiDuanYiWanChengDetailTableViewCell.h"
 #import "DaShiDuanYiWanChengInfoTableViewCell.h"
 #import "DaShiDuanYiWanChengJudgeTableViewCell.h"
-@interface DaShiDuanYiWanChengDetailViewController ()<UITableViewDelegate, UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIButton *rightNowButton;
-@property (weak, nonatomic) IBOutlet UIButton *checkLiaoTianButton;
 
+#import "DaShiOrderInfoModel.h"
+
+#import "GoToJudgePictureTableViewCell.h"
+
+#import "GoToJudgeJudgeModel.h"
+@interface DaShiDuanYiWanChengDetailViewController ()<UITableViewDelegate, UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (weak, nonatomic) IBOutlet UIButton *checkLiaoTianButton;
+@property (nonatomic, strong) DaShiOrderInfoModel *infoModel;
+
+@property (nonatomic, strong) NSMutableDictionary *csDictionary;
+@property (nonatomic, strong) NSMutableArray *listArray;
 @end
 
 @implementation DaShiDuanYiWanChengDetailViewController
@@ -29,6 +39,41 @@
     
     [self configTableView];
     
+    self.listArray = @[].mutableCopy;
+    
+    [self sendGetRequest];
+    
+}
+- (void)sendGetRequest {
+    
+    NSMutableDictionary *para = @{}.mutableCopy;
+    para[@"order_id"] = self.consult.order_id;
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_portal_mcenter_consultinfo Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            
+            self.infoModel = [CSParseManager getSingleDaShiOrderInfoModellWithResponseObject:CSGetResult];
+            
+            self.csDictionary = CSGetResult[@"evaluation"];
+            NSArray *array = self.csDictionary[@"imgs"];
+            NSMutableArray *newArray = @[].mutableCopy;
+            for (NSString *image in array) {
+                GoToJudgeJudgeModel *model = [GoToJudgeJudgeModel new];
+                model.url = image;
+                [newArray addObject:model];
+            }
+            
+            self.listArray = newArray;
+            [self.tableView reloadData];
+            
+            
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+    
 }
 - (void)configTableView {
     [self.tableView registerNib:[UINib nibWithNibName:CSCellName(DaShiDuanYiWanChengDetailTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(DaShiDuanYiWanChengDetailTableViewCell)];
@@ -37,12 +82,15 @@
     
     
     [self.tableView registerNib:[UINib nibWithNibName:CSCellName(DaShiDuanYiWanChengJudgeTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(DaShiDuanYiWanChengJudgeTableViewCell)];
+    [self.tableView registerNib:[UINib nibWithNibName:CSCellName(GoToJudgePictureTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(GoToJudgePictureTableViewCell)];
+
+    
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 - (void)configSubViews {
-    self.rightNowButton.layer.cornerRadius = 23;
-    self.rightNowButton.layer.masksToBounds = YES;
+//    self.rightNowButton.layer.cornerRadius = 23;
+//    self.rightNowButton.layer.masksToBounds = YES;
     
     self.checkLiaoTianButton.layer.cornerRadius = 23;
     self.checkLiaoTianButton.layer.borderWidth = 1;
@@ -61,47 +109,96 @@
 
 #pragma mark --UITableViewDelegate/DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if (self.csDictionary) {
+        return 2;
+    }
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    if (section == 0) {
+        return 4;
+    }
+    NSArray *array = self.csDictionary[@"imgs"];
+    if (array.count == 0) {
+        return 1;
+    }
+    return 2;
+    
 }
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
-        DaShiDuanYiWanChengDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(DaShiDuanYiWanChengDetailTableViewCell)];
-        return cell;
-    }
-    if (indexPath.row == 1) {
-        DaShiDuanYiWanChengInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(DaShiDuanYiWanChengInfoTableViewCell)];
-        cell.csTitleLabel.text = @"阴历生日：";
-        return cell;
-    }
-    if (indexPath.row == 2) {
-        DaShiDuanYiWanChengInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(DaShiDuanYiWanChengInfoTableViewCell)];
-        
-                cell.csTitleLabel.text = @"出生地：";
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            DaShiDuanYiWanChengDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(DaShiDuanYiWanChengDetailTableViewCell)];
+            
+            cell.model = self.infoModel;
+            
+            return cell;
+            
+        }
+        
+        if (indexPath.row == 1) {
+            DaShiDuanYiWanChengInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(DaShiDuanYiWanChengInfoTableViewCell)];
+            cell.csTitleLabel.text = @"姓名：";
+            cell.csContentLabel.text = self.infoModel.name;
+            return cell;
+        }
+        if (indexPath.row == 2) {
+            DaShiDuanYiWanChengInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(DaShiDuanYiWanChengInfoTableViewCell)];
+            
+            cell.csTitleLabel.text = @"生日：";
+            cell.csContentLabel.text = self.infoModel.birthday;
+            
+            
+            return cell;
+        }
+        if (indexPath.row == 3) {
+            
+            DaShiDuanYiWanChengInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(DaShiDuanYiWanChengInfoTableViewCell)];
+            cell.csTitleLabel.text = @"性别：";
+            cell.csContentLabel.text = self.infoModel.sex;
+            
+            return cell;
+            
+        }
+        
+    }
+    if (indexPath.row == 0) {
+        DaShiDuanYiWanChengJudgeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(DaShiDuanYiWanChengJudgeTableViewCell)];
+        
+        
+        cell.dict = self.csDictionary;
+        
+        
         
         return cell;
     }
-    if (indexPath.row == 3) {
-        DaShiDuanYiWanChengInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(DaShiDuanYiWanChengInfoTableViewCell)];
-        cell.csTitleLabel.text = @"问题描述：";
-        return cell;
-    }
+    
+    GoToJudgePictureTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(GoToJudgePictureTableViewCell) forIndexPath:indexPath];
     
     
-    DaShiDuanYiWanChengJudgeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(DaShiDuanYiWanChengJudgeTableViewCell)];
+    cell.listArray = self.listArray;
+    cell.showTitleView = NO;
     return cell;
+    
 }
+
+
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
-        return 182;
-    }
-    if (indexPath.row == 4) {
-        return 194;
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            return 139;
+        }
+        
+        return 50;
     }
     
-    return 50;
+    if (indexPath.row == 0) {
+        return 153.5 + [CSUtility accrodingTextGiveItHeightWith:[NSString stringWithFormat:@"%@",self.csDictionary[@"content"]] WithLabelInterval:40 WithFont:16];
+    }
+   
+    
+    return 400;
 }
 @end

@@ -56,6 +56,9 @@
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="totalLabel" destination="RNs-WZ-Kjr" id="vfB-wt-myA"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>

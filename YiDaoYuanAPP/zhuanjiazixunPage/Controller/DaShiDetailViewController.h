@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DaShiDetailViewController : BaseViewController
-
+@property (nonatomic, strong) NSString *passMasterID;
+@property (nonatomic, strong) NSString *passitem_id;
 @end
 
 NS_ASSUME_NONNULL_END

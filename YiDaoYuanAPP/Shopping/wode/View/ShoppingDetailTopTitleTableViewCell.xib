@@ -40,6 +40,10 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="orderLabel" destination="4Fa-9r-XHZ" id="gEb-W1-UFs"/>
+                <outlet property="statusLabel" destination="3ZB-PI-Nto" id="MVs-zt-xdo"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>

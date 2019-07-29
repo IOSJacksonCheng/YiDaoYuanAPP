@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "pingjiaListModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LunTanUserJudgeTableViewCell : UITableViewCell
-
+@property (nonatomic, strong) pingjiaListModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

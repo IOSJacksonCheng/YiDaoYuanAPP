@@ -7,11 +7,11 @@
 //
 
 #import "BaseViewController.h"
-
+#import "AddressModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NewAddressViewController : BaseViewController
-
+@property (nonatomic, strong) AddressModel *passModel;
 @end
 
 NS_ASSUME_NONNULL_END

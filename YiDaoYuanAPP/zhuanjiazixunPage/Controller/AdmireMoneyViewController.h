@@ -11,7 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AdmireMoneyViewController : BaseViewController
-
+@property (nonatomic, strong) NSString *master_id;
+@property (nonatomic, strong) NSString *masterName;
+@property (nonatomic, strong) NSString *masterIcon;
 @end
 
 NS_ASSUME_NONNULL_END

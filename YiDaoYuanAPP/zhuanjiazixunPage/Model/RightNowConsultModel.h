@@ -12,7 +12,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RightNowConsultModel : NSObject
 @property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSString *imageString;
+@property (nonatomic, strong) NSString *cat_id;
+@property (nonatomic, strong) NSMutableArray *items;
+
+@property (nonatomic, assign) BOOL choose;
+
+@property (nonatomic, strong) NSString *item_id;
+@property (nonatomic, strong) NSString *subTitle;
+@property (nonatomic, strong) NSString *icon;
+@property (nonatomic, strong) NSString *ad;
+@property (nonatomic, strong) NSString *explain;
+@property (nonatomic, strong) NSString *intro;
 @end
 
 NS_ASSUME_NONNULL_END

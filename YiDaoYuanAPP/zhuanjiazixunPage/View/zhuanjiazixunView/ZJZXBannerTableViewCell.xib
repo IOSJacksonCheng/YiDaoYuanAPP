@@ -27,6 +27,7 @@
                     </scrollView>
                     <pageControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Wgv-mG-Qql">
                         <rect key="frame" x="140.5" y="102.5" width="39" height="37"/>
+                        <color key="currentPageIndicatorTintColor" red="0.050980392159999999" green="0.4431372549" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
                     </pageControl>
                 </subviews>
                 <constraints>

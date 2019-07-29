@@ -15,9 +15,15 @@
 #import <TencentOpenAPI/QQApiInterface.h>
 
 #import <TencentOpenAPI/TencentOAuth.h>
-NSString * const HuanXinAppkey = @"";
+
+#import <EaseUI.h>
+
+//#import "IQKeyboardManager.h"
+NSString * const HuanXinAppkey = @"1129190711046202#yidaoyuan";
 
 NSString * const HuanXinApnsCertName = @"";
+
+
 
 @interface AppDelegate ()<WXApiDelegate>
 
@@ -28,10 +34,23 @@ NSString * const HuanXinApnsCertName = @"";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+
+
+   
+    [[EaseSDKHelper shareHelper] hyphenateApplication:application
+                        didFinishLaunchingWithOptions:launchOptions
+                                               appkey:HuanXinAppkey
+                                         apnsCertName:HuanXinApnsCertName
+                                          otherConfig:@{kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES]}];
+    
+ 
+    
     
     [WXApi startLogByLevel:WXLogLevelNormal logBlock:^(NSString *log) {
-        NSLog(@"！！！！！！log : %@", log);
+        CSLog(@"！！！！！！log : %@", log);
     }];
+    
+    
     if ([WXApi registerApp:CSWeChatAppId enableMTA:YES]) {
         CSLog(@"注册微信支付成功");
     } else {
@@ -99,6 +118,7 @@ NSString * const HuanXinApnsCertName = @"";
     if([url.host isEqualToString:@"pay"]  || [url.host isEqualToString:@"oauth"]) {
         return [WXApi handleOpenURL:url delegate:self];
     }
+    
     return YES;
 }
 - (void)onResp:(BaseResp *)resp

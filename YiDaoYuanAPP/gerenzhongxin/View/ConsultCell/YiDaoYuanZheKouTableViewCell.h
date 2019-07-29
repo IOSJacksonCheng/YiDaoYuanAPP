@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YiDaoYuanZheKouTableViewCell : UITableViewCell
-
+@property (nonatomic, strong) NSString *beishu;
 @end
 
 NS_ASSUME_NONNULL_END

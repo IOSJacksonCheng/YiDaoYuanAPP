@@ -9,6 +9,7 @@
 #import "IndustryNewsViewController.h"
 #import "IndustryNewsTableViewCell.h"
 #import "CSNewsViewController.h"
+#import "YiDaoKeTangContentViewController.h"
 @interface IndustryNewsViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *newsTabelView;
 @property (nonatomic, assign) int page;
@@ -119,11 +120,16 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     self.chooseModel = self.listArray[indexPath.row];
-     [self  performSegueWithIdentifier:@"CSNewsViewController" sender:self];
+    
+    UIStoryboard *main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    YiDaoKeTangContentViewController *new = [main instantiateViewControllerWithIdentifier:@"YiDaoKeTangContentViewController"];
+    new.passTitle = @"行业资讯";
+    new.showBottomView = NO;
+    
+    new.passUrl = [NSString stringWithFormat:@"%@%@&&news_id=%@", BASE_URL,CSURL_Site_News,self.chooseModel.news_id];
+
+    [self.navigationController pushViewController:new animated:YES];
 }
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    CSNewsViewController *new = segue.destinationViewController;
-    new.passUrl = [NSString stringWithFormat:@"%@%@&&news_id=%@", BASE_URL,CSURL_Site_News,self.chooseModel.news_id];;
-}
+
 
 @end

@@ -8,11 +8,14 @@
 
 #import "XiaoXiViewController.h"
 #import "XiaoXiTableViewCell.h"
-
+#import "XiaoXiModel.h"
+#import "ChatViewController.h"
 @interface XiaoXiViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *searchView;
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (weak, nonatomic) IBOutlet UIImageView *animationImageView;
+@property (nonatomic, assign) int page;
+@property (nonatomic, strong) NSMutableArray *listArray;
 
 @end
 
@@ -33,12 +36,16 @@
     [self configNavigationBar];
     
     [self configTableView];
+    
+    [self getNewData];
 }
 - (void)configTableView {
     self.tableview.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     [self.tableview registerNib:[UINib nibWithNibName:CSCellName(XiaoXiTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(XiaoXiTableViewCell)];
+    self.tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getNewData)];
     
+    self.tableview.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(GetMoreData)];
     self.tableview.rowHeight = 87.5;
 }
 - (void)configSubViews {
@@ -89,7 +96,7 @@
     [self.animationImageView setAnimationImages:allImage];
     
     self.animationImageView.animationRepeatCount = HUGE;
-    self.animationImageView.animationDuration = 2;
+    self.animationImageView.animationDuration = 2.5;
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickRightButtonDone)];
     tap.numberOfTapsRequired = 1;
@@ -107,21 +114,114 @@
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return self.listArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     XiaoXiTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(XiaoXiTableViewCell)];
-    cell.imageView.hidden = YES;
-    if (indexPath.row == 0) {
-        cell.userTitle.text = @"易道源客服";
-        cell.userImageView.image = DotaImageName(@"img_kefu");
-        cell.userContent.text = @"新用户赠送您100易道元";
-        cell.tiXingImageView.hidden = NO;
-    }
+    XiaoXiModel *model = self.listArray[indexPath.row];
+
+        cell.userTitle.text = model.user_nickname;
+        [cell.userImageView sd_setImageWithURL:[NSURL URLWithString:model.avatar] placeholderImage:CSUserImagePlaceHolder];
+        cell.userContent.text = model.content;
+        cell.tiXingImageView.hidden = model.status;
+    
     
     return cell;
 }
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return @"删除";
+}
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        
+        XiaoXiModel *model = self.listArray[indexPath.row];
+        
+        NSMutableDictionary *para = @{}.mutableCopy;
+        
+        para[@"msg_id"] = model.msg_id;
+        
+        [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_msg_del Pameters:para success:^(id  _Nonnull responseObject) {
+            
+            if (CSInternetRequestSuccessful) {
+                [self.listArray removeObjectAtIndex:indexPath.row];
+                [self.tableview reloadData];
+                
+            }else {
+                CSShowWrongMessage
+            }
+        } failure:^(NSError * _Nonnull error) {
+            CSInternetFailure
+        }];
+        
+    }
+    
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:@"AfterPayMoneyChatViewController" sender:self];
+//    ChatViewController *new = [ChatViewController new];
+//    
+//    [self.navigationController pushViewController:new animated:YES];
+}
+
+- (void)getNewData {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    
+    self.page = 1;
+    para[@"page"] = [NSString stringWithFormat:@"%d",self.page];
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_msg_index Pameters:para success:^(id  _Nonnull responseObject) {
+        [self endRefresh];
+        if (CSInternetRequestSuccessful) {
+            
+            self.listArray = [CSParseManager getXiaoXiModellWithResponseObject:CSGetResult[@"lists"]];
+            
+            [self.tableview reloadData];
+            
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        [self endRefresh];
+
+        CSInternetFailure
+    }];
+}
+- (void)GetMoreData {
+    
+    NSMutableDictionary *para = @{}.mutableCopy;
+    
+    self.page ++;
+    
+    para[@"page"] = [NSString stringWithFormat:@"%d",self.page];
+    
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_msg_index Pameters:para success:^(id  _Nonnull responseObject) {
+        [self endRefresh];
+        if (CSInternetRequestSuccessful) {
+            NSMutableArray *array = [CSParseManager getXiaoXiModellWithResponseObject:CSGetResult[@"lists"]];
+            if (array.count == 0) {
+                CustomWrongMessage(@"下面没有数据了！")
+            } else {
+                
+                [self.listArray addObjectsFromArray:array];
+                
+                [self.tableview reloadData];
+                
+            }
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        [self endRefresh];
+        
+        CSInternetFailure
+    }];
+}
+- (void)endRefresh {
+    if (self.tableview.mj_header.isRefreshing) {
+        [self.tableview.mj_header endRefreshing];
+    }
+    if (self.tableview.mj_footer.isRefreshing) {
+        [self.tableview.mj_footer endRefreshing];
+    }
 }
 @end

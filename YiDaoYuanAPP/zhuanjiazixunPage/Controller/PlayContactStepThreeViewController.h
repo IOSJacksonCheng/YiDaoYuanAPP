@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PlayContactStepThreeViewController : BaseViewController
-
+@property (nonatomic, strong) NSString *passCatId;
 @end
 
 NS_ASSUME_NONNULL_END

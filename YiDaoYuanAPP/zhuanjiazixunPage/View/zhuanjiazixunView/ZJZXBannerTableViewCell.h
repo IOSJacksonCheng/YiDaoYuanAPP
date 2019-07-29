@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZJZXBannerTableViewCell : UITableViewCell
 @property (nonatomic, strong) NSMutableArray *adImageArray;
+@property (nonatomic, assign) BOOL fromShopping;
 @end
 
 NS_ASSUME_NONNULL_END

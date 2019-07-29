@@ -22,7 +22,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wd4-sa-hgm">
                         <rect key="frame" x="10" y="9" width="306" height="116.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_gouxuan" translatesAutoresizingMaskIntoConstraints="NO" id="6pE-el-ql0">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_weigouxuan" translatesAutoresizingMaskIntoConstraints="NO" id="6pE-el-ql0">
                                 <rect key="frame" x="10" y="48.5" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="Q1L-7w-aQf"/>
@@ -64,6 +64,9 @@
                                         <state key="normal" image="icon_jia">
                                             <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="clickAddNumberButtonDone:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="5zN-C5-fOm"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="db5-Ot-yfp">
                                         <rect key="frame" x="49" y="0.0" width="1" height="20"/>
@@ -80,6 +83,9 @@
                                         <state key="normal" image="icon_jian">
                                             <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="clickSubNumberButtonDone:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="E89-ae-PmG"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W2l-o3-h3P">
                                         <rect key="frame" x="20" y="0.0" width="1" height="20"/>
@@ -92,7 +98,7 @@
                                         <rect key="frame" x="21" y="0.0" width="28" height="20"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -147,14 +153,20 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="bgView" destination="Wd4-sa-hgm" id="1cb-bB-okv"/>
+                <outlet property="chooseImageView" destination="6pE-el-ql0" id="2W1-n2-O4N"/>
+                <outlet property="featureLabel" destination="wCA-fA-tsZ" id="qUq-SX-bvq"/>
+                <outlet property="inputTextField" destination="cZP-56-ZT8" id="bbl-2U-llB"/>
+                <outlet property="moneyLabel" destination="6hK-5u-IRO" id="Np3-T6-GrU"/>
+                <outlet property="nameLabel" destination="L5p-US-sMY" id="UhN-PQ-ev0"/>
+                <outlet property="productImageView" destination="Xm6-iu-6Qv" id="h7J-dp-4G6"/>
             </connections>
             <point key="canvasLocation" x="134.40000000000001" y="145.72713643178412"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="icon_gouxuan" width="30" height="30"/>
         <image name="icon_jia" width="20" height="20"/>
         <image name="icon_jian" width="20" height="20"/>
+        <image name="icon_weigouxuan" width="30" height="30"/>
         <image name="img-2" width="355" height="136"/>
     </resources>
 </document>

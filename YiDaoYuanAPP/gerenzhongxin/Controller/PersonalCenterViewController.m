@@ -10,12 +10,13 @@
 #import "PersonalCollectionViewCell.h"
 #import "PersonalModel.h"
 #import "MoneyHistoryViewController.h"
-#import "JinXinZhongDetailViewController.h"
 #import "UserJudgeViewController.h"
 #import "NewPersonalCenterViewTableViewCell.h"
 #import "PersonalFirstRowTableViewCell.h"
 
 #import "WkWebViewViewController.h"
+#import "AllKindOfOrderViewController.h"
+#import "MoneyHistoryViewController.h"
 
 @interface PersonalCenterViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -29,6 +30,11 @@
 
 @property (nonatomic, strong) NSString *recordTitle;
 @property (nonatomic, strong) NSString *recordUrl;
+
+@property (nonatomic, assign) OrderType currentType;
+
+@property (nonatomic, strong) NSString *recordZiXunOrHuiDa;
+@property (nonatomic, assign) MoneyType currentMoneyType;
 @end
 
 @implementation PersonalCenterViewController
@@ -174,7 +180,7 @@
     
     [super viewWillAppear:animated];
     [self configNavigationBar];
-    
+    [self.tableView reloadData];
     [CSUtility updateCurrentMoney:^(BOOL updateSuccess) {
         if (updateSuccess) {
             [self.tableView reloadData];
@@ -236,11 +242,16 @@
 }
 - (void)clickYuELabel {
     self.recordYuEOrYiDaoYunTitle =@"余额";
+    self.currentMoneyType = YuEMoneyType;
+
     [self performSegueWithIdentifier:@"MoneyHistoryViewController" sender:self];
 }
 - (void)clickYiDaoYunLabel {
     self.recordYuEOrYiDaoYunTitle =@"易道元";
+    
+    self.currentMoneyType = YiDaoYuanMoneyType;
 
+    
      [self performSegueWithIdentifier:@"MoneyHistoryViewController" sender:self];
 }
 - (void)clickHeaderViewDone {
@@ -254,27 +265,30 @@
 }
 - (void)clickAnswerViewDone {
     
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     if (CS_UserIsMaster) {
-        [self performSegueWithIdentifier:@"DaShiDuanZiXunViewController" sender:self];
-        return;
+        
+        self.currentType = DaShiDuanHuiDaType;
+    } else {
+        self.currentType = UserDuanHuiDaType;
     }
+    self.recordZiXunOrHuiDa = @"互动回答";
+    [self  performSegueWithIdentifier:@"AllKindOfOrderViewController" sender:self];
     
-    
-    JinXinZhongDetailViewController *new = [mainStoryboard instantiateViewControllerWithIdentifier:@"JinXinZhongDetailViewController"];
-    
-    [self.navigationController pushViewController:new animated:YES];
 }
 - (void)clickMyCollectViewDone {
     [self  performSegueWithIdentifier:@"MyCollectViewController" sender:self];
 }
 - (void)clickConsultViewDone {
     if (CS_UserIsMaster) {
-        [self  performSegueWithIdentifier:@"DaShiDuanZiXunViewController" sender:self];
-        return;
+        
+        self.currentType = DaShiDuanZiXunType;
+    } else {
+        self.currentType = UserDuanZiXuanType;
     }
-    [self  performSegueWithIdentifier:@"ConsultOrderViewController" sender:self];
+    self.recordZiXunOrHuiDa = @"咨询订单";
+
+    [self  performSegueWithIdentifier:@"AllKindOfOrderViewController" sender:self];
     
 }
 - (void)configNavigationBar {
@@ -363,7 +377,7 @@
         
         tap3.numberOfTouchesRequired = 1;
         
-        [cell.headImageView addGestureRecognizer:tap3];
+//        [cell.headImageView addGestureRecognizer:tap3];
         
         UITapGestureRecognizer *tap4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickYuELabel)];
         
@@ -436,7 +450,7 @@
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         
         UserJudgeViewController *new = [mainStoryboard instantiateViewControllerWithIdentifier:@"UserJudgeViewController"];
-        
+        new.passMasterID = CS_UserID;
         [self.navigationController pushViewController:new animated:YES];
     }else if ([model.title isEqualToString:@"关于我们"]) {
         self.recordUrl = [NSString stringWithFormat:@"%@%@", BASE_URL, CSURL_About_Us];
@@ -454,11 +468,17 @@
         
         MoneyHistoryViewController *new = segue.destinationViewController;
         
-        new.passString = self.recordYuEOrYiDaoYunTitle;;
+        new.passString = self.recordYuEOrYiDaoYunTitle;
+        new.currentType = self.currentMoneyType;
     }else if ([segue.identifier isEqualToString:@"WkWebViewViewController"]) {
         WkWebViewViewController *new = segue.destinationViewController;
         new.passTitle = self.recordTitle;
         new.passUrl = self.recordUrl;
+        
+    }else if ([segue.identifier isEqualToString:@"AllKindOfOrderViewController"]) {
+        AllKindOfOrderViewController *new = segue.destinationViewController;
+        new.passTitle = self.recordZiXunOrHuiDa;
+        new.currentType = self.currentType;
         
     }
     

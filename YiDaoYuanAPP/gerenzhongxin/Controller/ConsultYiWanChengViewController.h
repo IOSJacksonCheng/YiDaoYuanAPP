@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ConsultYiWanChengViewController : BaseViewController
+@property (nonatomic, strong) NSString *order_id;
 
 @end
 

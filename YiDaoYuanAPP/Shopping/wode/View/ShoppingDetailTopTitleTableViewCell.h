@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ShoppingDetailTopTitleTableViewCell : UITableViewCell
-
+@property (weak, nonatomic) IBOutlet UILabel *orderLabel;
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @end
 
 NS_ASSUME_NONNULL_END

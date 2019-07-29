@@ -9,9 +9,14 @@
 #import "LunTanViewController.h"
 #import "LunTanTitleTableViewCell.h"
 #import "LunTanButtonTableViewCell.h"
+
+#import "LunTanMoreDetailViewController.h"
+
 @interface LunTanViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *listArray;
 
+@property (nonatomic, strong) LunTanModel *recordId;
 @end
 
 @implementation LunTanViewController
@@ -26,8 +31,28 @@
     
     [self configTableView];
     
+    self.listArray = @[].mutableCopy;
+    
+    [self getNewData];
 }
-
+- (void)getNewData {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    
+    
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_forum_index Pameters:para success:^(id  _Nonnull responseObject) {
+        if (CSInternetRequestSuccessful) {
+            
+            self.listArray = [CSParseManager getLunTanModellWithResponseObject:CSGetResult[@"lists"]];
+            
+            [self.tableView reloadData];
+            
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+}
 - (void)configTableView {
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -54,7 +79,10 @@
 
 #pragma mark --UITableViewDelegate/DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    if (self.listArray.count >=2) {
+        return 2;
+    }
+    return self.listArray.count;;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 2;
@@ -64,7 +92,8 @@
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             LunTanTitleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(LunTanTitleTableViewCell)];
-            
+            LunTanModel *model = self.listArray[indexPath.section];
+            cell.model = model;
             return cell;
         }
         
@@ -91,7 +120,8 @@
     }
     
     LunTanTitleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(LunTanTitleTableViewCell)];
-    
+    LunTanModel *model = self.listArray[indexPath.section];
+    cell.model = model;
     return cell;
 }
 
@@ -115,22 +145,29 @@
     
     return 240;
 }
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    [self performSegueWithIdentifier:@"LunTanMoreViewController" sender:self];
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+   
+    return 10;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *view = UIView.new;
-    
-    view.backgroundColor = [UIColor colorWithHexString:@"f5f5f5"];
+    view.backgroundColor = csf5f5f5Color;
     
     return view;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return 0;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 1 && indexPath.row == 0) {
+         [self performSegueWithIdentifier:@"LunTanMoreViewController" sender:self];
+        return;
     }
-    return 5;
+     LunTanModel *model = self.listArray[indexPath.section];
+    self.recordId = model;
+   [self performSegueWithIdentifier:@"LunTanMoreDetailViewController" sender:self];
+}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"LunTanMoreDetailViewController"]) {
+        LunTanMoreDetailViewController *new = segue.destinationViewController;
+        new.passModel = self.recordId;
+    }
 }
 @end

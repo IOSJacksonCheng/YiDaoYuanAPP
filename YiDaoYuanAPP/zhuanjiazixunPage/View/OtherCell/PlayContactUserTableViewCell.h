@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "FirstPageModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PlayContactUserTableViewCell : UITableViewCell
-
+@property (nonatomic, strong) FirstPageModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

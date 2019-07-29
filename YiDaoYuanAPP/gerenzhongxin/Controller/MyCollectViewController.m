@@ -8,6 +8,8 @@
 
 #import "MyCollectViewController.h"
 
+#import "DaShiDetailViewController.h"
+#import "YiDaoKeTangContentViewController.h"
 #import "MyCollectTableViewCell.h"
 @interface MyCollectViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -15,7 +17,12 @@
 @end
 
 @implementation MyCollectViewController
-
+- (void)viewWillAppear:(BOOL)animated {
+   
+    [super viewWillAppear:animated];
+   
+    [self configNavigationBar];
+}
 - (void)viewDidLoad {
   
     [super viewDidLoad];
@@ -38,7 +45,7 @@
     [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Favorites_My Pameters:para success:^(id  _Nonnull responseObject) {
         
         if (CSInternetRequestSuccessful) {
-            self.listArray =  [CSParseManager getMyCollectModelArrayWithResponseObject:CSGetResult];
+            self.listArray =  [CSParseManager getMyCollectModelArrayWithResponseObject:CSGetResult[@"lists"]];
             [self.tableView reloadData];
         }else {
             CSShowWrongMessage
@@ -85,6 +92,24 @@
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    MyCollectModel *model = self.listArray[indexPath.row];
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+
+    if ([model.table_name isEqualToString:@"master"]) {
+        DaShiDetailViewController *new = [mainStoryboard instantiateViewControllerWithIdentifier:@"DaShiDetailViewController"];
+        new.passMasterID = model.object_id;
+        [self.navigationController pushViewController:new animated:YES];
+    } else {
+        YiDaoKeTangContentViewController *new = [mainStoryboard instantiateViewControllerWithIdentifier:@"YiDaoKeTangContentViewController"];
+        
+        new.passUrl = [NSString stringWithFormat:@"%@%@&&id=%@", BASE_URL,CSURL_Portal_Site_course_detail,model.object_id];
+        new.showBottomView = YES;
+        new.passTitle = @"视频详情";
+        new.idstring = model.object_id;
+        [self.navigationController pushViewController:new animated:YES];
+    }
+    
+    
    
 }
 @end

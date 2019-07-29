@@ -5,17 +5,29 @@
 //  Created by shoubin cheng on 2019/6/4.
 //  Copyright © 2019年 Jackson cheng. All rights reserved.
 //
+#import "EasyUIChatViewController.h"
 
 #import "DaShiDuanZiXunTableViewCell.h"
+
+#import "JinXinZhongDetailViewController.h"
+
 NSString *dashidaihuifu = @"1";
 NSString *dashijingxingzhong = @"2";
 NSString *dashiyiwancheng = @"3";
 @interface DaShiDuanZiXunTableViewCell()
 
 @property (weak, nonatomic) IBOutlet UIView *buttonView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *itemLabel;
+@property (weak, nonatomic) IBOutlet UILabel *hejiLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *orderLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *bgView;
+@property (weak, nonatomic) IBOutlet UIImageView *headImageView;
 @property (weak, nonatomic) IBOutlet UILabel *stateTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *questionLabel;
+
 @end
 @implementation DaShiDuanZiXunTableViewCell
 
@@ -29,13 +41,23 @@ NSString *dashiyiwancheng = @"3";
 
     // Configure the view for the selected state
 }
-- (void)setModel:(AllOrderModel *)model {
+- (void)setModel:(ConsultModel *)model {
     
     _model = model;
     
-    self.stateTitleLabel.text = model.statTitle;
+    self.stateTitleLabel.text = model.statusTitle;
     
-    if ([model.state isEqualToString:dashiyiwancheng]) {
+    self.orderLabel.text = [NSString stringWithFormat:@"订单编号：%@",model.order_id];
+    self.nameLabel.text = model.user_nickname;
+    self.questionLabel.text = model.content;
+    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:model.avatar] placeholderImage:PlaceHolderImage];
+    
+    self.timeLabel.text = [NSString stringWithFormat:@"下单时间：%@",model.ctime];
+    
+    self.hejiLabel.text = [NSString stringWithFormat:@"合计：%@",model.price];
+    
+    self.itemLabel.text = model.item_title;
+    if (![model.status isEqualToString:dashijingxingzhong]) {
         self.buttonView.hidden = YES;
         
         return;
@@ -56,7 +78,7 @@ NSString *dashiyiwancheng = @"3";
     NSMutableArray *buttonMutableArray = [NSMutableArray array];
     
     
-    if ([model.state isEqualToString:dashijingxingzhong]) {
+    if ([model.status isEqualToString:dashijingxingzhong]) {
         
         
         UIButton *button = [self getTypeButtonWithTitle:@"继续沟通" WithCount:1];
@@ -64,7 +86,7 @@ NSString *dashiyiwancheng = @"3";
         [buttonMutableArray addObject:button];
         
         
-    } else if ([model.state isEqualToString:dashidaihuifu]) {
+    } else if ([model.status isEqualToString:dashidaihuifu]) {
         UIButton *button = [self getTypeButtonWithTitle:@"立即回复" WithCount:1];
         
         [buttonMutableArray addObject:button];
@@ -145,9 +167,52 @@ NSString *dashiyiwancheng = @"3";
     
     return button;
 }
-
+- (void)goToChatView {
+    EasyUIChatViewController *new =  [[EasyUIChatViewController alloc] initWithConversationChatter:[NSString stringWithFormat:@"0%@",self.model.order_id] conversationType:EMConversationTypeChat];;
+    
+    
+    new.name = self.model.user_nickname;
+    
+    new.avater = self.model.avatar;
+    
+    [[CSUtility getCurrentViewController].navigationController pushViewController:new animated:YES];
+    
+}
 - (void)clickBottomViewButtonDone:(UIButton *)sender {
     
-   
+    if ([sender.titleLabel.text isEqualToString:@"继续沟通"]) {
+        
+        if (self.zixun) {
+            if (![EMClient sharedClient].isLoggedIn) {
+                [[EMClient sharedClient] loginWithUsername:[NSString stringWithFormat:@"m%@",CS_UserID] password:@"123456" completion:^(NSString *aUsername, EMError *aError) {
+                    if (aError) {
+                        CustomWrongMessage(@"发送错误，请稍后再试");
+
+                        CSLog(@"环信登录失败:%@",aError.errorDescription);
+                    } else {
+                        [self goToChatView];
+
+                        CSLog(@"环信登录成功！");
+                    }
+                }];
+            } else {
+                [self goToChatView];
+
+            }
+            
+        } else {
+            UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            JinXinZhongDetailViewController *new = [mainStoryboard instantiateViewControllerWithIdentifier:@"JinXinZhongDetailViewController"];
+            new.order_id = self.model.order_id;
+            
+            [[CSUtility getCurrentViewController].navigationController pushViewController:new animated:YES
+             ];
+
+        }
+       
+        
+    }
+    
+    
 }
 @end

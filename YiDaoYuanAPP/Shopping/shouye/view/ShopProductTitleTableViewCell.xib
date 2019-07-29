@@ -19,24 +19,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="75.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开光马粉水晶：蜜蜡吊坠 招桃花旺姻缘必备" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vAu-oN-f48">
-                        <rect key="frame" x="12" y="15" width="329" height="43"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="329" id="HCv-of-drk"/>
-                        </constraints>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开光马粉水晶：蜜蜡吊坠 招桃花旺姻缘必备" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vAu-oN-f48">
+                        <rect key="frame" x="12" y="15" width="296" height="43"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新品" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPE-7W-nuy">
-                        <rect key="frame" x="72" y="39" width="39" height="15"/>
-                        <color key="backgroundColor" red="1" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="15" id="764-2c-4ry"/>
-                            <constraint firstAttribute="width" constant="39" id="gQP-2Z-ruW"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YwV-OZ-qfP">
@@ -50,14 +36,16 @@
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="YwV-OZ-qfP" secondAttribute="bottom" id="3vM-24-OT6"/>
                     <constraint firstItem="YwV-OZ-qfP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="G9x-TS-lbU"/>
-                    <constraint firstItem="qPE-7W-nuy" firstAttribute="bottom" secondItem="vAu-oN-f48" secondAttribute="bottom" constant="-4" id="HS8-LK-Eio"/>
-                    <constraint firstItem="qPE-7W-nuy" firstAttribute="leading" secondItem="vAu-oN-f48" secondAttribute="leading" constant="60" id="IOo-IY-NoB"/>
                     <constraint firstAttribute="trailing" secondItem="YwV-OZ-qfP" secondAttribute="trailing" id="LXh-yj-Ppp"/>
                     <constraint firstItem="vAu-oN-f48" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="f1J-wQ-Bjb"/>
                     <constraint firstItem="vAu-oN-f48" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="hZg-rG-c26"/>
+                    <constraint firstAttribute="trailing" secondItem="vAu-oN-f48" secondAttribute="trailing" constant="12" id="zcW-HJ-Fn5"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="csTitleLabel" destination="vAu-oN-f48" id="msk-EF-Vjs"/>
+            </connections>
             <point key="canvasLocation" x="129.59999999999999" y="177.21139430284859"/>
         </tableViewCell>
     </objects>

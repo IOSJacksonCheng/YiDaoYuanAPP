@@ -11,6 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ShopProductGuiGeTitleTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *cellImageView;
+@property (weak, nonatomic) IBOutlet UILabel *csTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 
 @end
 

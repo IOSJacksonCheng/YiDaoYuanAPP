@@ -7,7 +7,11 @@
 //
 
 #import "MoneyHistoryTableViewCell.h"
-
+@interface MoneyHistoryTableViewCell()
+@property (weak, nonatomic) IBOutlet UILabel *firstLabel;
+@property (weak, nonatomic) IBOutlet UILabel *secondLabel;
+@property (weak, nonatomic) IBOutlet UILabel *thirdLabel;
+@end
 @implementation MoneyHistoryTableViewCell
 
 - (void)awakeFromNib {
@@ -20,5 +24,15 @@
 
     // Configure the view for the selected state
 }
-
+- (void)setModel:(MoneyHistoryModel *)model {
+    
+    _model = model;
+    
+    self.firstLabel.text = model.money;
+    
+    
+    self.secondLabel.text = model.title;
+    
+    self.thirdLabel.text = model.ctime;
+}
 @end

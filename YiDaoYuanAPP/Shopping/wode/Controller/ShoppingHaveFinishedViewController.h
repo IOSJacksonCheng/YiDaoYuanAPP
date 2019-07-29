@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ShoppingHaveFinishedViewController : BaseViewController
-
+@property (nonatomic, strong) NSString *passOrderId;
 @end
 
 NS_ASSUME_NONNULL_END

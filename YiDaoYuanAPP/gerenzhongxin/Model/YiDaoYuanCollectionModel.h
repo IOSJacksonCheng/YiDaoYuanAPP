@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *RMB;
 @property (nonatomic, strong) NSString *sales;
 @property (nonatomic, assign) BOOL showSales;
+@property (nonatomic, strong) NSString *ctime;
 @end
 
 NS_ASSUME_NONNULL_END

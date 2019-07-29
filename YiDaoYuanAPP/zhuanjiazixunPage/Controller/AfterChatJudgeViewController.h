@@ -7,11 +7,12 @@
 //
 
 #import "BaseViewController.h"
-
+#import "ConsultModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AfterChatJudgeViewController : BaseViewController
 @property (nonatomic, assign) BOOL showTitleView;
+@property (nonatomic, strong) ConsultModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

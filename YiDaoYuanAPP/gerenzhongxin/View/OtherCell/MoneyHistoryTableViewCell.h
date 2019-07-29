@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "MoneyHistoryModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MoneyHistoryTableViewCell : UITableViewCell
-
+@property (nonatomic, strong) MoneyHistoryModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

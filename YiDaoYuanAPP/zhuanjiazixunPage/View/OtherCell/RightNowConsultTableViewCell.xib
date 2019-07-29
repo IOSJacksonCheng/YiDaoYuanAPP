@@ -34,7 +34,7 @@
                             <constraint firstAttribute="height" constant="37" id="0zn-1O-ugn"/>
                         </constraints>
                         <color key="pageIndicatorTintColor" red="0.86274509803921573" green="0.86274509803921573" blue="0.86274509803921573" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="currentPageIndicatorTintColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="currentPageIndicatorTintColor" red="0.050980392159999999" green="0.4431372549" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
                     </pageControl>
                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x00-mT-3Lb">
                         <rect key="frame" x="0.0" y="40" width="320" height="316"/>
@@ -55,6 +55,7 @@
             <connections>
                 <outlet property="contentScrollView" destination="x00-mT-3Lb" id="96j-b1-hsI"/>
                 <outlet property="pageController" destination="MKn-hb-XR6" id="NiI-WQ-vVR"/>
+                <outlet property="topLabel" destination="0nP-2k-uyP" id="ojf-1j-6rm"/>
             </connections>
             <point key="canvasLocation" x="120" y="105.24737631184409"/>
         </tableViewCell>

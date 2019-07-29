@@ -10,10 +10,10 @@
 
 #import "PersonalSetTableViewCell.h"
 #import "WkWebViewViewController.h"
-
+#import "CSShareView.h"
 @interface PersonalSetViewController ()<UITableViewDelegate, UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UIView *shareView;
-
+//@property (weak, nonatomic) IBOutlet UIView *shareView;
+@property (nonatomic, strong) CSShareView *shareView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *listArray;
 @property (nonatomic, strong) NSString *recordTitle;
@@ -24,9 +24,15 @@
 @end
 
 @implementation PersonalSetViewController
+- (CSShareView *)shareView {
+    if (!_shareView) {
+        _shareView = [[CSShareView alloc] initWithFrame:self.view.bounds WithDelegate:self WithTitle:@"易道源" WithDescription:@"算命App" WithImage:DotaImageName(@"AppIcon") WithUrl:@"www.baidu.com"];
+    }
+    return _shareView;
+}
 - (NSMutableArray *)listArray {
     if (!_listArray) {
-        _listArray = @[@"个人信息",@"新手指南",@"分享APP"].mutableCopy;
+        _listArray = @[@"个人信息",@"新手指南",@"分享APP", @"退出登录"].mutableCopy;
     }
     return _listArray;
 }
@@ -113,8 +119,44 @@
  [self performSegueWithIdentifier:@"WkWebViewViewController" sender:self];
         
     }else if ([title isEqualToString:@"分享APP"]) {
-        self.shareView.hidden = NO;
+        [self.view addSubview:self.shareView];
+
+    }else if ([title isEqualToString:@"退出登录"]) {
+
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"确定退出登录吗？" preferredStyle:UIAlertControllerStyleAlert];
+        //2.创建界面上的按钮
+        UIAlertAction *actionYes = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self quitLogin];
+        }];
+        UIAlertAction *actionNo = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        //3.将按钮添加到AlertController中
+        [alert addAction:actionNo];
+        [alert addAction:actionYes];
+        //5.显示AlertController
+        [[CSUtility getCurrentViewController] presentViewController:alert animated:YES completion:nil];
+
     }
+}
+- (void)quitLogin {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Logout Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+            
+            
+            
+            UINavigationController *new = [mainStoryboard instantiateViewControllerWithIdentifier:@"CSLoginNavigationController"];
+            
+            [[CSUtility getCurrentViewController] presentViewController:new animated:YES completion:nil];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"WkWebViewViewController"]) {

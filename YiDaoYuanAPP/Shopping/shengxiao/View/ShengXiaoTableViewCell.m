@@ -68,6 +68,8 @@
     [self.collectionView reloadData];
     
     [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+    
+    [self.csDelegate reloadTableViewWithId:model.idString];
 }
 - (void)setItemArray:(NSMutableArray *)itemArray {
     

@@ -41,13 +41,13 @@
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="平台认证" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAa-AX-aeO">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新晋大师" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAa-AX-aeO">
                                 <rect key="frame" x="174.5" y="79.5" width="41" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_pingtai" translatesAutoresizingMaskIntoConstraints="NO" id="rji-fL-gux">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_huo" translatesAutoresizingMaskIntoConstraints="NO" id="rji-fL-gux">
                                 <rect key="frame" x="152.5" y="78" width="15" height="15"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_pingtai" translatesAutoresizingMaskIntoConstraints="NO" id="whN-sK-YXk">
@@ -160,6 +160,10 @@
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_shoucang" translatesAutoresizingMaskIntoConstraints="NO" id="0SV-Qx-xI5">
                                 <rect key="frame" x="87" y="185" width="18" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="18" id="Fy2-lq-m4C"/>
+                                    <constraint firstAttribute="height" constant="18" id="fhW-cp-ncR"/>
+                                </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_shoucang" translatesAutoresizingMaskIntoConstraints="NO" id="WKG-AX-htI">
                                 <rect key="frame" x="107" y="185" width="18" height="18"/>
@@ -182,20 +186,26 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="m2X-Yd-lyw" firstAttribute="height" secondItem="0SV-Qx-xI5" secondAttribute="height" id="0i3-Qu-P82"/>
                             <constraint firstItem="Q36-98-fNA" firstAttribute="top" secondItem="woF-9e-Ewn" secondAttribute="top" id="243-xR-zcv"/>
                             <constraint firstItem="Sw4-CX-xaq" firstAttribute="centerY" secondItem="fy7-QW-wK6" secondAttribute="centerY" id="25Z-ZI-BjG"/>
                             <constraint firstItem="D05-0b-3f5" firstAttribute="leading" secondItem="gLD-k7-WDV" secondAttribute="trailing" constant="8" id="2b3-ce-XWV"/>
                             <constraint firstItem="x8f-Ha-rbM" firstAttribute="leading" secondItem="wtF-qI-5df" secondAttribute="trailing" constant="2" id="3JK-Gg-Gph"/>
                             <constraint firstItem="WKG-AX-htI" firstAttribute="centerY" secondItem="ydw-V8-skm" secondAttribute="centerY" id="3Kq-3v-jxl"/>
                             <constraint firstItem="woF-9e-Ewn" firstAttribute="leading" secondItem="tqc-Yh-0Jz" secondAttribute="leading" constant="11" id="4HZ-ut-0fj"/>
+                            <constraint firstItem="WKG-AX-htI" firstAttribute="height" secondItem="0SV-Qx-xI5" secondAttribute="height" id="6pg-bK-tku"/>
                             <constraint firstItem="WKG-AX-htI" firstAttribute="leading" secondItem="0SV-Qx-xI5" secondAttribute="trailing" constant="2" id="7MD-vz-aeh"/>
                             <constraint firstItem="rji-fL-gux" firstAttribute="centerX" secondItem="tqc-Yh-0Jz" secondAttribute="centerX" constant="10" id="BO8-Ct-asn"/>
+                            <constraint firstItem="x8f-Ha-rbM" firstAttribute="height" secondItem="0SV-Qx-xI5" secondAttribute="height" id="CIC-h3-ApY"/>
                             <constraint firstItem="qx3-jh-FAC" firstAttribute="top" secondItem="woF-9e-Ewn" secondAttribute="top" id="DCy-6c-O80"/>
                             <constraint firstItem="vlP-Ws-EYu" firstAttribute="leading" secondItem="Q36-98-fNA" secondAttribute="trailing" constant="8" id="DKb-3Z-stj"/>
+                            <constraint firstItem="m2X-Yd-lyw" firstAttribute="width" secondItem="0SV-Qx-xI5" secondAttribute="width" id="DVq-vO-wa8"/>
                             <constraint firstItem="0SV-Qx-xI5" firstAttribute="centerY" secondItem="ydw-V8-skm" secondAttribute="centerY" id="Dxs-Cj-B2M"/>
                             <constraint firstItem="qx3-jh-FAC" firstAttribute="bottom" secondItem="woF-9e-Ewn" secondAttribute="bottom" id="EHr-G3-ZRS"/>
                             <constraint firstItem="wtF-qI-5df" firstAttribute="leading" secondItem="m2X-Yd-lyw" secondAttribute="trailing" constant="2" id="ELL-Fw-FJk"/>
+                            <constraint firstItem="wtF-qI-5df" firstAttribute="width" secondItem="0SV-Qx-xI5" secondAttribute="width" id="FM8-HB-HBd"/>
                             <constraint firstItem="TTh-Xc-4UN" firstAttribute="centerY" secondItem="x8f-Ha-rbM" secondAttribute="centerY" id="Gpu-w6-JIF"/>
+                            <constraint firstItem="wtF-qI-5df" firstAttribute="height" secondItem="0SV-Qx-xI5" secondAttribute="height" id="H1W-bM-tIX"/>
                             <constraint firstItem="Q36-98-fNA" firstAttribute="bottom" secondItem="woF-9e-Ewn" secondAttribute="bottom" id="H4p-sv-x2Y"/>
                             <constraint firstItem="uiN-kb-WHv" firstAttribute="top" secondItem="rji-fL-gux" secondAttribute="bottom" constant="14" id="HPw-bD-DW0"/>
                             <constraint firstItem="9YT-mT-EpC" firstAttribute="centerY" secondItem="JOc-QE-Sev" secondAttribute="centerY" id="IuR-ZI-8uc"/>
@@ -230,6 +240,8 @@
                             <constraint firstItem="aAa-AX-aeO" firstAttribute="leading" secondItem="rji-fL-gux" secondAttribute="trailing" constant="7" id="itg-9m-gby"/>
                             <constraint firstItem="9Jp-tp-1VU" firstAttribute="leading" secondItem="bUg-hw-IF4" secondAttribute="trailing" constant="36" id="j7J-pV-RPv"/>
                             <constraint firstItem="gRE-4e-wzV" firstAttribute="centerX" secondItem="tqc-Yh-0Jz" secondAttribute="centerX" id="kPi-qp-hEJ"/>
+                            <constraint firstItem="WKG-AX-htI" firstAttribute="width" secondItem="0SV-Qx-xI5" secondAttribute="width" id="mGF-gt-8CN"/>
+                            <constraint firstItem="x8f-Ha-rbM" firstAttribute="width" secondItem="0SV-Qx-xI5" secondAttribute="width" id="nJw-3P-epU"/>
                             <constraint firstItem="Q36-98-fNA" firstAttribute="leading" secondItem="woF-9e-Ewn" secondAttribute="trailing" constant="11" id="nMV-vc-H5i"/>
                             <constraint firstItem="m2X-Yd-lyw" firstAttribute="centerY" secondItem="ydw-V8-skm" secondAttribute="centerY" id="pMq-mk-Zap"/>
                             <constraint firstItem="NLJ-ho-xpw" firstAttribute="centerY" secondItem="whN-sK-YXk" secondAttribute="centerY" id="pcw-qP-9qd"/>
@@ -268,11 +280,30 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="bgView" destination="tqc-Yh-0Jz" id="I7g-d2-fbm"/>
+                <outlet property="dashiHeadImageView" destination="761-hh-J84" id="4yq-DG-rB1"/>
+                <outlet property="dingdanshuLabel" destination="JOc-QE-Sev" id="007-lD-amx"/>
+                <outlet property="firstShanChangLabel" destination="Q36-98-fNA" id="87p-f2-dbM"/>
+                <outlet property="fiveXingImageView" destination="x8f-Ha-rbM" id="y0K-kQ-xx8"/>
+                <outlet property="fourXingImageView" destination="wtF-qI-5df" id="8rc-HC-qiL"/>
+                <outlet property="guanzhushuLabel" destination="uiN-kb-WHv" id="G4s-Vt-GnB"/>
+                <outlet property="leftImageView" destination="whN-sK-YXk" id="Pbr-ve-fiV"/>
+                <outlet property="leftLabel" destination="NLJ-ho-xpw" id="NSl-yT-HTA"/>
+                <outlet property="nameLabel" destination="gRE-4e-wzV" id="Vtu-Hj-Q5u"/>
+                <outlet property="oneXingImageView" destination="0SV-Qx-xI5" id="d6h-dx-Sxd"/>
+                <outlet property="pingFenLabel" destination="TTh-Xc-4UN" id="6zN-kG-6kC"/>
+                <outlet property="pingjunhuifuLabel" destination="9YT-mT-EpC" id="AZE-yu-1W7"/>
+                <outlet property="rightImageView" destination="rji-fL-gux" id="xH9-Jn-pL6"/>
+                <outlet property="rightLabel" destination="aAa-AX-aeO" id="ASz-JA-a0z"/>
+                <outlet property="secondShanChangLabel" destination="qx3-jh-FAC" id="zaL-jb-AhE"/>
+                <outlet property="thirdShanChangLabel" destination="D05-0b-3f5" id="3MM-yF-5QU"/>
+                <outlet property="threeXingImageView" destination="m2X-Yd-lyw" id="kMh-of-6UV"/>
+                <outlet property="twoXingImageView" destination="WKG-AX-htI" id="x33-nn-Kbr"/>
             </connections>
             <point key="canvasLocation" x="129.59999999999999" y="129.53523238380811"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="icon_huo" width="15" height="15"/>
         <image name="icon_pingtai" width="15" height="15"/>
         <image name="icon_shoucang" width="18" height="18"/>
         <image name="img_dashi_head" width="75" height="75"/>

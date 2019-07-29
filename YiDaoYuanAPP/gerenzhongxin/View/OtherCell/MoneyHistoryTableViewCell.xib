@@ -100,6 +100,11 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="firstLabel" destination="FGH-vV-lpF" id="rKe-Jh-3eB"/>
+                <outlet property="secondLabel" destination="3E6-uH-Uie" id="BWU-5W-f9y"/>
+                <outlet property="thirdLabel" destination="Gx6-Oy-C7S" id="gC4-iA-BT3"/>
+            </connections>
             <point key="canvasLocation" x="57.600000000000001" y="82.758620689655174"/>
         </tableViewCell>
     </objects>

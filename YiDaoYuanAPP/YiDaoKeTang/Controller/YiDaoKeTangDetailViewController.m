@@ -20,6 +20,8 @@
 #import "ShopSureOrderPayMoneyWayViewController.h"
 
 #import <AVKit/AVKit.h>
+
+#import "YiDaoKeTangContentViewController.h"
 @interface YiDaoKeTangDetailViewController ()<UITableViewDelegate, UITableViewDataSource, YiDaoKeTangDetailButtonTableViewCellDelegate, PPStickerInputViewDelegate, ShopSureOrderPayMoneyWayViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *inputTextField;
 @property (weak, nonatomic) IBOutlet UIButton *freeButton;
@@ -565,5 +567,15 @@
     } failure:^(NSError * _Nonnull error) {
         CSInternetFailure
     }];
+}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:CSCellName(YiDaoKeTangContentViewController)]) {
+        YiDaoKeTangContentViewController *new = segue.destinationViewController;
+        
+        new.passUrl = [NSString stringWithFormat:@"%@%@&&id=%@", BASE_URL,CSURL_Portal_Site_course_detail,self.passId];
+        new.showBottomView = YES;
+        new.passTitle = @"视频详情";
+        new.idstring = self.passId;
+    }
 }
 @end

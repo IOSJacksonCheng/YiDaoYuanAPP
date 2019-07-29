@@ -11,7 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YiDaoKeTangContentViewController : BaseViewController
-
+@property (nonatomic, strong) NSString *passUrl;
+@property (nonatomic, assign) BOOL showBottomView;
+@property (nonatomic, strong) NSString *passTitle;
+@property (nonatomic, strong) NSString *idstring;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -11,17 +11,17 @@
 @protocol DaShiListItemViewDelegate <NSObject>
 
 - (void)clickCloseViewDone;
-
+- (void)clickSureButton;
 @end
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DaShiListItemView : UIView
 
-@property (nonatomic, strong) NSMutableArray *itemArray;
-
+@property (nonatomic, strong) NSMutableArray *mingLiArray;
+@property (nonatomic, strong) NSMutableArray *qitaArray;
 @property (nonatomic, weak) id<DaShiListItemViewDelegate> csDelegate;
-
+@property (nonatomic, strong) NSMutableArray *shengxiaoArray;
 @end
 
 NS_ASSUME_NONNULL_END

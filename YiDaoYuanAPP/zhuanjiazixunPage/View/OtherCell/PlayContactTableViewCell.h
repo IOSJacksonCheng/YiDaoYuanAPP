@@ -7,15 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class FirstPageManyItemModel;
 NS_ASSUME_NONNULL_BEGIN
+@protocol PlayContactTableViewCellDelegate <NSObject>
 
+- (void)passContactModelId:(FirstPageManyItemModel *)model;
+
+@end
 @interface PlayContactTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIButton *askButton;
 @property (weak, nonatomic) IBOutlet UIImageView *csImageView;
 @property (weak, nonatomic) IBOutlet UILabel *csTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *csSubTitleLabel;
-
+@property (nonatomic, strong) FirstPageManyItemModel *model;
+@property (nonatomic, weak) id<PlayContactTableViewCellDelegate> csDelegate;
 @end
 
 NS_ASSUME_NONNULL_END

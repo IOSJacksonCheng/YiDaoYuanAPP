@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RightNowConsultIntroduceTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *csTitleLabel;
 
 @end
 

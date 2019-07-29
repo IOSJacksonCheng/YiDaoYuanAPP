@@ -7,8 +7,7 @@
 //
 
 #import "ShopProductDetailBigImageTableViewCell.h"
-#import "ZJZXFirstRowModel.h"
-@interface ShopProductDetailBigImageTableViewCell()
+@interface ShopProductDetailBigImageTableViewCell()<UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *bannerScrollView;
 // top ad scrollview
 @property (nonatomic, strong) NSTimer *adTimer;
@@ -30,7 +29,7 @@
     self.bannerScrollView.contentSize = CGSizeMake(MainScreenWidth * 3, 310);
     self.bannerScrollView.contentOffset = CGPointMake(MainScreenWidth, 0);
     self.bannerScrollView.bounces = NO;
-    
+    self.bannerScrollView.delegate = self;
     [self addImageViews];
     
     [self addPageControl];
@@ -43,31 +42,29 @@
         return;
     }
     if (_imageCount == 1) {
-        //        ZJZXFirstRowModel *model = self.adImageArray[0];
-        self.leftImageView.image = DotaImageName(@"img_xiangqing-1");
-        self.centerImageView.image = DotaImageName(@"img_xiangqing-1");
-        self.rightImageView.image = DotaImageName(@"img_xiangqing-1");
-        //        [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:PlaceHolderImage];
-        //
-        //
-        //        [self.centerImageView sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:PlaceHolderImage];
-        //
-        //        [self.rightImageView sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:PlaceHolderImage];
+                NSString *model = self.adImageArray[0];
+     
+                [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:model] placeholderImage:PlaceHolderImage];
+        
+        
+                [self.centerImageView sd_setImageWithURL:[NSURL URLWithString:model] placeholderImage:PlaceHolderImage];
+        
+                [self.rightImageView sd_setImageWithURL:[NSURL URLWithString:model] placeholderImage:PlaceHolderImage];
         
     } else {
         
-        ZJZXFirstRowModel *model = self.adImageArray[_imageCount - 1];
+        NSString *model = self.adImageArray[_imageCount - 1];
         
-        [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:PlaceHolderImage];
+        [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:model] placeholderImage:PlaceHolderImage];
         
         
         model = self.adImageArray[0];
-        [self.centerImageView sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:PlaceHolderImage];
+        [self.centerImageView sd_setImageWithURL:[NSURL URLWithString:model] placeholderImage:PlaceHolderImage];
         
         
         model = self.adImageArray[1];
         
-        [self.rightImageView sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:PlaceHolderImage];
+        [self.rightImageView sd_setImageWithURL:[NSURL URLWithString:model] placeholderImage:PlaceHolderImage];
         
     }
     // 记录当前页
@@ -134,7 +131,7 @@
         //移动回中间
         self.bannerScrollView.contentOffset = CGPointMake(MainScreenWidth, 0);
         //修改分页控件上的小圆点
-        _pageControl.currentPage = _currentImageIndex;
+        self.pageControl.currentPage = _currentImageIndex;
     }
     
 }
@@ -149,9 +146,9 @@
     self.adTimer = nil;
 }
 - (void)addTimer {
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(nextPage) userInfo:nil repeats:YES];
-    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-    self.adTimer = timer;
+//    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(nextPage) userInfo:nil repeats:YES];
+//    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+//    self.adTimer = timer;
 }
 - (void)nextPage {
     self.bannerScrollView.contentOffset = CGPointMake(MainScreenWidth * 2, 0);
@@ -175,24 +172,25 @@
         self.currentImageIndex = (self.currentImageIndex + self.imageCount - 1) % self.imageCount;
     }
     
-    ZJZXFirstRowModel *centerModel = self.adImageArray[self.currentImageIndex];
+    NSString *centerModel = self.adImageArray[self.currentImageIndex];
     
-    [self.centerImageView sd_setImageWithURL:[NSURL URLWithString:centerModel.url] placeholderImage:PlaceHolderImage];
+    [self.centerImageView sd_setImageWithURL:[NSURL URLWithString:centerModel] placeholderImage:PlaceHolderImage];
     
     
     leftImageIndex = (_currentImageIndex+_imageCount-1)%_imageCount;
     rightImageIndex = (_currentImageIndex+1)%_imageCount;
     
-    ZJZXFirstRowModel *leftModel = self.adImageArray[leftImageIndex];
-    [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:leftModel.url] placeholderImage:PlaceHolderImage];
+    NSString *leftModel = self.adImageArray[leftImageIndex];
+    [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:leftModel] placeholderImage:PlaceHolderImage];
     
-    ZJZXFirstRowModel *rightModel = self.adImageArray[rightImageIndex];
-    [self.rightImageView sd_setImageWithURL:[NSURL URLWithString:rightModel.url] placeholderImage:PlaceHolderImage];
+    NSString *rightModel = self.adImageArray[rightImageIndex];
+    [self.rightImageView sd_setImageWithURL:[NSURL URLWithString:rightModel] placeholderImage:PlaceHolderImage];
     
 }
 - (void)setAdImageArray:(NSMutableArray *)adImageArray {
     
     _adImageArray = adImageArray;
+    
     _imageCount = adImageArray.count;
     
     self.pageControl.numberOfPages = _imageCount;

@@ -74,18 +74,14 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    
+    for (DaShiListItemModel *model in self.itemMutableArray) {
+        model.choose = NO;
+    }
     DaShiListItemModel *model = self.itemMutableArray[indexPath.row];
     
     
-    
-    
-    
-    model.choose = !model.choose;
-    
-    
-    
-    
+    model.choose = YES;
+    [self.csDelegate clickItemPassPrice:model];
     [self.collectionView reloadData];
     
 }

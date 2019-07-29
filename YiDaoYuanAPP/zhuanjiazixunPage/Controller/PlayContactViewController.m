@@ -11,9 +11,18 @@
 #import "PlayContactTableViewCell.h"
 #import "PlayContactUserTableViewCell.h"
 #import "PlayContactSamplesTableViewCell.h"
-@interface PlayContactViewController ()
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+#import "FirstPageManyItemModel.h"
+
+#import "PlayContactNextStepViewController.h"
+
+#import "PlayContactStepThreeViewController.h"
+@interface PlayContactViewController ()<UITableViewDelegate, UITableViewDataSource, PlayContactTableViewCellDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *questionArray;
+@property (nonatomic, strong) NSMutableArray *jingxuanArray;
+@property (nonatomic, strong) NSString *recordCid;
+@property (nonatomic, strong) NSString *recordTitle;
 @end
 
 @implementation PlayContactViewController
@@ -25,8 +34,42 @@
     [self configNavigationBar];
     
     [self configTableView];
+    
+    self.questionArray = @[].mutableCopy;
+    
+    self.jingxuanArray = @[].mutableCopy;
+    [self sendGetRequest];
+    
+    [self getJingXuanAnli];
 }
-
+- (void)getJingXuanAnli {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_qa_case Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            self.jingxuanArray = [CSParseManager getUserPingLunFirstPageModelArrayWithResponseObject:CSGetResult[@"lists"]];
+            [self.tableView reloadData];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+}
+- (void)sendGetRequest {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_qa_category Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            self.questionArray = [CSParseManager getFirstPageManyItemModelArrayWithResponseObject:CSGetResult[@"lists"]];
+            [self.tableView reloadData];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+}
 - (void)configTableView {
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
@@ -42,14 +85,17 @@
 - (void)configNavigationBar {
     F3f3f3NavigationBarColor
     
-    self.title = @"互动咨询";
+    self.title = @"互动问答";
 }
 #pragma mark --UITableViewDelegate/DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 1 + self.jingxuanArray.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    if (section == 0) {
+        return self.questionArray.count;
+    }
+    return 2;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -57,54 +103,101 @@
     if (indexPath.section == 0) {
        
         PlayContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(PlayContactTableViewCell)];
-        NSString *title = @"婚恋情感";
-        NSString *subTitle = @"爱情、婚姻、桃花姻缘等问题";
-        NSString *imageViewString = @"img_hunlian";
-         if (indexPath.row == 1) {
-            
-            title = @"事业财运";
-            subTitle = @"职场、创业、投资理财等问题";
-            imageViewString = @"img_shiye";
-        }else if (indexPath.row == 2) {
-            
-            title = @"生活健康";
-            subTitle = @"父母、子女、健康生活等问题";
-            imageViewString = @"img_shenghuo";
-        }else if (indexPath.row == 3) {
-            
-            title = @"风水诊断";
-            subTitle = @"分析阴阳宅祸福吉凶等问题";
-            imageViewString = @"img_fengshui";
-        }
-        
-        cell.csTitleLabel.text = title;
-        cell.csSubTitleLabel.text = subTitle;
-        cell.csImageView.image = DotaImageName(imageViewString);
-        return cell;
+        FirstPageManyItemModel *model = self.questionArray[indexPath.row];
+        cell.csTitleLabel.text = model.title;
+        cell.csSubTitleLabel.text = model.intro;
+        cell.model = model;
+        cell.csDelegate = self;
+        [cell.csImageView sd_setImageWithURL:[NSURL URLWithString:model.icon] placeholderImage:PlaceHolderImage];        return cell;
     }
-    if (indexPath.row % 2 == 0) {
+    
+    
+    FirstPageModel *model = self.jingxuanArray[indexPath.section - 1];
+
+    if (indexPath.row == 0) {
         PlayContactUserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(PlayContactUserTableViewCell)];
-        
+        cell.model = model;
         return cell;
     }
     PlayContactSamplesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(PlayContactSamplesTableViewCell)];
-    
+    cell.model = model;
+
     return cell;
     
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        FirstPageManyItemModel *model = self.questionArray[indexPath.row];
+        self.recordCid = model.cat_id;
+        self.recordTitle = model.title;
+ [self performSegueWithIdentifier:@"PlayContactNextStepViewController" sender:self];
+    }
+    
+   
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         return 80;
     }
-    if (indexPath.row % 2 == 0) {
-       return 100;
+     FirstPageModel *model = self.jingxuanArray[indexPath.section - 1];
+    if (indexPath.row  == 0) {
+       
+        
+        return [self accrodingTextGiveItHeightWith:model.content];
     }
-    return 157;
+    
+    return 95 + [self accrodingReplyTextGiveItHeightWith:model.reply];
+}
+- (CGFloat)accrodingReplyTextGiveItHeightWith:(NSString *)text {
+    
+    if (csCharacterIsBlank(text)) {
+        return 0;
+    }
+    
+    CGFloat labelWidth = MainScreenWidth - 66 - 10;
+    
+    NSAttributedString *test = [self attributedBodyText:text];
+    
+    NSStringDrawingOptions options  = NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading;
+    CGRect rect = [test boundingRectWithSize:CGSizeMake(labelWidth, 0) options:options context:nil];
+    
+    
+    return (CGFloat)(ceil(rect.size.height));
+    
 }
 
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+- (CGFloat)accrodingTextGiveItHeightWith:(NSString *)text {
     
+    if (csCharacterIsBlank(text)) {
+        return 100;
+    }
+    
+    CGFloat labelWidth = MainScreenWidth - 77 - 16;
+    
+    NSAttributedString *test = [self attributedBodyText:text];
+    
+    NSStringDrawingOptions options  = NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading;
+    CGRect rect = [test boundingRectWithSize:CGSizeMake(labelWidth, 0) options:options context:nil];
+    
+    
+    return (CGFloat)(ceil(rect.size.height) + 10 + 56);
+    
+}
+- (NSAttributedString *)attributedBodyText:(NSString *)text {
+    
+    
+    UIFont *font = [UIFont fontWithName:@"Arial-BoldItalicMT" size:13];
+    
+    NSDictionary *testDic = [NSDictionary dictionaryWithObject:font forKey:NSFontAttributeName];
+    
+    NSAttributedString *string = [[NSAttributedString alloc]initWithString:text attributes:testDic];
+    
+    return string;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (section != 1) {
+        return UIView.new;
+    }
     UIView *view = [UIView new];
     view.backgroundColor = UIColor.whiteColor;
     UILabel *label = UILabel.new;
@@ -124,5 +217,21 @@
         return 50;
     }
     return 0;
+}
+- (void)passContactModelId:(FirstPageManyItemModel *)model {
+    self.recordCid = model.cat_id;
+    self.recordTitle = model.title;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"PlayContactNextStepViewController"]) {
+        PlayContactNextStepViewController *new = segue.destinationViewController;
+        new.passCatId = self.recordCid;
+        new.passTitle = self.recordTitle;
+    } else if ([segue.identifier isEqualToString:@"PlayContactStepThreeViewController"]) {
+        PlayContactStepThreeViewController *new = segue.destinationViewController;
+        
+        new.passCatId = self.recordCid;
+    }
 }
 @end

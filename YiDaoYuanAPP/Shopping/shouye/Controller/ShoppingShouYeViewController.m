@@ -11,9 +11,21 @@
 #import "JieYuanJiaTableViewCell.h"
 #import "ZJZXBannerTableViewCell.h"
 #import "ZJZXFirstRowModel.h"
-@interface ShoppingShouYeViewController ()<UITableViewDelegate, UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+#import "ShopManyProductViewController.h"
+#import "ShopProductDetailViewController.h"
 
+#import "ShopManyProductViewController.h"
+
+
+@interface ShoppingShouYeViewController ()<UITableViewDelegate, UITableViewDataSource, ShoppingShouYeTableViewCellDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *bannerArray;
+@property (nonatomic, strong) NSMutableArray *csGoodsArray;
+@property (nonatomic, strong) NSMutableArray *itemArray;
+
+@property (nonatomic, strong) NSString *recordCategoryId;
+
+@property (nonatomic, strong) NSString *recordPassId;
 @end
 
 @implementation ShoppingShouYeViewController
@@ -28,8 +40,59 @@
     
     [self configTableView];
     
+    self.bannerArray = @[].mutableCopy;
+   
+    self.csGoodsArray = @[].mutableCopy;
+    
+    self.itemArray = @[].mutableCopy;
+    [self getNewData];
+    [self getHotData];
+    [self getItemArray];
 }
-
+- (void)getItemArray {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Goods_Classify Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            self.itemArray = [CSParseManager getCSProductItemModelArrayWithResponseObject:CSGetResult[@"lists"]];
+            [self.tableView reloadData];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+}
+- (void)getHotData {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Goods_New_goods Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            self.csGoodsArray = [CSParseManager getHomePageADModelArrayWithResponseObject:CSGetResult[@"list"]];
+            [self.tableView reloadData];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+}
+- (void)getNewData {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Goods_Slideimg Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            self.bannerArray = [CSParseManager getHomePageADModelArrayWithResponseObject:CSGetResult[@"list"]];
+            
+            [self.tableView reloadData];
+            
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+}
 - (void)configTableView {
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -81,25 +144,35 @@
     return 2;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    if (section == 0) {
+        return 2;
+    }
+    return self.csGoodsArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             ZJZXBannerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(ZJZXBannerTableViewCell)];
-            ZJZXFirstRowModel *model = [ZJZXFirstRowModel new];
-            NSMutableArray *array = @[].mutableCopy;
-            [array addObject:model];
-            cell.adImageArray = array;
+          
+            cell.adImageArray = self.bannerArray;
             return cell;
         }
         
         ShoppingShouYeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(ShoppingShouYeTableViewCell)];
+        cell.csDelegate = self;
+        cell.itemMutableArray = self.itemArray;
           return cell;
     }
     
     JieYuanJiaTableViewCell  *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(JieYuanJiaTableViewCell)];
+    HomePageADModel *model = self.csGoodsArray[indexPath.row];
+    cell.model = model;
     return cell;
+}
+- (void)passID:(NSString *)passID {
+    self.recordCategoryId = passID;
+    
+    [self performSegueWithIdentifier:@"ShopManyProductViewController" sender:self];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
@@ -150,12 +223,23 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.section == 0 && indexPath.row == 1) {
+    if (indexPath.section == 1) {
         
-         [self performSegueWithIdentifier:@"ShopManyProductViewController" sender:self];
-        return;
+        HomePageADModel *model = self.csGoodsArray[indexPath.row];
+        
+        self.recordPassId = model.goods_id;
+        
+         [self performSegueWithIdentifier:@"ShopProductDetailViewController" sender:self];
     }
-    
-    [self performSegueWithIdentifier:@"ShopProductDetailViewController" sender:self];
+   
+}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"ShopProductDetailViewController"]) {
+        ShopProductDetailViewController *new = segue.destinationViewController;
+        new.passID = self.recordPassId;
+    } else if ([segue.identifier isEqualToString:@"ShopManyProductViewController"]) {
+        ShopManyProductViewController  *new = segue.destinationViewController;
+        new.passCategoryId = self.recordCategoryId;
+    }
 }
 @end

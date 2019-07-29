@@ -26,6 +26,16 @@ typedef void(^updateRequestBlock)(BOOL updateSuccess);
 + (NSString *) getCurrentDate;
 + (BOOL) handleNumber:(NSNumber *)string;
 + (void)updateCurrentMoney:(updateRequestBlock)update;
++ (UIImage *)csImageWithColor:(UIColor *)color
+                         size:(CGSize)size
+                         text:(NSString *)text
+               textAttributes:(NSDictionary *)textAttributes
+                     circular:(BOOL)isCircular;
+
++ (CGFloat)accrodingTextGiveItHeightWith:(NSString *)text WithLabelInterval:(CGFloat)interval WithFont:(CGFloat)font;
++ (void)goToChatKefuViewController;
++ (UIViewController *)shoppingGetCurrentViewController;
++ (void)shoppingGoToKefuController;
 @end
 
 NS_ASSUME_NONNULL_END

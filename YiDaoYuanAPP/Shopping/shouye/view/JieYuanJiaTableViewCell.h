@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HomePageADModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JieYuanJiaTableViewCell : UITableViewCell
-
+@property (nonatomic, strong) HomePageADModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

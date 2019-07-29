@@ -162,6 +162,16 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="iconImageView" destination="XXn-lq-l0X" id="wJQ-Dt-HW5"/>
+                <outlet property="itemLabel" destination="0TM-uE-fbI" id="kzR-Ed-1eD"/>
+                <outlet property="moneyLabel" destination="Q6R-3C-wMV" id="S5Q-6M-Ano"/>
+                <outlet property="nameLabel" destination="XT1-s9-9zp" id="tPt-Bx-K6X"/>
+                <outlet property="orderLabel" destination="SLg-H5-RH9" id="OJv-ni-aL8"/>
+                <outlet property="payLabel" destination="3vX-eN-8I8" id="dsi-xK-UWy"/>
+                <outlet property="timeLabel" destination="iAJ-vP-l4o" id="QRN-nq-SCy"/>
+                <outlet property="youhuijuanLabel" destination="JcW-hn-XAO" id="HLx-Vc-SE9"/>
+            </connections>
             <point key="canvasLocation" x="129.59999999999999" y="153.82308845577214"/>
         </tableViewCell>
     </objects>

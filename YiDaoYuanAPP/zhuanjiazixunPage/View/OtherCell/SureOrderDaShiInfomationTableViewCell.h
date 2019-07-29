@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "DaShiOrderInfoModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SureOrderDaShiInfomationTableViewCell : UITableViewCell
-
+@property (nonatomic, strong) DaShiOrderInfoModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

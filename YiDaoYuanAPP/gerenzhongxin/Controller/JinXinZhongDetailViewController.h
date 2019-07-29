@@ -7,11 +7,10 @@
 //
 
 #import "BaseViewController.h"
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JinXinZhongDetailViewController : BaseViewController
-
+@property (nonatomic, strong) NSString *order_id;
 @end
 
 NS_ASSUME_NONNULL_END

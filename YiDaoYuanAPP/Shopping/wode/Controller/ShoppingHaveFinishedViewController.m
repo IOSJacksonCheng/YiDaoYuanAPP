@@ -18,13 +18,29 @@
 #import "ShoppingDetailProductTableViewCell.h"
 
 #import "ShopSureOrderAddAddressViewController.h"
+
+#import "AddressModel.h"
 @interface ShoppingHaveFinishedViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *listTableView;
 
+@property (nonatomic, strong) AddressModel *addressModel;
+@property (nonatomic, strong) NSMutableArray *productArray;
+
+@property (nonatomic, strong) NSString *total_price;
+@property (nonatomic, strong) NSString *freight;
+
+@property (nonatomic, strong) NSString *pay_price;
+
+@property (nonatomic, strong) NSString *order_id;
 @end
 
 @implementation ShoppingHaveFinishedViewController
-
+- (AddressModel *)addressModel {
+    if (!_addressModel) {
+        _addressModel = [AddressModel new ];
+    }
+    return _addressModel;
+}
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -34,9 +50,59 @@
     [self configNavigationBar];
     
     [self configTableView];
-   
+    
+    self.productArray = @[].mutableCopy;
+    
+    [self sendGetRequest];
+    
+    [self getWuLiuInfomation];
 }
-
+- (void)getWuLiuInfomation {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    
+    para[@"order_id"] = self.passOrderId;
+    
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Cart_Logistics Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+}
+- (void)sendGetRequest {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    
+    para[@"order_id"] = self.passOrderId;
+    
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Cart_Affirm Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            if (!csCharacterIsBlank(CSGetResult[@"address"])) {
+                self.addressModel.shipp_id = [NSString stringWithFormat:@"%@",CSGetResult[@"address"][@"shipp_id"]];
+                self.addressModel.shipp_name = [NSString stringWithFormat:@"%@",CSGetResult[@"address"][@"shipp_name"]];
+                
+                self.addressModel.shipp_phone = [NSString stringWithFormat:@"%@",CSGetResult[@"address"][@"shipp_phone"]];
+                
+                self.addressModel.shipp_address = [NSString stringWithFormat:@"%@",CSGetResult[@"address"][@"shipp_address"]];
+            }
+            
+            self.order_id = [NSString stringWithFormat:@"%@",CSGetResult[@"order_id"]];
+            self.total_price = [NSString stringWithFormat:@"%@",CSGetResult[@"total_price"]];
+            self.freight = [NSString stringWithFormat:@"%@",CSGetResult[@"freight"]];
+            self.pay_price = [NSString stringWithFormat:@"%@",CSGetResult[@"pay_price"]];
+            self.productArray = [CSParseManager getGoodsModelArrayWithResponseObject:CSGetResult[@"goods"]];
+            [self.listTableView reloadData];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+}
 - (void)configTableView {
     [self.listTableView registerNib:[UINib nibWithNibName:CSCellName(ShoppingDetailTopTitleTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(ShoppingDetailTopTitleTableViewCell)];
     

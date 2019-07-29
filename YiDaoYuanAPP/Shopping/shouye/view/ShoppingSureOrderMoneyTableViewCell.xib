@@ -66,6 +66,10 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="freightLabel" destination="dQJ-cc-N1O" id="NBV-jl-28y"/>
+                <outlet property="totalLabel" destination="dPg-Td-yvx" id="zRn-ws-PdM"/>
+            </connections>
             <point key="canvasLocation" x="129.59999999999999" y="177.21139430284859"/>
         </tableViewCell>
     </objects>

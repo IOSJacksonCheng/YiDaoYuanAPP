@@ -15,6 +15,8 @@
 
 #import "WkWebViewViewController.h"
 #import "UserSuggestViewController.h"
+#import "PersonalSetViewController.h"
+#import "ShareViewController.h"
 @interface ShoppingWoDeViewController ()<UITableViewDelegate, UITableViewDataSource, ShoppingWoDeOrderTableViewCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, assign) NSInteger passTag;
@@ -22,7 +24,11 @@
 @end
 
 @implementation ShoppingWoDeViewController
-
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.tableView reloadData];
+}
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -33,6 +39,7 @@
     
     [self configTableView];
     
+    [self.tableView reloadData];
 }
 
 - (void)configTableView {
@@ -100,6 +107,11 @@
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             ShoppingIconTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(ShoppingIconTableViewCell)];
+            
+            [cell.titleImageView sd_setImageWithURL:[NSURL URLWithString:CS_Avatar] placeholderImage:CSUserImagePlaceHolder];
+            
+            cell.nameLabel.text = CS_User_Nickname;
+            
             return cell;
         }
         ShoppingWoDeOrderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(ShoppingWoDeOrderTableViewCell)];
@@ -159,6 +171,19 @@
         
         new.fromShopping = YES;
         
+        [self.navigationController pushViewController:new animated:YES];
+    }else if (indexPath.section == 2 && indexPath.row == 0)  {
+        
+        [self performSegueWithIdentifier:@"QuestionsViewController" sender:nil];
+    }else if (indexPath.section == 0 && indexPath.row == 0)  {
+        
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        PersonalSetViewController *new = [mainStoryboard instantiateViewControllerWithIdentifier:@"PersonalSetViewController"];
+        [self.navigationController pushViewController:new animated:YES];
+    }else if (indexPath.section == 1)  {
+        
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        ShareViewController *new = [mainStoryboard instantiateViewControllerWithIdentifier:@"ShareViewController"];
         [self.navigationController pushViewController:new animated:YES];
     }
 }

@@ -59,8 +59,8 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="moneyLabel" destination="2Uz-gE-slk" id="Vfn-Fg-I2Z"/>
-                <outlet property="nameLabel" destination="6ug-Qj-FxB" id="0Dd-nW-KXh"/>
-                <outlet property="titleImageView" destination="rG3-T8-dYN" id="bhP-XT-GlW"/>
+                <outlet property="nameLabel" destination="6ug-Qj-FxB" id="zUu-Z4-ed3"/>
+                <outlet property="titleImageView" destination="rG3-T8-dYN" id="pN6-IL-cYh"/>
             </connections>
         </tableViewCell>
     </objects>

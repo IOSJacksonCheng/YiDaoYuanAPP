@@ -19,12 +19,15 @@
     [self.askButton addTarget:self action:@selector(clickAskButtonDone) forControlEvents:UIControlEventTouchDown];
 }
 - (void)clickAskButtonDone {
-    [[CSUtility getCurrentViewController] performSegueWithIdentifier:@"PlayContactNextStepViewController" sender:self];
+    [self.csDelegate passContactModelId:self.model];
+    [[CSUtility getCurrentViewController] performSegueWithIdentifier:@"PlayContactStepThreeViewController" sender:self];
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
 }
-
+- (void)setModel:(FirstPageManyItemModel *)model {
+    _model = model;
+}
 @end

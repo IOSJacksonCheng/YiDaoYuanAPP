@@ -20,18 +20,23 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的回复：好的" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sA0-gG-fNf">
-                        <rect key="frame" x="34" y="13" width="107.5" height="18"/>
+                        <rect key="frame" x="34" y="0.0" width="276" height="43.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="sA0-gG-fNf" secondAttribute="bottom" id="1kD-Mz-XMX"/>
+                    <constraint firstAttribute="trailing" secondItem="sA0-gG-fNf" secondAttribute="trailing" constant="10" id="4oK-Rv-BgH"/>
                     <constraint firstItem="sA0-gG-fNf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="34" id="dRr-Xq-BRz"/>
-                    <constraint firstItem="sA0-gG-fNf" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="y6D-9x-4Vc"/>
+                    <constraint firstItem="sA0-gG-fNf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="gMb-sa-hhS"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="contentLabel" destination="sA0-gG-fNf" id="lNr-NP-CU6"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>

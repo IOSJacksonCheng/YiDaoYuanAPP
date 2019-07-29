@@ -44,11 +44,8 @@
                             <constraint firstAttribute="height" constant="54" id="cX1-mW-k1f"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户讨论话题内容用户讨论话题内容用户讨论话题内容用户讨论" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vgW-oq-92Y">
-                        <rect key="frame" x="19" y="81" width="274" height="54"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="54" id="EDX-fh-Bm2"/>
-                        </constraints>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vgW-oq-92Y">
+                        <rect key="frame" x="19" y="81" width="274" height="0.0"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -67,6 +64,12 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="categoryLabel" destination="61U-4l-nsK" id="2iT-nb-BlX"/>
+                <outlet property="headImageView" destination="he2-dm-LnR" id="dzp-fl-4wq"/>
+                <outlet property="nameLabel" destination="7sJ-r0-5BQ" id="IXY-kz-71Y"/>
+                <outlet property="qaLabel" destination="vgW-oq-92Y" id="Rhx-CN-3km"/>
+            </connections>
             <point key="canvasLocation" x="129.59999999999999" y="159.67016491754123"/>
         </tableViewCell>
     </objects>

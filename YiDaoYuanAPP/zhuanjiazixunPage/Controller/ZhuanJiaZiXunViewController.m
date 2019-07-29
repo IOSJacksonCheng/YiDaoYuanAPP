@@ -19,9 +19,12 @@
 #import "ZJZXBannerTableViewCell.h"
 
 #import "CoreLocation/CoreLocation.h"
-
+#import "DaShiDetailViewController.h"
+#import "ManyItemTableViewCell.h"
+#import "DaShiListViewController.h"
 CGFloat const AD_Height = 160;
-@interface ZhuanJiaZiXunViewController ()<UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate>
+@interface ZhuanJiaZiXunViewController ()<UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, ZJZXDaShiTableViewCellDelegate,ManyItemTableViewCellDelegate>
+@property (nonatomic, strong) NSString *recordAdImage;
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 
 @property (strong, nonatomic) CLLocationManager* locationManager;
@@ -30,6 +33,13 @@ CGFloat const AD_Height = 160;
 
 @property (nonatomic, strong) NSMutableArray *daShiArray;
 @property (nonatomic, strong) NSMutableArray *userJudgeArray;
+@property (nonatomic, strong) NSString *recordMasterId;
+
+@property (nonatomic, strong) NSMutableArray *itemArray;
+
+@property (nonatomic, strong) NSString *recordItemId;
+
+@property (nonatomic, strong) NSMutableArray *adImageArray;
 @end
 
 @implementation ZhuanJiaZiXunViewController
@@ -54,23 +64,59 @@ NSString *location = [[NSUserDefaults standardUserDefaults] stringForKey:@"CSLoc
     [self configNavigationBar];
     
     [self configTableView];
-    
+    self.adImageArray = @[].mutableCopy;
     NSString *location = [[NSUserDefaults standardUserDefaults] stringForKey:@"CSLocationCity"];
    
     [self configLeftItem:location];
     
     self.daShiArray = @[].mutableCopy;
     self.userJudgeArray = @[].mutableCopy;
-    
+    self.itemArray = @[].mutableCopy;
     [self sendGetRequest];
 }
 - (void)sendGetRequest {
-
+    [self getBannerRequest];
     [self getHotDaShi];
     [self getUserPingLun];
+    [self getItemRequest];
+    
+}
+- (void)getBannerRequest {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_hot_banner Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            self.adImageArray = [CSParseManager getHomePageADModelArrayWithResponseObject:CSGetResult[@"lists"]];
+            [self.mainTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+}
+- (void)getItemRequest {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_hot_item Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            self.itemArray = [CSParseManager getFirstPageManyItemModelArrayWithResponseObject:CSGetResult[@"lists"]];
+            [self.mainTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:1]] withRowAnimation:UITableViewRowAnimationNone];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
 }
 - (void)getUserPingLun {
+   
     NSMutableDictionary *para = @{}.mutableCopy;
+    
+
+    para[@"type"] = @"1";
+    para[@"page"] = @"1";
+
     [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Index_Bask Pameters:para success:^(id  _Nonnull responseObject) {
         
         if (CSInternetRequestSuccessful) {
@@ -185,6 +231,7 @@ NSString *location = [[NSUserDefaults standardUserDefaults] stringForKey:@"CSLoc
     
     [self.mainTableView registerNib:[UINib nibWithNibName:CSCellName(ZJZXBannerTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(ZJZXBannerTableViewCell)];
     
+     [self.mainTableView registerNib:[UINib nibWithNibName:CSCellName(ManyItemTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(ManyItemTableViewCell)];
 }
 - (void)configSubViews {
     
@@ -254,7 +301,7 @@ NSString *location = [[NSUserDefaults standardUserDefaults] stringForKey:@"CSLoc
     if (section == 0) {
         return 1;
     }else if (section == 1) {
-        return 2;
+        return 3;
     }else if (section == 2) {
         if (self.daShiArray.count == 0) {
             return 0;
@@ -268,14 +315,18 @@ NSString *location = [[NSUserDefaults standardUserDefaults] stringForKey:@"CSLoc
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         ZJZXBannerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(ZJZXBannerTableViewCell)];
-        ZJZXFirstRowModel *model = [ZJZXFirstRowModel new];
-        NSMutableArray *array = @[].mutableCopy;
-        [array addObject:model];
-        cell.adImageArray = array;
+        
+        cell.adImageArray = self.adImageArray;
         return cell;
     }
     if (indexPath.section == 1) {
         if (indexPath.row == 0) {
+            ManyItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(ManyItemTableViewCell) forIndexPath:indexPath];
+            cell.listArray = self.itemArray;
+            cell.csDelegate = self;
+            return cell;
+        }
+        if (indexPath.row == 1) {
             ZJZXFirstRowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(ZJZXFirstRowTableViewCell)];
             return cell;
         }
@@ -285,6 +336,7 @@ NSString *location = [[NSUserDefaults standardUserDefaults] stringForKey:@"CSLoc
     } else if (indexPath.section == 2) {
         ZJZXDaShiTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(ZJZXDaShiTableViewCell)];
         cell.daShiArray = self.daShiArray;
+        cell.csDelegate = self;
         return cell;
     }else if (indexPath.section == 3) {
         if (indexPath.row == 1) {
@@ -302,11 +354,14 @@ NSString *location = [[NSUserDefaults standardUserDefaults] stringForKey:@"CSLoc
     cell.model = model;
     return cell;
 }
+- (void)passDaShiMasterId:(NSString *)idString {
+    self.recordMasterId = idString;
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.section == 1 && indexPath.row == 1) {
+    if (indexPath.section == 1 && indexPath.row == 2) {
         
-        [self  performSegueWithIdentifier:@"DaShiListViewController" sender:self];
+//        [self  performSegueWithIdentifier:@"DaShiListViewController" sender:self];
        
     } else if (indexPath.section == 3 && indexPath.row == 0) {
        [self  performSegueWithIdentifier:@"FuGouBangViewController" sender:self];
@@ -322,9 +377,12 @@ NSString *location = [[NSUserDefaults standardUserDefaults] stringForKey:@"CSLoc
     }
     if (indexPath.section == 1) {
         if (indexPath.row == 0) {
-            return 377;
+            return 142 + 18 + 10;
         }
-        return 54;
+        if (indexPath.row == 1) {
+            return 216;
+        }
+        return 45;
     } else if (indexPath.section == 2) {
         if (self.daShiArray.count == 1) {
             return 140;
@@ -342,7 +400,19 @@ NSString *location = [[NSUserDefaults standardUserDefaults] stringForKey:@"CSLoc
     return 0;
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"DaShiDetailViewController"]) {
+        DaShiDetailViewController *new = segue.destinationViewController;
+        new.passMasterID = self.recordMasterId;
+    }else if ([segue.identifier isEqualToString:@"DaShiListViewController"]) {
+        DaShiListViewController *new = segue.destinationViewController;
+        new.passId = self.recordItemId;
+        new.adImage = self.recordAdImage;
+    }
+}
 
-
-
+- (void)passItemId:(FirstPageManyItemModel *)model {
+    self.recordItemId = model.item_id;
+    self.recordAdImage  = model.ad;
+}
 @end

@@ -26,6 +26,9 @@
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-2" translatesAutoresizingMaskIntoConstraints="NO" id="ta2-ia-v7G">
                         <rect key="frame" x="10" y="70.5" width="314" height="136"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="136" id="USt-JA-EWA"/>
+                        </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="吉祥保平安，护身辟邪" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SyR-lC-b5R">
                         <rect key="frame" x="10" y="216.5" width="143" height="17"/>
@@ -71,6 +74,12 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="contentImageView" destination="ta2-ia-v7G" id="nqG-jm-qPw"/>
+                <outlet property="csTitleLabel" destination="SyR-lC-b5R" id="sI5-bj-Mkf"/>
+                <outlet property="introLabel" destination="Ner-Hx-F8B" id="1Lg-dY-74Z"/>
+                <outlet property="priceLabel" destination="L7g-7i-IqI" id="Evf-FG-k6z"/>
+            </connections>
             <point key="canvasLocation" x="140.80000000000001" y="131.78410794602701"/>
         </tableViewCell>
     </objects>

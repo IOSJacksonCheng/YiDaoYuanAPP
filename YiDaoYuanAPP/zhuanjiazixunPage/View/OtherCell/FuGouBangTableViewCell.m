@@ -122,7 +122,7 @@
         self.fiveXingImageView.image = DotaImageName(@"icon_shoucang_kong");
         
         
-    }else if (model.grade.intValue == 54) {
+    }else if (model.grade.intValue == 5) {
         self.oneXingImageView.image = DotaImageName(@"icon_shoucang");
         self.twoXingImageView.image = DotaImageName(@"icon_shoucang");
         self.threeXingImageView.image = DotaImageName(@"icon_shoucang");

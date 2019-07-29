@@ -11,7 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ChooseDaShiViewController : BaseViewController
-
+@property (nonatomic, strong) NSString *passCat_id;
+@property (nonatomic, strong) NSString *passQuestion_id;
+@property (nonatomic, strong) NSString *personalQuestion;
 @end
 
 NS_ASSUME_NONNULL_END

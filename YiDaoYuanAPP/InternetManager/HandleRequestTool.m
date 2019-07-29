@@ -27,6 +27,9 @@
     return NO;
 }
 + (id)requestSuccessGetResult:(id)responseObject {
+    if (![responseObject isKindOfClass:[NSDictionary class]]) {
+        return @{};
+    }
     return responseObject[@"data"];
 }
 @end

@@ -45,8 +45,8 @@
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="孙俪用户超时未评价，默认好评！" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eK7-m6-The">
-                        <rect key="frame" x="69" y="65" width="184" height="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eK7-m6-The">
+                        <rect key="frame" x="69" y="65" width="243" height="0.0"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -59,6 +59,10 @@
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_shoucang" translatesAutoresizingMaskIntoConstraints="NO" id="lwX-4O-uYt">
                         <rect key="frame" x="186.5" y="10" width="18" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="82w-GM-35E"/>
+                            <constraint firstAttribute="width" constant="18" id="Rbf-e2-M4T"/>
+                        </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaL-HC-4Ye">
                         <rect key="frame" x="296.5" y="13" width="15.5" height="12"/>
@@ -68,15 +72,31 @@
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_shoucang" translatesAutoresizingMaskIntoConstraints="NO" id="T09-te-arh">
                         <rect key="frame" x="208.5" y="10" width="18" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="18" id="5ZY-st-rNk"/>
+                            <constraint firstAttribute="height" constant="18" id="izM-yI-9kS"/>
+                        </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_shoucang" translatesAutoresizingMaskIntoConstraints="NO" id="Fbz-Mo-jcm">
                         <rect key="frame" x="230.5" y="10" width="18" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="4mw-VT-ZqU"/>
+                            <constraint firstAttribute="width" constant="18" id="Wwl-4s-QEL"/>
+                        </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_shoucang" translatesAutoresizingMaskIntoConstraints="NO" id="Dqz-Hi-efc">
                         <rect key="frame" x="252.5" y="10" width="18" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="18" id="KDr-fL-CRD"/>
+                            <constraint firstAttribute="height" constant="18" id="qU2-Gk-4fE"/>
+                        </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_shoucang" translatesAutoresizingMaskIntoConstraints="NO" id="jrd-jX-zPh">
                         <rect key="frame" x="274.5" y="10" width="18" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="HqY-Go-jWf"/>
+                            <constraint firstAttribute="width" constant="18" id="qg1-pm-yUt"/>
+                        </constraints>
                     </imageView>
                 </subviews>
                 <constraints>
@@ -87,6 +107,7 @@
                     <constraint firstItem="gaL-HC-4Ye" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="Ne3-DH-PRk"/>
                     <constraint firstItem="7JT-6o-95i" firstAttribute="centerY" secondItem="3qz-tO-RtS" secondAttribute="centerY" id="Q6A-Rh-qDO"/>
                     <constraint firstItem="3qz-tO-RtS" firstAttribute="leading" secondItem="u2C-Jp-Pkx" secondAttribute="trailing" constant="11" id="UYM-mx-COO"/>
+                    <constraint firstAttribute="trailing" secondItem="eK7-m6-The" secondAttribute="trailing" constant="8" id="VDW-Su-A4N"/>
                     <constraint firstItem="jrd-jX-zPh" firstAttribute="leading" secondItem="Dqz-Hi-efc" secondAttribute="trailing" constant="4" id="WNl-3x-Rib"/>
                     <constraint firstItem="u2C-Jp-Pkx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="WW2-Lk-IAe"/>
                     <constraint firstItem="gaL-HC-4Ye" firstAttribute="centerY" secondItem="lwX-4O-uYt" secondAttribute="centerY" id="bqo-Pt-gmT"/>
@@ -108,6 +129,19 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="fiveXingImageView" destination="jrd-jX-zPh" id="j3J-tK-MMH"/>
+                <outlet property="fourXingImageView" destination="Dqz-Hi-efc" id="nJ7-2C-6ua"/>
+                <outlet property="iconImageView" destination="u2C-Jp-Pkx" id="34N-4I-QJE"/>
+                <outlet property="judgeLabel" destination="eK7-m6-The" id="6AJ-Rh-WAe"/>
+                <outlet property="nameLabel" destination="wO5-Ha-gRc" id="NLU-63-zKQ"/>
+                <outlet property="oneXingImageView" destination="lwX-4O-uYt" id="QdX-F9-fBf"/>
+                <outlet property="payMoneyItemLabel" destination="7JT-6o-95i" id="dnv-El-VSd"/>
+                <outlet property="pingfenLabel" destination="gaL-HC-4Ye" id="o3r-qz-6aN"/>
+                <outlet property="threeXingImageView" destination="Fbz-Mo-jcm" id="JXS-5q-WCX"/>
+                <outlet property="timeLabel" destination="3qz-tO-RtS" id="teN-lA-NdE"/>
+                <outlet property="twoXingImageView" destination="T09-te-arh" id="omt-A9-MzO"/>
+            </connections>
             <point key="canvasLocation" x="129.59999999999999" y="153.82308845577214"/>
         </tableViewCell>
     </objects>

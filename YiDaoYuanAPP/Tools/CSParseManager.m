@@ -9,6 +9,7 @@
 #import "CSParseManager.h"
 
 #import "CSAreaModel.h"
+#import "MoneyHistoryModel.h"
 
 
 #import "MyCollectModel.h"
@@ -31,8 +32,1058 @@
 #import "DengModel.h"
 
 #import "DengPriceModel.h"
+#import "GouWuCheModel.h"
+
+#import "AddressModel.h"
+#import "GoodsModel.h"
+#import "HomePageADModel.h"
+#import "CSProductItemModel.h"
+#import "ShopManyProductModel.h"
+#import "AllOrderModel.h"
+#import "QuestionModel.h"
+
+#import "WuLiuSubModel.h"
+#import "RightNowConsultModel.h"
+#import "FirstPageManyItemModel.h"
+
+#import "QuestionId.h"
+#import "ChooseDaShiModel.h"
+#import "DaShiListItemModel.h"
+
+#import "ManyDaShiModel.h"
+#import "UserJudgeArray.h"
+#import "DaShiOrderInfoModel.h"
+#import "XiaoXiModel.h"
+#import "LunTanModel.h"
+#import "pingjiaListModel.h"
+
+#import "ReplyDetailModel.h"
 
 @implementation CSParseManager
++ (NSMutableArray *)getReplyDetailModelWithResponseObject:(id)result{
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        ReplyDetailModel *model = [ReplyDetailModel new];
+        model.ctime = [self handleStringIsNull:array[i][@"ctime"]];
+        
+        model.content = [self handleStringIsNull:array[i][@"content"]];
+        
+        
+        NSNumber *status = array[i][@"is_reply"];
+        
+        if ([status isEqualToNumber:@1]) {
+            model.is_reply = YES;
+            if (CS_UserIsMaster) {
+                model.content = [NSString stringWithFormat:@"我的回复：%@",model.content];
+
+            } else {
+                model.content = [NSString stringWithFormat:@"大师回复：%@",model.content];
+
+            }
+        } else {
+            model.is_reply = NO;
+            if (CS_UserIsMaster) {
+                model.content = [NSString stringWithFormat:@"用户回复：%@",model.content];
+                
+            } else {
+                model.content = [NSString stringWithFormat:@"我的回复：%@",model.content];
+                
+            }
+           
+
+        }
+        
+        
+        
+        
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+    
+    
+    
+    
+}
++ (NSMutableArray *)getMoneyHistoryModelWithResponseObject:(id)result{
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        MoneyHistoryModel *model = [MoneyHistoryModel new];
+        model.ctime = [self handleStringIsNull:array[i][@"ctime"]];
+        
+        model.price = [self handleStringIsNull:array[i][@"price"]];
+        
+        
+        model.money = [self handleStringIsNull:array[i][@"money"]];
+        
+        model.title = [self handleStringIsNull:array[i][@"title"]];
+        
+        
+       
+        
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+    
+    
+    
+    
+}
++ (NSMutableArray *)getpingjiaListModelWithResponseObject:(id)result{
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        pingjiaListModel *model = [pingjiaListModel new];
+        model.nickname = [self handleStringIsNull:array[i][@"nickname"]];
+        
+        model.avatar = [self handleStringIsNull:array[i][@"avatar"]];
+        
+        
+        model.user_id = [self handleStringIsNull:array[i][@"user_id"]];
+        
+        model.comment_content = [self handleStringIsNull:array[i][@"comment_content"]];
+        
+        
+        model.create_time = [self handleStringIsNull:array[i][@"create_time"]];
+        model.comment_id = [self handleStringIsNull:array[i][@"comment_id"]];
+
+        
+        model.review = [[self alloc] getpingjiaListModelWithResponseObject:array[i][@"review"]];
+        
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+    
+    
+    
+    
+}
+- (NSMutableArray *)getpingjiaListModelWithResponseObject:(id)result{
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        pingjiaListModel *model = [pingjiaListModel new];
+        model.nickname = [self handleStringIsNull:array[i][@"nickname"]];
+        
+        model.avatar = [self handleStringIsNull:array[i][@"avatar"]];
+        
+        
+        model.user_id = [self handleStringIsNull:array[i][@"user_id"]];
+        
+        model.comment_content = [self handleStringIsNull:array[i][@"comment_content"]];
+        
+        
+        model.create_time = [self handleStringIsNull:array[i][@"create_time"]];
+        
+        
+        
+        
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+    
+    
+    
+    
+}
++ (NSMutableArray *)getLunTanModellWithResponseObject:(id)result{
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        LunTanModel *model = [LunTanModel new];
+        model.forum_id = [self handleStringIsNull:array[i][@"forum_id"]];
+        
+        model.topic = [self handleStringIsNull:array[i][@"topic"]];
+        
+        
+        model.create_time = [self handleStringIsNull:array[i][@"create_time"]];
+        
+        model.content = [self handleStringIsNull:array[i][@"content"]];
+        
+        
+        model.topic_img = [self handleStringIsNull:array[i][@"topic_img"]];
+        
+       
+        
+        
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+    
+    
+    
+    
+}
++ (NSMutableArray *)getXiaoXiModellWithResponseObject:(id)result{
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        XiaoXiModel *model = [XiaoXiModel new];
+        model.user_nickname = [self handleStringIsNull:array[i][@"user_nickname"]];
+        
+        model.ctime = [self handleStringIsNull:array[i][@"ctime"]];
+        
+        
+        model.avatar = [self handleStringIsNull:array[i][@"avatar"]];
+        
+        model.msg_id = [self handleStringIsNull:array[i][@"msg_id"]];
+        
+        
+        model.content = [self handleStringIsNull:array[i][@"content"]];
+        
+        NSNumber *status = array[i][@"status"];
+        
+        if ([status isEqualToNumber:@1]) {
+            model.status = YES;
+        } else {
+            model.status = NO;
+        }
+        
+        
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+   
+    
+    
+   
+}
++ (DaShiOrderInfoModel *)getSingleDaShiOrderInfoModellWithResponseObject:(id)result{
+    
+    if (![result isKindOfClass:[NSDictionary class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    
+    
+    DaShiOrderInfoModel *model = [DaShiOrderInfoModel new];
+    model.statusTitle = [self handleStringIsNull:result[@"statusTitle"]];
+
+    model.user_nickname = [self handleStringIsNull:result[@"user_nickname"]];
+    model.name = [self handleStringIsNull:result[@"name"]];
+    
+    model.birthday = [self handleStringIsNull:result[@"birthday"]];
+    
+    
+    model.sex = [self handleStringIsNull:result[@"sex"]];
+    
+    model.user_name = [self handleStringIsNull:result[@"user_name"]];
+    
+    model.user_id = [self handleStringIsNull:result[@"user_id"]];
+    
+    
+    model.last_login_time = [self handleStringIsNull:result[@"last_login_time"]];
+    
+    model.user_avatar = [self handleStringIsNull:result[@"user_avatar"]];
+    
+    
+    model.issue = [self handleStringIsNull:result[@"issue"]];
+   
+    model.order_id = [self handleStringIsNull:result[@"order_id"]];
+    
+    model.ctime = [self handleStringIsNull:result[@"ctime"]];
+    
+    
+    model.price = [self handleStringIsNull:result[@"price"]];
+    if (csCharacterIsBlank(model.price)) {
+        model.price = [self handleStringIsNull:result[@"money"]];
+    }
+    model.discounts = [self handleStringIsNull:result[@"discounts"]];
+    
+    
+    model.master_id = [self handleStringIsNull:result[@"master_id"]];
+    
+    model.skille = result[@"skille"];
+    model.master_name = [self handleStringIsNull:result[@"master_name"]];
+    
+    model.avatar = [self handleStringIsNull:result[@"avatar"]];
+    if (csCharacterIsBlank(model.avatar)) {
+        model.avatar = [self handleStringIsNull:result[@"master_avatar"]];
+    }
+    model.item_title = [self handleStringIsNull:result[@"item_title"]];
+    if (csCharacterIsBlank(model.item_title)) {
+        model.item_title = [self handleStringIsNull:result[@"creategory"]];
+    }
+    NSNumber *status = result[@"is_evaluation"];
+    
+    if ([status isEqualToNumber:@1]) {
+        model.haveJudged = YES;
+    } else {
+        model.haveJudged = NO;
+    }
+    
+    return model;
+}
++ (NSMutableArray *)getUserJudgeArrayArrayWithResponseObject:(id)result{
+    
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        UserJudgeArray *model = [UserJudgeArray new];
+        
+        model.item_title = [self handleStringIsNull:array[i][@"item_title"]];
+        
+        
+        model.avatar = [self handleStringIsNull:array[i][@"avatar"]];
+        
+        model.user_id = [self handleStringIsNull:array[i][@"user_id"]];
+        
+        
+        model.user_nickname = [self handleStringIsNull:array[i][@"user_nickname"]];
+        
+        
+        model.ctime = [self handleStringIsNull:array[i][@"ctime"]];
+        
+        model.tags = array[i][@"tags"];
+        model.imgs = array[i][@"imgs"];
+        model.avg = [self handleStringIsNull:array[i][@"avg"]];
+        
+        
+        model.content = [self handleStringIsNull:array[i][@"content"]];
+        
+        
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+}
++ (ManyDaShiModel *)getSingleManyDaShiModellWithResponseObject:(id)result{
+    
+    if (![result isKindOfClass:[NSDictionary class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    
+        
+        ManyDaShiModel *model = [ManyDaShiModel new];
+        model.detailed = [self handleStringIsNull:result[@"detailed"]];
+    
+    model.master_id = [self handleStringIsNull:result[@"master_id"]];
+        
+        
+        model.name = [self handleStringIsNull:result[@"name"]];
+        
+        model.speciality = [self handleStringIsNull:result[@"speciality"]];
+        
+        
+        model.grade = [self handleStringIsNull:result[@"grade"]];
+        
+        
+        model.avatar = [self handleStringIsNull:result[@"avatar"]];
+        
+        model.price = [self handleStringIsNull:result[@"price"]];
+        model.order_num = [self handleStringIsNull:result[@"order_num"]];
+        
+        
+        model.level = [self handleStringIsNull:result[@"level"]];
+    
+   
+        model.avg_return = [self handleStringIsNull:result[@"avg_return"]];
+        
+        
+        model.keep_num = [self handleStringIsNull:result[@"keep_num"]];
+        
+        NSNumber *status = result[@"is_new"];
+        
+        if ([status isEqualToNumber:@1]) {
+            model.is_new = YES;
+        } else {
+            model.is_new = NO;
+        }
+        status = result[@"is_auth"];
+        if ([status isEqualToNumber:@1]) {
+            model.is_auth = YES;
+        } else {
+            model.is_auth = NO;
+        }
+        model.skille = result[@"skille"];
+    return model;
+}
++ (NSMutableArray *)getManyDaShiModellArrayWithResponseObject:(id)result{
+    
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        ManyDaShiModel *model = [ManyDaShiModel new];
+        
+        model.master_id = [self handleStringIsNull:array[i][@"master_id"]];
+        
+        
+        model.name = [self handleStringIsNull:array[i][@"name"]];
+        
+         model.speciality = [self handleStringIsNull:array[i][@"speciality"]];
+        
+        
+        model.grade = [self handleStringIsNull:array[i][@"grade"]];
+        
+        
+        model.avatar = [self handleStringIsNull:array[i][@"avatar"]];
+        
+        model.price = [self handleStringIsNull:array[i][@"price"]];
+        model.order_num = [self handleStringIsNull:array[i][@"order_num"]];
+        
+        
+        model.level = [self handleStringIsNull:array[i][@"level"]];
+        
+        model.avg_return = [self handleStringIsNull:array[i][@"avg_return"]];
+        
+        
+        model.keep_num = [self handleStringIsNull:array[i][@"keep_num"]];
+        
+        NSNumber *status = array[i][@"is_new"];
+        
+        if ([status isEqualToNumber:@1]) {
+            model.is_new = YES;
+        } else {
+            model.is_new = NO;
+        }
+        status = array[i][@"is_auth"];
+        if ([status isEqualToNumber:@1]) {
+            model.is_auth = YES;
+        } else {
+            model.is_auth = NO;
+        }
+        model.skille = array[i][@"skille"];
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+}
++ (NSMutableArray *)getCollectDaShiListItemModelArrayWithResponseObject:(id)result{
+    
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        DaShiListItemModel *model = [DaShiListItemModel new];
+       
+            model.idString = [self handleStringIsNull:array[i][@"level_id"]];
+        
+        
+        model.title = [self handleStringIsNull:array[i][@"title"]];
+        
+        
+        model.choose = NO;
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+}
++ (NSMutableArray *)getDaShiListItemModelArrayWithResponseObject:(id)result WithQiTa:(BOOL)other{
+    
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        DaShiListItemModel *model = [DaShiListItemModel new];
+        if (other) {
+             model.idString = [self handleStringIsNull:array[i][@"skilled_id"]];
+        } else {
+             model.idString = [self handleStringIsNull:array[i][@"numerology_id"]];
+        }
+       
+        model.title = [self handleStringIsNull:array[i][@"title"]];
+        
+        
+        model.choose = NO;
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+}
++ (NSMutableArray *)getChooseDaShiModelArrayWithResponseObject:(id)result {
+    
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        ChooseDaShiModel *model = [ChooseDaShiModel new];
+        
+        model.master_id = [self handleStringIsNull:array[i][@"master_id"]];
+        model.name = [self handleStringIsNull:array[i][@"name"]];
+        model.speciality = [self handleStringIsNull:array[i][@"speciality"]];
+         model.avatar = [self handleStringIsNull:array[i][@"avatar"]];
+         model.price = [self handleStringIsNull:array[i][@"price"]];
+        model.order_num = [self handleStringIsNull:array[i][@"order_num"]];
+
+        model.choose = NO;
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+}
++ (NSMutableArray *)getQuestionIdModelArrayWithResponseObject:(id)result {
+    
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        QuestionId *model = [QuestionId new];
+        
+        model.question_id = [self handleStringIsNull:array[i][@"question_id"]];
+        model.title = [self handleStringIsNull:array[i][@"title"]];
+        model.isEightRow = NO;
+        model.choose = NO;
+        model.isTextField = NO;
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+}
++ (NSMutableArray *)getFirstPageManyItemModelArrayWithResponseObject:(id)result {
+    
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        FirstPageManyItemModel *model = [FirstPageManyItemModel new];
+        
+        model.item_id = [self handleStringIsNull:array[i][@"item_id"]];
+        model.title = [self handleStringIsNull:array[i][@"title"]];
+        model.icon = [self handleStringIsNull:array[i][@"icon"]];
+        model.intro = [self handleStringIsNull:array[i][@"intro"]];
+        model.cat_id = [self handleStringIsNull:array[i][@"cat_id"]];
+
+        model.price = [self handleStringIsNull:array[i][@"price"]];
+        model.ad = [self handleStringIsNull:array[i][@"ad"]];
+
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+}
++ (NSMutableArray *)getRightNowConsultModelArrayWithResponseObject:(id)result {
+    
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        RightNowConsultModel *model = [RightNowConsultModel new];
+        
+        model.cat_id = [self handleStringIsNull:array[i][@"cat_id"]];
+        model.title = [self handleStringIsNull:array[i][@"title"]];
+         model.items = [[self alloc] getRightNowConsultModelArrayWithResponseObject:array[i][@"items"]];
+        
+        
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+}
+- (NSMutableArray *)getRightNowConsultModelArrayWithResponseObject:(id)result {
+    
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        RightNowConsultModel *model = [RightNowConsultModel new];
+        
+        model.item_id = [self handleStringIsNull:array[i][@"item_id"]];
+        model.subTitle = [self handleStringIsNull:array[i][@"title"]];
+model.icon = [self handleStringIsNull:array[i][@"icon"]];
+        model.ad = [self handleStringIsNull:array[i][@"ad"]];
+        model.explain = [self handleStringIsNull:array[i][@"explain"]];
+        model.intro = [self handleStringIsNull:array[i][@"intro"]];
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+}
++ (NSMutableArray *)getWuLiuSubModelArrayWithResponseObject:(id)result {
+    
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        WuLiuSubModel *model = [WuLiuSubModel new];
+        
+        model.time = [self handleStringIsNull:array[i][@"time"]];
+        model.context = [self handleStringIsNull:array[i][@"context"]];
+        
+        
+        
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+}
++ (NSMutableArray *)getQuestionModelArrayWithResponseObject:(id)result {
+    
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        QuestionModel *model = [QuestionModel new];
+        
+        model.title = [self handleStringIsNull:array[i][@"title"]];
+        model.content = [self handleStringIsNull:array[i][@"content"]];
+        model.create_time = [self handleStringIsNull:array[i][@"v"]];
+        
+       
+        
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+}
++ (NSMutableArray *)getAllOrderModelArrayWithResponseObject:(id)result {
+    
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        AllOrderModel *model = [AllOrderModel new];
+        
+        model.order_id = [self handleStringIsNull:array[i][@"order_id"]];
+        model.total_price = [self handleStringIsNull:array[i][@"total_price"]];
+        model.creat_time = [self handleStringIsNull:array[i][@"creat_time"]];
+        
+       
+        model.status = [self handleStringIsNull:array[i][@"status"]];
+        model.goods = [[self alloc] getAllOrderModelArrayWithResponseObject:array[i][@"goods"]];
+       
+       
+       
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+}
++ (NSMutableArray *)getAllSubOrderModelArrayWithResponseObject:(id)result {
+    
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        AllOrderModel *model = [AllOrderModel new];
+        
+        
+        
+        model.goods_id = [self handleStringIsNull:array[i][@"goods_id"]];
+        model.goods_name = [self handleStringIsNull:array[i][@"goods_name"]];
+        model.goods_img = [self handleStringIsNull:array[i][@"goods_img"]];
+        model.goods_price = [self handleStringIsNull:array[i][@"goods_price"]];
+        model.quantity = [self handleStringIsNull:array[i][@"quantity"]];
+        
+        model.goods_attr_name = [self handleStringIsNull:array[i][@"goods_attr_name"]];
+        model.goods_attr_value = [self handleStringIsNull:array[i][@"goods_attr_value"]];
+        
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+}
+- (NSMutableArray *)getAllOrderModelArrayWithResponseObject:(id)result {
+    
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        AllOrderModel *model = [AllOrderModel new];
+        
+        
+      
+        model.goods_id = [self handleStringIsNull:array[i][@"goods_id"]];
+        model.goods_name = [self handleStringIsNull:array[i][@"goods_name"]];
+        model.goods_img = [self handleStringIsNull:array[i][@"goods_img"]];
+        model.goods_price = [self handleStringIsNull:array[i][@"goods_price"]];
+        model.quantity = [self handleStringIsNull:array[i][@"quantity"]];
+        
+        model.goods_attr_name = [self handleStringIsNull:array[i][@"goods_attr_name"]];
+        model.goods_attr_value = [self handleStringIsNull:array[i][@"goods_attr_value"]];
+        
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+}
++ (NSMutableArray *)getShopDetailAttrModelArrayWithResponseObject:(id)result {
+    
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        DaShiListItemModel *model = [DaShiListItemModel new];
+        
+        model.i = [self handleStringIsNull:array[i][@"i"]];
+        model.v = [self handleStringIsNull:array[i][@"v"]];
+        model.k = [self handleStringIsNull:array[i][@"k"]];
+        
+        model.choose = NO;
+        
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+}
++ (NSMutableArray *)getShopManyProductModelArrayWithResponseObject:(id)result {
+    
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        ShopManyProductModel *model = [ShopManyProductModel new];
+        
+        model.goods_id = [self handleStringIsNull:array[i][@"goods_id"]];
+        model.goods_name = [self handleStringIsNull:array[i][@"goods_name"]];
+        model.img = [self handleStringIsNull:array[i][@"img"]];
+        
+        model.sell_price = [self handleStringIsNull:array[i][@"sell_price"]];
+        
+        model.intro = [self handleStringIsNull:array[i][@"intro"]];
+        NSNumber *status = array[i][@"newspro"];
+        
+        if ([status isEqualToNumber:@1]) {
+            model.newspro = YES;
+        } else {
+            model.newspro = NO;
+        }
+        NSNumber *best = array[i][@"newspro"];
+        
+        if ([best isEqualToNumber:@1]) {
+            model.newspro = YES;
+        } else {
+            model.newspro = NO;
+        }
+        
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+}
++ (NSMutableArray *)getCSProductItemModelArrayWithResponseObject:(id)result {
+    
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        CSProductItemModel *model = [CSProductItemModel new];
+        
+        model.idString = [self handleStringIsNull:array[i][@"id"]];
+        model.class_name = [self handleStringIsNull:array[i][@"class_name"]];
+        model.sort = [self handleStringIsNull:array[i][@"sort"]];
+        
+        model.img = [self handleStringIsNull:array[i][@"img"]];
+    
+        
+       
+        
+        model.intro = [self handleStringIsNull:array[i][@"intro"]];
+    
+        
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+}
++ (NSMutableArray *)getHomePageADModelArrayWithResponseObject:(id)result {
+    
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        HomePageADModel *model = [HomePageADModel new];
+        
+        model.title = [self handleStringIsNull:array[i][@"title"]];
+        model.image = [self handleStringIsNull:array[i][@"image"]];
+        model.url = [self handleStringIsNull:array[i][@"url"]];
+        
+        model.descriptionString = [self handleStringIsNull:array[i][@"description"]];
+        model.content = [self handleStringIsNull:array[i][@"content"]];
+        
+
+         model.goods_id = [self handleStringIsNull:array[i][@"goods_id"]];
+        
+        model.goods_name = [self handleStringIsNull:array[i][@"goods_name"]];
+        
+        model.adimg = [self handleStringIsNull:array[i][@"adimg"]];
+        
+          model.intro = [self handleStringIsNull:array[i][@"intro"]];
+      
+           model.sell_price = [self handleStringIsNull:array[i][@"sell_price"]];
+        
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+}
++ (NSMutableArray *)getGoodsModelArrayWithResponseObject:(id)result {
+    
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        GoodsModel *model = [GoodsModel new];
+        
+        model.price = [self handleStringIsNull:array[i][@"price"]];
+        model.img = [self handleStringIsNull:array[i][@"img"]];
+        model.title = [self handleStringIsNull:array[i][@"title"]];
+        
+        model.quantity = [self handleStringIsNull:array[i][@"quantity"]];
+        model.attr = [self handleStringIsNull:array[i][@"attr"]];
+
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+}
++ (NSMutableArray *)getAddressModelArrayWithResponseObject:(id)result {
+    
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        AddressModel *model = [AddressModel new];
+        
+        model.shipp_name = [self handleStringIsNull:array[i][@"shipp_name"]];
+        model.shipp_phone = [self handleStringIsNull:array[i][@"shipp_phone"]];
+        model.shipp_address = [self handleStringIsNull:array[i][@"shipp_address"]];
+        
+        model.shipp_id = [self handleStringIsNull:array[i][@"shipp_id"]];
+       
+        NSNumber *status = array[i][@"status"];
+        
+        if ([status isEqualToNumber:@1]) {
+            model.status = YES;
+        } else {
+            model.status = NO;
+        }
+        
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+}
++ (NSMutableArray *)getGouWuCheModelArrayWithResponseObject:(id)result {
+    
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        GouWuCheModel *model = [GouWuCheModel new];
+        
+        model.img = [self handleStringIsNull:array[i][@"img"]];
+        model.quantity = [self handleStringIsNull:array[i][@"quantity"]];
+        model.price = [self handleStringIsNull:array[i][@"price"]];
+        
+        model.cart_id = [self handleStringIsNull:array[i][@"cart_id"]];
+        model.goods_name = [self handleStringIsNull:array[i][@"goods_name"]];
+        
+        model.i = [self handleStringIsNull:array[i][@"i"]];
+        model.v = [self handleStringIsNull:array[i][@"v"]];
+        model.willBuyNum = model.quantity;
+        model.choose = NO;
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+}
 + (NSMutableArray *)getDengPriceModelArrayWithResponseObject:(id)result {
     
     if (![result isKindOfClass:[NSArray class]]) {
@@ -458,7 +1509,8 @@
         YiDaoYuanCollectionModel *model = [YiDaoYuanCollectionModel new];
         
         
-        
+        model.ctime = [self handleStringIsNull:array[i][@"ctime"]];
+
         model.money = [self handleStringIsNull:array[i][@"coin"]];
         model.RMB = [self handleStringIsNull:array[i][@"price"]];
         model.sales = [self handleStringIsNull:array[i][@"discount"]];
@@ -534,6 +1586,31 @@
     }
     return mutableArray;
 }
++ (FirstPageModel *)getPunLunSingleModelArrayWithResponseObject:(id)result {
+    FirstPageModel *model = [FirstPageModel new];
+
+    if (![result isKindOfClass:[NSDictionary class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return model;
+    }
+    
+        model.skille = result[@"skille"];
+        
+        model.imgs = result[@"imgs"];
+    model.grade = [self handleStringIsNull:result[@"grade"]];
+
+        model.nickname = [self handleStringIsNull:result[@"nickname"]];
+        model.avatar = [self handleStringIsNull:result[@"avatar"]];
+        model.title = [self handleStringIsNull:result[@"title"]];
+        model.content = [self handleStringIsNull:result[@"content"]];
+        model.ctime = [self handleStringIsNull:result[@"ctime"]];
+        model.master_avatar = [self handleStringIsNull:result[@"master_avatar"]];
+        model.master_name = [self handleStringIsNull:result[@"master_name"]];
+        model.evaluation_id = [self handleStringIsNull:result[@"evaluation_id"]];
+    
+    
+    return model;
+}
 + (NSMutableArray *)getUserPingLunFirstPageModelArrayWithResponseObject:(id)result {
     
     if (![result isKindOfClass:[NSArray class]]) {
@@ -549,14 +1626,20 @@
         
         FirstPageModel *model = [FirstPageModel new];
         
-        
-        
+        model.skille = array[i][@"skille"];
+
+        model.imgs = array[i][@"imgs"];
+        model.grade = [self handleStringIsNull:array[i][@"grade"]];
+        model.reply= [self handleStringIsNull:array[i][@"reply"]];
+
         model.nickname = [self handleStringIsNull:array[i][@"nickname"]];
         model.avatar = [self handleStringIsNull:array[i][@"avatar"]];
         model.title = [self handleStringIsNull:array[i][@"title"]];
         model.content = [self handleStringIsNull:array[i][@"content"]];
          model.ctime = [self handleStringIsNull:array[i][@"ctime"]];
-        
+        model.master_avatar = [self handleStringIsNull:array[i][@"master_avatar"]];
+        model.master_name = [self handleStringIsNull:array[i][@"master_name"]];
+        model.evaluation_id = [self handleStringIsNull:array[i][@"evaluation_id"]];
         [mutableArray addObject:model];
         
     }
@@ -617,6 +1700,7 @@
         ConsultModel *model = [ConsultModel new];
        
   
+        model.user_id = [self handleStringIsNull:array[i][@"user_id"]];
 
         model.order_id = [self handleStringIsNull:array[i][@"order_id"]];
         model.skille = array[i][@"skille"];
@@ -630,7 +1714,16 @@
         model.status = [self handleStringIsNull:array[i][@"status"]];
         model.statusTitle = [self handleStringIsNull:array[i][@"statusTitle"]];
 
+        model.user_nickname = [self handleStringIsNull:array[i][@"user_nickname"]];
+        model.item_title = [self handleStringIsNull:array[i][@"item_title"]];
+        NSString *qa = [self handleStringIsNull:array[i][@"content"]];
+        if (csCharacterIsBlank(qa)) {
+            model.content = @"";
+        } else {
+            model.content = [NSString stringWithFormat:@"咨询问题：%@",qa];
+        }
         
+
         [mutableArray addObject:model];
         
     }

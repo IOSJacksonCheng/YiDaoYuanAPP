@@ -15,6 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, getter=isChoose) BOOL choose;
 @property (nonatomic, strong) NSMutableArray *subArray;
 @property (nonatomic, strong) NSString *idString;
+@property (nonatomic, strong) NSString *k;
+
+@property (nonatomic, strong) NSString *i;
+@property (nonatomic, strong) NSString *v;
 @end
 
 NS_ASSUME_NONNULL_END

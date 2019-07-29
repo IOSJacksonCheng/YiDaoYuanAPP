@@ -56,19 +56,19 @@
     
 }
 - (void)clickyiwanchengViewDone {
-    [self.csDelegate goWhichTag:4];
+    [self.csDelegate goWhichTag:10];
 }
 - (void)clickdaishouhuoViewDone {
-     [self.csDelegate goWhichTag:3];
-}
-- (void)clickdaifahuoViewDone {
      [self.csDelegate goWhichTag:2];
 }
-- (void)clickdaifukuanViewDone {
+- (void)clickdaifahuoViewDone {
      [self.csDelegate goWhichTag:1];
 }
+- (void)clickdaifukuanViewDone {
+     [self.csDelegate goWhichTag:0];
+}
 - (void)clickAllViewDone {
-    [self.csDelegate goWhichTag:0];
+    [self.csDelegate goWhichTag:100];
 }
 
 @end

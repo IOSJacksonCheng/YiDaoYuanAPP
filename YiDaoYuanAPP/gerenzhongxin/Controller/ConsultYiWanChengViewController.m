@@ -9,10 +9,17 @@
 #import "ConsultYiWanChengViewController.h"
 #import "SureOrderDaShiInfomationTableViewCell.h"
 #import "SureOrderCourseTableViewCell.h"
+#import "GoToJudgeViewController.h"
+#import "EasyUIChatViewController.h"
 @interface ConsultYiWanChengViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *listTableView;
 @property (weak, nonatomic) IBOutlet UIButton *leftButton;
 @property (weak, nonatomic) IBOutlet UIButton *rightButton;
+@property (nonatomic, strong) DaShiOrderInfoModel *infoModel;
+
+- (IBAction)checkLiaoTianJiLuButtonDone:(id)sender;
+
+- (IBAction)clickJudgeButtonDone:(id)sender;
 
 @end
 
@@ -26,8 +33,24 @@
     
     [self configTableView];
     
+    [self getDashiInfomation];
 }
-
+- (void)getDashiInfomation {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    para[@"order_id"] = self.order_id;
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_consult_order_msg Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            self.infoModel = [CSParseManager getSingleDaShiOrderInfoModellWithResponseObject:CSGetResult];
+            [self.listTableView reloadData];
+            
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+}
 - (void)configTableView {
     [self.listTableView registerNib:[UINib nibWithNibName:CSCellName(SureOrderDaShiInfomationTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(SureOrderDaShiInfomationTableViewCell)];
     [self.listTableView registerNib:[UINib nibWithNibName:CSCellName(SureOrderCourseTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(SureOrderCourseTableViewCell)];
@@ -64,6 +87,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 1) {
         SureOrderDaShiInfomationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(SureOrderDaShiInfomationTableViewCell)];
+        cell.model = self.infoModel;
         return cell;
     }
     
@@ -87,4 +111,47 @@
     
 }
 
+- (IBAction)checkLiaoTianJiLuButtonDone:(id)sender {
+    if (![EMClient sharedClient].isLoggedIn) {
+        [[EMClient sharedClient] loginWithUsername:[NSString stringWithFormat:@"o%@",self.infoModel.order_id] password:@"123456" completion:^(NSString *aUsername, EMError *aError) {
+            if (aError) {
+                CSLog(@"环信登录失败:%@",aError.errorDescription);
+                CustomWrongMessage(@"发送错误，请稍后再试");
+            } else {
+                [self goToChatView];
+                CSLog(@"环信登录成功！");
+            }
+        }];
+    } else {
+        [self goToChatView];
+        
+    }
+    
+    
+    
+    
+    
+}
+- (void)goToChatView {
+    
+    EasyUIChatViewController *new = [[EasyUIChatViewController alloc] initWithConversationChatter:[NSString stringWithFormat:@"m%@",self.infoModel.master_id] conversationType:EMConversationTypeChat];
+    
+    new.name = self.infoModel.master_name;
+    new.order_id = self.infoModel.order_id;
+    [self.navigationController pushViewController:new animated:YES];
+    
+}
+
+- (IBAction)clickJudgeButtonDone:(id)sender {
+    
+    GoToJudgeViewController *new = [GoToJudgeViewController new];
+   
+    new.order_id = self.infoModel.order_id;
+    
+        new.typestring = @"1";
+        
+
+    
+    [self.navigationController pushViewController:new animated:YES];
+}
 @end

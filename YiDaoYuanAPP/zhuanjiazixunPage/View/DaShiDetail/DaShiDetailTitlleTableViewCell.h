@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ManyDaShiModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DaShiDetailTitlleTableViewCell : UITableViewCell
-
+@property (nonatomic, strong) ManyDaShiModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -84,6 +84,14 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="csimageView" destination="hxz-Ps-Wxd" id="QYt-UQ-Ca4"/>
+                <outlet property="moneyLabel" destination="gjk-gt-eDS" id="dtM-ws-ozG"/>
+                <outlet property="numLabel" destination="xNF-EP-jtf" id="0PQ-zw-Xd1"/>
+                <outlet property="shuXingLabel" destination="KVt-rc-ZFh" id="xmf-A4-rL7"/>
+                <outlet property="timeLabel" destination="Gjo-qA-x1w" id="X9Z-ye-cWo"/>
+                <outlet property="titleLabel" destination="ePJ-TV-YDw" id="NbS-Zu-ckM"/>
+            </connections>
             <point key="canvasLocation" x="73.599999999999994" y="84.107946026986511"/>
         </tableViewCell>
     </objects>

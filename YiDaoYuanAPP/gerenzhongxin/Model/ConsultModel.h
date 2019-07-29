@@ -22,6 +22,15 @@ NS_ASSUME_NONNULL_BEGIN
 /** 代付款 进行中 已完成 退款 status*/
 @property (nonatomic, strong) NSString *status;
 @property (nonatomic, strong) NSString *statusTitle;
+
+
+@property (nonatomic, strong) NSString *user_nickname;
+
+@property (nonatomic, strong) NSString *item_title;
+
+@property (nonatomic, strong) NSString *user_id;
+
+@property (nonatomic, strong) NSString *content;
 @end
 
 NS_ASSUME_NONNULL_END

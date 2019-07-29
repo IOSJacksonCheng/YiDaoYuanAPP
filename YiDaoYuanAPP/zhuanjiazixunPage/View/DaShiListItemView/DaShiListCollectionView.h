@@ -15,9 +15,13 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DaShiListCollectionView : UICollectionView
-@property (nonatomic, strong) NSMutableArray *itemMutableArray;
-
+@property (nonatomic, strong) NSMutableArray *mingLiArray;
+@property (nonatomic, strong) NSMutableArray *qitaArray;
+@property (nonatomic, strong) NSMutableArray *shenxiaoArray;
+@property (nonatomic, strong) NSMutableArray *shengxiaoArray;
 @property (nonatomic, weak) id<VideoSearchCollectionViewDelegate> csDelegate;
+- (void)refreshView;
+
 @end
 
 NS_ASSUME_NONNULL_END
