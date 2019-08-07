@@ -201,21 +201,21 @@
     }
     
     if (model.skille.count >= 1) {
-        self.topFirstLabel.text = model.skille[0];
+        self.topFirstLabel.text = [NSString stringWithFormat:@"%@",model.skille[0]];
     } else {
         self.topSecondLabel.text = @"";
         
         self.topThirdLabel.text = @"";
     }
     if (model.skille.count >= 2) {
-        self.topSecondLabel.text = model.skille[1];
+        self.topSecondLabel.text = [NSString stringWithFormat:@"%@",model.skille[1]];
     }else {
         
         self.topThirdLabel.text = @"";
     }
     
     if (model.skille.count >= 3) {
-        self.topThirdLabel.text = model.skille[2];
+        self.topThirdLabel.text = [NSString stringWithFormat:@"%@",model.skille[2]];
     }
     
     
@@ -293,21 +293,21 @@
     }
     
     if (model.skille.count >= 1) {
-        self.bottomFirstLabel.text = model.skille[0];
+        self.bottomFirstLabel.text = [NSString stringWithFormat:@"%@",model.skille[0]];
     } else {
         self.bottomSecondLabel.text = @"";
         
         self.bottomThirdLabel.text = @"";
     }
     if (model.skille.count >= 2) {
-        self.bottomSecondLabel.text = model.skille[1];
+        self.bottomSecondLabel.text = [NSString stringWithFormat:@"%@",model.skille[1]];
     }else {
         
         self.bottomThirdLabel.text = @"";
     }
     
     if (model.skille.count >= 3) {
-        self.bottomThirdLabel.text = model.skille[2];
+        self.bottomThirdLabel.text = [NSString stringWithFormat:@"%@",model.skille[2]];
     }
     
     

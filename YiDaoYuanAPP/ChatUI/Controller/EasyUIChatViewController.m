@@ -40,6 +40,8 @@
     [super viewDidLoad];
 
     [self configNavigationBar];
+    
+    
     self.dataSource = self;
 //
 //    self.showRefreshHeader = YES;
@@ -49,8 +51,16 @@
   [self configSubViews];
     
 }
+
 - (void)configSubViews {
-    if (!CS_UserIsMaster && !self.isKefu && !self.isDaShi) {
+    
+    
+    [self.chatBarMoreView removeItematIndex:1];
+    [self.chatBarMoreView removeItematIndex:3];
+    [self.chatBarMoreView removeItematIndex:4];
+
+    
+    if (!CS_UserIsMaster && !self.isDaShi) {
         
         
         UIButton *button = [[UIButton alloc] init];
@@ -70,24 +80,23 @@
     }
   
 }
-- (void)goToChatView {
-    
-    EasyUIChatViewController *new = [[EasyUIChatViewController alloc] initWithConversationChatter:@"admin" conversationType:EMConversationTypeChat];
-    
-    new.name = @"客服";
-    new.isKefu = YES;
-    [self.navigationController pushViewController:new animated:YES];
-    
-}
+
 - (void)clickEndConsult {
     NSMutableDictionary *para = @{}.mutableCopy;
     para[@"order_id"] = self.order_id;
     [CSNetManager sendPostRequestWithNeedToken:YES Url:CSURL_consult_finish Pameters:para success:^(id  _Nonnull responseObject) {
         if (CSInternetRequestSuccessful) {
+            
             GoToJudgeViewController *new = [GoToJudgeViewController new];
+            
             new.order_id = self.order_id;
+            
             new.typestring = @"1";
+            
+            new.fromChatView = YES;
+
             [self.navigationController pushViewController:new animated:YES];
+            
         }else {
             CSShowWrongMessage
         }
@@ -140,6 +149,24 @@
     
     return model;
 }
+- (void)sendVoiceMessageWithLocalPath:(NSString *)localPath duration:(NSInteger)duration {
+    [super sendVoiceMessageWithLocalPath:localPath duration:duration];
+    [CSUtility sendVoiceMessageWithLocalPath:localPath duration:duration WithOrderId:self.order_id];
+}
+- (void)sendTextMessage:(NSString *)text {
+    [super sendTextMessage:text];
+    [CSUtility sendTextMessage:text WithOrderId:self.order_id];
+}
+- (void)sendImageMessageWithData:(NSData *)imageData {
+    [super sendImageMessageWithData:imageData];
+    [CSUtility sendImageMessage:[UIImage imageWithData:imageData] WithOrderId:self.order_id];
 
+    
+}
+- (void)sendImageMessage:(UIImage *)image {
+    [super sendImageMessage:image];
+    [CSUtility sendImageMessage:image WithOrderId:self.order_id];
+
+}
 
 @end

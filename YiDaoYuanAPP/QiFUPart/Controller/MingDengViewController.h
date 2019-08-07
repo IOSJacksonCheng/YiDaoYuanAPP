@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MingDengViewController : BaseViewController
 @property (nonatomic, strong) NSString *passLampId;
 @property (nonatomic, strong) NSString *passBuddahaId;
+@property (nonatomic, strong) NSString *supplicationId;
 @end
 
 NS_ASSUME_NONNULL_END

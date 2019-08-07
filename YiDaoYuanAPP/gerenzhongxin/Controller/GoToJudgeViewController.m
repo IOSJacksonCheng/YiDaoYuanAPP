@@ -45,6 +45,15 @@
 
     [self getData];
 }
+- (void)clickLeftItem {
+    if (self.fromChatView) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+
+    }
+}
+
 - (void)configNavigationBar {
     
     self.title = @"评价详情";
@@ -56,7 +65,13 @@
     NSDictionary *dic = [NSDictionary dictionaryWithObject:whiteColor forKey:NSForegroundColorAttributeName];
     
     [self.navigationController.navigationBar setTitleTextAttributes:dic];
-   
+    UIButton *leftButton = [[UIButton alloc]init];
+    [leftButton setImage:DotaImageName(@"icon_back") forState:UIControlStateNormal];
+    [leftButton addTarget:self action:@selector(clickLeftItem) forControlEvents:UIControlEventTouchDown];
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
+    
+    
+    self.navigationItem.leftBarButtonItem = backItem;
     
 }
 - (void)configSubViews {

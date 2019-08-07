@@ -45,6 +45,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *zonghepaixuButton;
 @property (weak, nonatomic) IBOutlet UIButton *zixunlaoshiButton;
 @property (nonatomic, strong) NSString *recordMatserId;
+
+@property (nonatomic, strong) NSString *recordSort;
 @end
 
 @implementation DaShiListViewController
@@ -154,10 +156,15 @@
     [self configNavigationBar];
     
     [self configTableView];
+    
     self.mingliArray = @[].mutableCopy;
+    
     self.dashilevelArray = @[].mutableCopy;
+   
     self.qitaArray = @[].mutableCopy;
 
+    self.recordSort =@"0";
+    
     [self getNewData];
     
     [self getDashiItem];
@@ -169,6 +176,12 @@
         if (CSInternetRequestSuccessful) {
             self.mingliArray = [CSParseManager getDaShiListItemModelArrayWithResponseObject:CSGetResult[@"numerology"] WithQiTa:NO];
             self.dashilevelArray = [CSParseManager getCollectDaShiListItemModelArrayWithResponseObject:CSGetResult[@"level"]];
+            if (self.dashilevelArray.count != 0) {
+                self.levelModel = self.dashilevelArray[0];
+                [self.zixunlaoshiButton setTitle:self.levelModel.title forState:UIControlStateNormal];
+            }
+           
+            
             self.qitaArray = [CSParseManager getDaShiListItemModelArrayWithResponseObject:CSGetResult[@"skilled"] WithQiTa:YES];
 
         }else {
@@ -192,7 +205,9 @@
     self.page += 1;
     
     para[@"page"] = [NSString stringWithFormat:@"%d",self.page];
-    if (!self.zonghepaixuButton.selected) {
+    para[@"sort"] = self.recordSort;
+
+    
         para[@"item_id"] = self.passId;
         
         for (int i = 0; i < self.mingliArray.count; i ++) {
@@ -222,7 +237,7 @@
         }
         para[@"level_id"] = self.levelModel.idString;
         
-    }
+    
     
     [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_portal_master Pameters:para success:^(id  _Nonnull responseObject) {
         [self endRefresh];
@@ -253,8 +268,10 @@
     
     para[@"page"] = [NSString stringWithFormat:@"%d",self.page];
 
-    if (!self.zonghepaixuButton.selected) {
-        para[@"item_id"] = self.passId;
+    para[@"sort"] = self.recordSort;
+
+    
+    para[@"item_id"] = self.passId;
         
         for (int i = 0; i < self.mingliArray.count; i ++) {
             DaShiListItemModel *model = self.mingliArray[i];
@@ -283,7 +300,7 @@
         }
         para[@"level_id"] = self.levelModel.idString;
         
-    }
+    
    
     
     [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_portal_master Pameters:para success:^(id  _Nonnull responseObject) {
@@ -387,9 +404,38 @@
 
 - (IBAction)clickAllSelectionButtonDone:(id)sender {
 
-    self.zonghepaixuButton.selected = !self.zonghepaixuButton.selected;
+//    self.zonghepaixuButton.selected = !self.zonghepaixuButton.selected;
     
-    [self getNewData];
+    NSArray *titleArray = @[@"综合排序",@"价格升序",@"价格降序",@"评价升序 ",@"评价降序"];
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    
+    for (int i = 0; i < titleArray.count; i++) {
+        
+        UIAlertAction *action = [UIAlertAction actionWithTitle:titleArray[i] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+          
+            self.recordSort = [NSString stringWithFormat:@"%d",i];
+            
+            [self.zonghepaixuButton setTitle:titleArray[i] forState:UIControlStateNormal];
+            
+            [self getNewData];
+
+        }];
+        [alert addAction:action];
+        
+    }
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    //3.将按钮添加到AlertController中
+    
+    [alert addAction:cancelAction];
+    
+    //5.显示AlertController
+    [self presentViewController:alert animated:YES completion:nil];
+    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

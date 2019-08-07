@@ -12,8 +12,6 @@
 #import "SureOrderCourseTableViewCell.h"
 #import "EasyUIChatViewController.h"
 
-#import "EasyUIChatViewController.h"
-
 @interface ConsultJinXinZhongViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *listTableView;
 
@@ -102,6 +100,8 @@
     
 }
 - (IBAction)clickContinueConsultDone:(id)sender {
+    
+    
     
     if (![EMClient sharedClient].isLoggedIn) {
         [[EMClient sharedClient] loginWithUsername:[NSString stringWithFormat:@"o%@",self.infoModel.order_id] password:@"123456" completion:^(NSString *aUsername, EMError *aError) {

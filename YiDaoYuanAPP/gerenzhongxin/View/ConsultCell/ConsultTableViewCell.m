@@ -76,20 +76,20 @@ NSString *tuikuang = @"-2";
     }
     
     if (model.skille.count >= 1) {
-        self.firstShanChangLabel.text = model.skille[0];
+        self.firstShanChangLabel.text = [NSString stringWithFormat:@"%@",model.skille[0]];
     } else {
         self.secondShanChangLabel.text = @"";
         
         self.thirdShanChangLabel.text = @"";
     }
     if (model.skille.count >= 2) {
-        self.secondShanChangLabel.text = model.skille[1];
+        self.secondShanChangLabel.text = [NSString stringWithFormat:@"%@",model.skille[1]];
     }else {
         
         self.thirdShanChangLabel.text = @"";
     }
     if (model.skille.count >= 3) {
-        self.thirdShanChangLabel.text = model.skille[2];
+        self.thirdShanChangLabel.text = [NSString stringWithFormat:@"%@",model.skille[2]];
     }
     
     self.orderIdLabel.text = [NSString stringWithFormat:@"订单编号:%@",model.order_id];

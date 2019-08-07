@@ -14,7 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *avater;
 @property (nonatomic, strong) NSString *order_id;
-@property (nonatomic, assign) BOOL isKefu;
 @property (nonatomic, assign) BOOL isDaShi;
 @end
 

@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UserJudgeViewController : BaseViewController
 @property (nonatomic, strong) NSString *passMasterID;
+@property (nonatomic, assign) BOOL hideTopView;
 @end
 
 NS_ASSUME_NONNULL_END

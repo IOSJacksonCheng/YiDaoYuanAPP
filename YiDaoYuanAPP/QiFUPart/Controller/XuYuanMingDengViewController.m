@@ -12,7 +12,8 @@
 
 #import "QiYuanJiLuViewController.h"
 #import "MingDengViewController.h"
-@interface XuYuanMingDengViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+#import "ManyProductCollectionViewFlowLayout.h"
+@interface XuYuanMingDengViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ManyProductCollectionViewFlowLayoutDelegate>
 - (IBAction)clickMyWishButtonDone:(id)sender;
 - (IBAction)clickChooseMingDengButtonDone:(id)sender;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -28,6 +29,7 @@
 
 @property (nonatomic, strong) NSString *recordPassId;
 @property (nonatomic, strong) NSString *recordLampId;
+@property (weak, nonatomic) IBOutlet UICollectionView *myWishCollectionView;
 
 @end
 
@@ -54,7 +56,15 @@
     [self configTableView];
     
     [self sendGetDengRequest];
-    
+}
+- (void)hideMyWishCollectionView {
+    self.myWishCollectionView.hidden = YES;
+    self.collectionView.hidden = NO;
+}
+- (void)showMyWishCollectionView {
+    self.myWishCollectionView.hidden = NO;
+    self.collectionView.hidden = YES;
+
 }
 - (void)getNewData {
     NSMutableDictionary *para = @{}.mutableCopy;
@@ -67,7 +77,8 @@
     [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_Consecrate_Record Pameters:para success:^(id  _Nonnull responseObject) {
         if (CSInternetRequestSuccessful) {
             self.dengArray = [CSParseManager getQiYuanJiLuModelArrayWithResponseObject:CSGetResult[@"lists"]];
-            [self.collectionView reloadData];
+            [self showMyWishCollectionView];
+            [self.myWishCollectionView reloadData];
         }else {
             CSShowWrongMessage
         }
@@ -84,6 +95,7 @@
         
         if (CSInternetRequestSuccessful) {
             self.dengArray = [CSParseManager getDengModelArrayWithResponseObject:CSGetResult[@"lists"]];
+            [self hideMyWishCollectionView];
             [self.collectionView reloadData];
         }else {
             CSShowWrongMessage
@@ -106,7 +118,27 @@
     //注册cell的ID
     [self.collectionView registerNib:[UINib nibWithNibName:CSCellName(FirstQiYuanJiLuCollectionViewCell) bundle:nil] forCellWithReuseIdentifier:CSCellName(FirstQiYuanJiLuCollectionViewCell)];
      [self.collectionView registerNib:[UINib nibWithNibName:CSCellName(XuYuanMingDengCollectionViewCell) bundle:nil] forCellWithReuseIdentifier:CSCellName(XuYuanMingDengCollectionViewCell)];
+    
+    
+    self.myWishCollectionView.delegate = self;
+    self.myWishCollectionView.dataSource = self;
+    self.myWishCollectionView.backgroundColor = UIColor.clearColor;
+    
+    
+    ManyProductCollectionViewFlowLayout * waterFallLayout = [[ManyProductCollectionViewFlowLayout alloc]init];
+    
+    waterFallLayout.delegate = self;
+    
+    self.myWishCollectionView.collectionViewLayout = waterFallLayout;
+    //注册cell的ID
+    [self.myWishCollectionView registerNib:[UINib nibWithNibName:CSCellName(FirstQiYuanJiLuCollectionViewCell) bundle:nil] forCellWithReuseIdentifier:CSCellName(FirstQiYuanJiLuCollectionViewCell)];
+    
+    
+    self.myWishCollectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getNewData)];
+    
+    
 }
+
 - (void)configSubViews {
     
 }
@@ -171,12 +203,13 @@
     self.wodeyuanwangImageView.image = DotaImageName(@"icon_weixuanze-2");
 
     [self sendGetDengRequest];
-    
+
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (self.currentClickMyWish) {
        return CGSizeMake((MainScreenWidth - 5 * 3) * 0.5, 320);
     }
+    
     return CGSizeMake((MainScreenWidth) * 0.25, 220);
 }
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
@@ -189,7 +222,8 @@
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     if (self.currentClickMyWish) {
-return 5;
+
+        return 5;
         
     }
     return 0;
@@ -242,6 +276,54 @@ return 5;
         MingDengViewController *new = segue.destinationViewController;
         new.passLampId = self.recordLampId;
         new.passBuddahaId = self.passBuddahaId;
+        new.supplicationId = self.passSuppliationId;
     }
+}
+#pragma mark  - <ManyProductCollectionViewFlowLayoutDeleaget>
+- (CGFloat)waterFallLayout:(ManyProductCollectionViewFlowLayout *)waterFallLayout heightForItemAtIndexPath:(NSUInteger)indexPath itemWidth:(CGFloat)itemWidth{
+    
+    QiYuanJiLuModel *model = self.dengArray[indexPath];
+
+    CGFloat height = [self accrodingTextGiveItHeightWith:[NSString stringWithFormat:@"所求愿望：%@",model.wish]];
+    
+    return 320 + height + 5 + 5;
+}
+
+- (CGFloat)rowMarginInWaterFallLayout:(ManyProductCollectionViewFlowLayout *)waterFallLayout{
+    
+    return 5;
+    
+}
+
+- (NSUInteger)columnCountInWaterFallLayout:(ManyProductCollectionViewFlowLayout *)waterFallLayout{
+    
+    return 2;
+    
+}
+- (CGFloat)accrodingTextGiveItHeightWith:(NSString *)text {
+    
+    
+    
+    CGFloat labelWidth = (MainScreenWidth - 10 * 3) * 0.5 - 14 * 2;
+    
+    NSAttributedString *test = [self attributedBodyText:text];
+    
+    NSStringDrawingOptions options  = NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading;
+    CGRect rect = [test boundingRectWithSize:CGSizeMake(labelWidth, 0) options:options context:nil];
+    
+    
+    return (CGFloat)(ceil(rect.size.height) + 20);
+    
+}
+- (NSAttributedString *)attributedBodyText:(NSString *)text {
+    
+    
+    UIFont *font = [UIFont fontWithName:@"Arial-BoldItalicMT" size:12];
+    
+    NSDictionary *testDic = [NSDictionary dictionaryWithObject:font forKey:NSFontAttributeName];
+    
+    NSAttributedString *string = [[NSAttributedString alloc]initWithString:text attributes:testDic];
+    
+    return string;
 }
 @end

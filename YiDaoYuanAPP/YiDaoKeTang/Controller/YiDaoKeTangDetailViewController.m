@@ -248,7 +248,12 @@
     
     self.masterIntro = [NSString stringWithFormat:@"%@",result[@"master_intro"]];
    
+    
     self.ketangIntroduce = [NSString stringWithFormat:@"%@",result[@"introduce"]];
+    
+    if (csCharacterIsBlank(self.ketangIntroduce)) {
+        self.ketangIntroduce = @"";
+    }
     
     self.videoArray = result[@"goods"];
     

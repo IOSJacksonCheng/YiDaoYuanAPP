@@ -151,6 +151,8 @@
         }];
         
         
+    } else {
+        [self goToChatView];
     }
     
 }
@@ -160,7 +162,7 @@
         EasyUIChatViewController *new = [[EasyUIChatViewController alloc] initWithConversationChatter:[NSString stringWithFormat:@"o%@",self.infoModel.order_id] conversationType:EMConversationTypeChat];
         
         new.name = self.infoModel.user_nickname;
-    
+    new.order_id = self.infoModel.order_id;
     new.avater = self.infoModel.avatar;
     new.isDaShi = YES;
     [[CSUtility getCurrentViewController].navigationController pushViewController:new animated:YES];

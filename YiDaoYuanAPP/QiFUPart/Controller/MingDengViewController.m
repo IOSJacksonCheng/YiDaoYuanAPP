@@ -113,7 +113,27 @@ self.suitPeopleLabl.text = [NSString stringWithFormat:@"%@",CSGetResult[@"suit"]
         CustomWrongMessage(@"请选择点灯类型");
         return;
     }
-    [self performSegueWithIdentifier:@"QuickWishViewController" sender:self];
+    [self sendDianDengRequest:self.supplicationId];
+   
+}
+- (void)sendDianDengRequest:(NSString *)supplicationId {
+    
+    NSMutableDictionary *para = @{}.mutableCopy;
+    
+    para[@"supplication_id"] = supplicationId;
+    para[@"price_id"] = self.recordPriceId;
+    
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Consecrate_Addlamp Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",CSGetResult[@"coin"]] forKey:@"CS_Coin"];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
@@ -121,7 +141,6 @@ self.suitPeopleLabl.text = [NSString stringWithFormat:@"%@",CSGetResult[@"suit"]
         QuickWishViewController *new = segue.destinationViewController;
         new.passBuddaId = self.passBuddahaId;
         new.passPriceId = self.recordPriceId;
-        new.fromDeng = YES;
     }
 }
 #pragma mark --UITableViewDelegate/DataSource

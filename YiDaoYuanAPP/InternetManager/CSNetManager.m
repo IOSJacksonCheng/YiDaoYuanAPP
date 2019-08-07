@@ -116,6 +116,45 @@ static AFHTTPSessionManager *CSManager = nil;
     }];
     
 }
++ (void)sendNoCheckLoginStatusGetRequestWithNeedToken:(BOOL)needToken Url:(NSString *)urlStr Pameters:(NSMutableDictionary *)paramDic success:(successBlock)success failure:(failureBlock)failure {
+    
+    AFHTTPSessionManager *manager = [self sharedHTTPSession];
+    
+    if (paramDic == nil) {
+        
+        paramDic = [NSMutableDictionary dictionary];
+        
+    }
+    
+    if (needToken) {
+        [manager.requestSerializer setValue:[self getToken] forHTTPHeaderField:@"XX-Token"];
+        [manager.requestSerializer setValue:@"iphone" forHTTPHeaderField:@"XX-Device-Type"];
+        [manager.requestSerializer setValue:APIVersion forHTTPHeaderField:@"XX-Api-Version"];
+    }
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",[self getBaseUrl],urlStr];
+    CSLog(@"Para:%@", paramDic);
+    CSLog(@"%@",url);
+    
+    [manager GET:url parameters:paramDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        
+        success(responseObject);
+        
+        CSLog(@"当前调用函数：%s",__func__);
+        CSLog(@"\nGet请求URL：%@\nresponseObject:%@",url,responseObject);
+        CSLog(@"Get参数:%@",paramDic);
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failure(error);
+        
+        CSLog(@"Get请求URL：%@\n Get参数:%@", url,paramDic);
+        
+        CSLog(@"Error:%@", error);
+        
+    }];
+    
+}
 /** 发送Get请求 */
 + (void)sendGetRequestWithNeedToken:(BOOL)needToken Url:(NSString *)urlStr Pameters:(NSMutableDictionary *)paramDic success:(successBlock)success failure:(failureBlock)failure {
     
@@ -232,6 +271,115 @@ static AFHTTPSessionManager *CSManager = nil;
         //请求失败
         CSLog(@"头像上传失败：%@",error);
     }];
+}
+
++ (void)uploadImageWithImage:(UIImage *)image WithUrl:(NSString *)urlStr success:(successBlock)success failure:(failureBlock)failure{
+   
+    NSData *imageData = UIImageJPEGRepresentation(image, 0.1);//image为要上传的图片(UIImage)
+    AFHTTPSessionManager *manager = [self sharedHTTPSession];
+    
+    [manager.requestSerializer setValue:[self getToken] forHTTPHeaderField:@"XX-Token"];
+    [manager.requestSerializer setValue:@"iphone" forHTTPHeaderField:@"XX-Device-Type"];
+    [manager.requestSerializer setValue:APIVersion forHTTPHeaderField:@"XX-Api-Version"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",[self getBaseUrl],urlStr];
+    
+    [manager POST:url parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        //
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"yyyyMMddHHmmss";
+        NSString *fileName = [NSString stringWithFormat:@"%@.png",[formatter stringFromDate:[NSDate date]]];
+        //二进制文件，接口key值，文件路径，图片格式
+        [formData appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/jpg/png/jpeg"];
+        
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        //
+         success(responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        //
+        failure(error);
+
+    }];
+}
+
++ (void)uploadVoiceFileWithImage:(NSString *)path WithUrl:(NSString *)urlStr success:(successBlock)success failure:(failureBlock)failure{
+    
+    AFHTTPSessionManager *manager = [self sharedHTTPSession];
+    
+    [manager.requestSerializer setValue:[self getToken] forHTTPHeaderField:@"XX-Token"];
+    [manager.requestSerializer setValue:@"iphone" forHTTPHeaderField:@"XX-Device-Type"];
+    [manager.requestSerializer setValue:APIVersion forHTTPHeaderField:@"XX-Api-Version"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",[self getBaseUrl],urlStr];
+    
+    [manager POST:url parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        //
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"yyyyMMddHHmmss";
+        NSString *fileName = [NSString stringWithFormat:@"%@.amr",[formatter stringFromDate:[NSDate date]]];
+        //二进制文件，接口key值，文件路径，图片格式
+       
+//        [formData appendPartWithFileURL:mp3Url name:@"video" fileName:@"xxx.mp3" mimeType:@"application/octet-stream" error:nil];
+        [formData appendPartWithFileURL:[NSURL fileURLWithPath:path] name:@"file" fileName:fileName mimeType:@"amr" error:nil];
+
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        //
+        success(responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        //
+        failure(error);
+        
+    }];
+}
++ (void)downloadFileWithUrl:(NSString *)url success:(successBlock)success failure:(failureBlock)failure{
+    
+    AFHTTPSessionManager *manager = [self sharedHTTPSession];
+    
+    [manager.requestSerializer setValue:[self getToken] forHTTPHeaderField:@"XX-Token"];
+    [manager.requestSerializer setValue:@"iphone" forHTTPHeaderField:@"XX-Device-Type"];
+    [manager.requestSerializer setValue:APIVersion forHTTPHeaderField:@"XX-Api-Version"];
+   
+    NSURL *newUrl = [NSURL URLWithString:url];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:newUrl];
+    
+    /* 下载路径 */
+    NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+  
+    NSString *csfilePath = [path stringByAppendingPathComponent:url.lastPathComponent];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    if ([fileManager fileExistsAtPath:csfilePath]) {
+        success(csfilePath);
+        return;
+    }
+    /* 开始请求下载 */
+    NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+        NSLog(@"下载进度：%.0f％", downloadProgress.fractionCompleted * 100);
+        
+    } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+        
+        /* 设定下载到的位置 */
+        return [NSURL fileURLWithPath:csfilePath];
+        
+    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+        
+        if (error) {
+            failure(error);
+        } else {
+            success(csfilePath);
+
+        }
+        failure(error);
+        CSLog(@"下载完成");
+        
+    }];
+    [downloadTask resume];
 }
 + (NSString *)getToken {
     

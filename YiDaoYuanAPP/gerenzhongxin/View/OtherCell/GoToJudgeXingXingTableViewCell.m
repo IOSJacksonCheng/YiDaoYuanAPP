@@ -45,7 +45,7 @@
 - (void)setXinxinshu:(CGFloat)xinxinshu {
     _xinxinshu = xinxinshu;
     
-    self.qcStarView.scorePercent = xinxinshu;
+    self.qcStarView.scorePercent = xinxinshu / 5;
 }
 - (void)setIsjustDisplay:(BOOL)isjustDisplay {
    

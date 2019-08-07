@@ -9,8 +9,9 @@
 #import "YiDaoKeTangContentViewController.h"
 #import <WebKit/WebKit.h>
 
+#import "CSShareView.h"
+
 @interface YiDaoKeTangContentViewController ()<WKNavigationDelegate,WKUIDelegate>
-@property (weak, nonatomic) IBOutlet UIView *shareView;
 @property (nonatomic, strong) WKWebView *wkWebView;
 @property (nonatomic, strong) WKWebViewConfiguration *wkConfig;
 @property (nonatomic, strong) UIProgressView *progressView;
@@ -19,6 +20,7 @@
 - (IBAction)clickLoveButtonDone:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *collectButton;
 - (IBAction)clickCollectButtonDone:(id)sender;
+@property (nonatomic, strong) CSShareView *shareView;
 
 @end
 
@@ -126,7 +128,12 @@
 }
 
 - (void)clickButtonDone {
-    self.shareView.hidden = NO;
+    
+    self.shareView = [[CSShareView alloc] initWithFrame:self.view.bounds WithDelegate:self WithTitle:@"易道源" WithDescription:@"算命App" WithImage:DotaImageName(@"AppIcon") WithUrl:self.passUrl];
+    
+    
+    [self.view addSubview:self.shareView];
+    
 }
 - (void)startLoad {
     
@@ -206,8 +213,8 @@
 - (void)checkCollectStatus {
     NSMutableDictionary *para = @{}.mutableCopy;
     para[@"object_id"] = self.idstring;
-    para[@"table_name"] = @"news";
-    
+    para[@"table_name"] = @"class";
+
     [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_user_favorites_hasFavorite Pameters:para success:^(id  _Nonnull responseObject) {
         
         if (CSInternetRequestSuccessful) {
@@ -223,8 +230,8 @@
 - (void)clickCancelCollect {
     NSMutableDictionary *para = @{}.mutableCopy;
     para[@"object_id"] = self.idstring;
-    para[@"table_name"] = @"news";
-    
+    para[@"table_name"] = @"class";
+
     [CSNetManager sendPostRequestWithNeedToken:YES Url:CSURL_Portal_user_favorites_unset Pameters:para success:^(id  _Nonnull responseObject) {
         if (CSInternetRequestSuccessful) {
             
@@ -244,7 +251,7 @@
     }
     NSMutableDictionary *para = @{}.mutableCopy;
     para[@"object_id"] = self.idstring;
-    para[@"table_name"] = @"news";
+    para[@"table_name"] = @"class";
     
     [CSNetManager sendPostRequestWithNeedToken:YES Url:CSURL_Portal_user_favorites_add Pameters:para success:^(id  _Nonnull responseObject) {
         if (CSInternetRequestSuccessful) {

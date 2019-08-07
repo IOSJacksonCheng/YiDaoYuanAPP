@@ -230,7 +230,7 @@
         }
         ShoppingDetailWuLiuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(ShoppingDetailWuLiuTableViewCell)];
         cell.orderIdLabel.text = [NSString stringWithFormat:@"运单编号：%@",self.wuliuModel.logistics_order];
-        cell.statusLabel.text = [self getStatusTitle:self.wuliuModel.status];
+        cell.statusLabel.text = [NSString stringWithFormat:@"物流状态：%@",[self getStatusTitle:self.wuliuModel.status]];
         cell.laiYuanLabel.text = [NSString stringWithFormat:@"承运来源：%@",self.wuliuModel.brand_name];
 
         return cell;
@@ -288,7 +288,7 @@
         return @"待发货";
     }
     if ([self.passStatus isEqualToString:@"2"]) {
-        return @"收货中";
+        return @"待收货";
     }
     if ([self.passStatus isEqualToString:@"3"]) {
         return @"申请退款中";

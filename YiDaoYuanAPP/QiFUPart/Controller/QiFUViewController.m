@@ -18,8 +18,10 @@
 #import "GongPingModel.h"
 #import "XuYuanMingDengViewController.h"
 
+#import <AVFoundation/AVFoundation.h>
 
-@interface QiFUViewController ()<UICollectionViewDelegate ,UICollectionViewDataSource>
+@interface QiFUViewController ()<UICollectionViewDelegate ,UICollectionViewDataSource, AVAudioPlayerDelegate>
+
 - (IBAction)qiYuanJiLuButtonDone:(id)sender;
 @property (nonatomic, strong) NSString *passString;
 
@@ -65,8 +67,12 @@
 @property (nonatomic, strong) NSMutableArray *orderArray;
 
 @property (nonatomic, strong) NSString *recordCatId;
+
+@property (nonatomic, strong) NSString *recordMusicUrl;
 @end
 
+static AVAudioPlayer *_audioPlayer=nil;
+NSString * const MusicPlayKey = @"MusciisPlayOrNot";
 @implementation QiFUViewController
 - (NSMutableArray *)allFoListArray {
     if (!_allFoListArray) {
@@ -98,6 +104,38 @@
     [self clickLeftView];
     
     [self sendGetRequestForOrder];
+    
+   
+    [self downloadMusic];
+}
+- (void)downloadMusic:(NSString *)url {
+    [CSNetManager downloadFileWithUrl:url success:^(id  _Nonnull responseObject) {
+        
+        self.recordMusicUrl = responseObject;
+        BOOL play = [[NSUserDefaults standardUserDefaults] boolForKey:MusicPlayKey];
+        if (play) {
+            [self playVoiceWithContentWithPath:responseObject];
+
+        }
+        
+    } failure:^(NSError * _Nonnull error) {
+        
+    }];
+}
+- (void)downloadMusic {
+    
+    NSMutableDictionary *para = @{}.mutableCopy;
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_portal_consecrate_bgmusic Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+          [self downloadMusic:[NSString stringWithFormat:@"%@",CSGetResult[@"url"]]]  ;
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+   
 }
 - (void)sendGetRequestForOrder {
     
@@ -323,7 +361,15 @@
     
     UIButton *rightButton = [[UIButton alloc] init];
     
-    [rightButton setImage:DotaImageName(@"img_shengying") forState:UIControlStateNormal];
+   BOOL play = [[NSUserDefaults standardUserDefaults] boolForKey:@"MusciisPlayOrNot"];
+    
+    if (play) {
+        [rightButton setImage:DotaImageName(@"img_shengying") forState:UIControlStateNormal];
+
+    } else {
+        [rightButton setImage:DotaImageName(@"img_shengying_no") forState:UIControlStateNormal];
+
+    }
     
     
     [rightButton addTarget:self action:@selector(clickRightButtonDone) forControlEvents:UIControlEventTouchDown];
@@ -335,10 +381,43 @@
 }
 //声音
 - (void)clickRightButtonDone {
+    BOOL play = [[NSUserDefaults standardUserDefaults] boolForKey:MusicPlayKey];
+
+    play = !play;
+    
+    [[NSUserDefaults standardUserDefaults] setBool:play forKey:MusicPlayKey];
+    
+    UIButton *rightButton = [[UIButton alloc] init];
+    
+    if (play) {
+        [rightButton setImage:DotaImageName(@"img_shengying") forState:UIControlStateNormal];
+        if (!_audioPlayer.isPlaying) {
+           
+            [_audioPlayer play];
+            
+        }
+        if (!_audioPlayer.isPlaying) {
+            [self playVoiceWithContentWithPath:self.recordMusicUrl];
+        }
+    } else {
+        [rightButton setImage:DotaImageName(@"img_shengying_no") forState:UIControlStateNormal];
+        if (_audioPlayer.isPlaying) {
+            [_audioPlayer pause];
+            
+        }
+    }
     
     
+    [rightButton addTarget:self action:@selector(clickRightButtonDone) forControlEvents:UIControlEventTouchDown];
+    
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    
+    
+    self.navigationItem.rightBarButtonItem = rightItem;
 }
 - (void)clickLeftButtonDone {
+    _audioPlayer = nil;
+    [_audioPlayer stop];
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     [UIApplication sharedApplication].keyWindow.rootViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"MainStoryboard"];
@@ -603,6 +682,7 @@
         XuYuanMingDengViewController *new = segue.destinationViewController;
         QiFUModel *model = [self getCurrentQiFuModel];
         new.passBuddahaId = model.buddha_id;
+        new.passSuppliationId = model.supplication_id;
     }
 }
 - (void)refreshCurrentViewWithModel:(QiFUModel *)model {
@@ -798,6 +878,82 @@
     
 }
 
+#pragma mark -- 播放音乐
+-(void)playVoiceWithContentWithPath:(NSString *)path
+{
+    
+    if(_audioPlayer.isPlaying){
+        
+        [_audioPlayer stop];
+        _audioPlayer = nil;
+    }
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    if ([fileManager fileExistsAtPath:path]) {
+        CSLog(@"%@存在",path);
+    }else {
+        CSLog(@"%@不存在",path);
 
-
+    }
+    NSURL *fileUrl=[NSURL fileURLWithPath:path];
+    [self initPlayer];
+    NSError *error = nil;
+    _audioPlayer=[[AVAudioPlayer alloc]initWithContentsOfURL:fileUrl error:&error];
+    if (error) {
+        
+        CSLog(@"初始化语音失败原因：%@!!!!!!!!",error.userInfo);
+        
+    }
+    [_audioPlayer setVolume:1];
+    [_audioPlayer prepareToPlay];
+    [_audioPlayer setDelegate:self];
+    //为了获取时间
+    
+    if ([_audioPlayer play]) {
+        
+       
+        CSLog(@"播放成功！！！！！！！！！");
+     
+    } else {
+        
+//        CustomWrongMessage(@"语音播放失败")
+        CSLog(@"播放失败！！！！！！！！！");
+        
+    };
+    
+    
+    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
+}
+-(void)initPlayer{
+    //初始化播放器的时候如下设置
+    UInt32 sessionCategory = kAudioSessionCategory_MediaPlayback;
+    AudioSessionSetProperty(kAudioSessionProperty_AudioCategory,
+                            sizeof(sessionCategory),
+                            &sessionCategory);
+    
+    UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
+    AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute,
+                             sizeof (audioRouteOverride),
+                             &audioRouteOverride);
+    
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    //默认情况下扬声器播放
+    [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
+    
+    [audioSession setActive:YES error:nil];
+    
+    audioSession = nil;
+    
+}
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+    
+    CSLog(@"audioPlayerDidFinishPlaying");
+    //    _audioPlayer=nil;
+    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
+    //发送通知当前播放情况
+    [self playVoiceWithContentWithPath:self.recordMusicUrl];
+    
+}
 @end

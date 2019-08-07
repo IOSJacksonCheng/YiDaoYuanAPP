@@ -58,7 +58,7 @@
                         <rect key="frame" x="116.5" y="219.5" width="15" height="15"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="所求愿望：希望家人身体平安" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S1R-ie-USa">
-                        <rect key="frame" x="14" y="259.5" width="165" height="14.5"/>
+                        <rect key="frame" x="14" y="265.5" width="165" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -68,6 +68,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="2gc-08-qfI" firstAttribute="centerY" secondItem="p2T-JT-6Tl" secondAttribute="centerY" id="0Bw-VG-jbT"/>
+                <constraint firstAttribute="bottom" secondItem="S1R-ie-USa" secondAttribute="bottom" constant="40" id="0lQ-i1-Xnp"/>
                 <constraint firstAttribute="trailing" secondItem="GIJ-x5-2LU" secondAttribute="trailing" id="1EK-Qd-o52"/>
                 <constraint firstItem="iO0-fE-ufx" firstAttribute="top" secondItem="Yzn-yX-giS" secondAttribute="bottom" constant="10" id="2Ke-8c-gdX"/>
                 <constraint firstItem="GbH-8g-23Q" firstAttribute="top" secondItem="oIW-21-wbY" secondAttribute="bottom" constant="10" id="4Vo-ua-yUs"/>
@@ -86,7 +87,6 @@
                 <constraint firstItem="p2T-JT-6Tl" firstAttribute="leading" secondItem="2gc-08-qfI" secondAttribute="trailing" constant="5" id="qwp-bJ-Xs1"/>
                 <constraint firstItem="2gc-08-qfI" firstAttribute="top" secondItem="iO0-fE-ufx" secondAttribute="bottom" constant="10" id="sl9-Wu-xCh"/>
                 <constraint firstItem="GIJ-x5-2LU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="tpE-56-Y2q"/>
-                <constraint firstItem="S1R-ie-USa" firstAttribute="top" secondItem="2gc-08-qfI" secondAttribute="bottom" constant="25" id="vTt-B5-5aN"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <connections>

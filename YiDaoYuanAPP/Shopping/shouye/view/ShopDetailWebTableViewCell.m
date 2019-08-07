@@ -17,9 +17,10 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+   
     self.wkWebView.scrollView.scrollEnabled = NO;
  
-    [self.wkWebView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+    [self.wkWebView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
     // Initialization code
 }
 - (WKWebViewConfiguration *)wkConfig {
@@ -56,7 +57,6 @@
     return _wkWebView;
 }
 - (void)dealloc {
-    [self.wkWebView removeObserver:self forKeyPath:@"contentSize"];
 }
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
@@ -64,9 +64,18 @@
         
         CGSize fitSize = [self.wkWebView sizeThatFits:CGSizeZero];
         //        NSLog(@"webview fitSize:%@",NSStringFromCGSize(fitSize));
-        self.wkWebView.frame = CGRectMake(0, 0, fitSize.width, fitSize.height);
+        if (self.cellHeight.floatValue > 0) {
+         
+            self.wkWebView.frame = CGRectMake(0, 0, fitSize.width, fitSize.height * 2);
+          
+            [self.wkWebView.scrollView removeObserver:self forKeyPath:@"contentSize"];
+            
+            return;
+
+        }
+       
         
-        [self.csDelegate passCellHeight:self.wkWebView.frame.size.height];
+        [self.csDelegate passCellHeight:self.wkWebView.frame.size.height * 2];
        
     }
 }
@@ -76,7 +85,8 @@
 - (void)setPassUrl:(NSString *)passUrl {
     
     _passUrl = passUrl;
-    
+//    [self.wkWebView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+
     [self startLoad];
 }
 - (void)startLoad {

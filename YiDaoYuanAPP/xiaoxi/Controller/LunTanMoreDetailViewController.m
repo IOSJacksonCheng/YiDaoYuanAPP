@@ -84,7 +84,10 @@
     NSMutableDictionary *para = @{}.mutableCopy;
     
     self.page = 1;
+    
     para[@"forum_id"] = self.passModel.forum_id;
+    
+    
     para[@"page"] = [NSString stringWithFormat:@"%d",self.page];
     [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_forum_comment_list Pameters:para success:^(id  _Nonnull responseObject) {
         [self endRefresh];

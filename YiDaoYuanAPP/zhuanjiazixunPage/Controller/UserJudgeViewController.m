@@ -49,6 +49,7 @@
 @property (nonatomic, strong) NSString *secondFen;
 
 @property (nonatomic, strong) NSString *thirdFen;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topViewConstraint;
 
 @end
 
@@ -172,7 +173,9 @@
 - (void)configSubViews {
     self.currentIndex = 0;
     [self clickButtonWithTag:self.currentIndex];
-    
+    if (self.hideTopView) {
+        self.topViewConstraint.constant = 5;
+    }
 }
 - (void)configNavigationBar {
     F3f3f3NavigationBarColor
@@ -237,7 +240,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.currentIndex == 0 || self.currentIndex == 1) {
         UserJudgeArray *model = self.listArray[indexPath.row];
-        return 83 + 49.5 + [self accrodingJudgeTextGiveItHeightWith:model.content];
+        return 83 + 10 + [self accrodingJudgeTextGiveItHeightWith:model.content];
         
     }
     

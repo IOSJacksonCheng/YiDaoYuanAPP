@@ -22,7 +22,10 @@
 #import "DaShiDetailViewController.h"
 #import "ManyItemTableViewCell.h"
 #import "DaShiListViewController.h"
-CGFloat const AD_Height = 160;
+
+#import "DaShisPingJiaViewController.h"
+
+CGFloat const AD_Height = 180;
 @interface ZhuanJiaZiXunViewController ()<UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, ZJZXDaShiTableViewCellDelegate,ManyItemTableViewCellDelegate>
 @property (nonatomic, strong) NSString *recordAdImage;
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
@@ -48,8 +51,32 @@ CGFloat const AD_Height = 160;
 - (void)viewWillAppear:(BOOL)animated {
     [self configNavigationBar];
     [super viewWillDisappear:animated];
-NSString *location = [[NSUserDefaults standardUserDefaults] stringForKey:@"CSLocationCity"];
+
+    NSString *location = [[NSUserDefaults standardUserDefaults] stringForKey:@"CSLocationCity"];
     [self configLeftItem:location];
+    [self getNoRead];
+}
+- (void)getNoRead {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    [CSNetManager sendNoCheckLoginStatusGetRequestWithNeedToken:YES Url:CSURL_portal_msg_unread Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            NSString *badgeNum =[NSString stringWithFormat:@"%@",CSGetResult[@"count"]];
+            UIViewController *tController = [self.tabBarController.viewControllers objectAtIndex:2];
+            int badgeValue = [badgeNum intValue];
+            if (badgeValue >0) {
+                tController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d",badgeValue];
+            }else{
+                tController.tabBarItem.badgeValue = nil;
+            }
+            
+            
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -73,13 +100,18 @@ NSString *location = [[NSUserDefaults standardUserDefaults] stringForKey:@"CSLoc
     self.userJudgeArray = @[].mutableCopy;
     self.itemArray = @[].mutableCopy;
     [self sendGetRequest];
+    
+    [self startLocation];
 }
 - (void)sendGetRequest {
+    
     [self getBannerRequest];
     [self getHotDaShi];
     [self getUserPingLun];
     [self getItemRequest];
-    
+    if (self.mainTableView.mj_header.isRefreshing) {
+        [self.mainTableView.mj_header endRefreshing];
+    }
 }
 - (void)getBannerRequest {
     NSMutableDictionary *para = @{}.mutableCopy;
@@ -232,6 +264,9 @@ NSString *location = [[NSUserDefaults standardUserDefaults] stringForKey:@"CSLoc
     [self.mainTableView registerNib:[UINib nibWithNibName:CSCellName(ZJZXBannerTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(ZJZXBannerTableViewCell)];
     
      [self.mainTableView registerNib:[UINib nibWithNibName:CSCellName(ManyItemTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(ManyItemTableViewCell)];
+    
+    self.mainTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(sendGetRequest)];
+    
 }
 - (void)configSubViews {
     

@@ -18,6 +18,10 @@
 #import "AllKindOfOrderViewController.h"
 #import "MoneyHistoryViewController.h"
 
+#import "PersonalInfomationViewController.h"
+
+#import "CSUserJudgeListViewController.h"
+#import "DaShisPingJiaViewController.h"
 @interface PersonalCenterViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSMutableArray *itemMutableArray;
@@ -35,6 +39,9 @@
 
 @property (nonatomic, strong) NSString *recordZiXunOrHuiDa;
 @property (nonatomic, assign) MoneyType currentMoneyType;
+
+
+
 @end
 
 @implementation PersonalCenterViewController
@@ -50,10 +57,10 @@
         
         [_daShiMutableArray addObject:model1];
         
-        PersonalModel *model2 = [PersonalModel new];
-        model2.title = @"我的问答";
-        model2.image = @"icon_2_wenda-1";
-        [_daShiMutableArray addObject:model2];
+//        PersonalModel *model2 = [PersonalModel new];
+//        model2.title = @"我的问答";
+//        model2.image = @"icon_2_wenda-1";
+//        [_daShiMutableArray addObject:model2];
         
         PersonalModel *model3 = [PersonalModel new];
         model3.title = @"我的评分";
@@ -204,24 +211,24 @@
     
     [self configTableView];
     
-    [self sendGetRequest];
+//    [self sendGetRequest];
 }
-- (void)sendGetRequest {
-    NSMutableDictionary *para = @{}.mutableCopy;
-    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_Consult Pameters:para success:^(id  _Nonnull responseObject) {
-        
-        if (CSInternetRequestSuccessful) {
-            
-        }else {
-            CSShowWrongMessage
-        }
-    } failure:^(NSError * _Nonnull error) {
-        CSInternetFailure
-    }];
-}
+//- (void)sendGetRequest {
+//    NSMutableDictionary *para = @{}.mutableCopy;
+//    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_Consult Pameters:para success:^(id  _Nonnull responseObject) {
+//        
+//        if (CSInternetRequestSuccessful) {
+//            
+//        }else {
+//            
+//        }
+//    } failure:^(NSError * _Nonnull error) {
+//        
+//    }];
+//}
 - (void)configTableView {
     
-//    [self.itemCollectionView registerNib:[UINib nibWithNibName:CSCellName(PersonalCollectionViewCell) bundle:nil] forCellWithReuseIdentifier:CSCellName(PersonalCollectionViewCell)];
+
     
     [self.tableView registerNib:[UINib nibWithNibName:CSCellName(NewPersonalCenterViewTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(NewPersonalCenterViewTableViewCell)];
     
@@ -256,12 +263,16 @@
 }
 - (void)clickHeaderViewDone {
     
-    if (CS_UserIsMaster) {
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"CS_UserIsMaster"];
-    } else {
-         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"CS_UserIsMaster"];
-    }
-    [self.tableView reloadData];
+//    if (CS_UserIsMaster) {
+//        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"CS_UserIsMaster"];
+//    } else {
+//         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"CS_UserIsMaster"];
+//    }
+//    [self.tableView reloadData];
+    UIStoryboard *main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    PersonalInfomationViewController *new = [main instantiateViewControllerWithIdentifier:@"PersonalInfomationViewController"];
+    
+    [self.navigationController pushViewController:new animated:YES];
 }
 - (void)clickAnswerViewDone {
     
@@ -377,7 +388,7 @@
         
         tap3.numberOfTouchesRequired = 1;
         
-//        [cell.headImageView addGestureRecognizer:tap3];
+        [cell.headImageView addGestureRecognizer:tap3];
         
         UITapGestureRecognizer *tap4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickYuELabel)];
         
@@ -447,10 +458,18 @@
         
         [UIApplication sharedApplication].keyWindow.rootViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"shoppingStoryboard"];
     } else if ([model.title isEqualToString:@"我的评价"]) {
+        
+        if (!CS_UserIsMaster) {
+            CSUserJudgeListViewController *new = [CSUserJudgeListViewController new];
+            [self.navigationController pushViewController:new animated:YES];
+            return;
+        }
+        
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         
         UserJudgeViewController *new = [mainStoryboard instantiateViewControllerWithIdentifier:@"UserJudgeViewController"];
         new.passMasterID = CS_UserID;
+        new.hideTopView = YES;
         [self.navigationController pushViewController:new animated:YES];
     }else if ([model.title isEqualToString:@"关于我们"]) {
         self.recordUrl = [NSString stringWithFormat:@"%@%@", BASE_URL, CSURL_About_Us];
@@ -460,7 +479,17 @@
     }else if ([model.title isEqualToString:@"意见反馈"])  {
         
          [self performSegueWithIdentifier:@"UserSuggestViewController" sender:self];
+    }else if ([model.title isEqualToString:@"我的评分"])  {
+        DaShisPingJiaViewController *new = [DaShisPingJiaViewController new];
+        
+        [self.navigationController pushViewController:new animated:YES];
+    }else if ([model.title isEqualToString:@"我的回答"])  {
+//        DaShiMyHuiDaViewController *new = [DaShiMyHuiDaViewController new];
+//        
+//        [self.navigationController pushViewController:new animated:YES];
     }
+    
+    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -483,4 +512,5 @@
     }
     
 }
+
 @end

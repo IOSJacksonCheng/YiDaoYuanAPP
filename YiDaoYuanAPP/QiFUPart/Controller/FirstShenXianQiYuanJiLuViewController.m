@@ -11,7 +11,10 @@
 #import "FirstQiYuanJiLuCollectionViewCell.h"
 
 #import "QiYuanJiLuViewController.h"
-@interface FirstShenXianQiYuanJiLuViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+
+#import "ManyProductCollectionViewFlowLayout.h"
+
+@interface FirstShenXianQiYuanJiLuViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, ManyProductCollectionViewFlowLayoutDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIImageView *yixuxinyuanImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *yiyuanmanguirenImageView;
@@ -113,15 +116,27 @@
     }
 }
 - (void)configTableView {
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    layout.itemSize = CGSizeMake((MainScreenWidth - 10 * 3) * 0.5, 320);
-    //创建UICollectionView
-    self.collectionView.collectionViewLayout = layout;
+//    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+//    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+//    layout.itemSize = CGSizeMake((MainScreenWidth - 10 * 3) * 0.5, 320);
+//    //创建UICollectionView
+//    self.collectionView.collectionViewLayout = layout;
+//
+//    //设置位置和尺寸
+//    self.collectionView.delegate = self;
+//    self.collectionView.dataSource = self;
     
-    //设置位置和尺寸
+    self.collectionView.backgroundColor = csf5f5f5Color;
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
+    self.collectionView.backgroundColor = UIColor.clearColor;
+    
+    
+    ManyProductCollectionViewFlowLayout * waterFallLayout = [[ManyProductCollectionViewFlowLayout alloc]init];
+    
+    waterFallLayout.delegate = self;
+    
+    self.collectionView.collectionViewLayout = waterFallLayout;
     //注册cell的ID
     [self.collectionView registerNib:[UINib nibWithNibName:CSCellName(FirstQiYuanJiLuCollectionViewCell) bundle:nil] forCellWithReuseIdentifier:CSCellName(FirstQiYuanJiLuCollectionViewCell)];
     
@@ -150,20 +165,20 @@
 - (void)clickLeftButtonDone {
     [self.navigationController popViewControllerAnimated:YES];
 }
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    
-    return UIEdgeInsetsMake(5, 5, 5, 5);
-    
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    
-    return 5;
-}
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    
-    return 5;
-}
+//- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+//
+//    return UIEdgeInsetsMake(5, 5, 5, 5);
+//
+//}
+//
+//- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+//
+//    return 5;
+//}
+//- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+//
+//    return 5;
+//}
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return self.listArray.count;
@@ -225,5 +240,52 @@
         QiYuanJiLuViewController *new = segue.destinationViewController;
         new.pass_ID = self.recordPassId;
     }
+}
+#pragma mark  - <ManyProductCollectionViewFlowLayoutDeleaget>
+- (CGFloat)waterFallLayout:(ManyProductCollectionViewFlowLayout *)waterFallLayout heightForItemAtIndexPath:(NSUInteger)indexPath itemWidth:(CGFloat)itemWidth{
+    
+    QiYuanJiLuModel *model = self.listArray[indexPath];
+
+    CGFloat height = [self accrodingTextGiveItHeightWith:[NSString stringWithFormat:@"所求愿望：%@",model.wish]];
+    
+    return 320 + height + 5  + 5;
+}
+
+- (CGFloat)rowMarginInWaterFallLayout:(ManyProductCollectionViewFlowLayout *)waterFallLayout{
+    
+    return 5;
+    
+}
+
+- (NSUInteger)columnCountInWaterFallLayout:(ManyProductCollectionViewFlowLayout *)waterFallLayout{
+    
+    return 2;
+    
+}
+- (CGFloat)accrodingTextGiveItHeightWith:(NSString *)text {
+    
+    
+    
+    CGFloat labelWidth = (MainScreenWidth - 10 * 3) * 0.5 - 14 * 2;
+    
+    NSAttributedString *test = [self attributedBodyText:text];
+    
+    NSStringDrawingOptions options  = NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading;
+    CGRect rect = [test boundingRectWithSize:CGSizeMake(labelWidth, 0) options:options context:nil];
+    
+    
+    return (CGFloat)(ceil(rect.size.height) + 20);
+    
+}
+- (NSAttributedString *)attributedBodyText:(NSString *)text {
+    
+    
+    UIFont *font = [UIFont fontWithName:@"Arial-BoldItalicMT" size:12];
+    
+    NSDictionary *testDic = [NSDictionary dictionaryWithObject:font forKey:NSFontAttributeName];
+    
+    NSAttributedString *string = [[NSAttributedString alloc]initWithString:text attributes:testDic];
+    
+    return string;
 }
 @end

@@ -57,13 +57,13 @@
 }
 - (void)setDict:(NSMutableDictionary *)dict {
     _dict = dict;
-    self.zixunStar.scorePercent = [NSString stringWithFormat:@"%@",dict[@"quality"]].floatValue;
+    self.zixunStar.scorePercent = [NSString stringWithFormat:@"%@",dict[@"quality"]].floatValue / 5;
     self.zixunLabel.text = [NSString stringWithFormat:@"%@",dict[@"quality"]];
 
-    self.fuwuStar.scorePercent = [NSString stringWithFormat:@"%@",dict[@"serve"]].floatValue;
+    self.fuwuStar.scorePercent = [NSString stringWithFormat:@"%@",dict[@"serve"]].floatValue / 5;
     self.fuwuLabel.text = [NSString stringWithFormat:@"%@",dict[@"serve"]];
     
-    self.huifuStar.scorePercent = [NSString stringWithFormat:@"%@",dict[@"reply"]].floatValue;
+    self.huifuStar.scorePercent = [NSString stringWithFormat:@"%@",dict[@"reply"]].floatValue / 5;
     self.huifuLabel.text = [NSString stringWithFormat:@"%@",dict[@"reply"]];
     
     self.judgeLabel.text = [NSString stringWithFormat:@"%@",dict[@"content"]];

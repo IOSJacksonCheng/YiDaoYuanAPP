@@ -112,35 +112,35 @@
 }
 
 - (IBAction)checkLiaoTianJiLuButtonDone:(id)sender {
-    if (![EMClient sharedClient].isLoggedIn) {
-        [[EMClient sharedClient] loginWithUsername:[NSString stringWithFormat:@"o%@",self.infoModel.order_id] password:@"123456" completion:^(NSString *aUsername, EMError *aError) {
-            if (aError) {
-                CSLog(@"环信登录失败:%@",aError.errorDescription);
-                CustomWrongMessage(@"发送错误，请稍后再试");
-            } else {
-                [self goToChatView];
-                CSLog(@"环信登录成功！");
-            }
-        }];
-    } else {
-        [self goToChatView];
-        
-    }
+//    if (![EMClient sharedClient].isLoggedIn) {
+//        [[EMClient sharedClient] loginWithUsername:[NSString stringWithFormat:@"o%@",self.infoModel.order_id] password:@"123456" completion:^(NSString *aUsername, EMError *aError) {
+//            if (aError) {
+//                CSLog(@"环信登录失败:%@",aError.errorDescription);
+//                CustomWrongMessage(@"发送错误，请稍后再试");
+//            } else {
+//                [self goToChatView];
+//                CSLog(@"环信登录成功！");
+//            }
+//        }];
+//    } else {
+//        [self goToChatView];
+//
+//    }
     
     
-    
+    [CSUtility goToHistoryChatViewControllerWithOrderId:self.infoModel.order_id];
     
     
 }
-- (void)goToChatView {
-    
-    EasyUIChatViewController *new = [[EasyUIChatViewController alloc] initWithConversationChatter:[NSString stringWithFormat:@"m%@",self.infoModel.master_id] conversationType:EMConversationTypeChat];
-    
-    new.name = self.infoModel.master_name;
-    new.order_id = self.infoModel.order_id;
-    [self.navigationController pushViewController:new animated:YES];
-    
-}
+//- (void)goToChatView {
+//    
+//    EasyUIChatViewController *new = [[EasyUIChatViewController alloc] initWithConversationChatter:[NSString stringWithFormat:@"m%@",self.infoModel.master_id] conversationType:EMConversationTypeChat];
+//    new.isCheckLiaoTianJiLu = YES;
+//    new.name = self.infoModel.master_name;
+//    new.order_id = self.infoModel.order_id;
+//    [self.navigationController pushViewController:new animated:YES];
+//    
+//}
 
 - (IBAction)clickJudgeButtonDone:(id)sender {
     

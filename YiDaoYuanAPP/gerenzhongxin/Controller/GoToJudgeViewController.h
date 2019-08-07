@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isDetail;
 //1 咨询评价 2 赞赏评价 3 问答评价
 @property (nonatomic, strong) NSString *typestring;
+@property (nonatomic, assign) BOOL fromChatView;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XuYuanMingDengViewController : BaseViewController
 @property (nonatomic, strong) NSString *passBuddahaId;
+@property (nonatomic, strong) NSString *passSuppliationId;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -9,8 +9,9 @@
 #import "ChatRightTableViewCell.h"
 
 @interface ChatRightTableViewCell()
-@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+//@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+//@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+
 @end
 @implementation ChatRightTableViewCell
 

@@ -36,6 +36,11 @@ typedef void(^updateRequestBlock)(BOOL updateSuccess);
 + (void)goToChatKefuViewController;
 + (UIViewController *)shoppingGetCurrentViewController;
 + (void)shoppingGoToKefuController;
++ (void)goToHistoryChatViewControllerWithOrderId:(NSString *)orderId;
+
++ (void)sendTextMessage:(NSString *)text WithOrderId:(NSString *)orderid;
++ (void)sendImageMessage:(UIImage *)image WithOrderId:(NSString *)orderid;
++ (void)sendVoiceMessageWithLocalPath:(NSString *)localPath duration:(NSInteger)duration WithOrderId:(NSString *)orderid;
 @end
 
 NS_ASSUME_NONNULL_END

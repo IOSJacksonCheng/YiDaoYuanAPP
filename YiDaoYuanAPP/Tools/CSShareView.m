@@ -18,11 +18,12 @@ NSString * const csxinlangweibo = @"新浪微博";
 
 NSString * const cspengyouquan = @"朋友圈";
 
-NSString * const csQQ = @"QQ";
+NSString * const csQQ = @"QQ好友";
+NSString * const csQQZone = @"QQ空间";
 
 NSString * const csfuzhilianjie = @"复制链接";
 
-@interface CSShareView()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,TencentSessionDelegate>
+@interface CSShareView()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,TencentSessionDelegate, TencentLoginDelegate>
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *fenXiangArray;
 
@@ -40,8 +41,8 @@ NSString * const csfuzhilianjie = @"复制链接";
 @implementation CSShareView
 - (NSMutableArray *)fenXiangArray {
     if (!_fenXiangArray) {
-//        _fenXiangArray = @[csweixin,cspengyouquan,csxinlangweibo,csQQ,csfuzhilianjie].mutableCopy;
-        _fenXiangArray = @[csweixin,cspengyouquan,csfuzhilianjie].mutableCopy;
+        _fenXiangArray = @[csweixin,cspengyouquan,csQQ, csQQZone,csfuzhilianjie].mutableCopy;
+//        _fenXiangArray = @[csweixin,cspengyouquan,csfuzhilianjie].mutableCopy;
     }
     return _fenXiangArray;
 }
@@ -160,7 +161,7 @@ NSString * const csfuzhilianjie = @"复制链接";
         cell.iconImageView.image = DotaImageName(@"icon_weibo");
     }else if ([title isEqualToString:csfuzhilianjie]) {
         cell.iconImageView.image = DotaImageName(@"icon_lianjie");
-    }else if ([title isEqualToString:csQQ]) {
+    }else if ([title isEqualToString:csQQ] || [title isEqualToString:csQQZone]) {
         cell.iconImageView.image = DotaImageName(@"icon_qq");
     }
     
@@ -194,19 +195,47 @@ NSString * const csfuzhilianjie = @"复制链接";
         
     }else if ([title isEqualToString:csQQ]) {
         [self shareQQ];
+    }else if ([title isEqualToString:csQQZone]) {
+        [self shareQQZone];
     }
     
     
+}
+- (void)shareQQZone {
+    self.tencentOAuth = [[TencentOAuth alloc]initWithAppId:CSQQAppId andDelegate:self];
+    
+    //    NSMutableArray *permission = [@[] mutableCopy];
+    //
+    //
+    //    permission = [NSMutableArray arrayWithObjects:@"get_user_info",@"add_share",nil];
+    //
+    //    [self.tencentOAuth authorize:permission inSafari:NO];
+    NSString *utf8String = self.url;
+    NSString *title = self.shareTitle;
+    NSString *description = self.descr;
+    NSString *previewImageUrl = @"http://cdni.wired.co.uk/620x413/k_n/NewsForecast%20copy_620x413.jpg";
+    QQApiNewsObject *newsObj = [QQApiNewsObject
+                                objectWithURL:[NSURL URLWithString:utf8String]
+                                title:title
+                                description:description
+                                previewImageURL:[NSURL URLWithString:previewImageUrl]];
+    SendMessageToQQReq *req = [SendMessageToQQReq reqWithContent:newsObj];
+    //将内容分享到qq
+//    QQApiSendResultCode sent = [QQApiInterface sendReq:req];
+    
+    //将内容分享到qzone
+        QQApiSendResultCode sent = [QQApiInterface SendReqToQZone:req];
 }
 - (void)shareQQ {
     
     self.tencentOAuth = [[TencentOAuth alloc]initWithAppId:CSQQAppId andDelegate:self];
 
-    NSMutableArray *permission = [@[] mutableCopy];
-
-    permission = [NSMutableArray arrayWithObjects:@"get_user_info",@"get_simple_userinfo",nil];
-    
-    [self.tencentOAuth authorize:permission inSafari:NO];
+//    NSMutableArray *permission = [@[] mutableCopy];
+//
+//
+//    permission = [NSMutableArray arrayWithObjects:@"get_user_info",@"add_share",nil];
+//
+//    [self.tencentOAuth authorize:permission inSafari:NO];
     NSString *utf8String = self.url;
     NSString *title = self.shareTitle;
     NSString *description = self.descr;

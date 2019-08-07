@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ShopDetailWebTableViewCell : UITableViewCell
 @property (nonatomic, strong) NSString *passUrl;
 @property (nonatomic, weak) id<ShopDetailWebTableViewCellDelegate> csDelegate;
+@property (nonatomic, strong) NSString *cellHeight;
 @end
 
 NS_ASSUME_NONNULL_END

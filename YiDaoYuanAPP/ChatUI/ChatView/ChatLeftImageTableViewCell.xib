@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatLeftImageTableViewCell" rowHeight="155" id="KGk-i7-Jjw" customClass="ChatLeftImageTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="155"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="154.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qld-BO-mz1">
+                        <rect key="frame" x="67" y="10" width="150" height="134.5"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_white" translatesAutoresizingMaskIntoConstraints="NO" id="KgE-k5-Sjs">
+                                <rect key="frame" x="0.0" y="0.0" width="150" height="134.5"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tVF-zM-cT2">
+                                <rect key="frame" x="15" y="10" width="125" height="114.5"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="150" id="Bxg-04-jLb"/>
+                            <constraint firstItem="tVF-zM-cT2" firstAttribute="leading" secondItem="Qld-BO-mz1" secondAttribute="leading" constant="15" id="E0y-ao-37r"/>
+                            <constraint firstItem="tVF-zM-cT2" firstAttribute="top" secondItem="Qld-BO-mz1" secondAttribute="top" constant="10" id="OFA-lH-awi"/>
+                            <constraint firstItem="KgE-k5-Sjs" firstAttribute="top" secondItem="Qld-BO-mz1" secondAttribute="top" id="R0T-4O-Jm7"/>
+                            <constraint firstAttribute="bottom" secondItem="KgE-k5-Sjs" secondAttribute="bottom" id="RYl-ie-Z8L"/>
+                            <constraint firstItem="KgE-k5-Sjs" firstAttribute="leading" secondItem="Qld-BO-mz1" secondAttribute="leading" id="dRT-54-ZZa"/>
+                            <constraint firstAttribute="bottom" secondItem="tVF-zM-cT2" secondAttribute="bottom" constant="10" id="gQs-Wy-N8J"/>
+                            <constraint firstAttribute="trailing" secondItem="KgE-k5-Sjs" secondAttribute="trailing" id="hCA-gc-MgN"/>
+                            <constraint firstAttribute="trailing" secondItem="tVF-zM-cT2" secondAttribute="trailing" constant="10" id="obu-Y3-68Z"/>
+                        </constraints>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_dashi" translatesAutoresizingMaskIntoConstraints="NO" id="eZm-sE-i43">
+                        <rect key="frame" x="11" y="11" width="43" height="43"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="43" id="8u7-Z3-lVp"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="43" id="Dip-Xs-b0a"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="43" id="cIg-6A-zn4"/>
+                            <constraint firstAttribute="height" constant="43" id="pWA-Nz-cWY"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Qld-BO-mz1" firstAttribute="leading" secondItem="eZm-sE-i43" secondAttribute="trailing" constant="13" id="FsP-rd-zr0"/>
+                    <constraint firstItem="eZm-sE-i43" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="LT0-Qr-5J5"/>
+                    <constraint firstItem="Qld-BO-mz1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="R9G-ZG-LS0"/>
+                    <constraint firstAttribute="bottom" secondItem="Qld-BO-mz1" secondAttribute="bottom" constant="10" id="UTf-PX-2N3"/>
+                    <constraint firstItem="eZm-sE-i43" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="oNc-IR-BCC"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <point key="canvasLocation" x="68.799999999999997" y="103.89805097451276"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="bg_white" width="191" height="38"/>
+        <image name="img_dashi" width="89" height="80"/>
+    </resources>
+</document>

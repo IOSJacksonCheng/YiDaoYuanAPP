@@ -88,10 +88,13 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
+- (void)clickCheckJiLuDone {
+    [CSUtility goToHistoryChatViewControllerWithOrderId:self.infoModel.order_id];
+}
 - (void)configSubViews {
 //    self.rightNowButton.layer.cornerRadius = 23;
 //    self.rightNowButton.layer.masksToBounds = YES;
-    
+    [self.checkLiaoTianButton addTarget:self action:@selector(clickCheckJiLuDone) forControlEvents:UIControlEventTouchDown];
     self.checkLiaoTianButton.layer.cornerRadius = 23;
     self.checkLiaoTianButton.layer.borderWidth = 1;
     self.checkLiaoTianButton.layer.borderColor = cs999999Color.CGColor;

@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *inputTextField;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 - (IBAction)clickSubmitButtonDone:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *inputTextFieldView;
 
 @end
 
@@ -46,7 +47,9 @@
 }
 
 - (void)configSubViews {
-    
+    if (self.fromShopping) {
+        self.inputTextFieldView.hidden = YES;
+    }
  
     
 }
@@ -88,12 +91,12 @@
     
     if (self.fromShopping) {
         NSMutableDictionary *para = @{}.mutableCopy;
-        para[@"contact"] = self.inputTextField.text;
-        para[@"describe"] = self.inputTextView.text;
+        para[@"content"] = self.inputTextView.text;
         
         [CSNetManager sendPostRequestWithNeedToken:YES Url:CSURL_Goods_Idea Pameters:para success:^(id  _Nonnull responseObject) {
             if (CSInternetRequestSuccessful) {
                 CustomWrongMessage(@"提交成功");
+                [self.navigationController popViewControllerAnimated:YES];
             }else {
                 CSShowWrongMessage
             }
@@ -108,6 +111,7 @@
 
     [CSNetManager sendPostRequestWithNeedToken:YES Url:CSURL_User_Feedback Pameters:para success:^(id  _Nonnull responseObject) {
         if (CSInternetRequestSuccessful) {
+            [self.navigationController popViewControllerAnimated:YES];
             CustomWrongMessage(@"提交成功");
         }else {
             CSShowWrongMessage

@@ -11,6 +11,7 @@
 #import "CSAreaModel.h"
 #import "MoneyHistoryModel.h"
 
+#import "UserJudgeListModel.h"
 
 #import "MyCollectModel.h"
 #import "DaShiListItemModel.h"
@@ -59,7 +60,91 @@
 
 #import "ReplyDetailModel.h"
 
+#import "CSChatModel.h"
+
 @implementation CSParseManager
++ (NSMutableArray *)getCSChatModelWithResponseObject:(id)result{
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        CSChatModel *model = [CSChatModel new];
+        model.idString = [self handleStringIsNull:array[i][@"id"]];
+        
+        model.type = [self handleStringIsNull:array[i][@"type"]];
+        
+        model.name = [self handleStringIsNull:array[i][@"name"]];
+        
+        
+        model.avatar = [self handleStringIsNull:array[i][@"avatar"]];
+    
+        
+        model.is_reply = [self handleStringIsNull:array[i][@"is_reply"]];
+        
+        
+        model.content = [self handleStringIsNull:array[i][@"content"]];
+        model.ctime = [self handleStringIsNull:array[i][@"ctime"]];
+        model.size = [self handleStringIsNull:array[i][@"size"]];
+
+        
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+    
+    
+    
+    
+}
++ (NSMutableArray *)getUserJudgeListModelWithResponseObject:(id)result{
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        UserJudgeListModel *model = [UserJudgeListModel new];
+        model.evaluation_id = [self handleStringIsNull:array[i][@"evaluation_id"]];
+        
+        model.master_id = [self handleStringIsNull:array[i][@"master_id"]];
+        
+        model.master_name = [self handleStringIsNull:array[i][@"master_name"]];
+        
+        model.grade = [self handleStringIsNull:array[i][@"grade"]];
+        
+        model.avatar = [self handleStringIsNull:array[i][@"avatar"]];
+        
+        model.content = [self handleStringIsNull:array[i][@"content"]];
+        
+        
+        model.order_id = [self handleStringIsNull:array[i][@"order_id"]];
+
+        
+        model.type = [self handleStringIsNull:array[i][@"type"]];
+
+        model.skille = array[i][@"skille"];
+
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+    
+    
+    
+    
+}
 + (NSMutableArray *)getReplyDetailModelWithResponseObject:(id)result{
     if (![result isKindOfClass:[NSArray class]]) {
         CSLog(@"\n%s数据错误\n",__func__);
@@ -1430,12 +1515,12 @@ model.icon = [self handleStringIsNull:array[i][@"icon"]];
         
         
         
-        subModel.etime = [self handleStringIsNull:array[i][@"etime"]];
-        subModel.name = [self handleStringIsNull:array[i][@"name"]];
-        subModel.suit = [self handleStringIsNull:array[i][@"suit"]];
-        subModel.bless = [self handleStringIsNull:array[i][@"bless"]];
-        subModel.intro = [self handleStringIsNull:array[i][@"intro"]];
-        subModel.icon = [self handleStringIsNull:array[i][@"icon"]];
+        subModel.etime = [self handleStringIsNull:array[i][@"lamp"][@"etime"]];
+        subModel.name = [self handleStringIsNull:array[i][@"lamp"][@"name"]];
+        subModel.suit = [self handleStringIsNull:array[i][@"lamp"][@"suit"]];
+        subModel.bless = [self handleStringIsNull:array[i][@"lamp"][@"bless"]];
+        subModel.intro = [self handleStringIsNull:array[i][@"lamp"][@"intro"]];
+        subModel.icon = [self handleStringIsNull:array[i][@"lamp"][@"icon"]];
         model.lampModel = subModel;
         [mutableArray addObject:model];
         
@@ -1512,6 +1597,10 @@ model.icon = [self handleStringIsNull:array[i][@"icon"]];
         model.ctime = [self handleStringIsNull:array[i][@"ctime"]];
 
         model.money = [self handleStringIsNull:array[i][@"coin"]];
+        if (csCharacterIsBlank(model.money)) {
+            model.money  = [self handleStringIsNull:array[i][@"money"]];
+        }
+        
         model.RMB = [self handleStringIsNull:array[i][@"price"]];
         model.sales = [self handleStringIsNull:array[i][@"discount"]];
         if (csCharacterIsBlank(model.sales)) {

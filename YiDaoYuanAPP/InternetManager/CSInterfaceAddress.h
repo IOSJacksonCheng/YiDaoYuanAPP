@@ -88,6 +88,8 @@
 #define CSURL_qa_reply @"portal/qa/reply"
 #define CSURL_consult_cancel @"portal/consult/cancel"
 #define CSURL_Portal_Re @"portal/master/rec"
+#define CSURL_Portal_consult_chat_msg @"portal/consult/chat_msg"
+#define CSURL_Portal_consult_reply @"portal/consult/reply"
 #define CSURL_Index_Bask @"portal/index/bask"
 #define CSURL_Portal_City @"portal/area/city"
 #define CSURL_Portal_Hot @"portal/area/hot"
@@ -99,7 +101,7 @@
 #define CSURL_portal_Index_evaluation @"portal/index/evaluation"
 
 #define CSURL_portal_master @"portal/master"
-
+#define CSURL_portal_msg_unread @"portal/msg/unread"
 #define CSURL_portal_mcenter_consultinfo @"portal/mcenter/consultinfo"
 
 #define CSURL_share_index @"portal/share/index"
@@ -114,6 +116,8 @@
 #define CSURL_Portal_master_condition @"portal/master/condition"
 #define CSURL_Portal_consult_price @"portal/consult/price"
 #define CSURL_Portal_master_evaluate @"portal/master/evaluate"
+
+#define CSURL_Portal_user_evaluation @"portal/user/evaluation"
 #define CSURL_Portal_master_avgevaluate @"portal/master/avgevaluate"
 #define CSURL_Portal_user_favorites_add @"user/favorites/add"
 #define CSURL_Portal_user_favorites_unset @"user/favorites/unset"
@@ -216,4 +220,8 @@
 #define CSURL_forum_index @"portal/forum/index"
 #define CSURL_forum_comment_list @"portal/forum/comment_list"
 #define CSURL_forum_topic_comment @"portal/forum/topic_comment"
+#define CSURL_Portal_consult_chat @"portal/consult/chat"
+#define CSURL_user_upload_chat @"user/upload/chat"
+
+#define CSURL_portal_consecrate_bgmusic @"portal/consecrate/bgmusic"
 #endif /* CSInterfaceAddress_h */

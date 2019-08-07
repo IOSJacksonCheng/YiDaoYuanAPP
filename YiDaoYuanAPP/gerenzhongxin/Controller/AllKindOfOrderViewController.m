@@ -561,8 +561,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ConsultModel *model = [self getCurrentModel:indexPath.row];
     self.currentUserModel = model;
+    if (self.currentType == DaShiDuanHuiDaType) {
+        if (model.status.intValue == 10) {
+            
+            UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            JinXinZhongDetailViewController *new = [mainStoryboard instantiateViewControllerWithIdentifier:@"JinXinZhongDetailViewController"];
+            new.order_id = model.order_id;
+            new.hideTextField = YES;
+            [[CSUtility getCurrentViewController].navigationController pushViewController:new animated:YES
+             ];
 
-    if (self.currentType == DaShiDuanZiXunType) {
+        }
+    }else if (self.currentType == DaShiDuanZiXunType) {
         
         if (model.status.intValue == 10) {
              UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];            DaShiDuanYiWanChengDetailViewController *new = [mainStoryboard instantiateViewControllerWithIdentifier:CSCellName(DaShiDuanYiWanChengDetailViewController)];
@@ -596,7 +606,12 @@
             
             [self performSegueWithIdentifier:@"ConsultYiWanChengViewController" sender:self];
         } else if (model.status.integerValue == 1) {
-UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];            SureOrderWriteMessageViewController *new = [mainStoryboard instantiateViewControllerWithIdentifier:CSCellName(SureOrderWriteMessageViewController)];
+
+            
+            UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            
+            SureOrderWriteMessageViewController *new = [mainStoryboard instantiateViewControllerWithIdentifier:CSCellName(SureOrderWriteMessageViewController)];
+           
             DaShiOrderInfoModel *newmodel = [DaShiOrderInfoModel new];
             newmodel.order_id = model.order_id;
             newmodel.master_name = model.name;

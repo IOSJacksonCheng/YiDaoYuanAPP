@@ -151,6 +151,9 @@
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
+    if (!self.showTitleView) {
+        return;
+    }
 //     GoToJudgeJudgeModel *model = self.listArray[indexPath.row];
     self.currentIndex = indexPath.row;
     UIAlertController *alertSheet = [UIAlertController alertControllerWithTitle:@"请选择图片来源" message:nil preferredStyle:UIAlertControllerStyleActionSheet];

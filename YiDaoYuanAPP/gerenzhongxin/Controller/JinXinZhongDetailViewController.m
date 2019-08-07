@@ -26,6 +26,8 @@
 @property (nonatomic, strong) DaShiOrderInfoModel *infomodel;
 
 @property (nonatomic, strong) NSMutableArray *listArray;
+@property (weak, nonatomic) IBOutlet UIView *bottomView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewBottomConstraint;
 
 
 @end
@@ -90,6 +92,12 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 - (void)configSubViews {
+    
+    if (self.hideTextField) {
+        self.bottomView.hidden = YES;
+        self.tableViewBottomConstraint.constant = 0;
+    }
+    
     if (CS_UserIsMaster) {
         self.rebackTextField.placeholder = @"回复用户";
     }

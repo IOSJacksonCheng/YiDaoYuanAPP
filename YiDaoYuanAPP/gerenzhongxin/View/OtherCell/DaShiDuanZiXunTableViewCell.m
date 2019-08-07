@@ -167,13 +167,35 @@ NSString *dashiyiwancheng = @"3";
     
     return button;
 }
-- (void)goToChatView {
-    EasyUIChatViewController *new =  [[EasyUIChatViewController alloc] initWithConversationChatter:[NSString stringWithFormat:@"0%@",self.model.order_id] conversationType:EMConversationTypeChat];;
+- (void)goToRecordChatTime {
     
+    
+    NSMutableDictionary *para = @{}.mutableCopy;
+    para[@"order_id"] = self.model.order_id;;
+    [CSNetManager sendPostRequestWithNeedToken:YES Url:CSURL_Portal_consult_reply Pameters:para success:^(id  _Nonnull responseObject) {
+        if (CSInternetRequestSuccessful) {
+            CSLog(@"chenggong记录大师回复时间");
+
+        }else {
+            CSLog(@"失败记录大师回复时间");
+
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSLog(@"失败记录大师回复时间");
+    }];
+    
+}
+- (void)goToChatView {
+    
+    [self goToRecordChatTime];
+    
+    EasyUIChatViewController *new =  [[EasyUIChatViewController alloc] initWithConversationChatter:[NSString stringWithFormat:@"o%@",self.model.order_id] conversationType:EMConversationTypeChat];;
     
     new.name = self.model.user_nickname;
     
     new.avater = self.model.avatar;
+    new.order_id = self.model.order_id;
+    new.isDaShi = YES;
     
     [[CSUtility getCurrentViewController].navigationController pushViewController:new animated:YES];
     

@@ -12,7 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ChatRightTableViewCell : UITableViewCell
 @property (nonatomic, strong) ChatModel *model;
-
+@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @end
 
 NS_ASSUME_NONNULL_END

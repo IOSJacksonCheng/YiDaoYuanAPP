@@ -45,9 +45,17 @@
     self.csGoodsArray = @[].mutableCopy;
     
     self.itemArray = @[].mutableCopy;
+    [self sendGetRequest];
+}
+- (void)sendGetRequest {
     [self getNewData];
     [self getHotData];
     [self getItemArray];
+    if (self.tableView.mj_header.isRefreshing) {
+        [self.tableView.mj_header endRefreshing];
+    }
+
+    
 }
 - (void)getItemArray {
     NSMutableDictionary *para = @{}.mutableCopy;
@@ -101,6 +109,8 @@
       [self.tableView registerNib:[UINib nibWithNibName:CSCellName(JieYuanJiaTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(JieYuanJiaTableViewCell)];
     
        [self.tableView registerNib:[UINib nibWithNibName:CSCellName(ZJZXBannerTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(ZJZXBannerTableViewCell)];
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(sendGetRequest)];
 }
 
 - (void)configSubViews {

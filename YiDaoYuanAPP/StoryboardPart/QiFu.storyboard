@@ -458,11 +458,11 @@
                                     <constraint firstAttribute="height" constant="83" id="m6F-M8-ajY"/>
                                 </constraints>
                             </imageView>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_deng" translatesAutoresizingMaskIntoConstraints="NO" id="Dt3-KJ-YbV">
-                                <rect key="frame" x="0.0" y="191" width="101" height="117"/>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_deng" translatesAutoresizingMaskIntoConstraints="NO" id="Dt3-KJ-YbV">
+                                <rect key="frame" x="0.0" y="191" width="80" height="117"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="117" id="2fw-2S-iDl"/>
-                                    <constraint firstAttribute="width" constant="101" id="qdC-Cq-kR3"/>
+                                    <constraint firstAttribute="width" constant="80" id="qdC-Cq-kR3"/>
                                 </constraints>
                             </imageView>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_kongpan" translatesAutoresizingMaskIntoConstraints="NO" id="mM0-dA-qMg">
@@ -868,6 +868,26 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qvl-r9-lwM">
+                                <rect key="frame" x="0.0" y="139" width="375" height="528"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JdI-g8-nnl">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="eib-kP-9Ir">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -875,10 +895,14 @@
                             <constraint firstItem="byz-Sb-E8g" firstAttribute="bottom" secondItem="gP0-Ro-V3K" secondAttribute="bottom" id="38h-l6-0PR"/>
                             <constraint firstItem="ICI-bq-CTo" firstAttribute="leading" secondItem="7Ln-hv-G7k" secondAttribute="leading" id="5Ou-Ug-3Bq"/>
                             <constraint firstItem="5g5-eX-ayX" firstAttribute="leading" secondItem="7Ln-hv-G7k" secondAttribute="leading" id="8om-qq-42E"/>
+                            <constraint firstItem="7Ln-hv-G7k" firstAttribute="trailing" secondItem="qvl-r9-lwM" secondAttribute="trailing" id="IaD-TD-jRL"/>
+                            <constraint firstItem="qvl-r9-lwM" firstAttribute="leading" secondItem="7Ln-hv-G7k" secondAttribute="leading" id="OZs-lr-vzm"/>
                             <constraint firstItem="7Ln-hv-G7k" firstAttribute="trailing" secondItem="ICI-bq-CTo" secondAttribute="trailing" id="RtD-Ks-BDH"/>
+                            <constraint firstItem="qvl-r9-lwM" firstAttribute="top" secondItem="gP0-Ro-V3K" secondAttribute="bottom" id="SMU-Lg-RAg"/>
                             <constraint firstItem="7Ln-hv-G7k" firstAttribute="bottom" secondItem="ICI-bq-CTo" secondAttribute="bottom" id="Wpf-pQ-EtD"/>
                             <constraint firstItem="gP0-Ro-V3K" firstAttribute="leading" secondItem="7Ln-hv-G7k" secondAttribute="leading" constant="33" id="X2p-2W-T39"/>
                             <constraint firstItem="7Ln-hv-G7k" firstAttribute="trailing" secondItem="byz-Sb-E8g" secondAttribute="trailing" constant="36" id="Xii-pO-xWV"/>
+                            <constraint firstItem="7Ln-hv-G7k" firstAttribute="bottom" secondItem="qvl-r9-lwM" secondAttribute="bottom" id="Yg5-5F-9dG"/>
                             <constraint firstItem="ICI-bq-CTo" firstAttribute="top" secondItem="7Ln-hv-G7k" secondAttribute="top" id="bjj-i3-lnj"/>
                             <constraint firstItem="7Ln-hv-G7k" firstAttribute="bottom" secondItem="5g5-eX-ayX" secondAttribute="bottom" id="iOg-aC-Wo1"/>
                             <constraint firstItem="gP0-Ro-V3K" firstAttribute="top" secondItem="7Ln-hv-G7k" secondAttribute="top" constant="40" id="u3T-qx-jqZ"/>
@@ -889,6 +913,7 @@
                     <connections>
                         <outlet property="collectionView" destination="5g5-eX-ayX" id="dfR-jy-Hdq"/>
                         <outlet property="mingdengButton" destination="AxG-bS-3yG" id="cgD-Vd-el8"/>
+                        <outlet property="myWishCollectionView" destination="qvl-r9-lwM" id="rvy-fU-Nze"/>
                         <outlet property="mywishButton" destination="urJ-cZ-lwX" id="XqB-1t-JUV"/>
                         <outlet property="wodeyuanwangImageView" destination="Fjy-pB-td1" id="aAE-hl-POg"/>
                         <outlet property="xuanzemingdengImageView" destination="ppC-wY-aPA" id="SoN-NJ-p92"/>
@@ -899,7 +924,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8E3-AR-54s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="948" y="1144.6776611694154"/>
+            <point key="canvasLocation" x="887" y="1265"/>
         </scene>
         <!--Ming Deng Explain View Controller-->
         <scene sceneID="wwB-rN-GUV">

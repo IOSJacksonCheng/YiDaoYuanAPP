@@ -79,8 +79,11 @@ typedef NS_ENUM(NSInteger, ListType) {
     [self changeButtonStatusWithTag:sender.tag];
 }
 - (void)sendGetRequest {
+   
     NSMutableDictionary *para = @{}.mutableCopy;
+   
     para[@"rankType"] = self.recordRankType;
+   
     [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_portal_Master_Rank Pameters:para success:^(id  _Nonnull responseObject) {
         
         if (CSInternetRequestSuccessful) {
@@ -238,7 +241,10 @@ typedef NS_ENUM(NSInteger, ListType) {
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    FuGouBangModel *model = [self getCurrentModel:indexPath];
+
     DaShiDetailViewController *new = [mainStoryboard instantiateViewControllerWithIdentifier:@"DaShiDetailViewController"];
+    new.passMasterID = model.master_id;
     [self.navigationController pushViewController:new animated:YES];
 }
 @end

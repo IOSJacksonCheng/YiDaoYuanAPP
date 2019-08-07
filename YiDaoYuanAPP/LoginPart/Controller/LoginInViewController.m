@@ -82,7 +82,7 @@
         CustomWrongMessage(@"请填写完整信息")
         return;
     }
-    
+   
     NSMutableDictionary *para = @{}.mutableCopy;
     
 //    if ([self.phoneTextField.text isEqualToString:@"1"]) {
@@ -93,7 +93,7 @@
 //        para[@"username"] = @"18320760679";
 //        para[@"password"] = @"123123";
 //    }
-//
+
     para[@"username"] = self.phoneTextField.text;
     para[@"password"] = self.secureTextField.text;
     para[@"device_type"] = @"iphone";

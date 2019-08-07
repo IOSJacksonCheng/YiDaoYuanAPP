@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ChatJudgeTableViewCell : UITableViewCell
-
+@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *csimageView;
 @end
 
 NS_ASSUME_NONNULL_END

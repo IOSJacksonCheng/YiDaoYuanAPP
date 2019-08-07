@@ -21,6 +21,9 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_kecheng" translatesAutoresizingMaskIntoConstraints="NO" id="L6n-Wj-Kfi">
                         <rect key="frame" x="19" y="10" width="282" height="163"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="163" id="dxn-mG-W64"/>
+                        </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="课程内容介绍课程内容介绍课程内容介绍课程内容介绍课程内容介" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="II0-BL-3tb">
                         <rect key="frame" x="19" y="193" width="274" height="36"/>

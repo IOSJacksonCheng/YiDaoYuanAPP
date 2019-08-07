@@ -15,7 +15,6 @@
 #import "ShopSureOrderPayMoneyWayViewController.h"
 #import "ShoppingHaveFinishedViewController.h"
 #import "ShoppingWaitReceiveGoodsViewController.h"
-#import "EasyUIChatViewController.h"
 typedef NS_ENUM(NSInteger, CSCellType) {
     DaiFuKuanCSCellType = 0,
     DaiFaHuoCSCellType = 1,

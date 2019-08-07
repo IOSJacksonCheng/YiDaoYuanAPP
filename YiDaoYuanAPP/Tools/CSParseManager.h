@@ -62,6 +62,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSMutableArray *)getpingjiaListModelWithResponseObject:(id)result;
 + (NSMutableArray *)getMoneyHistoryModelWithResponseObject:(id)result;
 + (NSMutableArray *)getReplyDetailModelWithResponseObject:(id)result;
++ (NSMutableArray *)getUserJudgeListModelWithResponseObject:(id)result;
++ (NSMutableArray *)getCSChatModelWithResponseObject:(id)result;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -55,11 +55,9 @@
     
     [CSNetManager sendPostRequestWithNeedToken:YES Url:CSURL_Portal_Consecrate_Supplication Pameters:para success:^(id  _Nonnull responseObject) {
         if (CSInternetRequestSuccessful) {
-            if (self.fromDeng) {
-                [self sendDianDengRequest:[NSString stringWithFormat:@"%@",CSGetResult[@"supplication_id"]]];
-            } else {
+          
             [self.navigationController popToRootViewControllerAnimated:YES];
-            }
+           
         }else {
             CSShowWrongMessage
         }
@@ -70,25 +68,7 @@
 
     
 }
-- (void)sendDianDengRequest:(NSString *)supplicationId {
-    
-    NSMutableDictionary *para = @{}.mutableCopy;
-    
-    para[@"supplication_id"] = supplicationId;
-    para[@"price_id"] = self.passPriceId;
 
-    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Consecrate_Addlamp Pameters:para success:^(id  _Nonnull responseObject) {
-        
-        if (CSInternetRequestSuccessful) {
-            [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",CSGetResult[@"coin"]] forKey:@"CS_Coin"];
-            [self.navigationController popViewControllerAnimated:YES];
-        }else {
-            CSShowWrongMessage
-        }
-    } failure:^(NSError * _Nonnull error) {
-        CSInternetFailure
-    }];
-}
 - (void)viewDidLoad {
     
     [super viewDidLoad];

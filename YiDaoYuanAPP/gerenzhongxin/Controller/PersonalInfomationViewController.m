@@ -56,7 +56,11 @@
     F3f3f3NavigationBarColor
     
     self.title = @"个人信息";
+    UIColor *whiteColor = [UIColor colorWithHexString:@"333333"];
     
+    NSDictionary *dic = [NSDictionary dictionaryWithObject:whiteColor forKey:NSForegroundColorAttributeName];
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:dic];
 }
 
 #pragma mark --UITableViewDelegate/DataSource
@@ -114,6 +118,10 @@
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.row == 2) {
+        return;
+    }
     NSString *title = self.listArray[indexPath.row];
     
     if ([title isEqualToString:@"个人信息"]) {

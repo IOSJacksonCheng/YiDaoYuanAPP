@@ -201,6 +201,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
+        
         self.currentClickIndex = indexPath.row + 1;
         [self.tableView reloadData];
     }
@@ -265,7 +266,15 @@
 - (void)payMoneyWithOrderId:(NSString *)orderId {
     NSMutableDictionary *para = @{}.mutableCopy;
     para[@"order_id"] = orderId;
-    para[@"payType"] = [NSString stringWithFormat:@"%ld",self.currentClickIndex];
+    if (self.currentClickIndex == 4) {
+ para[@"payType"] = @"3";
+        
+    } else if (self.currentClickIndex == 5) {
+        para[@"payType"] = @"4";
+    } else {
+        para[@"payType"] = [NSString stringWithFormat:@"%ld",self.currentClickIndex];
+    }
+   
     para[@"orderType"] = @"1";
     
     [CSNetManager sendPostRequestWithNeedToken:YES Url:CSURL_Index_Createpay Pameters:para success:^(id  _Nonnull responseObject) {
@@ -295,10 +304,10 @@
          [self goToSuccessViewController];
         
         
-    } else if (self.currentClickIndex == 3) {
+    } else if (self.currentClickIndex == 4) {
         
         [self getAlipayPay:result];
-    } else if (self.currentClickIndex == 4) {
+    } else if (self.currentClickIndex == 5) {
         
         [self getWeiXinPay:result];
         
@@ -413,7 +422,17 @@
     
     NSMutableDictionary *para = @{}.mutableCopy;
     para[@"order_id"] = self.order_id;
-    para[@"payType"] = [NSString stringWithFormat:@"%ld",self.currentClickIndex];
+   
+    
+    if (self.currentClickIndex == 4) {
+        para[@"payType"] = @"3";
+        
+    } else if (self.currentClickIndex == 5) {
+        para[@"payType"] = @"4";
+    } else {
+        para[@"payType"] = [NSString stringWithFormat:@"%ld",self.currentClickIndex];
+    }
+    
     para[@"orderType"] = @"0";
     
     [CSNetManager sendPostRequestWithNeedToken:YES Url:CSURL_Index_Createpay Pameters:para success:^(id  _Nonnull responseObject) {

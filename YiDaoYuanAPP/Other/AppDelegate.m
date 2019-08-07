@@ -56,11 +56,11 @@ NSString * const HuanXinApnsCertName = @"";
     } else {
         CSLog(@"注册微信支付失败");
     }
-    if (!CSIsLogin) {
-        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
-        
-        self.window.rootViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"CSLoginNavigationController"];
-    }
+//    if (!CSIsLogin) {
+//        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+//        
+//        self.window.rootViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"CSLoginNavigationController"];
+//    }
     return YES;
 }
 

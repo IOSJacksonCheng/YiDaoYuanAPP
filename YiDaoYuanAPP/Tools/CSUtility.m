@@ -10,7 +10,8 @@
 #import "CSCommonTabBarController.h"
 #import "AppDelegate.h"
 #import "ShopTabBarController.h"
-#import "EasyUIChatViewController.h"
+#import "KefuChatViewController.h"
+#import "HistoryEasyChatViewController.h"
 #define LOAD_LABEL                     NSLocalizedString(@"登录过期，请重新登录",)
 @implementation CSUtility
 {
@@ -208,12 +209,12 @@
         }else {
             update(NO);
 
-            CSShowWrongMessage
+            
         }
     } failure:^(NSError * _Nonnull error) {
         update(NO);
 
-        CSInternetFailure
+        
     }];
 }
 + (UIImage *)csImageWithColor:(UIColor *)color
@@ -320,10 +321,8 @@
     
 }
 + (void)shoppinggoToChatView {
-    EasyUIChatViewController *new = [[EasyUIChatViewController alloc] initWithConversationChatter:@"admin" conversationType:EMConversationTypeChat];
+    KefuChatViewController *new = [[KefuChatViewController alloc] initWithConversationChatter:@"admin" conversationType:EMConversationTypeChat];
     
-    new.name = @"客服";
-    new.isKefu = YES;
     [[CSUtility shoppingGetCurrentViewController].navigationController pushViewController:new animated:YES];
 }
 + (void)goToChatKefuViewController {
@@ -365,11 +364,127 @@
 
 + (void)goToChatView {
     
-    EasyUIChatViewController *new = [[EasyUIChatViewController alloc] initWithConversationChatter:@"admin" conversationType:EMConversationTypeChat];
-    
-    new.name = @"客服";
+     KefuChatViewController *new = [[KefuChatViewController alloc] initWithConversationChatter:@"admin" conversationType:EMConversationTypeChat];
     
     [[CSUtility getCurrentViewController].navigationController pushViewController:new animated:YES];
     
+}
++ (void)goToHistoryChatViewControllerWithOrderId:(NSString *)orderId {
+    
+//    if (![EMClient sharedClient].isLoggedIn) {
+//        [[EMClient sharedClient] loginWithUsername:[NSString stringWithFormat:@"o%@",orderId] password:@"123456" completion:^(NSString *aUsername, EMError *aError) {
+//            if (aError) {
+//                CSLog(@"环信登录失败:%@",aError.errorDescription);
+//                CustomWrongMessage(@"发送错误，请稍后再试");
+//            } else {
+//                HistoryEasyChatViewController *new = [HistoryEasyChatViewController new];
+//
+//                new.orderId = orderId;
+//
+//                [[CSUtility getCurrentViewController].navigationController pushViewController:new animated:YES];                CSLog(@"环信登录成功！");
+//            }
+//        }];
+//    } else {
+//        HistoryEasyChatViewController *new = [HistoryEasyChatViewController new];
+//
+//        new.orderId = orderId;
+//
+//        [[CSUtility getCurrentViewController].navigationController pushViewController:new animated:YES];
+//    }
+    
+    
+    HistoryEasyChatViewController *new = [HistoryEasyChatViewController new];
+    
+    new.orderId = orderId;
+    
+    [[CSUtility getCurrentViewController].navigationController pushViewController:new animated:YES];    
+    
+    
+}
+
++ (void)sendVoiceMessageWithLocalPath:(NSString *)localPath duration:(NSInteger)duration WithOrderId:(nonnull NSString *)orderid{
+
+
+    [CSNetManager uploadVoiceFileWithImage:localPath WithUrl:CSURL_user_upload_chat success:^(id  _Nonnull responseObject) {
+
+        if (CSInternetRequestSuccessful) {
+
+            NSMutableDictionary *para = @{}.mutableCopy;
+            
+            para[@"order_id"] = orderid;
+            
+            if (CS_UserIsMaster) {
+                para[@"is_reply"] = @"1";
+                
+            }else {
+                para[@"is_reply"] = @"0";
+                
+            }
+            //文字0 图片1 语音 2
+            para[@"type"] =  @"2";
+            
+            para[@"size"] = [NSString stringWithFormat:@"%ld",(long)duration];
+
+            para[@"content"] = [NSString stringWithFormat:@"%@",CSGetResult[@"path"]];
+            
+            [CSNetManager sendPostRequestWithNeedToken:YES Url:CSURL_Portal_consult_chat Pameters:para success:^(id  _Nonnull responseObject) {
+                
+            } failure:^(NSError * _Nonnull error) {
+                
+            }];
+        }
+
+    } failure:^(NSError * _Nonnull error) {
+
+    }];
+
+
+    CSLog(@"环信语音:%@", localPath);
+}
++ (void)sendTextMessage:(NSString *)text WithOrderId:(nonnull NSString *)orderid{
+    //文字0 图片1 语音 2
+   
+
+    [[self alloc] sendPostRequestWityType:@"0" WithContent:text WithOrderId:orderid];
+    
+
+}
++ (void)sendImageMessage:(UIImage *)image WithOrderId:(nonnull NSString *)orderid{
+    
+    [CSNetManager uploadImageWithImage:image WithUrl:CSURL_user_upload_chat success:^(id  _Nonnull responseObject) {
+        if (CSInternetRequestSuccessful) {
+            
+            [[self alloc] sendPostRequestWityType:@"1" WithContent:[NSString stringWithFormat:@"%@",CSGetResult[@"path"]] WithOrderId:orderid];
+
+        }
+
+    } failure:^(NSError * _Nonnull error) {
+
+    }];
+
+}
+- (void)sendPostRequestWityType:(NSString *)type WithContent:(NSString *)content WithOrderId:(NSString *)orderId{
+
+    NSMutableDictionary *para = @{}.mutableCopy;
+
+    para[@"order_id"] = orderId;
+
+    if (CS_UserIsMaster) {
+        para[@"is_reply"] = @"1";
+
+    }else {
+        para[@"is_reply"] = @"0";
+
+    }
+    //文字0 图片1 语音 2
+    para[@"type"] =  type;
+
+    para[@"content"] = content;
+
+    [CSNetManager sendPostRequestWithNeedToken:YES Url:CSURL_Portal_consult_chat Pameters:para success:^(id  _Nonnull responseObject) {
+
+    } failure:^(NSError * _Nonnull error) {
+
+    }];
 }
 @end

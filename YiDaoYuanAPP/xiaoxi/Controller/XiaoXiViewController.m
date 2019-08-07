@@ -23,6 +23,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self configNavigationBar];
+
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -165,6 +166,9 @@
 }
 
 - (void)getNewData {
+    
+    [self getNoRead];
+
     NSMutableDictionary *para = @{}.mutableCopy;
     
     self.page = 1;
@@ -223,5 +227,27 @@
     if (self.tableview.mj_footer.isRefreshing) {
         [self.tableview.mj_footer endRefreshing];
     }
+}
+- (void)getNoRead {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_portal_msg_unread Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            NSString *badgeNum =[NSString stringWithFormat:@"%@",CSGetResult[@"count"]];
+            UIViewController *tController = [self.tabBarController.viewControllers objectAtIndex:2];
+            int badgeValue = [badgeNum intValue];
+            if (badgeValue >0) {
+                tController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d",badgeValue];
+            }else{
+                tController.tabBarItem.badgeValue = nil;
+            }
+            
+            
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
 }
 @end

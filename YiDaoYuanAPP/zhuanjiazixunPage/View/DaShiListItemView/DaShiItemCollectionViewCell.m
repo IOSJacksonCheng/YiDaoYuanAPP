@@ -38,17 +38,19 @@
        
         
        
-        self.csTitleLabel.textColor = csBlueColor;
+        self.csTitleLabel.textColor = [UIColor colorWithHexString:@"#42231E"];
        
         self.layer.cornerRadius = 5;
         
-        self.layer.borderColor = csBlueColor.CGColor;
-        
+        self.layer.borderColor = [UIColor colorWithHexString:@"#42231E"].CGColor;
+        self.csTitleLabel.textColor = UIColor.whiteColor;
         self.layer.borderWidth = 1;
-        
+        self.backgroundColor = [UIColor colorWithHexString:@"#42231E"];
+
     } else {
        
-       
+        self.backgroundColor = UIColor.clearColor;
+
         self.csTitleLabel.textColor = [UIColor colorWithHexString:@"#42231E"];
         
         self.layer.cornerRadius = 5;

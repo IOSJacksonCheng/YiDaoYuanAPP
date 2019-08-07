@@ -167,7 +167,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     LunTanModel *model = self.listArray[indexPath.section];
-    self.recordId = model.forum_id;
+    self.recordId = model;
     [self performSegueWithIdentifier:@"LunTanMoreDetailViewController" sender:self];
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

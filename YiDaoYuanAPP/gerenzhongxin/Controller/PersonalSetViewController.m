@@ -19,8 +19,8 @@
 @property (nonatomic, strong) NSString *recordTitle;
 @property (nonatomic, strong) NSString *recordUrl;
 
-@property (weak, nonatomic) IBOutlet UIView *disappearView;
-
+@property (weak, nonatomic) IBOutlet UIButton *quitButton;
+- (IBAction)clickQuitButtonDone:(id)sender;
 @end
 
 @implementation PersonalSetViewController
@@ -32,7 +32,7 @@
 }
 - (NSMutableArray *)listArray {
     if (!_listArray) {
-        _listArray = @[@"个人信息",@"新手指南",@"分享APP", @"退出登录"].mutableCopy;
+        _listArray = @[@"个人信息",@"新手指南",@"关于我们",@"分享APP",].mutableCopy;
     }
     return _listArray;
 }
@@ -60,6 +60,7 @@
    
     self.tableView.rowHeight = 66;
     
+    
 }
 
 - (void)clickdisappearView {
@@ -67,14 +68,15 @@
 }
 
 - (void)configSubViews {
-    
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickdisappearView)];
-    
-    tap.numberOfTapsRequired = 1;
-    
-    tap.numberOfTouchesRequired = 1;
-    
-    [self.disappearView addGestureRecognizer:tap];
+    self.quitButton.layer.cornerRadius = 5;
+    self.quitButton.layer.masksToBounds = YES;
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickdisappearView)];
+//
+//    tap.numberOfTapsRequired = 1;
+//
+//    tap.numberOfTouchesRequired = 1;
+//
+//    [self.disappearView addGestureRecognizer:tap];
 }
 
 - (void)configNavigationBar {
@@ -114,6 +116,7 @@
     }else if ([title isEqualToString:@"关于我们"]) {
         
         self.recordUrl = [NSString stringWithFormat:@"%@%@", BASE_URL, CSURL_About_Us];
+      
         self.recordTitle = @"关于我们";
         
  [self performSegueWithIdentifier:@"WkWebViewViewController" sender:self];
@@ -165,5 +168,21 @@
         new.passUrl = self.recordUrl;
 
     }
+}
+- (IBAction)clickQuitButtonDone:(id)sender {
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"确定退出登录吗？" preferredStyle:UIAlertControllerStyleAlert];
+    //2.创建界面上的按钮
+    UIAlertAction *actionYes = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self quitLogin];
+    }];
+    UIAlertAction *actionNo = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    //3.将按钮添加到AlertController中
+    [alert addAction:actionNo];
+    [alert addAction:actionYes];
+    //5.显示AlertController
+    [[CSUtility getCurrentViewController] presentViewController:alert animated:YES completion:nil];
 }
 @end

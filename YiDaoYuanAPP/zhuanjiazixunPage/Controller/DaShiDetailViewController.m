@@ -62,11 +62,13 @@
     [self getDaShiInfomation];
     
     [self getServiceRequest];
+    
+    [self getJudgeList];
 }
 - (void)getJudgeList {
     
     NSMutableDictionary *para = @{}.mutableCopy;
-    para[@"user_id"] = self.passMasterID;
+    para[@"master_id"] = self.passMasterID;
     
     para[@"type"] = @"1";
 
@@ -318,7 +320,10 @@
         self.passitem_id = model.item_id;
         [self.mainTableView reloadData];
     }else if (indexPath.section == 2 && indexPath.row == 0) {
-        
+        if (self.seviceArray.count <= 3) {
+            CustomWrongMessage(@"暂无更多服务");
+            return;
+        }
         self.chooseMore = !self.chooseMore;
         [self.mainTableView reloadData];
     }

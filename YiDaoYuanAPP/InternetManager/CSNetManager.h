@@ -21,6 +21,10 @@ typedef void(^failureBlock)(NSError *error);
 /** 发送Delete请求 */
 + (void)sendDeleteRequestWithNeedToken:(BOOL)needToken Url:(NSString *)urlStr Pameters:(NSMutableDictionary *)paramDic success:(successBlock)success failure:(failureBlock)failure;
 + (void)sendPostForUploadImageWithUrl:(NSString *)urlStr headerImageFilePath:(NSString *)filePath fileName:(NSString *)fileName parpameters:(NSDictionary *)paramDic success:(successBlock)success failure:(failureBlock)failure;
++ (void)uploadImageWithImage:(UIImage *)image WithUrl:(NSString *)urlStr success:(successBlock)success failure:(failureBlock)failure;
++ (void)uploadVoiceFileWithImage:(NSString *)path WithUrl:(NSString *)urlStr success:(successBlock)success failure:(failureBlock)failure;
++ (void)sendNoCheckLoginStatusGetRequestWithNeedToken:(BOOL)needToken Url:(NSString *)urlStr Pameters:(NSMutableDictionary *)paramDic success:(successBlock)success failure:(failureBlock)failure;
++ (void)downloadFileWithUrl:(NSString *)url success:(successBlock)success failure:(failureBlock)failure;
 @end
 
 NS_ASSUME_NONNULL_END

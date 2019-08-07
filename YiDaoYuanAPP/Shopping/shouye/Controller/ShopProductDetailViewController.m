@@ -206,14 +206,59 @@
             cell.adImageArray = self.lunboImageArray;
             return cell;
         } else if (indexPath.row == 1) {
-           
             ShopProductTitleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(ShopProductTitleTableViewCell)];
             
             NSString *title = [NSString stringWithFormat:@"%@：%@",self.goods_name, self.intro];
             
             cell.csTitleLabel.text = title;
-            if (self.newspro ||self.best) {
+            
+            if (self.newspro && self.best) {
+                
                
+                
+                if (self.newspro && self.best) {
+                    NSMutableAttributedString * attriStr = [[NSMutableAttributedString alloc] initWithString:title];
+                    
+                    NSTextAttachment *attach = [[NSTextAttachment alloc] init];
+                    
+                    NSMutableDictionary *normalAttributes = [NSMutableDictionary dictionary];
+                    
+                    normalAttributes[NSForegroundColorAttributeName] = UIColor.whiteColor;
+                    
+                    normalAttributes[NSFontAttributeName] = [UIFont fontWithName:@"PingFang-SC-Medium" size: 10];
+                    
+                    attach.image = [CSUtility csImageWithColor:[UIColor colorWithHexString:@"FF8C8C"] size:CGSizeMake(30, 20) text:@"新品" textAttributes:normalAttributes circular:YES];
+                    
+                    
+                    
+                    
+                    attach.bounds = CGRectMake(0, -1, 30, 20);
+                    
+                    [attriStr insertAttributedString:[NSAttributedString attributedStringWithAttachment:attach] atIndex:title.length];
+                    
+                    NSTextAttachment *attach1 = [[NSTextAttachment alloc] init];
+                    
+                    NSMutableDictionary *normalAttributes1 = [NSMutableDictionary dictionary];
+                    
+                    normalAttributes1[NSForegroundColorAttributeName] = UIColor.whiteColor;
+                    
+                    normalAttributes1[NSFontAttributeName] = [UIFont fontWithName:@"PingFang-SC-Medium" size: 10];
+                    
+                    attach1.image = [CSUtility csImageWithColor:[UIColor colorWithHexString:@"FF8C8C"] size:CGSizeMake(30, 20) text:@"热销" textAttributes:normalAttributes1 circular:YES];
+                    
+                    attach1.bounds = CGRectMake(0, -1, 30, 20);
+                    
+                    [attriStr insertAttributedString:[NSAttributedString attributedStringWithAttachment:attach1] atIndex:title.length];
+                    
+                    cell.csTitleLabel.attributedText = attriStr;
+                }
+                
+                
+                
+                
+            } else if (self.newspro ||self.best) {
+                
+                
                 NSMutableAttributedString * attriStr = [[NSMutableAttributedString alloc] initWithString:title];
                
                 NSTextAttachment *attach = [[NSTextAttachment alloc] init];
@@ -253,7 +298,8 @@
         
         ShopDetailWebTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(ShopDetailWebTableViewCell)];
         
-        cell.passUrl = [NSString stringWithFormat:@"%@%@", BASE_URL, CSURL_Site_GoodsInfo];
+        cell.passUrl = [NSString stringWithFormat:@"%@%@&&goods_id=%@", BASE_URL,CSURL_Site_GoodsInfo,self.passID];
+        cell.cellHeight = [NSString stringWithFormat:@"%f",self.wkwebViewHeight];
         cell.csDelegate = self;
         return cell;
         
