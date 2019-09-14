@@ -50,12 +50,12 @@
     if (!_daShiMutableArray) {
         _daShiMutableArray = @[].mutableCopy;
         
-        PersonalModel *model1 = [PersonalModel new];
-        
-        model1.title = @"我的评价";
-        model1.image = @"icon_1_pingjia-1";
-        
-        [_daShiMutableArray addObject:model1];
+//        PersonalModel *model1 = [PersonalModel new];
+//        
+//        model1.title = @"我的评价";
+//        model1.image = @"icon_1_pingjia-1";
+//        
+//        [_daShiMutableArray addObject:model1];
         
 //        PersonalModel *model2 = [PersonalModel new];
 //        model2.title = @"我的问答";
@@ -433,6 +433,20 @@
     }
     return 45;
 }
+- (void)sendGetRequestForDaShiInfomation {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_portal_isapply Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            [self performSegueWithIdentifier:@"DaShiRuZhuViewController" sender:self];
+
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         return;
@@ -448,7 +462,9 @@
     if ([model.title isEqualToString:@"充值"]) {
         [self performSegueWithIdentifier:@"ChongZhiViewController" sender:self];
     } else if ([model.title isEqualToString:@"大师入驻"]) {
-        [self performSegueWithIdentifier:@"DaShiRuZhuViewController" sender:self];
+        
+        [self sendGetRequestForDaShiInfomation];
+        
     } else if ([model.title isEqualToString:@"城市合伙人"]) {
         [self performSegueWithIdentifier:@"ChengShiHeHuoRenViewController" sender:self];
     }else if ([model.title isEqualToString:@"邀请分享"]) {

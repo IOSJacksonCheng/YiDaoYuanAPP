@@ -57,6 +57,8 @@
     self.collectionView.showsHorizontalScrollIndicator = NO;
     self.collectionView.showsVerticalScrollIndicator = NO;
     
+    self.collectionView.backgroundColor = csf5f5f5Color;
+    
     self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getNewData)];
     
     self.collectionView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getMoreData)];
@@ -127,7 +129,7 @@
 - (void)configNavigationBar {
     
     
-    self.title = @"商品分类";
+    self.title = self.passTitle;
     
     WhiteNavigationBarColor
     
@@ -183,7 +185,7 @@
         } else {
             height -= 18;
         }
-        return 237 + height ;
+        return 237 + height + 10;
 }
 
 - (CGFloat)rowMarginInWaterFallLayout:(ManyProductCollectionViewFlowLayout *)waterFallLayout{

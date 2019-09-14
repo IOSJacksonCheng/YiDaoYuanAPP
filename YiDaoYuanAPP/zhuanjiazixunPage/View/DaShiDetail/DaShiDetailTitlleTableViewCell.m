@@ -27,7 +27,14 @@
 @property (weak, nonatomic) IBOutlet UIImageView *twoXingImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *threeXingImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *fourXingImageView;
+@property (weak, nonatomic) IBOutlet UILabel *shanchangLabel;
+@property (weak, nonatomic) IBOutlet UIView *firstLineView;
+@property (weak, nonatomic) IBOutlet UIView *secondLineView;
 @property (weak, nonatomic) IBOutlet UIImageView *fiveXingImageView;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *pingtairenzhengLabelLeftConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *xinjidashiRightLabelConstraint;
+
 @end
 @implementation DaShiDetailTitlleTableViewCell
 
@@ -36,6 +43,11 @@
     // Initialization code
     self.bgView.layer.cornerRadius = 5;
     self.bgView.layer.masksToBounds = YES;
+    
+    self.dashiHeadImageView.layer.cornerRadius = 75 * 0.5;
+    
+    self.dashiHeadImageView.layer.masksToBounds = YES;
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -52,20 +64,49 @@
     
     self.nameLabel.text = model.user_name;
     
-    if (self.model.is_new) {
-        self.rightLabel.hidden = NO;
-        self.rightImageView.hidden = NO;
-    } else {
-        self.rightLabel.hidden = YES;
-        self.rightImageView.hidden = YES;
+    self.shanchangLabel.text = model.speciality;
+    
+   
+    if ((!model.is_new && model.is_auth) || (model.is_new && !model.is_auth)) {
+       
+        if (model.is_new) {
+        
+            self.xinjidashiRightLabelConstraint.constant = -20;
+            
+        } else {
+            self.pingtairenzhengLabelLeftConstraint.constant = -20;
+            
+        }
+        
     }
     
-    if (self.model.is_auth) {
-        self.leftLabel.hidden = NO;
-        self.leftImageView.hidden = NO;
+    
+    if (model.is_new) {
+        
+        self.rightLabel.hidden = NO;
+        
+        self.rightImageView.hidden = NO;
+        
     } else {
+        
+        self.rightLabel.hidden = YES;
+        
+        self.rightImageView.hidden = YES;
+        
+    }
+    
+    if (model.is_auth) {
+        
+        self.leftLabel.hidden = NO;
+        
+        self.leftImageView.hidden = NO;
+        
+    } else {
+        
         self.leftLabel.hidden = YES;
+        
         self.leftImageView.hidden = YES;
+        
     }
     
     self.dingdanshuLabel.text = self.model.order_num;
@@ -73,55 +114,61 @@
     self.pingjunhuifuLabel.text = [NSString stringWithFormat:@"%@分钟",self.model.avg_return];
     
     
-    if (model.skille.count == 0) {
-        
-        self.firstShanChangLabel.text = @"";
-        
-        self.secondShanChangLabel.text = @"";
-        
-        self.thirdShanChangLabel.text = @"";
-        
-    }
+    self.firstShanChangLabel.text = @"";
     
-    if (model.skille.count >= 1) {
+    self.secondShanChangLabel.text = @"";
+    
+    self.thirdShanChangLabel.text = @"";
+    
+    self.firstLineView.hidden = YES;
+    self.secondLineView.hidden = YES;
+    
+    if (model.skille.count == 1) {
         self.firstShanChangLabel.text = [NSString stringWithFormat:@"%@",model.skille[0]];
-    } else {
-        self.secondShanChangLabel.text = @"";
-        
-        self.thirdShanChangLabel.text = @"";
-    }
-    if (model.skille.count >= 2) {
+    } else if (model.skille.count == 2) {
+        self.firstLineView.hidden = NO;
+        self.firstShanChangLabel.text = [NSString stringWithFormat:@"%@",model.skille[0]];
+
         self.secondShanChangLabel.text = [NSString stringWithFormat:@"%@",model.skille[1]];
-    }else {
+    }else if (model.skille.count == 3) {
+        self.firstShanChangLabel.text = [NSString stringWithFormat:@"%@",model.skille[0]];
         
-        self.thirdShanChangLabel.text = @"";
-    }
-    if (model.skille.count >= 3) {
+        self.secondShanChangLabel.text = [NSString stringWithFormat:@"%@",model.skille[1]];
         self.thirdShanChangLabel.text = [NSString stringWithFormat:@"%@",model.skille[2]];
+        self.firstLineView.hidden = NO;
+        self.secondLineView.hidden = NO;
     }
     
-   
+    self.pingFenLabel.text = [NSString stringWithFormat:@"%.1f",model.grade.floatValue];
     
-    
-    
-    self.pingFenLabel.text = model.grade;
     
     if (model.grade.intValue == 0) {
+       
         self.oneXingImageView.image = DotaImageName(@"icon_weishou");
+        
         self.twoXingImageView.image = DotaImageName(@"icon_weishou");
+        
         self.threeXingImageView.image = DotaImageName(@"icon_weishou");
+        
         self.fourXingImageView.image = DotaImageName(@"icon_weishou");
+        
         self.fiveXingImageView.image = DotaImageName(@"icon_weishou");
         
     } else if (model.grade.intValue == 1) {
+        
         self.oneXingImageView.image = DotaImageName(@"icon_collect");
+        
         self.twoXingImageView.image = DotaImageName(@"icon_weishou");
+        
         self.threeXingImageView.image = DotaImageName(@"icon_weishou");
+        
         self.fourXingImageView.image = DotaImageName(@"icon_weishou");
+        
         self.fiveXingImageView.image = DotaImageName(@"icon_weishou");
         
         
     }else if (model.grade.intValue == 2) {
+        
         self.oneXingImageView.image = DotaImageName(@"icon_collect");
         self.twoXingImageView.image = DotaImageName(@"icon_collect");
         self.threeXingImageView.image = DotaImageName(@"icon_weishou");

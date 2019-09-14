@@ -80,7 +80,7 @@
     
    
     CSProductItemModel *model = self.itemMutableArray[indexPath.row];
-    [self.csDelegate passID:model.idString];
+    [self.csDelegate passID:model.idString WithTItle:model.class_name];
     
 }
 - (void)setItemMutableArray:(NSMutableArray *)itemMutableArray {

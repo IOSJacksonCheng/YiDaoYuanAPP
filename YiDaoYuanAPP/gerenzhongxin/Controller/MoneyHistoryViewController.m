@@ -60,7 +60,9 @@ NSString * const YIDAOYUAN = @"易道元";
     [self configNavigationBar];
 }
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
+    
     [self configSubViews];
     
     [self configNavigationBar];
@@ -72,6 +74,7 @@ NSString * const YIDAOYUAN = @"易道元";
     self.listArray = @[].mutableCopy;
     
     [self getNewData];
+    
 }
 - (void)getNewData {
     NSMutableDictionary *para = @{}.mutableCopy;
@@ -83,6 +86,9 @@ NSString * const YIDAOYUAN = @"易道元";
     } else {
         para[@"type"] = @"1";
 
+    }
+    if (self.currentType == YuEMoneyType && CS_UserIsMaster && self.clickLeftButton) {
+        para[@"type"] = @"3";
     }
     para[@"page"] = [NSString stringWithFormat:@"%d",self.page];
     [CSNetManager sendGetRequestWithNeedToken:YES Url:self.recordUrl Pameters:para success:^(id  _Nonnull responseObject) {
@@ -146,14 +152,21 @@ NSString * const YIDAOYUAN = @"易道元";
     }
 }
 - (void)configTableView {
+   
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+   
     [self.tableView registerNib:[UINib nibWithNibName:CSCellName(MoneyHistoryFourTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(MoneyHistoryFourTableViewCell)];
+    
     [self.tableView registerNib:[UINib nibWithNibName:CSCellName(MoneyHistoryTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(MoneyHistoryTableViewCell)];
+    
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getNewData)];
     
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(GetMoreData)];
+    
     self.tableView.rowHeight = 50;
+    
 }
 - (void)configSubViews {
     if (self.currentType == YuEMoneyType) {
@@ -193,6 +206,11 @@ NSString * const YIDAOYUAN = @"易道元";
     [gradientLayer setColors:@[(id)[[UIColor colorWithHexString:@"0D71C8"] CGColor],(id)[[UIColor colorWithHexString:@"549DDD"] CGColor]]];//渐变数组
     [self.getMoneyButton.layer addSublayer:gradientLayer];
     
+    
+    if (CS_UserIsMaster && self.currentType == YuEMoneyType) {
+        [self.leftButton setTitle:@"项目记录" forState:UIControlStateNormal];
+        self.getMoneyButton.hidden = NO;
+    }
 }
 - (void)configNavigationBar {
     
@@ -206,16 +224,17 @@ NSString * const YIDAOYUAN = @"易道元";
     
     self.title = self.passString;
     
-    UIButton *rightButton = [[UIButton alloc] init];
+//    UIButton *rightButton = [[UIButton alloc] init];
+//
+//    [rightButton setImage:DotaImageName(@"icon_gengduo") forState:UIControlStateNormal];
+//
+//
+//    [rightButton addTarget:self action:@selector(clickMoreDone) forControlEvents:UIControlEventTouchDown];
+//
+//    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+//
+//    self.navigationItem.rightBarButtonItem = rightItem;
     
-    [rightButton setImage:DotaImageName(@"icon_gengduo") forState:UIControlStateNormal];
-    
-    
-    [rightButton addTarget:self action:@selector(clickMoreDone) forControlEvents:UIControlEventTouchDown];
-    
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
-    
-    self.navigationItem.rightBarButtonItem = rightItem;
     UIButton *leftButton = [[UIButton alloc] init];
     
     [leftButton setImage:DotaImageName(@"img_back") forState:UIControlStateNormal];
@@ -228,24 +247,44 @@ NSString * const YIDAOYUAN = @"易道元";
     
 }
 - (void)clickLeftButtonDone {
+    
     [self.navigationController popViewControllerAnimated:YES];
+    
 }
+
 - (void)clickMoreDone {
     
 }
 - (IBAction)clickConditionButtonDone:(UIButton *)sender {
+   
     if (sender.tag == 0) {
+        
         [self showLeftButtonStatus];
-        self.getMoneyButton.hidden = YES;
+        
+        if (CS_UserIsMaster && self.currentType == YuEMoneyType) {
+            
+            self.getMoneyButton.hidden = NO;
+
+        } else {
+            
+            self.getMoneyButton.hidden = YES;
+
+        }
 
     } else {
+    
         if (self.currentType == YuEMoneyType) {
+        
             self.getMoneyButton.hidden = NO;
+        
         }
+        
         [self showRightButtonStatus];
 
     }
+    
     [self getNewData];
+
 }
 
 - (IBAction)clickGetMoneyButton:(id)sender {

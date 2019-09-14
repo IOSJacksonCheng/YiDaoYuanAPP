@@ -14,10 +14,27 @@
 @interface UserJudgeListDetailViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) FirstPageModel *model;
+@property (nonatomic, strong) UIImageView *bigImageView;
 @end
 
 @implementation UserJudgeListDetailViewController
-
+- (UIImageView *)bigImageView {
+    if (!_bigImageView) {
+        _bigImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+        _bigImageView.backgroundColor = UIColor.blackColor;
+        _bigImageView.contentMode = UIViewContentModeScaleAspectFit;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideImageView)];
+        tap.numberOfTapsRequired = 1;
+        tap.numberOfTouchesRequired = 1;
+        [_bigImageView addGestureRecognizer:tap];
+        _bigImageView.userInteractionEnabled = YES;
+        [self.view addSubview:_bigImageView];
+    }
+    return _bigImageView;
+}
+- (void)hideImageView {
+    self.bigImageView.hidden = YES;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -73,6 +90,24 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 3;
 }
+- (void)showRightBigImageView {
+    
+    [self.bigImageView sd_setImageWithURL:[NSURL URLWithString:self.model.imgs[1]] placeholderImage:PlaceHolderImage options:SDWebImageHighPriority];
+    self.bigImageView.hidden = NO;
+}
+- (void)showLeftBigImageView {
+    [self.bigImageView sd_setImageWithURL:[NSURL URLWithString:self.model.imgs[0]] placeholderImage:PlaceHolderImage options:SDWebImageHighPriority];
+    self.bigImageView.hidden = NO;
+
+}
+- (UITapGestureRecognizer *)getGestureWithAction:(nullable SEL)action {
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:action];
+    tap.numberOfTapsRequired = 1;
+    tap.numberOfTouchesRequired = 1;
+    
+    return tap;
+    
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
@@ -84,15 +119,33 @@
     }
     if (indexPath.row == 1) {
         UserJudgeDetailImageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(UserJudgeDetailImageTableViewCell)];
-        if (self.model.imgs.count >= 1) {
-             [cell.firstImage sd_setImageWithURL:[NSURL URLWithString:self.model.imgs[0]] placeholderImage:PlaceHolderImage];
-        }else {
-            cell.firstImage.image = PlaceHolderImage;
-        }
-        if (self.model.imgs.count >= 2) {
+        
+        
+        
+        cell.firstImage.userInteractionEnabled = YES;
+        cell.secondImage.userInteractionEnabled = YES;
+        
+        
+        [cell.firstImage addGestureRecognizer:[self getGestureWithAction:@selector(showLeftBigImageView)]];
+        [cell.secondImage addGestureRecognizer:[self getGestureWithAction:@selector(showRightBigImageView)]];
+
+        
+        
+        if (self.model.imgs.count == 0) {
+            cell.firstImage.hidden = YES;
+            cell.secondImage.hidden = YES;
+        } else if (self.model.imgs.count == 1) {
+            [cell.firstImage sd_setImageWithURL:[NSURL URLWithString:self.model.imgs[0]] placeholderImage:PlaceHolderImage];
+            cell.secondImage.hidden = YES;
+            cell.firstImage.hidden = NO;
+
+        }else if (self.model.imgs.count == 2) {
+            [cell.firstImage sd_setImageWithURL:[NSURL URLWithString:self.model.imgs[0]] placeholderImage:PlaceHolderImage];
             [cell.secondImage sd_setImageWithURL:[NSURL URLWithString:self.model.imgs[1]] placeholderImage:PlaceHolderImage];
-        }else {
-            cell.secondImage.image = PlaceHolderImage;
+
+            cell.secondImage.hidden = NO;
+            cell.firstImage.hidden = NO;
+            
         }
        
 
@@ -115,6 +168,9 @@
         return [self accrodingTextGiveItHeightWith:self.model.content];
     }
     if (indexPath.row == 1) {
+        if (self.model.imgs.count == 0) {
+            return 0;
+        }
         return 116;
     }
     return 100;

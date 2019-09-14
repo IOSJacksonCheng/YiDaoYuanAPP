@@ -21,6 +21,8 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *quitButton;
 - (IBAction)clickQuitButtonDone:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *changeshengFenButton;
+- (IBAction)clickChangeIdentifyButtonDone:(id)sender;
 @end
 
 @implementation PersonalSetViewController
@@ -50,8 +52,26 @@
     
     [self configTableView];
     
+    if (!CS_UserIsMaster) {
+        
+        [self sendGetDashiStatus];
+        
+    }
 }
+- (void)sendGetDashiStatus {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_user_ismaster Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            self.changeshengFenButton.hidden = NO;
+        }else {
+            self.changeshengFenButton.hidden = YES;
+        }
+    } failure:^(NSError * _Nonnull error) {
+        self.changeshengFenButton.hidden = YES;
 
+    }];
+}
 - (void)configTableView {
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -70,6 +90,19 @@
 - (void)configSubViews {
     self.quitButton.layer.cornerRadius = 5;
     self.quitButton.layer.masksToBounds = YES;
+    
+    self.changeshengFenButton.layer.cornerRadius = 5;
+    self.changeshengFenButton.layer.masksToBounds = YES;
+
+    if (!CS_UserIsMaster) {
+        self.changeshengFenButton.hidden = YES;
+    }
+    if (CS_UserIsMaster) {
+        [self.changeshengFenButton setTitle:@"切换至用户" forState:UIControlStateNormal];
+    }else {
+        [self.changeshengFenButton setTitle:@"切换至大师" forState:UIControlStateNormal];
+
+    }
 //    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickdisappearView)];
 //
 //    tap.numberOfTapsRequired = 1;
@@ -184,5 +217,66 @@
     [alert addAction:actionYes];
     //5.显示AlertController
     [[CSUtility getCurrentViewController] presentViewController:alert animated:YES completion:nil];
+}
+- (IBAction)clickChangeIdentifyButtonDone:(id)sender {
+    
+    
+    NSMutableDictionary *para = @{}.mutableCopy;
+    if (CS_UserIsMaster) {
+        para[@"is_user"] = @"1";
+    }else {
+        para[@"is_user"] = @"0";
+
+    }
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_portal_mcenter_getinfo Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+           
+            [self handleResult:CSGetResult];
+            
+            if (CS_UserIsMaster) {
+               
+                [self.changeshengFenButton setTitle:@"切换到大师" forState:UIControlStateNormal];
+                [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"CS_UserIsMaster"];
+            }else {
+                
+                [self.changeshengFenButton setTitle:@"切换到用户" forState:UIControlStateNormal];
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"CS_UserIsMaster"];
+            }
+
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+
+    
+}
+- (void)handleResult:(id)result {
+    
+   
+    [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",result[@"id"]] forKey:@"CS_UserID"];
+    
+    
+    [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",result[@"sex"]] forKey:@"CS_Sex"];
+    
+    [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",result[@"birthday"]] forKey:@"CS_Birthday"];
+    
+    [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",result[@"coin"]] forKey:@"CS_Coin"];
+    
+    
+    [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",result[@"balance"]] forKey:@"CS_Balance"];
+    
+    [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",result[@"user_nickname"]] forKey:@"CS_User_Nickname"];
+    
+    
+    [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",result[@"avatar"]] forKey:@"CS_Avatar"];
+    
+    [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",result[@"mobile"]] forKey:@"CS_Mobile"];
+    
+    
+    
+    
 }
 @end

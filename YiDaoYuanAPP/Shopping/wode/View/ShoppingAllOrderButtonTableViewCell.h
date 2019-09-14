@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @protocol ShoppingAllOrderButtonTableViewCellDelegate <NSObject>
-- (void)clickCheckWuLiu;
+- (void)clickCheckWuLiuWithModel:(AllOrderModel *)model;
 
 - (void)clickCancelOrderDone;
 - (void)passOrderId:(NSString *)orderID;

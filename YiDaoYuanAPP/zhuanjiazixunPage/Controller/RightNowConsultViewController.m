@@ -148,15 +148,15 @@
     
         if (row == 0) {
             
-            return 356.5;
+            return 330;
         } else if (row == 2 ) {
             
             
-            return [self accrodingTextGiveItHeightWith:self.subModel.intro];
+            return [self accrodingTextGiveItHeightWith:self.subModel.intro] + 20;
         }else if (row == 4) {
             
             
-            return [self accrodingTextGiveItHeightWith:self.subModel.explain];
+            return [self accrodingTextGiveItHeightWith:self.subModel.explain] + 20;
         }
         return 54;
    
@@ -195,6 +195,7 @@
         DaShiListViewController *new = segue.destinationViewController;
         new.passId = self.subModel.item_id;
         new.adImage = self.subModel.ad;
+        new.noFee = NO;
     }
 }
 @end

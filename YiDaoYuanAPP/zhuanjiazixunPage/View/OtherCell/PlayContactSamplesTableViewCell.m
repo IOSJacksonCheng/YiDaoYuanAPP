@@ -23,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *threeXingImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *fourXingImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *fiveXingImageView;
+@property (weak, nonatomic) IBOutlet UIView *firstView;
+@property (weak, nonatomic) IBOutlet UIView *secondView;
 
 
 @end
@@ -47,31 +49,27 @@
         self.subTitleLabel.hidden = NO;
         self.subTitleLabel.text = model.reply;
     }
-    if (model.skille.count == 0) {
-        
-        self.firstShanChangLabel.text = @"";
-        
-        self.secondShanChangLabel.text = @"";
-        
-        self.thirdShanChangLabel.text = @"";
-        
-    }
+    self.firstShanChangLabel.text = @"";
     
-    if (model.skille.count >= 1) {
+    self.secondShanChangLabel.text = @"";
+    
+    self.thirdShanChangLabel.text = @"";
+    
+    self.firstView.hidden = YES;
+    self.secondView.hidden = YES;
+    
+    if (model.skille.count == 1) {
         self.firstShanChangLabel.text = [NSString stringWithFormat:@"%@",model.skille[0]];
-    } else {
-        self.secondShanChangLabel.text = @"";
-        
-        self.thirdShanChangLabel.text = @"";
-    }
-    if (model.skille.count >= 2) {
+    } else if (model.skille.count == 2) {
+        self.firstView.hidden = NO;
+         self.firstShanChangLabel.text = [NSString stringWithFormat:@"%@",model.skille[0]];
         self.secondShanChangLabel.text = [NSString stringWithFormat:@"%@",model.skille[1]];
-    }else {
-        
-        self.thirdShanChangLabel.text = @"";
-    }
-    if (model.skille.count >= 3) {
+    }else if (model.skille.count == 3) {
+        self.firstShanChangLabel.text = [NSString stringWithFormat:@"%@",model.skille[0]];
+        self.secondShanChangLabel.text = [NSString stringWithFormat:@"%@",model.skille[1]];
         self.thirdShanChangLabel.text = [NSString stringWithFormat:@"%@",model.skille[2]];
+        self.firstView.hidden = NO;
+        self.secondView.hidden = NO;
     }
     
     self.nameLabel.text = model.master_name;
@@ -80,7 +78,7 @@
     
     
     
-    self.pingFenLabel.text = model.grade;
+    self.pingFenLabel.text = [NSString stringWithFormat:@"%.1f",model.grade.floatValue];
     
     if (model.grade.intValue == 0) {
         self.oneXingImageView.image = DotaImageName(@"icon_weishou");

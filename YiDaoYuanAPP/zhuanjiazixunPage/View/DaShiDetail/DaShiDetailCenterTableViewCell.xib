@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="146.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_jieshao" translatesAutoresizingMaskIntoConstraints="NO" id="mK1-2H-NxA">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_jieshao" translatesAutoresizingMaskIntoConstraints="NO" id="mK1-2H-NxA">
                         <rect key="frame" x="19" y="10" width="283" height="103"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="103" id="bs1-VI-wsm"/>
@@ -43,6 +43,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="introImageView" destination="mK1-2H-NxA" id="QC5-VO-kwV"/>
                 <outlet property="introLabel" destination="dud-Dy-KYk" id="haJ-m8-6c7"/>
             </connections>
             <point key="canvasLocation" x="132.80000000000001" y="33.733133433283363"/>

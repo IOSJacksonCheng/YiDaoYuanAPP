@@ -19,7 +19,7 @@
 
 @property (nonatomic, assign) NSUInteger currentImageIndex;
 @property (nonatomic, assign) NSUInteger imageCount;
-
+@property (nonatomic, strong) NSDate *currentDate;
 @end
 @implementation ShopProductDetailBigImageTableViewCell
 
@@ -141,16 +141,35 @@
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     [self addTimer];
 }
+- (void)dealloc {
+    [self removeTimer];
+}
 - (void)removeTimer {
     [self.adTimer invalidate];
     self.adTimer = nil;
 }
 - (void)addTimer {
-//    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(nextPage) userInfo:nil repeats:YES];
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(nextPage) userInfo:nil repeats:YES];
 //    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-//    self.adTimer = timer;
+    self.adTimer = timer;
 }
 - (void)nextPage {
+    
+    if (!self.currentDate) {
+        
+        self.currentDate = [NSDate date];
+        
+    } else {
+        
+        int requestInterval = (int)[[NSDate date] timeIntervalSinceDate:self.currentDate];
+        
+        
+        if (requestInterval < 3) {
+            return;
+        }
+        self.currentDate = [NSDate date];
+    }
+    
     self.bannerScrollView.contentOffset = CGPointMake(MainScreenWidth * 2, 0);
     if (self.adImageArray.count >= 1) {
         [self reloadImage];
@@ -197,6 +216,10 @@
     
     
     [self setDefaultImage];
+    
+    if (adImageArray.count > 1) {
+        [self adTimer];
+    }
 }
 
 @end

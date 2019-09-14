@@ -85,6 +85,12 @@ NSString *csyiwancheng = @"10";
         
         [buttonMutableArray addObject:button];
         
+    }else if ([model.status isEqualToString:csdaifahuo]) {
+        
+        UIButton *button = [self getTypeButtonWithTitle:@"取消订单" WithCount:1];
+        button.tag = 10086;
+        [buttonMutableArray addObject:button];
+        
     }
     
     if (buttonMutableArray.count == 0) {
@@ -172,7 +178,7 @@ NSString *csyiwancheng = @"10";
     if ([sender.titleLabel.text isEqualToString:@"立即付款"]) {
         [self.csDelegate passOrderId:self.model.order_id];
         
-    }else if ([sender.titleLabel.text isEqualToString:@"取消订单"]) {
+    }else if ([sender.titleLabel.text isEqualToString:@"取消订单"] && sender.tag != 10086) {
         
         
         
@@ -190,7 +196,7 @@ NSString *csyiwancheng = @"10";
         //5.显示AlertController
         [[CSUtility getCurrentViewController] presentViewController:alert animated:YES completion:nil];
         
-    }else if ([sender.titleLabel.text isEqualToString:@"申请退款"]) {
+    }else if ([sender.titleLabel.text isEqualToString:@"取消订单"] && sender.tag == 10086) {
         
         
         
@@ -230,10 +236,11 @@ NSString *csyiwancheng = @"10";
         
         
         
-        [self.csDelegate clickCheckWuLiu];
+        [self.csDelegate clickCheckWuLiuWithModel:self.model];
         
     }
 }
+
 - (void)sendQueRenSHouHuo {
     NSMutableDictionary *para = @{}.mutableCopy;
     para[@"order_id"] = self.model.order_id;

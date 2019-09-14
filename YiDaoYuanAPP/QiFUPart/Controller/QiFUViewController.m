@@ -20,6 +20,7 @@
 
 #import <AVFoundation/AVFoundation.h>
 
+#import "YiDaoYuanChongZhiViewController.h"
 @interface QiFUViewController ()<UICollectionViewDelegate ,UICollectionViewDataSource, AVAudioPlayerDelegate>
 
 - (IBAction)qiYuanJiLuButtonDone:(id)sender;
@@ -616,7 +617,10 @@ NSString * const MusicPlayKey = @"MusciisPlayOrNot";
     
     [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_Consecrate Pameters:para success:^(id  _Nonnull responseObject) {
         
+        
+        
         if (CSInternetRequestSuccessful) {
+            
             NSMutableArray *array = [CSParseManager getGongPingModelArrayWithResponseObject:CSGetResult[@"lists"]];
             
             if (array.count == 0) {
@@ -645,7 +649,23 @@ NSString * const MusicPlayKey = @"MusciisPlayOrNot";
     para[@"supplication_id"] = model.supplication_id;
 
     [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_Consecrate_Paytribute Pameters:para success:^(id  _Nonnull responseObject) {
+        NSString *code = [NSString stringWithFormat:@"%@",responseObject[@"code"]];
         
+        if ([code isEqualToString:@"-1"]) {
+            
+            CustomWrongMessage(@"易道元不足");
+            
+            UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            
+            YiDaoYuanChongZhiViewController *new = [mainStoryboard instantiateViewControllerWithIdentifier:@"YiDaoYuanChongZhiViewController"];
+            
+            new.fromGongPing = YES;
+            
+            [self.navigationController pushViewController:new animated:YES];
+            
+            return;
+            
+        }
         if (CSInternetRequestSuccessful) {
             [self.animationImageView startAnimating];
             [self sendGetRequest];

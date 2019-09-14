@@ -74,7 +74,7 @@
     
     YiDaoKeTangModel *leftModel = hotArray[0];
     
-    self.leftmoneyLabel.text = [NSString stringWithFormat:@"¥%@",leftModel.fee];
+    self.leftmoneyLabel.text = [NSString stringWithFormat:@"¥%.1f",leftModel.fee.floatValue];
     
     self.leftTitleLabel.text = [NSString stringWithFormat:@"%@%@",leftModel.title, leftModel.intro];
     if (leftModel.is_hot) {
@@ -116,12 +116,14 @@
         return;
     }
     self.rightView.hidden = NO;
-    [self configRightViewWithModel:leftModel];
+    YiDaoKeTangModel *rightModel = hotArray[1];
+
+    [self configRightViewWithModel:rightModel];
     
 }
 
 - (void)configRightViewWithModel:(YiDaoKeTangModel *)leftModel {
-    self.rightmoneyLabel.text = [NSString stringWithFormat:@"¥%@",leftModel.fee];
+    self.rightmoneyLabel.text = [NSString stringWithFormat:@"¥%.1f",leftModel.fee.floatValue];
     
     self.rightTitleLabel.text = [NSString stringWithFormat:@"%@%@",leftModel.title, leftModel.intro];
     if (leftModel.is_hot) {

@@ -12,7 +12,7 @@
 #import "ZJZXFirstRowTableViewCell.h"
 
 #import "ZJZXFirstRowModel.h"
-#import "ZJZXDaShiTableViewCell.h"
+//#import "ZJZXDaShiTableViewCell.h"
 #import "ZJZXDaShiBangDangTableViewCell.h"
 #import "ZJZXJudgeTableViewCell.h"
 #import "ZJZXMoreTableViewCell.h"
@@ -25,8 +25,12 @@
 
 #import "DaShisPingJiaViewController.h"
 
+#import "FirstPageDaShiTableViewCell.h"
+#import "ManyItemTableViewCell.h"
+
 CGFloat const AD_Height = 180;
-@interface ZhuanJiaZiXunViewController ()<UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, ZJZXDaShiTableViewCellDelegate,ManyItemTableViewCellDelegate>
+@interface ZhuanJiaZiXunViewController ()<UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate,ManyItemTableViewCellDelegate,ZJZXDaShiTableViewCellDelegate>
+
 @property (nonatomic, strong) NSString *recordAdImage;
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 
@@ -41,8 +45,16 @@ CGFloat const AD_Height = 180;
 @property (nonatomic, strong) NSMutableArray *itemArray;
 
 @property (nonatomic, strong) NSString *recordItemId;
-
+@property (nonatomic, strong) NSString *recordItemString;
 @property (nonatomic, strong) NSMutableArray *adImageArray;
+
+@property (nonatomic, strong) NSMutableArray *levelArray;
+
+@property (nonatomic, assign) BOOL nofee;
+
+@property (nonatomic, strong) NSString *recordLevelId;
+@property (nonatomic, strong) NSString *recordLevel;
+
 @end
 
 @implementation ZhuanJiaZiXunViewController
@@ -61,7 +73,7 @@ CGFloat const AD_Height = 180;
     [CSNetManager sendNoCheckLoginStatusGetRequestWithNeedToken:YES Url:CSURL_portal_msg_unread Pameters:para success:^(id  _Nonnull responseObject) {
         
         if (CSInternetRequestSuccessful) {
-            NSString *badgeNum =[NSString stringWithFormat:@"%@",CSGetResult[@"count"]];
+            NSString *badgeNum = [NSString stringWithFormat:@"%@",CSGetResult[@"count"]];
             UIViewController *tController = [self.tabBarController.viewControllers objectAtIndex:2];
             int badgeValue = [badgeNum intValue];
             if (badgeValue >0) {
@@ -72,7 +84,7 @@ CGFloat const AD_Height = 180;
             
             
         }else {
-            CSShowWrongMessage
+            
         }
     } failure:^(NSError * _Nonnull error) {
         CSInternetFailure
@@ -91,29 +103,99 @@ CGFloat const AD_Height = 180;
     [self configNavigationBar];
     
     [self configTableView];
+   
     self.adImageArray = @[].mutableCopy;
+  
+    self.levelArray = @[].mutableCopy;
+ 
     NSString *location = [[NSUserDefaults standardUserDefaults] stringForKey:@"CSLocationCity"];
    
     [self configLeftItem:location];
     
     self.daShiArray = @[].mutableCopy;
+ 
     self.userJudgeArray = @[].mutableCopy;
+ 
     self.itemArray = @[].mutableCopy;
+  
     [self sendGetRequest];
     
     [self startLocation];
+    
 }
 - (void)sendGetRequest {
     
-    [self getBannerRequest];
-    [self getHotDaShi];
-    [self getUserPingLun];
-    [self getItemRequest];
-    if (self.mainTableView.mj_header.isRefreshing) {
-        [self.mainTableView.mj_header endRefreshing];
-    }
+   
+    
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    dispatch_group_t group = dispatch_group_create();
+    
+    dispatch_group_async(group, queue, ^{
+        [self getBannerRequest];
+
+    });
+    dispatch_group_async(group, queue, ^{
+        [self getHotDaShi];
+
+    });
+    
+    dispatch_group_async(group, queue, ^{
+        [self getUserPingLun];
+        
+    });
+    dispatch_group_async(group, queue, ^{
+        [self getItemRequest];
+        
+    });
+    
+    dispatch_group_async(group, queue, ^{
+        
+        [self getDashiLevel];
+        
+    });
+    
+    dispatch_group_notify(group, queue, ^{
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.mainTableView reloadData];
+            
+            
+            if (self.mainTableView.mj_header.isRefreshing) {
+                [self.mainTableView.mj_header endRefreshing];
+            }
+        });
+       
+    });
+
+
+    
+}
+- (void)getDashiLevel {
+    
+    NSMutableDictionary *para = @{}.mutableCopy;
+    
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_index_reclevel Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            self.levelArray = [CSParseManager getDaShiFirstPageModelWithResponseObject:responseObject[@"data"][@"lists"]];
+        }else {
+            
+        }
+        dispatch_semaphore_signal(semaphore);
+
+    } failure:^(NSError * _Nonnull error) {
+        dispatch_semaphore_signal(semaphore);
+
+        CSInternetFailure
+    }];
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
 }
 - (void)getBannerRequest {
+    
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     NSMutableDictionary *para = @{}.mutableCopy;
     [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_hot_banner Pameters:para success:^(id  _Nonnull responseObject) {
         
@@ -123,11 +205,19 @@ CGFloat const AD_Height = 180;
         }else {
             CSShowWrongMessage
         }
+        dispatch_semaphore_signal(semaphore);
+
     } failure:^(NSError * _Nonnull error) {
+        dispatch_semaphore_signal(semaphore);
+
         CSInternetFailure
     }];
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+
 }
 - (void)getItemRequest {
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+
     NSMutableDictionary *para = @{}.mutableCopy;
     [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_hot_item Pameters:para success:^(id  _Nonnull responseObject) {
         
@@ -137,12 +227,19 @@ CGFloat const AD_Height = 180;
         }else {
             CSShowWrongMessage
         }
+        dispatch_semaphore_signal(semaphore);
+
     } failure:^(NSError * _Nonnull error) {
         CSInternetFailure
+        dispatch_semaphore_signal(semaphore);
+
     }];
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+
 }
 - (void)getUserPingLun {
-   
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+
     NSMutableDictionary *para = @{}.mutableCopy;
     
 
@@ -155,28 +252,40 @@ CGFloat const AD_Height = 180;
             
             self.userJudgeArray = [CSParseManager getUserPingLunFirstPageModelArrayWithResponseObject:CSGetResult[@"lists"]];
             
-            [self.mainTableView reloadData];
 
         }else {
             CSShowWrongMessage
         }
+        dispatch_semaphore_signal(semaphore);
+
     } failure:^(NSError * _Nonnull error) {
         CSInternetFailure
+        dispatch_semaphore_signal(semaphore);
+
     }];
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+
 }
 - (void)getHotDaShi {
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+
     NSMutableDictionary *para = @{}.mutableCopy;
     [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_Re Pameters:para success:^(id  _Nonnull responseObject) {
         
         if (CSInternetRequestSuccessful) {
              self.daShiArray = [CSParseManager getDaShiFirstPageModelArrayWithResponseObject:CSGetResult[@"lists"]];
-            [self.mainTableView reloadData];
         }else {
             CSShowWrongMessage
         }
+        dispatch_semaphore_signal(semaphore);
+
     } failure:^(NSError * _Nonnull error) {
         CSInternetFailure
+        dispatch_semaphore_signal(semaphore);
+
     }];
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+
 }
 -(void)startLocation{
     
@@ -254,7 +363,7 @@ CGFloat const AD_Height = 180;
     self.mainTableView.showsHorizontalScrollIndicator = NO;
     
     [self.mainTableView registerNib:[UINib nibWithNibName:CSCellName(ZJZXFirstRowTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(ZJZXFirstRowTableViewCell)];
-    [self.mainTableView registerNib:[UINib nibWithNibName:CSCellName(ZJZXDaShiTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(ZJZXDaShiTableViewCell)];
+    [self.mainTableView registerNib:[UINib nibWithNibName:CSCellName(FirstPageDaShiTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(FirstPageDaShiTableViewCell)];
     
      [self.mainTableView registerNib:[UINib nibWithNibName:CSCellName(ZJZXDaShiBangDangTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(ZJZXDaShiBangDangTableViewCell)];
      [self.mainTableView registerNib:[UINib nibWithNibName:CSCellName(ZJZXJudgeTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(ZJZXJudgeTableViewCell)];
@@ -336,11 +445,8 @@ CGFloat const AD_Height = 180;
     if (section == 0) {
         return 1;
     }else if (section == 1) {
-        return 3;
+        return 2;
     }else if (section == 2) {
-        if (self.daShiArray.count == 0) {
-            return 0;
-        }
         return 1;
     }else if (section == 3) {
         return 2;
@@ -350,7 +456,7 @@ CGFloat const AD_Height = 180;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         ZJZXBannerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(ZJZXBannerTableViewCell)];
-        
+        cell.fromHomePage = YES;
         cell.adImageArray = self.adImageArray;
         return cell;
     }
@@ -369,9 +475,11 @@ CGFloat const AD_Height = 180;
         cell.csTitleLabel.text = @"推荐大师";
         return cell;
     } else if (indexPath.section == 2) {
-        ZJZXDaShiTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(ZJZXDaShiTableViewCell)];
-        cell.daShiArray = self.daShiArray;
+    
+        FirstPageDaShiTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(FirstPageDaShiTableViewCell)];
         cell.csDelegate = self;
+        cell.itemMutableArray = self.levelArray;
+
         return cell;
     }else if (indexPath.section == 3) {
         if (indexPath.row == 1) {
@@ -389,14 +497,25 @@ CGFloat const AD_Height = 180;
     cell.model = model;
     return cell;
 }
+- (void)passLevelId:(NSString *)level WithTitle:(NSString *)title{
+    
+    self.recordLevelId = level;
+    self.recordLevel = title;
+    self.nofee = YES;
+    [self  performSegueWithIdentifier:@"DaShiListViewController" sender:self];
+
+}
 - (void)passDaShiMasterId:(NSString *)idString {
     self.recordMasterId = idString;
+    [self  performSegueWithIdentifier:@"DaShiDetailViewController" sender:self];
+
+    
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.section == 1 && indexPath.row == 2) {
         
-//        [self  performSegueWithIdentifier:@"DaShiListViewController" sender:self];
+        [self  performSegueWithIdentifier:@"DaShiListViewController" sender:self];
        
     } else if (indexPath.section == 3 && indexPath.row == 0) {
        [self  performSegueWithIdentifier:@"FuGouBangViewController" sender:self];
@@ -419,11 +538,9 @@ CGFloat const AD_Height = 180;
         }
         return 45;
     } else if (indexPath.section == 2) {
-        if (self.daShiArray.count == 1) {
-            return 140;
-            
-        }
-        return 340;
+
+        return (210 + 45) * self.levelArray.count;
+        
     } else if (indexPath.section == 3) {
         if (indexPath.row == 1) {
             return 54;
@@ -440,14 +557,28 @@ CGFloat const AD_Height = 180;
         DaShiDetailViewController *new = segue.destinationViewController;
         new.passMasterID = self.recordMasterId;
     }else if ([segue.identifier isEqualToString:@"DaShiListViewController"]) {
+        
         DaShiListViewController *new = segue.destinationViewController;
-        new.passId = self.recordItemId;
+        
+        
+
         new.adImage = self.recordAdImage;
+        if ([self.recordItemId isEqualToString:@"-2"]) {
+            self.recordItemId = @"";
+            self.nofee = YES;
+        }
+        new.passId = self.recordItemId;
+        new.passLevel = self.recordLevel;
+        new.passLevelId = self.recordLevelId;
+        new.noFee = self.nofee;
+        new.passIdTitle = self.recordItemString;
     }
 }
 
 - (void)passItemId:(FirstPageManyItemModel *)model {
+    
     self.recordItemId = model.item_id;
     self.recordAdImage  = model.ad;
+    self.nofee = NO;
 }
 @end

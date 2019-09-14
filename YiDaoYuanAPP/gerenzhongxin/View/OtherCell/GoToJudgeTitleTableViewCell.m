@@ -10,8 +10,10 @@
 @interface GoToJudgeTitleTableViewCell()
 @property (weak, nonatomic) IBOutlet UIImageView *headImageView;
 @property (weak, nonatomic) IBOutlet UILabel *firstShanChangLabel;
+@property (weak, nonatomic) IBOutlet UIView *secondView;
 @property (weak, nonatomic) IBOutlet UILabel *secondShanChangLabel;
 @property (weak, nonatomic) IBOutlet UILabel *thirdShanChangLabel;
+@property (weak, nonatomic) IBOutlet UIView *firstView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @end
 @implementation GoToJudgeTitleTableViewCell
@@ -34,31 +36,29 @@
     [self.headImageView sd_setImageWithURL:[NSURL URLWithString:model.avatar] placeholderImage:CSUserImagePlaceHolder];
    
     
-    if (model.skille.count == 0) {
-        
-        self.firstShanChangLabel.text = @"";
-        
-        self.secondShanChangLabel.text = @"";
-        
-        self.thirdShanChangLabel.text = @"";
-        
-    }
+    self.firstShanChangLabel.text = @"";
     
-    if (model.skille.count >= 1) {
+    self.secondShanChangLabel.text = @"";
+    
+    self.thirdShanChangLabel.text = @"";
+    
+    self.firstView.hidden = YES;
+    self.secondView.hidden = YES;
+    
+    if (model.skille.count == 1) {
         self.firstShanChangLabel.text = [NSString stringWithFormat:@"%@",model.skille[0]];
-    } else {
-        self.secondShanChangLabel.text = @"";
-        
-        self.thirdShanChangLabel.text = @"";
-    }
-    if (model.skille.count >= 2) {
+    } else if (model.skille.count == 2) {
+        self.firstView.hidden = NO;
+        self.firstShanChangLabel.text = [NSString stringWithFormat:@"%@",model.skille[0]];
+
         self.secondShanChangLabel.text = [NSString stringWithFormat:@"%@",model.skille[1]];
-    }else {
+    }else if (model.skille.count == 3) {
+        self.firstShanChangLabel.text = [NSString stringWithFormat:@"%@",model.skille[0]];
         
-        self.thirdShanChangLabel.text = @"";
-    }
-    if (model.skille.count >= 3) {
+        self.secondShanChangLabel.text = [NSString stringWithFormat:@"%@",model.skille[1]];
         self.thirdShanChangLabel.text = [NSString stringWithFormat:@"%@",model.skille[2]];
+        self.firstView.hidden = NO;
+        self.secondView.hidden = NO;
     }
     
     

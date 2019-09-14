@@ -1051,10 +1051,21 @@
                                                 <color key="textColor" red="1" green="0.85490196078431369" blue="0.55294117647058827" alpha="0.5" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MDi-BH-iST">
+                                                <rect key="frame" x="60" y="24.5" width="33" height="32"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <state key="normal" title="充值">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="spendMoneyButtonDone:" destination="uSo-lz-WXG" eventType="touchUpInside" id="fCf-hr-s9C"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="dtS-bx-Df7" secondAttribute="trailing" constant="60" id="2KQ-Kc-eSV"/>
+                                            <constraint firstItem="MDi-BH-iST" firstAttribute="leading" secondItem="WG6-85-NXB" secondAttribute="leading" constant="60" id="39n-dd-Xce"/>
                                             <constraint firstItem="dtS-bx-Df7" firstAttribute="leading" secondItem="WG6-85-NXB" secondAttribute="leading" constant="60" id="9gM-yX-VNu"/>
                                             <constraint firstAttribute="bottom" secondItem="hRu-bD-KYY" secondAttribute="bottom" id="9ty-5l-Se7"/>
                                             <constraint firstItem="hdj-t5-P8j" firstAttribute="top" secondItem="WG6-85-NXB" secondAttribute="top" constant="18" id="AV4-SF-CbD"/>
@@ -1064,6 +1075,7 @@
                                             <constraint firstItem="dGd-NX-lVu" firstAttribute="centerX" secondItem="WG6-85-NXB" secondAttribute="centerX" id="JsG-FW-McP"/>
                                             <constraint firstItem="hRu-bD-KYY" firstAttribute="leading" secondItem="WG6-85-NXB" secondAttribute="leading" id="LmH-Dv-ReH"/>
                                             <constraint firstItem="dtS-bx-Df7" firstAttribute="top" secondItem="dGd-NX-lVu" secondAttribute="bottom" constant="20" id="XFo-VI-mLq"/>
+                                            <constraint firstItem="dGd-NX-lVu" firstAttribute="centerY" secondItem="MDi-BH-iST" secondAttribute="centerY" id="bJH-JT-gpR"/>
                                             <constraint firstAttribute="trailing" secondItem="hdj-t5-P8j" secondAttribute="trailing" constant="36" id="ksr-lI-q3E"/>
                                             <constraint firstAttribute="bottom" secondItem="QpS-6W-bnU" secondAttribute="bottom" constant="42" id="l8H-NO-EbX"/>
                                             <constraint firstAttribute="trailing" secondItem="hRu-bD-KYY" secondAttribute="trailing" id="nmE-uG-OID"/>

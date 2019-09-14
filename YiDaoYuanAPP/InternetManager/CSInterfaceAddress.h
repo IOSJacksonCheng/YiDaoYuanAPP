@@ -34,6 +34,7 @@
 #define CSURL_Login_wechat @"user/public/wechat"
 
 #define CSURL_Login @"user/public/login"
+
 #define CSURL_Login_QQ  @"user/public/qq"
 #define CSURL_Register @"user/public/register"
 
@@ -100,13 +101,17 @@
 #define CSURL_portal_Index_Evaluationinfo @"portal/index/evaluationinfo"
 #define CSURL_portal_Index_evaluation @"portal/index/evaluation"
 
+#define CSURL_portal_index_rechargead @"portal/index/rechargead"
 #define CSURL_portal_master @"portal/master"
+#define CSURL_portal_msg_read @"portal/msg/read"
+#define CSURL_portal_isapply @"portal/user/isapply"
 #define CSURL_portal_msg_unread @"portal/msg/unread"
 #define CSURL_portal_mcenter_consultinfo @"portal/mcenter/consultinfo"
+#define CSURL_portal_mcenter_getinfo @"portal/mcenter/getinfo"
 
 #define CSURL_share_index @"portal/share/index"
 #define CSURL_Portal_hot_banner @"portal/index/banner"
-
+#define CSURL_Portal_index_reclevel @"portal/index/reclevel"
 #define CSURL_Portal_hot_item @"portal/index/hot_item"
 #define CSURL_Portal_qa_case @"portal/qa/case"
 #define CSURL_Portal_qa_category @"portal/qa/category"
@@ -155,6 +160,8 @@
 
 #define CSURL_Portal_user_consult @"portal/user/consult"
 #define CSURL_Portal_user_qa @"portal/user/qa"
+#define CSURL_Portal_user_ismaster @"portal/user/ismaster"
+
 #define CSURL_Portal_balance_logs @"user/balance/logs"
 #define CSURL_Portal_coin_logs @"user/coin/logs"
 
@@ -214,6 +221,7 @@
 //商场
 #pragma mark -- //消息
 #define CSURL_portal_index_search @"portal/index/search"
+#define CSURL_portal_index_topad @"portal/index/topad"
 
 #define CSURL_msg_index @"portal/msg/index"
 #define CSURL_msg_del @"portal/msg/del"

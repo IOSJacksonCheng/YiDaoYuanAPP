@@ -172,12 +172,14 @@
             <connections>
                 <outlet property="dashiImageView" destination="Ukg-WF-wmV" id="5h1-Qt-9YK"/>
                 <outlet property="firstShanChangLabel" destination="dyc-xP-I3Y" id="r0r-mO-M9G"/>
+                <outlet property="firstView" destination="NIj-nq-1bn" id="mt1-mo-PCW"/>
                 <outlet property="fiveXingImageView" destination="4rZ-cc-Dhe" id="fjw-tK-UAo"/>
                 <outlet property="fourXingImageView" destination="fBj-he-OAu" id="N6n-EE-bL2"/>
                 <outlet property="nameLabel" destination="rCD-iW-uqr" id="gsv-6w-Iew"/>
                 <outlet property="oneXingImageView" destination="0OY-b2-7Qt" id="ggM-HE-k0o"/>
                 <outlet property="pingFenLabel" destination="GuW-EP-qiy" id="0Rd-sI-jzw"/>
                 <outlet property="secondShanChangLabel" destination="F8K-D4-lV5" id="69V-Ko-i04"/>
+                <outlet property="secondView" destination="fTI-Go-Toc" id="JKO-CU-juq"/>
                 <outlet property="subTitleLabel" destination="qQr-bY-M13" id="5mR-X5-J67"/>
                 <outlet property="thirdShanChangLabel" destination="XFO-hM-j6t" id="6d9-HU-on4"/>
                 <outlet property="threeXingImageView" destination="Wz1-4w-7Wi" id="Oux-ln-Khn"/>

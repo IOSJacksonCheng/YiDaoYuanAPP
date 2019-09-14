@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @protocol ShoppingShouYeTableViewCellDelegate <NSObject>
 
-- (void)passID:(NSString *)passID;
+- (void)passID:(NSString *)passID WithTItle:(NSString *)title;
 
 @end
 @interface ShoppingShouYeTableViewCell : UITableViewCell

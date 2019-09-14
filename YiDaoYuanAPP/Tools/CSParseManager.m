@@ -61,8 +61,91 @@
 #import "ReplyDetailModel.h"
 
 #import "CSChatModel.h"
+#import "DaShiFirstPageModel.h"
 
 @implementation CSParseManager
+
++ (NSMutableArray *)getDaShiFirstPageModelWithResponseObject:(id)result{
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        DaShiFirstPageModel *model = [DaShiFirstPageModel new];
+        
+        
+        
+        model.level_id = [self handleStringIsNull:array[i][@"level_id"]];
+        
+        
+        model.title = [self handleStringIsNull:array[i][@"title"]];
+       
+        
+        model.master = [[self alloc] getDaShiFirstPageModelWithResponseObject:array[i][@"master"]];
+       
+    
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+    
+    
+    
+    
+}
+- (NSMutableArray *)getDaShiFirstPageModelWithResponseObject:(id)result{
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        DaShiFirstPageModel *model = [DaShiFirstPageModel new];
+        
+        
+        
+        model.avatar = [self handleStringIsNull:array[i][@"avatar"]];
+        
+        
+        model.master_id = [self handleStringIsNull:array[i][@"master_id"]];
+        
+        model.skille = array[i][@"skille"];
+        
+        model.master_name = [self handleStringIsNull:array[i][@"master_name"]];
+        model.grade = [self handleStringIsNull:array[i][@"grade"]];
+        NSNumber *status = array[i][@"is_auth"];
+        
+        if ([status isEqualToNumber:@1]) {
+            
+            model.is_auth = YES;
+            
+        } else {
+            
+            model.is_auth = NO;
+            
+        }
+        
+        
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+    
+    
+    
+    
+}
 + (NSMutableArray *)getCSChatModelWithResponseObject:(id)result{
     if (![result isKindOfClass:[NSArray class]]) {
         CSLog(@"\n%s数据错误\n",__func__);
@@ -526,11 +609,13 @@
         
         
         model.level = [self handleStringIsNull:result[@"level"]];
-    
+    model.user_name = [self handleStringIsNull:result[@"user_name"]];
+
    
         model.avg_return = [self handleStringIsNull:result[@"avg_return"]];
         
-        
+    model.ad_avatar = [self handleStringIsNull:result[@"ad_avatar"]];
+
         model.keep_num = [self handleStringIsNull:result[@"keep_num"]];
         
         NSNumber *status = result[@"is_new"];
@@ -577,7 +662,8 @@
         
         model.avatar = [self handleStringIsNull:array[i][@"avatar"]];
         
-        model.price = [self handleStringIsNull:array[i][@"price"]];
+        model.price = [NSString stringWithFormat:@"%.0f",[self handleStringIsNull:array[i][@"price"]].floatValue];
+        
         model.order_num = [self handleStringIsNull:array[i][@"order_num"]];
         
         
@@ -994,12 +1080,12 @@ model.icon = [self handleStringIsNull:array[i][@"icon"]];
         } else {
             model.newspro = NO;
         }
-        NSNumber *best = array[i][@"newspro"];
+        NSNumber *best = array[i][@"best"];
         
         if ([best isEqualToNumber:@1]) {
-            model.newspro = YES;
+            model.best = YES;
         } else {
-            model.newspro = NO;
+            model.best = NO;
         }
         
         [mutableArray addObject:model];
@@ -1033,6 +1119,29 @@ model.icon = [self handleStringIsNull:array[i][@"icon"]];
         
         model.intro = [self handleStringIsNull:array[i][@"intro"]];
     
+        
+        [mutableArray addObject:model];
+        
+    }
+    return mutableArray;
+}
++ (NSMutableArray *)getShoppingDetailHomePageADModelArrayWithResponseObject:(id)result {
+    
+    if (![result isKindOfClass:[NSArray class]]) {
+        CSLog(@"\n%s数据错误\n",__func__);
+        return nil;
+    }
+    
+    NSArray *array = result;
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        HomePageADModel *model = [HomePageADModel new];
+        
+        model.image = [self handleStringIsNull:array[i]];
+       
         
         [mutableArray addObject:model];
         
@@ -1718,7 +1827,7 @@ model.icon = [self handleStringIsNull:array[i][@"icon"]];
         model.skille = array[i][@"skille"];
 
         model.imgs = array[i][@"imgs"];
-        model.grade = [self handleStringIsNull:array[i][@"grade"]];
+        model.grade = [NSString stringWithFormat:@"%.1f",[self handleStringIsNull:array[i][@"grade"]].floatValue];
         model.reply= [self handleStringIsNull:array[i][@"reply"]];
 
         model.nickname = [self handleStringIsNull:array[i][@"nickname"]];

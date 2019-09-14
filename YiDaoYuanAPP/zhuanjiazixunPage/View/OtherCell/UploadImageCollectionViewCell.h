@@ -9,10 +9,9 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
 @interface UploadImageCollectionViewCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *uploadImageView;
-
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @end
 
 NS_ASSUME_NONNULL_END

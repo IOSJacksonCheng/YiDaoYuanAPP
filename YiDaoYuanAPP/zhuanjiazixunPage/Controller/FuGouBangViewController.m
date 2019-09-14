@@ -29,6 +29,8 @@ typedef NS_ENUM(NSInteger, ListType) {
 @property (nonatomic, strong) NSMutableArray *firstArray;
 @property (nonatomic, strong) NSMutableArray *secondArray;
 @property (nonatomic, strong) NSMutableArray *thirdArray;
+
+@property (nonatomic, strong) NSDictionary *imageUrlDictionary;
 @end
 
 @implementation FuGouBangViewController
@@ -68,7 +70,7 @@ typedef NS_ENUM(NSInteger, ListType) {
     
     WhiteNavigationBarColor
     
-    self.title = @"婚恋情感";
+    self.title = @"大师榜单";
     UIColor *whiteColor = [UIColor colorWithHexString:@"333333"];
     
     NSDictionary *dic = [NSDictionary dictionaryWithObject:whiteColor forKey:NSForegroundColorAttributeName];
@@ -112,6 +114,7 @@ typedef NS_ENUM(NSInteger, ListType) {
         self.recordRankType = @"good";
         [self.firstButton setTitleColor:csBlueColor forState:UIControlStateNormal];
         self.firstButton.titleLabel.font = csCharacterFont_18;
+        
     } else {
         [self.firstButton setTitleColor:cs333333Color forState:UIControlStateNormal];
          self.firstButton.titleLabel.font = csCharacterFont_15;
@@ -165,8 +168,38 @@ typedef NS_ENUM(NSInteger, ListType) {
     } else {
         [self.listTableView reloadData];
     }
-    
-    
+    if (!self.imageUrlDictionary) {
+        [self getTopImageView];
+
+    }else {
+        [self configTopImageView];
+
+    }
+}
+- (void)configTopImageView {
+    if (self.currentType == 0) {
+        [self.topImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.imageUrlDictionary[@"praise"]]] placeholderImage:PlaceHolderImage];
+    } else if (self.currentType == 1) {
+        [self.topImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.imageUrlDictionary[@"rePurchase"]]] placeholderImage:PlaceHolderImage];
+
+    }else if (self.currentType == 2) {
+        [self.topImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.imageUrlDictionary[@"potential"]]] placeholderImage:PlaceHolderImage];
+        
+    }
+}
+- (void)getTopImageView {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_portal_index_topad Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            self.imageUrlDictionary = CSGetResult;
+            [self configTopImageView];
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
 }
 - (FuGouBangModel *)getCurrentModel:(NSIndexPath *)indexPath {
     

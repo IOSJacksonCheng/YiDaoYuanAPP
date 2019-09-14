@@ -8,10 +8,10 @@
 
 #import "CSSearchTableViewCell.h"
 @interface CSSearchTableViewCell()
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *searchView;
 @property (weak, nonatomic) IBOutlet UIButton *consultButton;
-@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 - (IBAction)clickConsultButtonDone:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *touxianLabel;
 @property (weak, nonatomic) IBOutlet UIView *xinjindashiView;
@@ -22,7 +22,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *firstShanChangLabel;
 @property (weak, nonatomic) IBOutlet UILabel *secondShanChangLabel;
 @property (weak, nonatomic) IBOutlet UILabel *thirdShanChangLabel;
+@property (weak, nonatomic) IBOutlet UIView *firstLineView;
 @property (weak, nonatomic) IBOutlet UIImageView *oneXingImageView;
+@property (weak, nonatomic) IBOutlet UIView *secondLineView;
 @property (weak, nonatomic) IBOutlet UIImageView *twoXingImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *threeXingImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *fourXingImageView;
@@ -105,32 +107,33 @@
     }
    
     
-    if (model.skille.count == 0) {
+    
         
-        self.firstShanChangLabel.text = @"";
+    self.firstShanChangLabel.text = @"";
+    
+    self.secondShanChangLabel.text = @"";
+    
+    self.thirdShanChangLabel.text = @"";
+    
+    self.firstLineView.hidden = YES;
+    self.secondLineView.hidden = YES;
+    
+    if (model.skille.count == 1) {
+        self.firstShanChangLabel.text = [NSString stringWithFormat:@"%@",model.skille[0]];
+    } else if (model.skille.count == 2) {
+        self.firstLineView.hidden = NO;
+        self.firstShanChangLabel.text = [NSString stringWithFormat:@"%@",model.skille[0]];
+
+        self.secondShanChangLabel.text = [NSString stringWithFormat:@"%@",model.skille[1]];
+    }else if (model.skille.count == 3) {
+        self.firstShanChangLabel.text = [NSString stringWithFormat:@"%@",model.skille[0]];
         
-        self.secondShanChangLabel.text = @"";
-        
-        self.thirdShanChangLabel.text = @"";
-        
+        self.secondShanChangLabel.text = [NSString stringWithFormat:@"%@",model.skille[1]];
+        self.thirdShanChangLabel.text = [NSString stringWithFormat:@"%@",model.skille[2]];
+        self.firstLineView.hidden = NO;
+        self.secondLineView.hidden = NO;
     }
     
-    if (model.skille.count >= 1) {
-        self.firstShanChangLabel.text = [NSString stringWithFormat:@"%@",model.skille[0]];
-    } else {
-        self.secondShanChangLabel.text = @"";
-        
-        self.thirdShanChangLabel.text = @"";
-    }
-    if (model.skille.count >= 2) {
-        self.secondShanChangLabel.text = [NSString stringWithFormat:@"%@",model.skille[1]];
-    }else {
-        
-        self.thirdShanChangLabel.text = @"";
-    }
-    if (model.skille.count >= 3) {
-        self.thirdShanChangLabel.text = [NSString stringWithFormat:@"%@",model.skille[2]];
-    }
     
   
     
@@ -138,7 +141,7 @@
     
     
     
-    self.pingFenLabel.text = [NSString stringWithFormat:@"评分%@",model.grade];
+    self.pingFenLabel.text = [NSString stringWithFormat:@"评分%.1f",model.grade.floatValue];
     
     if (model.grade.intValue == 0) {
         self.oneXingImageView.image = DotaImageName(@"icon_weishou");

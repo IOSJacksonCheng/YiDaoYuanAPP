@@ -40,6 +40,26 @@
     
     [self getNewData];
 }
+- (void)getFreshDataWith:(NSMutableArray *)array {
+    
+    
+    for (XiaoXiModel *model in array) {
+       
+        NSMutableDictionary *para = @{}.mutableCopy;
+        
+        para[@"msg_id"] = model.msg_id;
+        
+        [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_portal_msg_read Pameters:para success:^(id  _Nonnull responseObject) {
+            
+        } failure:^(NSError * _Nonnull error) {
+        
+        }];
+        
+    }
+    
+   
+    
+}
 - (void)configTableView {
     self.tableview.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
@@ -125,8 +145,7 @@
         [cell.userImageView sd_setImageWithURL:[NSURL URLWithString:model.avatar] placeholderImage:CSUserImagePlaceHolder];
         cell.userContent.text = model.content;
         cell.tiXingImageView.hidden = model.status;
-    
-    
+    cell.timeLabel.text = model.ctime;
     return cell;
 }
 -(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -178,7 +197,7 @@
         if (CSInternetRequestSuccessful) {
             
             self.listArray = [CSParseManager getXiaoXiModellWithResponseObject:CSGetResult[@"lists"]];
-            
+            [self getFreshDataWith:self.listArray];
             [self.tableview reloadData];
             
         }else {
@@ -201,9 +220,15 @@
     [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_msg_index Pameters:para success:^(id  _Nonnull responseObject) {
         [self endRefresh];
         if (CSInternetRequestSuccessful) {
+            
             NSMutableArray *array = [CSParseManager getXiaoXiModellWithResponseObject:CSGetResult[@"lists"]];
+            
+            [self getFreshDataWith:array];
+
             if (array.count == 0) {
+                
                 CustomWrongMessage(@"下面没有数据了！")
+                
             } else {
                 
                 [self.listArray addObjectsFromArray:array];

@@ -9,6 +9,8 @@
 #import "AddXiangViewController.h"
 #import "GongPingCollectionViewCell.h"
 
+#import "YiDaoYuanChongZhiViewController.h"
+
 NSString * const xianGuoString = @"献果";
 NSString * const xianXiangString = @"敬香";
 
@@ -177,6 +179,24 @@ NSString * const jingShiString = @"敬食";
     para[@"supplication_id"] = self.passSuppliationId;;
     
     [CSNetManager sendPostRequestWithNeedToken:YES Url:CSURL_Portal_Consecrate_Paytribute Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        NSString *code = [NSString stringWithFormat:@"%@",responseObject[@"code"]];
+        
+        if ([code isEqualToString:@"-1"]) {
+            
+            CustomWrongMessage(@"易道元不足");
+            
+            UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            YiDaoYuanChongZhiViewController *new = [mainStoryboard instantiateViewControllerWithIdentifier:@"YiDaoYuanChongZhiViewController"];
+            
+            
+            new.fromGongPing = YES;
+            
+            [self.navigationController pushViewController:new animated:YES];
+            
+            return;
+            
+        }
         
         if (CSInternetRequestSuccessful) {
             [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",CSGetResult[@"coin"]] forKey:@"CS_Coin"];

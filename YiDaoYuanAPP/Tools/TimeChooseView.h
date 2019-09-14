@@ -9,9 +9,13 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+@protocol TimeChooseViewDelegate <NSObject>
 
+- (void)passTime:(NSString *)time;
+
+@end
 @interface TimeChooseView : UIView
-
+@property (nonatomic, weak) id<TimeChooseViewDelegate> csTimeDelegate;
 @end
 
 NS_ASSUME_NONNULL_END

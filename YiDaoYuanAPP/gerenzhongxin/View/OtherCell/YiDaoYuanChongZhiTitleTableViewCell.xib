@@ -63,6 +63,9 @@
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="moneyLabel" destination="BuW-IC-dvd" id="GN9-Qk-MFB"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>

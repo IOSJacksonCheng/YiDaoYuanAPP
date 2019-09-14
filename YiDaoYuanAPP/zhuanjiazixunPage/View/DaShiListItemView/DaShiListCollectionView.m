@@ -11,7 +11,7 @@
 #import "DaShiItemCollectionReusableView.h"
 
 @interface DaShiListCollectionView()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
-
+@property (nonatomic, strong) NSIndexPath *recordIndex;
 
 @end
 @implementation DaShiListCollectionView
@@ -37,32 +37,37 @@
 // UIEdgeInsets insets = {top, left, bottom, right};
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
   
-    DaShiListItemModel *model = [DaShiListItemModel new];
-    if (indexPath.section == 0) {
-        model = self.shengxiaoArray[indexPath.row];
-        
-    } else if (indexPath.section == 1) {
-        model = self.mingLiArray[indexPath.row];
-        
-    }else if (indexPath.section == 2) {
-       model = self.qitaArray[indexPath.row];
-       
-        
-        
-    }
-
-    float wordWidth = 48;
- 
-    if (model.title.length == 2) {
-        wordWidth = 30;
-
-    }
-    if (model.title.length >= 4) {
-        wordWidth = 14;
-        
-    }
-    return CGSizeMake(wordWidth * model.title.length, 26);
-    
+//    DaShiListItemModel *model = [DaShiListItemModel new];
+//
+//    if (indexPath.section == 0) {
+//
+//        model = self.shengxiaoArray[indexPath.row];
+//
+//    } else if (indexPath.section == 1) {
+//
+//        model = self.mingLiArray[indexPath.row];
+//
+//    }else if (indexPath.section == 2) {
+//
+//        model = self.qitaArray[indexPath.row];
+//
+//
+//
+//    }
+//
+//    float wordWidth = 48;
+//
+//    if (model.title.length == 2) {
+//        wordWidth = 30;
+//
+//    }else if (model.title.length == 3) {
+//        wordWidth = 15;
+//    }else if (model.title.length >= 4) {
+//        wordWidth = 14;
+//
+//    }
+//    return CGSizeMake(wordWidth * model.title.length, 26);
+    return CGSizeMake(56, 26);
 }
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     
@@ -73,11 +78,11 @@
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     
-    return 5;
+    return 3;
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     
-    return 5;
+    return 3;
 }
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 3;
@@ -155,10 +160,17 @@
     
     if (indexPath.section == 0) {
         DaShiListItemModel *newmodel = self.shengxiaoArray[indexPath.row];
-        for (DaShiListItemModel *model in self.shengxiaoArray) {
+       
+        newmodel.choose =  !newmodel.choose;
+        
+        if (self.recordIndex) {
+            DaShiListItemModel *model = self.shengxiaoArray[self.recordIndex.row];
             model.choose = NO;
         }
-        newmodel.choose = YES;
+        
+        self.recordIndex = indexPath;
+        
+        
     } else if (indexPath.section == 1) {
         DaShiListItemModel *model = self.mingLiArray[indexPath.row];
         model.choose = !model.choose;

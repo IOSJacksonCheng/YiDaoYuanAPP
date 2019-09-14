@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ShoppingWaitReceiveGoodsViewController : BaseViewController
 @property (nonatomic, strong) NSString *passOrderId;
 @property (nonatomic, strong) NSString *passStatus;
+@property (nonatomic, assign) BOOL isWuLiu;
 @end
 
 NS_ASSUME_NONNULL_END

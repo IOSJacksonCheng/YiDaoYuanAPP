@@ -25,17 +25,22 @@
                             <outlet property="delegate" destination="-1" id="jI7-9s-RzW"/>
                         </connections>
                     </scrollView>
-                    <pageControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Wgv-mG-Qql">
-                        <rect key="frame" x="140.5" y="102.5" width="39" height="37"/>
+                    <pageControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Wgv-mG-Qql">
+                        <rect key="frame" x="110" y="107.5" width="100" height="37"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="37" id="Ecn-bu-tM4"/>
+                            <constraint firstAttribute="width" constant="100" id="iAg-og-sIb"/>
+                        </constraints>
+                        <color key="pageIndicatorTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="currentPageIndicatorTintColor" red="0.050980392159999999" green="0.4431372549" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
                     </pageControl>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="Wgv-mG-Qql" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="1P8-WW-63D"/>
                     <constraint firstItem="fde-50-d2T" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="5Rv-mj-fYN"/>
+                    <constraint firstAttribute="bottom" secondItem="Wgv-mG-Qql" secondAttribute="bottom" constant="15" id="Cnr-jG-rdO"/>
                     <constraint firstAttribute="bottom" secondItem="fde-50-d2T" secondAttribute="bottom" id="Iiu-Ua-GWw"/>
                     <constraint firstAttribute="trailing" secondItem="fde-50-d2T" secondAttribute="trailing" id="NdS-MS-Whc"/>
-                    <constraint firstAttribute="bottom" secondItem="Wgv-mG-Qql" secondAttribute="bottom" constant="20" id="W7u-Z1-5kg"/>
-                    <constraint firstItem="Wgv-mG-Qql" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="YZo-EC-cdr"/>
                     <constraint firstItem="fde-50-d2T" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="k4J-D3-Xou"/>
                 </constraints>
             </tableViewCellContentView>

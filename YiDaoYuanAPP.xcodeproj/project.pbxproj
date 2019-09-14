@@ -55,8 +55,6 @@
 		231921512297E34800CADD7F /* ZJZXJudgeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2319213F2297E34600CADD7F /* ZJZXJudgeTableViewCell.xib */; };
 		231921522297E34800CADD7F /* ZJZXMoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 231921402297E34600CADD7F /* ZJZXMoreTableViewCell.m */; };
 		231921532297E34800CADD7F /* ZJZXBannerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 231921422297E34600CADD7F /* ZJZXBannerTableViewCell.m */; };
-		231921542297E34800CADD7F /* ZJZXDaShiTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 231921432297E34600CADD7F /* ZJZXDaShiTableViewCell.m */; };
-		231921552297E34800CADD7F /* ZJZXDaShiTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 231921442297E34600CADD7F /* ZJZXDaShiTableViewCell.xib */; };
 		231921562297E34800CADD7F /* ZJZXDaShiBangDangTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 231921462297E34700CADD7F /* ZJZXDaShiBangDangTableViewCell.m */; };
 		231921572297E34800CADD7F /* ZJZXFirstRowTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 231921492297E34700CADD7F /* ZJZXFirstRowTableViewCell.xib */; };
 		231921582297E34800CADD7F /* ZJZXFirstRowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2319214B2297E34700CADD7F /* ZJZXFirstRowTableViewCell.m */; };
@@ -111,8 +109,6 @@
 		233BC7D1229A35DC007EA3CB /* ChangePersonalInfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 233BC7D0229A35DC007EA3CB /* ChangePersonalInfomationViewController.m */; };
 		233BC7D4229A35EC007EA3CB /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 233BC7D3229A35EC007EA3CB /* ChangePasswordViewController.m */; };
 		233BC7D7229A3D97007EA3CB /* ConsultOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 233BC7D6229A3D97007EA3CB /* ConsultOrderViewController.m */; };
-		233CB30D22E044B400054D0F /* ShouYeSubItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 233CB30B22E044B400054D0F /* ShouYeSubItemTableViewCell.m */; };
-		233CB30E22E044B400054D0F /* ShouYeSubItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 233CB30C22E044B400054D0F /* ShouYeSubItemTableViewCell.xib */; };
 		233CB31622E1B1C100054D0F /* ManyDaShiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 233CB31522E1B1C100054D0F /* ManyDaShiModel.m */; };
 		233CB31922E5963900054D0F /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 233CB31822E5963900054D0F /* ChatViewController.m */; };
 		233CB31D22E5A76000054D0F /* ManyItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 233CB31B22E5A76000054D0F /* ManyItemTableViewCell.m */; };
@@ -307,12 +303,21 @@
 		2396425522E5A8DF00467B69 /* ManyItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2396425322E5A8DF00467B69 /* ManyItemCollectionViewCell.xib */; };
 		2396425822E5B1A200467B69 /* FirstPageManyItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2396425722E5B1A200467B69 /* FirstPageManyItemModel.m */; };
 		2396425B22E6A09000467B69 /* QuestionId.m in Sources */ = {isa = PBXBuildFile; fileRef = 2396425A22E6A09000467B69 /* QuestionId.m */; };
+		23984B1523070DCE0058630B /* FirstPageDaShiTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23984B1323070DCE0058630B /* FirstPageDaShiTableViewCell.m */; };
+		23984B1623070DCE0058630B /* FirstPageDaShiTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23984B1423070DCE0058630B /* FirstPageDaShiTableViewCell.xib */; };
+		23984B1A23070E220058630B /* FirstPageDaShiItemCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23984B1823070E220058630B /* FirstPageDaShiItemCollectionViewCell.m */; };
+		23984B1B23070E220058630B /* FirstPageDaShiItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23984B1923070E220058630B /* FirstPageDaShiItemCollectionViewCell.xib */; };
+		23984B1F23070FD90058630B /* FirstPageCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23984B1D23070FD90058630B /* FirstPageCollectionReusableView.m */; };
+		23984B2023070FD90058630B /* FirstPageCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23984B1E23070FD90058630B /* FirstPageCollectionReusableView.xib */; };
+		23984B23230711380058630B /* DaShiFirstPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 23984B22230711380058630B /* DaShiFirstPageModel.m */; };
 		23994E9222A4F3DB00B73347 /* ZhangDanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23994E9122A4F3DB00B73347 /* ZhangDanViewController.m */; };
 		23994E9622A4F4DB00B73347 /* ZhangDanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23994E9422A4F4DB00B73347 /* ZhangDanTableViewCell.m */; };
 		23994E9722A4F4DB00B73347 /* ZhangDanTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23994E9522A4F4DB00B73347 /* ZhangDanTableViewCell.xib */; };
 		23A139BF22F3CCEC00D12231 /* HistoryEasyChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A139BE22F3CCEC00D12231 /* HistoryEasyChatViewController.m */; };
 		23A139C322F4149000D12231 /* KefuChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A139C222F4149000D12231 /* KefuChatViewController.m */; };
 		23A2003322B7B46E00D41FD9 /* YiDaoKeTangListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A2003222B7B46E00D41FD9 /* YiDaoKeTangListViewController.m */; };
+		23A4BD432319157F007BF7E6 /* KeTangShiPingTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A4BD412319157F007BF7E6 /* KeTangShiPingTitleTableViewCell.m */; };
+		23A4BD442319157F007BF7E6 /* KeTangShiPingTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23A4BD422319157F007BF7E6 /* KeTangShiPingTitleTableViewCell.xib */; };
 		23A5C67022A5125D005AA49B /* ConsultYiWanChengViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A5C66F22A5125D005AA49B /* ConsultYiWanChengViewController.m */; };
 		23A5C67322A5189B005AA49B /* ConsultTuiKuanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A5C67222A5189B005AA49B /* ConsultTuiKuanViewController.m */; };
 		23A5C67722A5193A005AA49B /* ConsultYiWanChengTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A5C67522A5193A005AA49B /* ConsultYiWanChengTableViewCell.m */; };
@@ -567,9 +572,6 @@
 		231921402297E34600CADD7F /* ZJZXMoreTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJZXMoreTableViewCell.m; sourceTree = "<group>"; };
 		231921412297E34600CADD7F /* ZJZXFirstRowTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJZXFirstRowTableViewCell.h; sourceTree = "<group>"; };
 		231921422297E34600CADD7F /* ZJZXBannerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJZXBannerTableViewCell.m; sourceTree = "<group>"; };
-		231921432297E34600CADD7F /* ZJZXDaShiTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJZXDaShiTableViewCell.m; sourceTree = "<group>"; };
-		231921442297E34600CADD7F /* ZJZXDaShiTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJZXDaShiTableViewCell.xib; sourceTree = "<group>"; };
-		231921452297E34700CADD7F /* ZJZXDaShiTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJZXDaShiTableViewCell.h; sourceTree = "<group>"; };
 		231921462297E34700CADD7F /* ZJZXDaShiBangDangTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJZXDaShiBangDangTableViewCell.m; sourceTree = "<group>"; };
 		231921472297E34700CADD7F /* ZJZXMoreTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJZXMoreTableViewCell.h; sourceTree = "<group>"; };
 		231921482297E34700CADD7F /* ZJZXBannerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJZXBannerTableViewCell.h; sourceTree = "<group>"; };
@@ -679,9 +681,6 @@
 		233BC7D3229A35EC007EA3CB /* ChangePasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordViewController.m; sourceTree = "<group>"; };
 		233BC7D5229A3D97007EA3CB /* ConsultOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConsultOrderViewController.h; sourceTree = "<group>"; };
 		233BC7D6229A3D97007EA3CB /* ConsultOrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConsultOrderViewController.m; sourceTree = "<group>"; };
-		233CB30A22E044B400054D0F /* ShouYeSubItemTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShouYeSubItemTableViewCell.h; sourceTree = "<group>"; };
-		233CB30B22E044B400054D0F /* ShouYeSubItemTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShouYeSubItemTableViewCell.m; sourceTree = "<group>"; };
-		233CB30C22E044B400054D0F /* ShouYeSubItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShouYeSubItemTableViewCell.xib; sourceTree = "<group>"; };
 		233CB31422E1B1C100054D0F /* ManyDaShiModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ManyDaShiModel.h; sourceTree = "<group>"; };
 		233CB31522E1B1C100054D0F /* ManyDaShiModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ManyDaShiModel.m; sourceTree = "<group>"; };
 		233CB31722E5963900054D0F /* ChatViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
@@ -1014,6 +1013,17 @@
 		2396425722E5B1A200467B69 /* FirstPageManyItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstPageManyItemModel.m; sourceTree = "<group>"; };
 		2396425922E6A09000467B69 /* QuestionId.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuestionId.h; sourceTree = "<group>"; };
 		2396425A22E6A09000467B69 /* QuestionId.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuestionId.m; sourceTree = "<group>"; };
+		23984B1223070DCE0058630B /* FirstPageDaShiTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstPageDaShiTableViewCell.h; sourceTree = "<group>"; };
+		23984B1323070DCE0058630B /* FirstPageDaShiTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstPageDaShiTableViewCell.m; sourceTree = "<group>"; };
+		23984B1423070DCE0058630B /* FirstPageDaShiTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstPageDaShiTableViewCell.xib; sourceTree = "<group>"; };
+		23984B1723070E220058630B /* FirstPageDaShiItemCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstPageDaShiItemCollectionViewCell.h; sourceTree = "<group>"; };
+		23984B1823070E220058630B /* FirstPageDaShiItemCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstPageDaShiItemCollectionViewCell.m; sourceTree = "<group>"; };
+		23984B1923070E220058630B /* FirstPageDaShiItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstPageDaShiItemCollectionViewCell.xib; sourceTree = "<group>"; };
+		23984B1C23070FD90058630B /* FirstPageCollectionReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstPageCollectionReusableView.h; sourceTree = "<group>"; };
+		23984B1D23070FD90058630B /* FirstPageCollectionReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstPageCollectionReusableView.m; sourceTree = "<group>"; };
+		23984B1E23070FD90058630B /* FirstPageCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstPageCollectionReusableView.xib; sourceTree = "<group>"; };
+		23984B21230711380058630B /* DaShiFirstPageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DaShiFirstPageModel.h; sourceTree = "<group>"; };
+		23984B22230711380058630B /* DaShiFirstPageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DaShiFirstPageModel.m; sourceTree = "<group>"; };
 		23994E9022A4F3DB00B73347 /* ZhangDanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZhangDanViewController.h; sourceTree = "<group>"; };
 		23994E9122A4F3DB00B73347 /* ZhangDanViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZhangDanViewController.m; sourceTree = "<group>"; };
 		23994E9322A4F4DB00B73347 /* ZhangDanTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZhangDanTableViewCell.h; sourceTree = "<group>"; };
@@ -1025,6 +1035,9 @@
 		23A139C222F4149000D12231 /* KefuChatViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KefuChatViewController.m; sourceTree = "<group>"; };
 		23A2003122B7B46E00D41FD9 /* YiDaoKeTangListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YiDaoKeTangListViewController.h; sourceTree = "<group>"; };
 		23A2003222B7B46E00D41FD9 /* YiDaoKeTangListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YiDaoKeTangListViewController.m; sourceTree = "<group>"; };
+		23A4BD402319157F007BF7E6 /* KeTangShiPingTitleTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeTangShiPingTitleTableViewCell.h; sourceTree = "<group>"; };
+		23A4BD412319157F007BF7E6 /* KeTangShiPingTitleTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeTangShiPingTitleTableViewCell.m; sourceTree = "<group>"; };
+		23A4BD422319157F007BF7E6 /* KeTangShiPingTitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeTangShiPingTitleTableViewCell.xib; sourceTree = "<group>"; };
 		23A5C66E22A5125D005AA49B /* ConsultYiWanChengViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConsultYiWanChengViewController.h; sourceTree = "<group>"; };
 		23A5C66F22A5125D005AA49B /* ConsultYiWanChengViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConsultYiWanChengViewController.m; sourceTree = "<group>"; };
 		23A5C67122A5189B005AA49B /* ConsultTuiKuanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConsultTuiKuanViewController.h; sourceTree = "<group>"; };
@@ -1400,9 +1413,6 @@
 				2319214F2297E34800CADD7F /* ZJZXDaShiBangDangTableViewCell.h */,
 				231921462297E34700CADD7F /* ZJZXDaShiBangDangTableViewCell.m */,
 				2319214D2297E34700CADD7F /* ZJZXDaShiBangDangTableViewCell.xib */,
-				231921452297E34700CADD7F /* ZJZXDaShiTableViewCell.h */,
-				231921432297E34600CADD7F /* ZJZXDaShiTableViewCell.m */,
-				231921442297E34600CADD7F /* ZJZXDaShiTableViewCell.xib */,
 				231921412297E34600CADD7F /* ZJZXFirstRowTableViewCell.h */,
 				2319214B2297E34700CADD7F /* ZJZXFirstRowTableViewCell.m */,
 				231921492297E34700CADD7F /* ZJZXFirstRowTableViewCell.xib */,
@@ -1412,9 +1422,15 @@
 				231921472297E34700CADD7F /* ZJZXMoreTableViewCell.h */,
 				231921402297E34600CADD7F /* ZJZXMoreTableViewCell.m */,
 				2319214C2297E34700CADD7F /* ZJZXMoreTableViewCell.xib */,
-				233CB30A22E044B400054D0F /* ShouYeSubItemTableViewCell.h */,
-				233CB30B22E044B400054D0F /* ShouYeSubItemTableViewCell.m */,
-				233CB30C22E044B400054D0F /* ShouYeSubItemTableViewCell.xib */,
+				23984B1223070DCE0058630B /* FirstPageDaShiTableViewCell.h */,
+				23984B1323070DCE0058630B /* FirstPageDaShiTableViewCell.m */,
+				23984B1423070DCE0058630B /* FirstPageDaShiTableViewCell.xib */,
+				23984B1723070E220058630B /* FirstPageDaShiItemCollectionViewCell.h */,
+				23984B1823070E220058630B /* FirstPageDaShiItemCollectionViewCell.m */,
+				23984B1923070E220058630B /* FirstPageDaShiItemCollectionViewCell.xib */,
+				23984B1C23070FD90058630B /* FirstPageCollectionReusableView.h */,
+				23984B1D23070FD90058630B /* FirstPageCollectionReusableView.m */,
+				23984B1E23070FD90058630B /* FirstPageCollectionReusableView.xib */,
 			);
 			path = zhuanjiazixunView;
 			sourceTree = "<group>";
@@ -1726,6 +1742,8 @@
 				232AE89022E88F18001A50E9 /* UserJudgeArray.m */,
 				236C4CBA22E98E0200B69985 /* DaShiOrderInfoModel.h */,
 				236C4CBB22E98E0200B69985 /* DaShiOrderInfoModel.m */,
+				23984B21230711380058630B /* DaShiFirstPageModel.h */,
+				23984B22230711380058630B /* DaShiFirstPageModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1851,6 +1869,9 @@
 				2351C02A22CCD214000E5329 /* YiDaoKeTangHotTableViewCell.h */,
 				2351C02B22CCD214000E5329 /* YiDaoKeTangHotTableViewCell.m */,
 				2351C02C22CCD214000E5329 /* YiDaoKeTangHotTableViewCell.xib */,
+				23A4BD402319157F007BF7E6 /* KeTangShiPingTitleTableViewCell.h */,
+				23A4BD412319157F007BF7E6 /* KeTangShiPingTitleTableViewCell.m */,
+				23A4BD422319157F007BF7E6 /* KeTangShiPingTitleTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2755,12 +2776,10 @@
 				230C3EDF229CD617003BC45C /* DaShiItemCollectionViewCell.xib in Resources */,
 				2371092F22A6662A001CF786 /* MingDengExplainTableViewCell.xib in Resources */,
 				2340D50722F29ECA009BB1B7 /* UserMineJudgeListTableViewCell.xib in Resources */,
-				231921552297E34800CADD7F /* ZJZXDaShiTableViewCell.xib in Resources */,
 				235C3260229FF97300446450 /* ChatRightTableViewCell.xib in Resources */,
 				2370023D22A10B6F00C9D568 /* PlayContactSamplesTableViewCell.xib in Resources */,
 				23296D4F22F8084200F634E5 /* ChatVoiceLeftTableViewCell.xib in Resources */,
 				2371092722A65C18001CF786 /* MindDengTableViewCell.xib in Resources */,
-				233CB30E22E044B400054D0F /* ShouYeSubItemTableViewCell.xib in Resources */,
 				230C3ECC229C05A4003BC45C /* DaShiDetailChooseServiceTableViewCell.xib in Resources */,
 				23C3A549229F7F4600212BAF /* PayMoneyTitleTableViewCell.xib in Resources */,
 				23FF746E22B8EB8D008AFD8E /* PersonalTopCollectionViewCell.xib in Resources */,
@@ -2774,10 +2793,12 @@
 				23FFD52E22EC90DE0051E3E8 /* GoToJudgePictureTableViewCell.xib in Resources */,
 				23A5C68022A51ECE005AA49B /* ConsultJinXingZhongTableViewCell.xib in Resources */,
 				23A5C6AC22A5F12B005AA49B /* ShoppingShouYeTableViewCell.xib in Resources */,
+				23984B2023070FD90058630B /* FirstPageCollectionReusableView.xib in Resources */,
 				23C9C45F22A38C2F00FFFFEB /* PersonalCollectionViewCell.xib in Resources */,
 				23296D5422F8085800F634E5 /* ChatVoiceRightTableViewCell.xib in Resources */,
 				23FFD54522EC95470051E3E8 /* star_gray@2x.png in Resources */,
 				237AAF4922D327AB004080C8 /* GongPingCollectionViewCell.xib in Resources */,
+				23984B1623070DCE0058630B /* FirstPageDaShiTableViewCell.xib in Resources */,
 				2352253F22DDD6F700E4822D /* ShoppingAllOrderTitleTableViewCell.xib in Resources */,
 				2332CC022299049800DBC24A /* CSLocationTableViewCell.xib in Resources */,
 				230C3EC2229C021F003BC45C /* DaShiDetailJudgeTableViewCell.xib in Resources */,
@@ -2819,6 +2840,7 @@
 				23F07EB322A6191E001A4B18 /* ShoppingAllOrderTableViewCell.xib in Resources */,
 				233CB31E22E5A76000054D0F /* ManyItemTableViewCell.xib in Resources */,
 				2385DF1922A5FC6E0082B8CE /* ShengXiaoProductTableViewCell.xib in Resources */,
+				23A4BD442319157F007BF7E6 /* KeTangShiPingTitleTableViewCell.xib in Resources */,
 				237E269C22A266A200A1B46B /* YiDaoKeTangTableViewCell.xib in Resources */,
 				2379E3FB2294DC990055FBDA /* Assets.xcassets in Resources */,
 				231722F222B7318800980A1C /* ShopProductDetailBigImageTableViewCell.xib in Resources */,
@@ -2849,6 +2871,7 @@
 				237ECEC122E80F22002B92D3 /* InputThreeNumTableViewCell.xib in Resources */,
 				23FFD54422EC95470051E3E8 /* star_yellow@2x.png in Resources */,
 				2384EE4222A8E7CA00B97B31 /* DaShiDuanYiWanChengJudgeTableViewCell.xib in Resources */,
+				23984B1B23070E220058630B /* FirstPageDaShiItemCollectionViewCell.xib in Resources */,
 				235C325B229FF96400446450 /* ChatLeftTableViewCell.xib in Resources */,
 				23F6E2CE22A2BB5F0085A147 /* LunTanTitleTableViewCell.xib in Resources */,
 				23C9C48122A3C9D500FFFFEB /* DaShiRuZhuTextViewTableViewCell.xib in Resources */,
@@ -2984,6 +3007,7 @@
 				237E268E22A2536300A1B46B /* UserJudgeListViewController.m in Sources */,
 				23F6E2D622A2C20D0085A147 /* LunTanMoreViewController.m in Sources */,
 				237AAF1222CDE3F9004080C8 /* PPEmoji.m in Sources */,
+				23984B1523070DCE0058630B /* FirstPageDaShiTableViewCell.m in Sources */,
 				235C325A229FF96400446450 /* ChatLeftTableViewCell.m in Sources */,
 				23722DD422EAD21600D0180B /* TiXianDetailViewController.m in Sources */,
 				2308096922D8572E00528FFD /* HomePageADModel.m in Sources */,
@@ -2993,7 +3017,6 @@
 				235B467322963AD100DD39A5 /* XiaoXiViewController.m in Sources */,
 				23A5C67022A5125D005AA49B /* ConsultYiWanChengViewController.m in Sources */,
 				23258E1122951EF500EF44DC /* UIView+CSSExtension.m in Sources */,
-				231921542297E34800CADD7F /* ZJZXDaShiTableViewCell.m in Sources */,
 				233BC7D4229A35EC007EA3CB /* ChangePasswordViewController.m in Sources */,
 				2373C6F1229D4376004A6EA0 /* RightNowConsultViewController.m in Sources */,
 				233BC7D7229A3D97007EA3CB /* ConsultOrderViewController.m in Sources */,
@@ -3015,6 +3038,7 @@
 				2352252F22DD9CD200E4822D /* QuestionTitleTableViewCell.m in Sources */,
 				23B3BE9D22A37ED700682A0E /* YiDaoYuanCollectionTableViewCell.m in Sources */,
 				230C3ED0229C0737003BC45C /* DaShiDetailMoreServicesTableViewCell.m in Sources */,
+				23984B1F23070FD90058630B /* FirstPageCollectionReusableView.m in Sources */,
 				237AAF3522CDE40B004080C8 /* PPSlideLineButton.m in Sources */,
 				2350C8F422DF645400AFB33E /* WuLiuModel.m in Sources */,
 				2371093622A66BCB001CF786 /* AddXiangTableViewCell.m in Sources */,
@@ -3072,7 +3096,6 @@
 				23296D4922F8079000F634E5 /* ChatRightImageTableViewCell.m in Sources */,
 				235D5437229BD0F30028591B /* DaShiDetailViewController.m in Sources */,
 				23A139C322F4149000D12231 /* KefuChatViewController.m in Sources */,
-				233CB30D22E044B400054D0F /* ShouYeSubItemTableViewCell.m in Sources */,
 				23EB250D22B75F5F00F5CC89 /* ShoppingSureOrderProductTableViewCell.m in Sources */,
 				2379C71522EDB55700C12F8A /* ShareCollectionViewCell.m in Sources */,
 				237AAF1522CDE3F9004080C8 /* PPEmojiPreviewView.m in Sources */,
@@ -3117,6 +3140,7 @@
 				23FFD53722EC92B20051E3E8 /* GoToJudgeXingXingTableViewCell.m in Sources */,
 				23A5C6B922A5F881005AA49B /* ShengXiaoTableViewCell.m in Sources */,
 				23DF7ACA22E9B8FA00F6F6A2 /* LunTanModel.m in Sources */,
+				23984B23230711380058630B /* DaShiFirstPageModel.m in Sources */,
 				23E4640222ED9F4200A2CD96 /* CSShareView.m in Sources */,
 				230C3ECB229C05A4003BC45C /* DaShiDetailChooseServiceTableViewCell.m in Sources */,
 				23A5C6A422A52A88005AA49B /* ShoppingWoDeViewController.m in Sources */,
@@ -3177,6 +3201,7 @@
 				23F6E2D222A2BD840085A147 /* LunTanButtonTableViewCell.m in Sources */,
 				2315F2C422A36D3F00EBBA4A /* ChongZhiViewController.m in Sources */,
 				23FF748322BB6FFC008AFD8E /* FirstShenXianQiYuanJiLuViewController.m in Sources */,
+				23984B1A23070E220058630B /* FirstPageDaShiItemCollectionViewCell.m in Sources */,
 				2371094122A6768A001CF786 /* FirstQiYuanJiLuCollectionViewCell.m in Sources */,
 				23722DCE22EACC9E00D0180B /* MoneyHistoryModel.m in Sources */,
 				23FF748022BA14EC008AFD8E /* CSParseManager.m in Sources */,
@@ -3236,6 +3261,7 @@
 				23FF747622B8F06A008AFD8E /* PersonalTitleCollectionModel.m in Sources */,
 				23C9C48522A3CAB500FFFFEB /* DaShiRuZhuButtonTableViewCell.m in Sources */,
 				236FC86C22A69E4100F39F37 /* DaShiDuanZiXunTableViewCell.m in Sources */,
+				23A4BD432319157F007BF7E6 /* KeTangShiPingTitleTableViewCell.m in Sources */,
 				23EB24FB22B73E0000F5CC89 /* ShopProductGuiGeTypeTableViewCell.m in Sources */,
 				2379E3F32294DC920055FBDA /* AppDelegate.m in Sources */,
 				237C0C3322991561006B72F0 /* DaShiListViewController.m in Sources */,

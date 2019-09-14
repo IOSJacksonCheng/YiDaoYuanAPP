@@ -32,7 +32,7 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="大师介绍大师介绍大师介绍大师介绍大师介绍大师介绍大师介绍大师介绍大师" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ng4-n4-kRE">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="大师介绍大师介绍大师介绍大师介绍大师介绍大师介绍大师介绍大师介绍大师" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ng4-n4-kRE">
                         <rect key="frame" x="113" y="43" width="196" height="54"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -50,13 +50,14 @@
                     <constraint firstItem="Ng4-n4-kRE" firstAttribute="leading" secondItem="5GO-hm-Ric" secondAttribute="leading" id="4lt-n7-NYi"/>
                     <constraint firstAttribute="trailing" secondItem="Ng4-n4-kRE" secondAttribute="trailing" constant="11" id="C0W-YO-HFI"/>
                     <constraint firstItem="BPX-h5-oF2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="CQ6-6f-hCh"/>
+                    <constraint firstItem="Ng4-n4-kRE" firstAttribute="top" secondItem="5GO-hm-Ric" secondAttribute="bottom" constant="9" id="Cdq-An-u4I"/>
                     <constraint firstItem="BPX-h5-oF2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="HCa-D5-kAS"/>
                     <constraint firstItem="5GO-hm-Ric" firstAttribute="leading" secondItem="BPX-h5-oF2" secondAttribute="trailing" constant="17" id="Nhz-3R-q0r"/>
                     <constraint firstAttribute="trailing" secondItem="GQn-FF-urD" secondAttribute="trailing" id="OMl-cD-JH6"/>
                     <constraint firstItem="5GO-hm-Ric" firstAttribute="top" secondItem="BPX-h5-oF2" secondAttribute="top" id="PRC-dB-Y8R"/>
-                    <constraint firstItem="GQn-FF-urD" firstAttribute="top" secondItem="BPX-h5-oF2" secondAttribute="bottom" constant="17" id="Q6M-TN-AGj"/>
+                    <constraint firstAttribute="bottom" secondItem="GQn-FF-urD" secondAttribute="bottom" id="PyK-cA-SXV"/>
+                    <constraint firstItem="GQn-FF-urD" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Ng4-n4-kRE" secondAttribute="bottom" constant="17" id="cLI-Nd-JmI"/>
                     <constraint firstItem="GQn-FF-urD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="k8C-wX-ZcX"/>
-                    <constraint firstItem="Ng4-n4-kRE" firstAttribute="bottom" secondItem="BPX-h5-oF2" secondAttribute="bottom" id="s9x-Gt-XQb"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>

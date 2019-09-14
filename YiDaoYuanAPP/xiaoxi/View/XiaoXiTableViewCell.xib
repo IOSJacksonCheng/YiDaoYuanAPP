@@ -74,6 +74,7 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="tiXingImageView" destination="iJv-bW-5a8" id="n2M-Xq-g5M"/>
+                <outlet property="timeLabel" destination="HPy-Cb-04Z" id="PzX-yw-WCR"/>
                 <outlet property="userContent" destination="AJh-9U-KQs" id="u5b-tl-nGF"/>
                 <outlet property="userImageView" destination="QCt-fn-FhH" id="MK6-Ux-oB9"/>
                 <outlet property="userTitle" destination="AVc-9q-hGG" id="hHI-Jy-qYu"/>

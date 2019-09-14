@@ -64,6 +64,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSMutableArray *)getReplyDetailModelWithResponseObject:(id)result;
 + (NSMutableArray *)getUserJudgeListModelWithResponseObject:(id)result;
 + (NSMutableArray *)getCSChatModelWithResponseObject:(id)result;
++ (NSMutableArray *)getShoppingDetailHomePageADModelArrayWithResponseObject:(id)result;
++ (NSMutableArray *)getDaShiFirstPageModelWithResponseObject:(id)result;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -34,6 +34,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *user_name;
 
+@property (nonatomic, strong) NSString *ad_avatar;
+
 @end
 
 NS_ASSUME_NONNULL_END

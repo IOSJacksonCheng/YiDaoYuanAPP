@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *userTitle;
 @property (weak, nonatomic) IBOutlet UILabel *userContent;
 @property (weak, nonatomic) IBOutlet UIImageView *tiXingImageView;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
 @end
 

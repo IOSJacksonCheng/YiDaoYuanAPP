@@ -12,21 +12,24 @@
 @property (nonatomic, strong) WKWebView *wkWebView;
 @property (nonatomic, strong) WKWebViewConfiguration *wkConfig;
 @property (nonatomic, assign) BOOL webViewHeightChanged;
+
+@property (nonatomic, assign) CGFloat lastHeight;
 @end
 @implementation ShopDetailWebTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
    
-    self.wkWebView.scrollView.scrollEnabled = NO;
  
-    [self.wkWebView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
     // Initialization code
 }
 - (WKWebViewConfiguration *)wkConfig {
     if (!_wkConfig) {
+       
         _wkConfig = [[WKWebViewConfiguration alloc] init];
+        
         _wkConfig.allowsInlineMediaPlayback = YES;
+        
         _wkConfig.allowsPictureInPictureMediaPlayback = YES;
         
         //设置configur对象的preferences属性的信息
@@ -63,19 +66,21 @@
     if ([keyPath isEqualToString:@"contentSize"]) {
         
         CGSize fitSize = [self.wkWebView sizeThatFits:CGSizeZero];
-        //        NSLog(@"webview fitSize:%@",NSStringFromCGSize(fitSize));
-        if (self.cellHeight.floatValue > 0) {
-         
-            self.wkWebView.frame = CGRectMake(0, 0, fitSize.width, fitSize.height * 2);
-          
-            [self.wkWebView.scrollView removeObserver:self forKeyPath:@"contentSize"];
-            
-            return;
 
-        }
-       
         
-        [self.csDelegate passCellHeight:self.wkWebView.frame.size.height * 2];
+            self.wkWebView.frame = CGRectMake(0, 0, fitSize.width, fitSize.height);
+        
+        [self layoutIfNeeded];
+        
+        CSLog(@"%f",fitSize.height);
+//        if (self.lastHeight == fitSize.height) {
+//
+//            [self.wkWebView.scrollView removeObserver:self forKeyPath:@"contentSize"];
+//
+//
+//
+//        }
+
        
     }
 }
@@ -86,6 +91,7 @@
     
     _passUrl = passUrl;
 //    [self.wkWebView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+    self.wkWebView.scrollView.scrollEnabled = NO;
 
     [self startLoad];
 }
@@ -99,5 +105,31 @@
     
     [self.wkWebView loadRequest:request];
 }
+//开始加载
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
+    NSLog(@"开始加载网页");
+   
+    
+}
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+   
+  
+    [webView evaluateJavaScript:@"document.body.scrollHeight"completionHandler:^(id _Nullable result,NSError * _Nullable error){
+        float addHeight = 0;
+        if ([result floatValue] > 1600) {
+            addHeight = 1000;
+        }
+        float height = [result floatValue] + addHeight;
+        
+        if (self.cellHeight.floatValue != height) {
+            
+            [self.csDelegate passCellHeight:height];
 
+        }
+        self.wkWebView.frame = self.bounds;
+        [self layoutIfNeeded];
+        CSLog(@"scrollHeight高度：%.2f",[result floatValue]);
+    }];
+
+}
 @end

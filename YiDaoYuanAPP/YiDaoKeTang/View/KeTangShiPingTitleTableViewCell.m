@@ -1,21 +1,21 @@
 //
-//  ShouYeSubItemTableViewCell.m
+//  KeTangShiPingTitleTableViewCell.m
 //  YiDaoYuanAPP
 //
-//  Created by shoubin cheng on 2019/7/18.
+//  Created by shoubin cheng on 2019/8/30.
 //  Copyright © 2019年 Jackson cheng. All rights reserved.
 //
 
-#import "ShouYeSubItemTableViewCell.h"
-@interface ShouYeSubItemTableViewCell()
+#import "KeTangShiPingTitleTableViewCell.h"
 
-
-@end
-@implementation ShouYeSubItemTableViewCell
+@implementation KeTangShiPingTitleTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.freeButton.layer.cornerRadius = 5;
+    self.freeButton.layer.borderColor = csBlueColor.CGColor;
+    self.freeButton.layer.borderWidth = 1;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -52,9 +52,13 @@
             }
             
             for (int i = 0; i < array.count; i ++) {
+              
                 DaShiListItemModel *model = array[i];
-                 para[[NSString stringWithFormat:@"skilled_id[%d]",i]] = model.idString;
+                
+                para[[NSString stringWithFormat:@"skilled_id[%d]",i]] = model.idString;
+                
             }
+            
         } else if (i == 7) {
             if (model.chooseLeft) {
                 
@@ -99,14 +103,11 @@
 
             }
             
-            
         } else {
             
             para[model.pameterTitle] = model.content;
 
         }
-        
-        
         
     }
     

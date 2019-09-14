@@ -13,6 +13,10 @@
 #import "YiDaoKeTangDetailButtonTableViewCell.h"
 #import "YiDaoKeTangDetailIntroduceTableViewCell.h"
 #import "YiDaoKeTangDetailJudgeTableViewCell.h"
+#import "KeTangShiPingTitleTableViewCell.h"
+
+
+#import "DaShiDetailViewController.h"
 
 #import "PPStickerInputView.h"
 #import "PPUtil.h"
@@ -22,9 +26,10 @@
 #import <AVKit/AVKit.h>
 
 #import "YiDaoKeTangContentViewController.h"
+#import "CSShareView.h"
 @interface YiDaoKeTangDetailViewController ()<UITableViewDelegate, UITableViewDataSource, YiDaoKeTangDetailButtonTableViewCellDelegate, PPStickerInputViewDelegate, ShopSureOrderPayMoneyWayViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *inputTextField;
-@property (weak, nonatomic) IBOutlet UIButton *freeButton;
+@property (nonatomic, strong) NSString *freeButtonString;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, assign) BOOL clickIntroduce;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputViewHeightConstraint;
@@ -32,12 +37,13 @@
 @property (nonatomic, strong) PPStickerInputView *inputView;
 @property (weak, nonatomic) IBOutlet UIImageView *shipingImageView;
 - (IBAction)clickPlayVideoButtonDone:(id)sender;
-@property (weak, nonatomic) IBOutlet UILabel *csTitleLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *introduceLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dashiNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *xuexiLabel;
-- (IBAction)clickFreeButtonDone:(id)sender;
+@property (nonatomic, strong) NSString *csTitleLabelString;
+
+@property (nonatomic, strong) NSString *introduceLabelString;
+@property (nonatomic, strong) NSString *dashiNameLabelString;
+@property (nonatomic, strong) NSString *xuexiLabelString;
+
 @property (nonatomic, assign) BOOL is_pay;
 
 @property (nonatomic, assign) BOOL is_free;
@@ -65,10 +71,18 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *sendButton;
 - (IBAction)clickSendMessageButtonDone:(id)sender;
+@property (nonatomic, strong) CSShareView *shareView;
 
+@property (nonatomic, strong) NSString *master_id;
 @end
 
 @implementation YiDaoKeTangDetailViewController
+- (CSShareView *)shareView {
+    if (!_shareView) {
+        _shareView = [[CSShareView alloc] initWithFrame:self.view.bounds WithDelegate:self WithTitle:@"易道源" WithDescription:@"算命App" WithImage:DotaImageName(@"AppIcon") WithUrl:@"www.baidu.com"];
+    }
+    return _shareView;
+}
 - (NSMutableArray *)judgeArray {
     if (!_judgeArray) {
         _judgeArray = @[].mutableCopy;
@@ -209,13 +223,15 @@
     
     self.title = [NSString stringWithFormat:@"%@",result[@"title"]];
     
-    self.csTitleLabel.text = [NSString stringWithFormat:@"%@",result[@"title"]];
+    self.master_id = [NSString stringWithFormat:@"%@",result[@"master_id"]];
     
-    self.introduceLabel.text = [NSString stringWithFormat:@"%@",result[@"intro"]];
+    self.csTitleLabelString = [NSString stringWithFormat:@"%@",result[@"title"]];
     
-    self.dashiNameLabel.text = [NSString stringWithFormat:@"%@",result[@"master"]];
+    self.introduceLabelString = [NSString stringWithFormat:@"%@",result[@"intro"]];
     
-    self.xuexiLabel.text = [NSString stringWithFormat:@"%@人学习",result[@"apply"]];
+    self.dashiNameLabelString = [NSString stringWithFormat:@"%@",result[@"master"]];
+    
+    self.xuexiLabelString = [NSString stringWithFormat:@"%@人学习",result[@"apply"]];
     
     NSString *fee = [NSString stringWithFormat:@"%@",result[@"fee"]];
     
@@ -224,7 +240,7 @@
         self.is_free = YES;
     } else {
         
-        fee = [NSString stringWithFormat:@"¥%@",fee];
+        fee = [NSString stringWithFormat:@"%.1f元",fee.floatValue];
         
         self.is_free = NO;
     }
@@ -236,7 +252,7 @@
         self.is_pay = NO;
     }
     
-    [self.freeButton setTitle:fee forState:UIControlStateNormal];
+    self.freeButtonString = fee;
     
     self.shipingImage = [NSString stringWithFormat:@"%@",result[@"img"]];
     
@@ -270,6 +286,9 @@
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getJudgeRequest)];
     
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getJudgeRequestMore)];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:CSCellName(KeTangShiPingTitleTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(KeTangShiPingTitleTableViewCell)];
+
     [self.tableView registerNib:[UINib nibWithNibName:CSCellName(ZJZXMoreTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(ZJZXMoreTableViewCell)];
     [self.tableView registerNib:[UINib nibWithNibName:CSCellName(YiDaoKeTangDetailDaShiTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(YiDaoKeTangDetailDaShiTableViewCell)];
        [self.tableView registerNib:[UINib nibWithNibName:CSCellName(YiDaoKeTangDetailButtonTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(YiDaoKeTangDetailButtonTableViewCell)];
@@ -278,9 +297,7 @@
     
 }
 - (void)configSubViews {
-    self.freeButton.layer.cornerRadius = 5;
-    self.freeButton.layer.borderColor = csBlueColor.CGColor;
-    self.freeButton.layer.borderWidth = 1;
+    
     
     self.inputTextField.layer.cornerRadius = 18;
     self.inputTextField.layer.masksToBounds = YES;
@@ -325,6 +342,9 @@
 }
 - (void)clickShareButtonDone {
     
+    [self.view addSubview:self.shareView];
+
+    
 }
 #pragma mark --UITableViewDelegate/DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -332,7 +352,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return 3;
+        return 4;
     }
     if (self.clickIntroduce) {
         return 1;
@@ -341,13 +361,26 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
+        
         if (indexPath.row == 0) {
+            
+            
+            KeTangShiPingTitleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(KeTangShiPingTitleTableViewCell)];
+            cell.ketangTitleLabel.text = self.csTitleLabelString;
+            cell.ketangDetailLabel.text = self.introduceLabelString;
+            cell.nameLabel.text = self.dashiNameLabelString;
+            cell.xuexirenshuLabel.text = self.xuexiLabelString;
+            [cell.freeButton setTitle:self.freeButtonString forState:UIControlStateNormal];
+            [cell.freeButton addTarget:self action:@selector(clickFreeButtonDone) forControlEvents:UIControlEventTouchDown];
+            return cell;
+            
+        }else if (indexPath.row == 1) {
             ZJZXMoreTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(ZJZXMoreTableViewCell)];
             cell.csTitleLabel.text = @"专题目录";
             
             cell.moreTitleLabel.text = [NSString stringWithFormat:@"第%ld课时/共%lu课时 >", (long)self.currentVideoIndex,(unsigned long)self.videoArray.count];
             return cell;
-        } else if (indexPath.row == 1) {
+        } else if (indexPath.row == 2) {
             YiDaoKeTangDetailDaShiTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(YiDaoKeTangDetailDaShiTableViewCell)];
             cell.dashiNameLabel.text = self.masterName;
             cell.dashiJieSaoLabel.text = self.masterIntro;
@@ -381,7 +414,7 @@
     
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0 && indexPath.row == 0) {
+    if (indexPath.section == 0 && indexPath.row == 1) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
         
         
@@ -408,6 +441,13 @@
         [self presentViewController:alert animated:YES completion:nil];
     } else   if (self.clickIntroduce && indexPath.section == 1) {
         [self performSegueWithIdentifier:@"YiDaoKeTangContentViewController" sender:self];
+    }else if (indexPath.section == 0 && indexPath.row == 2) {
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        
+        
+            DaShiDetailViewController *new = [mainStoryboard instantiateViewControllerWithIdentifier:@"DaShiDetailViewController"];
+            new.passMasterID = self.master_id;
+            [self.navigationController pushViewController:new animated:YES];
     }
     
     
@@ -417,9 +457,12 @@
    
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
+            return 20 + 10 + 89 + [CSUtility accrodingTextGiveItHeightWith:self.ketangIntroduce WithLabelInterval:11 * 2 WithFont:15];
+        }
+        if (indexPath.row == 1) {
            return 54;
-        } else if (indexPath.row == 1) {
-            return 116.5;
+        } else if (indexPath.row == 2) {
+            return 116.5 ;
         }
         return 56;
     }
@@ -525,7 +568,7 @@
     
     [self presentViewController:avPlayerVC animated:YES completion:nil];
 }
-- (IBAction)clickFreeButtonDone:(id)sender {
+- (void)clickFreeButtonDone {
     
     if (self.is_pay) {
         CustomWrongMessage(@"您已经支付过该课程所需费用了");

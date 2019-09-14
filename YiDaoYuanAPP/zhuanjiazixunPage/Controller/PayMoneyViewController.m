@@ -11,6 +11,8 @@
 #import "PayMoneyWaysTableViewCell.h"
 #import "WXApi.h"
 
+#import "GoToJudgeViewController.h"
+
 #import <AlipaySDK/AlipaySDK.h>
 @interface PayMoneyViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIButton *surePayButton;
@@ -29,6 +31,7 @@
 @implementation PayMoneyViewController
 
 - (void)viewDidLoad {
+   
     [super viewDidLoad];
     
     [self configSubViews];
@@ -36,91 +39,155 @@
     [self configNavigationBar];
     
     [self configTableView];
+    
     self.totalMoneyLabel.text = self.dashangqian;
+    
     self.totalPeopleLabel.text = self.dashangren;
+    
     [self.tableView reloadData];
+    
 }
 - (void)configTableView {
+   
     [self.tableView registerNib:[UINib nibWithNibName:CSCellName(PayMoneyTitleTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(PayMoneyTitleTableViewCell)];
     
      [self.tableView registerNib:[UINib nibWithNibName:CSCellName(PayMoneyWaysTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(PayMoneyWaysTableViewCell)];
+   
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
 }
+
 - (void)configSubViews {
-      self.surePayButton.layer.cornerRadius = 5;
+    
+    self.surePayButton.layer.cornerRadius = 5;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(execute:) name:@"WXpayResult_Notification" object:nil];
+   
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(execute:) name:@"AlipayResult_Notification" object:nil];
+    
 }
 
 - (void)configNavigationBar {
+   
     F3f3f3NavigationBarColor
     
     self.title = @"赞赏";
+    
     UIColor *whiteColor = [UIColor colorWithHexString:@"333333"];
     
     NSDictionary *dic = [NSDictionary dictionaryWithObject:whiteColor forKey:NSForegroundColorAttributeName];
     
     [self.navigationController.navigationBar setTitleTextAttributes:dic];
+    
 }
+
 #pragma mark --UITableViewDelegate/DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
     return 2;
+    
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
     if (section == 0) {
+    
         return 1;
+    
     }
+    
     return 4;
+    
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
    
     if (indexPath.section == 0) {
        
         PayMoneyTitleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(PayMoneyTitleTableViewCell)];
+        
         [cell.titleImageView sd_setImageWithURL:[NSURL URLWithString:self.masterIcon] placeholderImage:CSUserImagePlaceHolder];
+        
         cell.nameLabel.text = self.masterName;
+        
         cell.moneyLabel.text = [NSString stringWithFormat:@"¥%@",self.money];
+        
         return cell;
         
     }
     
     PayMoneyWaysTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(PayMoneyWaysTableViewCell)];
+    
     cell.explainLabel.hidden = YES;
+    
     if (indexPath.row == 0) {
-        cell.titleImageView.image = DotaImageName(@"icon_yu e");
-        cell.titleLabel.text = @"余额支付";
+       
+    cell.titleImageView.image = DotaImageName(@"icon_yu e");
+        
+    cell.titleLabel.text = @"余额支付";
+        
     } else if (indexPath.row == 1) {
+        
         cell.titleImageView.image = DotaImageName(@"icon_yidaoyuan");
+        
         cell.titleLabel.text = @"易道源支付";
+        
         cell.explainLabel.hidden = NO;
+        
     } else if (indexPath.row == 2) {
+        
         cell.titleImageView.image = DotaImageName(@"icon_zhifubao");
+        
         cell.titleLabel.text = @"支付宝支付";
+        
     } else if (indexPath.row == 3) {
+       
         cell.titleImageView.image = DotaImageName(@"icon_weixin");
+        
         cell.titleLabel.text = @"微信支付";
+        
     }
+    
     if (self.currentClickIndex == indexPath.row + 1) {
+        
         cell.chooseImageView.image = DotaImageName(@"icon_xuanze");
+        
     } else {
+        
         cell.chooseImageView.image = DotaImageName(@"icon_weixuanze");
+        
     }
+    
     return cell;
+    
 }
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+   
     if (indexPath.section == 1) {
+    
         self.currentClickIndex = indexPath.row + 1;
+        
         [self.tableView reloadData];
+        
     }
+    
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+   
     if (indexPath.section == 0) {
+    
         return 88;
+        
     }
+    
     return 55;
+    
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 2;
 }
@@ -297,7 +364,14 @@
 }
 - (void)goToSuccessViewController {
     
-    CustomWrongMessage(@"打赏成功！");
+    
+    GoToJudgeViewController *new = [[GoToJudgeViewController alloc] init];
+    new.order_id = self.orderId;
+    new.fromZanShangView = YES;
+    new.passContent = self.content;
+    new.typestring = @"2";
+    [self.navigationController pushViewController:new animated:YES];
+    
 }
 - (IBAction)clickSurePayMoneyDone:(id)sender {
     

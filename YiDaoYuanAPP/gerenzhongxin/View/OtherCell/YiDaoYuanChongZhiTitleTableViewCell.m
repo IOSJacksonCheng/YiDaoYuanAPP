@@ -7,12 +7,16 @@
 //
 
 #import "YiDaoYuanChongZhiTitleTableViewCell.h"
+@interface YiDaoYuanChongZhiTitleTableViewCell()
+@property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
 
+@end
 @implementation YiDaoYuanChongZhiTitleTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.moneyLabel.text = CS_Coin;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

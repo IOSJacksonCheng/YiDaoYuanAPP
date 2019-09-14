@@ -16,7 +16,7 @@
 #import "WXApi.h"
 
 #import <AlipaySDK/AlipaySDK.h>
-@interface PlaySurePayMoneyViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface PlaySurePayMoneyViewController ()<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 - (IBAction)clickSureButtonDone:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -34,6 +34,13 @@
 @property (nonatomic, assign) BOOL chooseGender;
 
 @property (nonatomic, strong) NSString *orderid;
+
+@property (weak, nonatomic) IBOutlet UIView *dateView;
+
+@property (weak, nonatomic) IBOutlet UIDatePicker *timePicker;
+- (IBAction)clickCancelTimeButton:(id)sender;
+- (IBAction)clickSureTimeButton:(id)sender;
+
 @end
 
 @implementation PlaySurePayMoneyViewController
@@ -61,6 +68,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:CSCellName(InputThreeNumTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(InputThreeNumTableViewCell)];
 }
 - (void)configSubViews {
+    self.timePicker.maximumDate = [NSDate date];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(execute:) name:@"WXpayResult_Notification" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(execute:) name:@"AlipayResult_Notification" object:nil];
 }
@@ -75,7 +83,7 @@
     
     [self.view endEditing:YES];
     
-    if (csCharacterIsBlank(self.chushengdiTextField.text) || csCharacterIsBlank(self.birdayTextField.text) || csCharacterIsBlank(self.firstTextField.text) || csCharacterIsBlank(self.secondTextField.text) || csCharacterIsBlank(self.thirdTextField.text) || !self.chooseGender) {
+    if (csCharacterIsBlank(self.chushengdiTextField.text) || csCharacterIsBlank(self.birdayTextField.text) || (csCharacterIsBlank(self.firstTextField.text) && csCharacterIsBlank(self.secondTextField.text) && csCharacterIsBlank(self.thirdTextField.text)) || !self.chooseGender) {
         CustomWrongMessage(@"请填写相关信息");
         return;
     }
@@ -142,7 +150,7 @@
             cell.csTitleLabel.text = @"阴历生日";
             cell.csImageView.image = DotaImageName(@"icon_1_birthday");
             self.birdayTextField = cell.csTitletextField;
-            self.birdayTextField.placeholder = @"按照格式：1999-01-01";
+            self.birdayTextField.delegate = self;
              return cell;
         } else if (indexPath.row == 1) {
             PlaySurePayMoneyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(PlaySurePayMoneyTableViewCell)];
@@ -417,5 +425,19 @@ UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:n
     [self.navigationController pushViewController:new animated:YES
      ];
     
+}
+- (IBAction)clickCancelTimeButton:(id)sender {
+  
+    self.dateView.hidden = YES;
+
+}
+
+- (IBAction)clickSureTimeButton:(id)sender {
+    self.birdayTextField.text = [CSUtility convertDateIntoString:self.timePicker.date];
+    self.dateView.hidden = YES;
+}
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    self.dateView.hidden = NO;
+    return NO;
 }
 @end

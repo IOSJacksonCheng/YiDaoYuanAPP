@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *csTitleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *csImageView;
 - (IBAction)clickShopCarButtonDone:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *typeTwoLabel;
 
 @end
 @implementation ShopProductCollectionViewCell
@@ -29,22 +30,51 @@
     self.typeLabel.layer.cornerRadius = 5;
     self.typeLabel.layer.borderColor = [UIColor colorWithHexString:@"#EA4141"].CGColor;
     self.typeLabel.layer.borderWidth = 1;
+    
+    self.typeTwoLabel.layer.cornerRadius = 5;
+    self.typeTwoLabel.layer.borderColor = [UIColor colorWithHexString:@"#EA4141"].CGColor;
+    self.typeTwoLabel.layer.borderWidth = 1;
 }
 - (void)setModel:(ShopManyProductModel *)model {
     _model = model;
     
     [self.csImageView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:PlaceHolderImage];
-    if (model.newspro) {
-        self.typeLabel.text = @"  新品  ";
+    
+    if (model.newspro && model.best) {
+        self.typeLabel.text = @"新品";
+        self.typeTwoLabel.text = @"热卖商品";
+        self.typeLabel.hidden = NO;
+        self.typeTwoLabel.hidden = NO;
+
+    }else if (!model.newspro && !model.best) {
+        self.typeLabel.hidden = YES;
+        self.typeTwoLabel.hidden = YES;
     } else {
-        self.typeLabel.text = @"";
+        if (model.newspro) {
+            self.typeLabel.text = @"新品";
+            self.typeTwoLabel.hidden = YES;
+            self.typeLabel.hidden = NO;
+
+        } else {
+            self.typeLabel.text = @"热卖商品";
+            self.typeTwoLabel.hidden = YES;
+            self.typeLabel.hidden = NO;
+
+        }
     }
-    if (model.best) {
-        self.typeLabel.text = @"  热卖商品  ";
+    if (model.newspro) {
+        self.typeLabel.text = @"新品";
+        self.typeLabel.hidden = NO;
+
+    } else if (model.best) {
+        self.typeLabel.text = @"热卖商品";
+        self.typeLabel.hidden = NO;
 
     }else {
         self.typeLabel.text = @"";
+        self.typeLabel.hidden = YES;
     }
+
 
     self.csTitleLabel.text = [NSString stringWithFormat:@"%@%@",model.goods_name, model.intro];;
     

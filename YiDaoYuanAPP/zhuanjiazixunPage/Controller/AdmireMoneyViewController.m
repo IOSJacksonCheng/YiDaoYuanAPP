@@ -166,6 +166,8 @@
         new.money = self.recorMoney;
         new.dashangren = self.totalPeopleLabel.text;
         new.dashangqian = self.totalMoneyLabel.text;
+        new.fromZanShang = YES;
+        new.content = self.contentTextView.text;
     }
 }
 - (IBAction)clickSurePayButtonDone:(UIButton *)sender {

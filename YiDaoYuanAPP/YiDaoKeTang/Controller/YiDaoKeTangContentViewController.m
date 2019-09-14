@@ -219,7 +219,7 @@
         
         if (CSInternetRequestSuccessful) {
             self.collectButton.selected = YES;
-            
+
         }else {
             self.collectButton.selected = NO;
         }
@@ -236,7 +236,8 @@
         if (CSInternetRequestSuccessful) {
             
             self.collectButton.selected = NO;
-            
+            CustomWrongMessage(@"取消关注成功！");
+
         }else {
             CSShowWrongMessage
         }
@@ -256,7 +257,8 @@
     [CSNetManager sendPostRequestWithNeedToken:YES Url:CSURL_Portal_user_favorites_add Pameters:para success:^(id  _Nonnull responseObject) {
         if (CSInternetRequestSuccessful) {
             self.collectButton.selected = YES;
-            
+            CustomWrongMessage(@"关注成功！");
+
         }else {
             CSShowWrongMessage
         }

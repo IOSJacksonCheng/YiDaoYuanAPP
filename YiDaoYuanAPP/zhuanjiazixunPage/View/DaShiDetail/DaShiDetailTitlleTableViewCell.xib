@@ -138,22 +138,22 @@
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vlP-Ws-EYu">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vlP-Ws-EYu">
                                 <rect key="frame" x="121.5" y="162" width="1" height="16"/>
                                 <color key="backgroundColor" red="0.050980392159999999" green="0.4431372549" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="BlX-mj-c0z"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gLD-k7-WDV">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gLD-k7-WDV">
                                 <rect key="frame" x="163.5" y="162" width="1" height="16"/>
                                 <color key="backgroundColor" red="0.050980392159999999" green="0.4431372549" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="yIt-YV-31y"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="师承香港风水大师柏天心，紫薇斗数精准测婚姻，精通奇门改运，八字测运程吉凶。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vXM-CA-4SI">
-                                <rect key="frame" x="11" y="210.5" width="255" height="26.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vXM-CA-4SI">
+                                <rect key="frame" x="11" y="218" width="255" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -216,7 +216,6 @@
                             <constraint firstItem="rji-fL-gux" firstAttribute="top" secondItem="gRE-4e-wzV" secondAttribute="bottom" constant="5" id="OEs-XO-Qmi"/>
                             <constraint firstItem="woF-9e-Ewn" firstAttribute="top" secondItem="fy7-QW-wK6" secondAttribute="bottom" constant="19" id="OiQ-iH-iFK"/>
                             <constraint firstItem="D05-0b-3f5" firstAttribute="top" secondItem="woF-9e-Ewn" secondAttribute="top" id="Scu-dc-3W6"/>
-                            <constraint firstAttribute="bottom" secondItem="vXM-CA-4SI" secondAttribute="bottom" constant="6" id="Sz3-Yi-ktI"/>
                             <constraint firstItem="gRE-4e-wzV" firstAttribute="top" secondItem="tqc-Yh-0Jz" secondAttribute="top" constant="51" id="Tbx-ZC-ROb"/>
                             <constraint firstItem="NLJ-ho-xpw" firstAttribute="leading" secondItem="whN-sK-YXk" secondAttribute="trailing" constant="7" id="Tey-qP-a2u"/>
                             <constraint firstItem="ydw-V8-skm" firstAttribute="top" secondItem="woF-9e-Ewn" secondAttribute="bottom" constant="8" id="Ti8-D1-qQt"/>
@@ -234,6 +233,7 @@
                             <constraint firstItem="vlP-Ws-EYu" firstAttribute="top" secondItem="woF-9e-Ewn" secondAttribute="top" id="eQi-SG-85B"/>
                             <constraint firstItem="gLD-k7-WDV" firstAttribute="leading" secondItem="qx3-jh-FAC" secondAttribute="trailing" constant="8" id="eb4-yr-E8Z"/>
                             <constraint firstItem="Sw4-CX-xaq" firstAttribute="top" secondItem="uiN-kb-WHv" secondAttribute="bottom" constant="6" id="f6M-Wh-sJB"/>
+                            <constraint firstItem="vXM-CA-4SI" firstAttribute="top" secondItem="0SV-Qx-xI5" secondAttribute="bottom" constant="15" id="g9M-Zq-xzD"/>
                             <constraint firstItem="ydw-V8-skm" firstAttribute="leading" secondItem="tqc-Yh-0Jz" secondAttribute="leading" constant="11" id="hdm-KE-OoW"/>
                             <constraint firstItem="hJ3-OW-FxL" firstAttribute="leading" secondItem="JOc-QE-Sev" secondAttribute="trailing" constant="40" id="i2z-WC-dZ1"/>
                             <constraint firstItem="gLD-k7-WDV" firstAttribute="bottom" secondItem="woF-9e-Ewn" secondAttribute="bottom" id="iol-tT-aCZ"/>
@@ -282,6 +282,7 @@
                 <outlet property="bgView" destination="tqc-Yh-0Jz" id="I7g-d2-fbm"/>
                 <outlet property="dashiHeadImageView" destination="761-hh-J84" id="4yq-DG-rB1"/>
                 <outlet property="dingdanshuLabel" destination="JOc-QE-Sev" id="007-lD-amx"/>
+                <outlet property="firstLineView" destination="vlP-Ws-EYu" id="bF9-Yl-RJe"/>
                 <outlet property="firstShanChangLabel" destination="Q36-98-fNA" id="87p-f2-dbM"/>
                 <outlet property="fiveXingImageView" destination="x8f-Ha-rbM" id="y0K-kQ-xx8"/>
                 <outlet property="fourXingImageView" destination="wtF-qI-5df" id="8rc-HC-qiL"/>
@@ -292,12 +293,16 @@
                 <outlet property="oneXingImageView" destination="0SV-Qx-xI5" id="d6h-dx-Sxd"/>
                 <outlet property="pingFenLabel" destination="TTh-Xc-4UN" id="6zN-kG-6kC"/>
                 <outlet property="pingjunhuifuLabel" destination="9YT-mT-EpC" id="AZE-yu-1W7"/>
+                <outlet property="pingtairenzhengLabelLeftConstraint" destination="Ypi-wB-7uU" id="Bms-t2-NdQ"/>
                 <outlet property="rightImageView" destination="rji-fL-gux" id="xH9-Jn-pL6"/>
                 <outlet property="rightLabel" destination="aAa-AX-aeO" id="ASz-JA-a0z"/>
+                <outlet property="secondLineView" destination="gLD-k7-WDV" id="2df-In-gEj"/>
                 <outlet property="secondShanChangLabel" destination="qx3-jh-FAC" id="zaL-jb-AhE"/>
+                <outlet property="shanchangLabel" destination="vXM-CA-4SI" id="H2h-1k-twT"/>
                 <outlet property="thirdShanChangLabel" destination="D05-0b-3f5" id="3MM-yF-5QU"/>
                 <outlet property="threeXingImageView" destination="m2X-Yd-lyw" id="kMh-of-6UV"/>
                 <outlet property="twoXingImageView" destination="WKG-AX-htI" id="x33-nn-Kbr"/>
+                <outlet property="xinjidashiRightLabelConstraint" destination="Ypi-wB-7uU" id="zJq-zl-QZx"/>
             </connections>
             <point key="canvasLocation" x="129.59999999999999" y="129.53523238380811"/>
         </tableViewCell>

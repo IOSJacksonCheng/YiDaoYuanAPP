@@ -18,6 +18,7 @@
 #import "UserJudgeViewController.h"
 #import "AdmireMoneyViewController.h"
 #import "SureOrderViewController.h"
+#import "CSShareView.h"
 @interface DaShiDetailViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) NSString *recordOrderId;
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
@@ -35,9 +36,17 @@
 @property (nonatomic, strong) NSMutableArray *judgeArray;
 
 @property (nonatomic, assign) BOOL hasCollect;
+
+@property (nonatomic, strong) CSShareView *shareView;
 @end
 
 @implementation DaShiDetailViewController
+- (CSShareView *)shareView {
+    if (!_shareView) {
+        _shareView = [[CSShareView alloc] initWithFrame:self.view.bounds WithDelegate:self WithTitle:self.currentModel.name WithDescription:@"算命App" WithImage:DotaImageName(@"AppIcon") WithUrl:@"www.baidu.com"];
+    }
+    return _shareView;
+}
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self configNavigationBar];
@@ -199,7 +208,8 @@
 }
 - (void)clickShareButtonDone {
     
-   
+    [self.view addSubview:self.shareView];
+
     
    
 }
@@ -254,7 +264,7 @@
             
             DaShiDetailCenterTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(DaShiDetailCenterTableViewCell)];
             cell.introLabel.text = self.currentModel.detailed;
-            
+            [cell.introImageView sd_setImageWithURL:[NSURL URLWithString:self.currentModel.ad_avatar] placeholderImage:PlaceHolderImage];
             return cell;
         }else if (row == 1) {
             
@@ -275,7 +285,7 @@
         [cell.csImageView sd_setImageWithURL:[NSURL URLWithString:model.icon] placeholderImage:PlaceHolderImage];
             cell.csTitleLabel.text = model.title;
         
-        cell.csMoneyLabel.text = model.price;
+        cell.csMoneyLabel.text = [NSString stringWithFormat:@"¥%@",model.price];
         if (model.choose) {
             cell.chooseStatusImageView.image = DotaImageName(@"icon_xuanzhong");
         }else {
@@ -335,7 +345,7 @@
     if (section == 0) {
         if (row == 0) {
            
-            return 290;
+            return 290 - 25 + [CSUtility accrodingTextGiveItHeightWith:self.currentModel.speciality WithLabelInterval:9 + 11 + 11 + 34 WithFont:11];
         } else if (row == 2) {
             
             return 128 + 18.5 + [self accrodingTextGiveItHeightWith:self.currentModel.detailed];
@@ -434,7 +444,7 @@
         
         if (CSInternetRequestSuccessful) {
             self.hasCollect = YES;
-            
+
             self.guanzhuImageView.image = DotaImageName(@"icon_collect");
         }else {
             self.hasCollect = NO;
@@ -454,6 +464,7 @@
 
             self.hasCollect = NO;
             self.guanzhuImageView.image = DotaImageName(@"icon_guanzhu-2");
+            CustomWrongMessage(@"取消关注成功！");
 
         }else {
             CSShowWrongMessage
@@ -474,7 +485,8 @@
     [CSNetManager sendPostRequestWithNeedToken:YES Url:CSURL_Portal_user_favorites_add Pameters:para success:^(id  _Nonnull responseObject) {
         if (CSInternetRequestSuccessful) {
             self.hasCollect = YES;
-            
+            CustomWrongMessage(@"关注成功！");
+
             self.guanzhuImageView.image = DotaImageName(@"icon_collect");
         }else {
             CSShowWrongMessage

@@ -36,7 +36,7 @@
     [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:model.thumbnail] placeholderImage:PlaceHolderImage];
     
     self.guanzhuLabel.text = [NSString stringWithFormat:@"%@关注",model.keep];
-    self.cstitleLabel.text = [NSString stringWithFormat:@"%@%@",model.title, model.descriptionString];
+    self.cstitleLabel.text = [NSString stringWithFormat:@"%@:\n%@",model.title, model.descriptionString];
     self.timeLabel.text = [NSString stringWithFormat:@"%@",model.create_time];
     
     

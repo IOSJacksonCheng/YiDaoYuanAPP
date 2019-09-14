@@ -30,6 +30,32 @@
     
     self.headImageView.layer.cornerRadius = 68 * 0.5;
     self.headImageView.layer.masksToBounds = YES;
+    
+    self.redCircleView.hidden = YES;
+    
+//    NSMutableDictionary *para = @{}.mutableCopy;
+
+//    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_portal_msg_unread Pameters:para success:^(id  _Nonnull responseObject) {
+//
+//        if (CSInternetRequestSuccessful) {
+//            NSString *badgeNum =[NSString stringWithFormat:@"%@",CSGetResult[@"count"]];
+//
+//            int badgeValue = [badgeNum intValue];
+//
+//            if (badgeValue >0) {
+//
+//                self.redCircleView.hidden = NO;
+//
+//            }else{
+//
+//                self.redCircleView.hidden = YES;
+//
+//                }
+//
+//
+//        }
+//    } failure:^(NSError * _Nonnull error) {
+//    }];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

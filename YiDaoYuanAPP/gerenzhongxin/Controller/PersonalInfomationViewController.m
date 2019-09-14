@@ -80,7 +80,7 @@
     
     para[@"work_status"] = [NSString stringWithFormat:@"%ld",self.tag];
    
-    [CSNetManager sendPostRequestWithNeedToken:YES Url:CSURL_Profile_UserInfo Pameters:para success:^(id  _Nonnull responseObject) {
+    [CSNetManager sendPostRequestWithNeedToken:YES Url:CSURL_Profile_Masterinfo Pameters:para success:^(id  _Nonnull responseObject) {
         if (CSInternetRequestSuccessful) {
             
             self.tag = sender.tag;

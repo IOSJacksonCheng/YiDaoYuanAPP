@@ -22,7 +22,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qFS-30-uSX">
                         <rect key="frame" x="10" y="10" width="145" height="312.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_zhanwei" translatesAutoresizingMaskIntoConstraints="NO" id="iqa-gR-rF4">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_zhanwei" translatesAutoresizingMaskIntoConstraints="NO" id="iqa-gR-rF4">
                                 <rect key="frame" x="0.0" y="0.0" width="145" height="190"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="190" id="TSF-7L-lYG"/>
@@ -104,7 +104,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BfP-ND-5uQ">
                         <rect key="frame" x="165" y="10" width="145" height="312.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_zhanwei" translatesAutoresizingMaskIntoConstraints="NO" id="03o-fO-pDd">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_zhanwei" translatesAutoresizingMaskIntoConstraints="NO" id="03o-fO-pDd">
                                 <rect key="frame" x="0.0" y="0.0" width="145" height="190"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="190" id="vAx-7r-2pr"/>

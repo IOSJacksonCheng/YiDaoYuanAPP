@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="233" height="237"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-3" translatesAutoresizingMaskIntoConstraints="NO" id="efG-Nv-yiG">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-3" translatesAutoresizingMaskIntoConstraints="NO" id="efG-Nv-yiG">
                         <rect key="frame" x="0.0" y="0.0" width="233" height="140"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="140" id="HQR-IJ-Aha"/>
@@ -40,10 +40,11 @@
                         <color key="textColor" red="0.97254901960784312" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yhc-Ob-Gtc">
-                        <rect key="frame" x="10" y="178" width="0.0" height="12"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="热卖商品" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yhc-Ob-Gtc">
+                        <rect key="frame" x="10" y="178" width="45" height="12"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="12" id="cyU-dl-Kt1"/>
+                            <constraint firstAttribute="width" constant="45" id="rGk-nO-c4g"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" red="0.91764705882352937" green="0.25490196078431371" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
@@ -61,6 +62,16 @@
                             <action selector="clickShopCarButtonDone:" destination="gTV-IL-0wX" eventType="touchUpInside" id="hZ1-u2-A5G"/>
                         </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="热卖商品" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5oV-C9-6XW">
+                        <rect key="frame" x="65" y="178" width="45" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="12" id="5z4-MO-dQb"/>
+                            <constraint firstAttribute="width" constant="45" id="D0p-3W-Ham"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.91764705879999997" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -73,10 +84,12 @@
                 <constraint firstItem="efG-Nv-yiG" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ciF-TX-ZsE"/>
                 <constraint firstAttribute="trailing" secondItem="H5L-2l-4i0" secondAttribute="trailing" constant="11" id="fbT-qO-9R9"/>
                 <constraint firstItem="Yhc-Ob-Gtc" firstAttribute="leading" secondItem="T7Z-uS-R0H" secondAttribute="leading" id="gg5-be-tH8"/>
+                <constraint firstItem="5oV-C9-6XW" firstAttribute="centerY" secondItem="Yhc-Ob-Gtc" secondAttribute="centerY" id="jqX-4b-uLW"/>
                 <constraint firstItem="efG-Nv-yiG" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="nzx-rN-VIT"/>
                 <constraint firstItem="T7Z-uS-R0H" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="qS4-3B-tqE"/>
                 <constraint firstAttribute="trailing" secondItem="T7Z-uS-R0H" secondAttribute="trailing" constant="10" id="snw-Wo-Swy"/>
                 <constraint firstItem="Yhc-Ob-Gtc" firstAttribute="top" secondItem="T7Z-uS-R0H" secondAttribute="bottom" constant="10" id="wyS-oi-88J"/>
+                <constraint firstItem="5oV-C9-6XW" firstAttribute="leading" secondItem="Yhc-Ob-Gtc" secondAttribute="trailing" constant="10" id="yWk-Oq-9f2"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <size key="customSize" width="233" height="256"/>
@@ -86,6 +99,7 @@
                 <outlet property="moneyLabel" destination="9rp-e0-knI" id="fAX-fd-me3"/>
                 <outlet property="shopCarButton" destination="H5L-2l-4i0" id="y0k-4u-cfo"/>
                 <outlet property="typeLabel" destination="Yhc-Ob-Gtc" id="TAl-jC-mu1"/>
+                <outlet property="typeTwoLabel" destination="5oV-C9-6XW" id="bmf-po-Wyq"/>
             </connections>
             <point key="canvasLocation" x="276" y="207.79610194902551"/>
         </collectionViewCell>

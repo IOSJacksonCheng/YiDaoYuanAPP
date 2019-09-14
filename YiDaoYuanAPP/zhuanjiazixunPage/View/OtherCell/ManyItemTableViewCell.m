@@ -76,7 +76,9 @@
          [[CSUtility getCurrentViewController]  performSegueWithIdentifier:@"IndustryNewsViewController" sender:self];
         
     } else if ([model.item_id isEqualToString:@"-2"]) {
-        
+        [self.csDelegate passItemId:model];
+        [[CSUtility getCurrentViewController]  performSegueWithIdentifier:@"DaShiListViewController" sender:nil];
+
     } else {
         [self.csDelegate passItemId:model];
          [[CSUtility getCurrentViewController]  performSegueWithIdentifier:@"DaShiListViewController" sender:nil];

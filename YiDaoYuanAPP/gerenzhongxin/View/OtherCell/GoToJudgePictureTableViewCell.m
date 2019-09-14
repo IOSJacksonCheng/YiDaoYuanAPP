@@ -104,10 +104,20 @@
     if (csCharacterIsBlank(model.url)) {
         
         cell.uploadImageView.image = DotaImageName(@"icon_tianjia");
-        
+        cell.deleteButton.hidden = YES;
     } else {
         
-         [cell.uploadImageView sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:DotaImageName(@"icon_tianjia")];
+        if (!self.showTitleView) {
+            cell.deleteButton.hidden = YES;
+
+        }else {
+            cell.deleteButton.hidden = NO;
+
+        }
+        
+        
+        [cell.deleteButton addTarget:self action:@selector(deleteBUttonDone:) forControlEvents:UIControlEventTouchDown];
+         [cell.uploadImageView sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:PlaceHolderImage];
     }
     
 
@@ -115,7 +125,21 @@
     
 }
 
-
+- (void)deleteBUttonDone:(UIButton *)sender {
+   
+    UploadImageCollectionViewCell *cell = (UploadImageCollectionViewCell *)[[sender superview] superview];
+    
+    NSIndexPath *indexPath = [self.imageCollectionView indexPathForCell:cell];
+    
+    if (!indexPath) {
+        return;
+    }
+    
+    [self.listArray removeObjectAtIndex:indexPath.row];
+    
+    [self.imageCollectionView reloadData];
+    
+}
 - (UICollectionReusableView *) collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
    
     if (!self.showTitleView) {
@@ -152,14 +176,30 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     if (!self.showTitleView) {
+        
+        GoToJudgeJudgeModel *model = self.listArray[indexPath.row];
+        if (!csCharacterIsBlank(model.url)) {
+            if ([self.csDelegate respondsToSelector:@selector(passUrl:)]) {
+                [self.csDelegate passUrl:model.url];
+                return;
+            }
+        }
+        
         return;
     }
-//     GoToJudgeJudgeModel *model = self.listArray[indexPath.row];
+     GoToJudgeJudgeModel *model = self.listArray[indexPath.row];
+    if (!csCharacterIsBlank(model.url)) {
+        if ([self.csDelegate respondsToSelector:@selector(passUrl:)]) {
+            [self.csDelegate passUrl:model.url];
+            return;
+        }
+    }
+    
     self.currentIndex = indexPath.row;
     UIAlertController *alertSheet = [UIAlertController alertControllerWithTitle:@"请选择图片来源" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.delegate = self;
-    imagePickerController.allowsEditing = YES;
+    imagePickerController.allowsEditing = NO;
     
     // 判断是否支持相机
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])  {
@@ -195,7 +235,8 @@
     // 被选中的图片
     if ([mediaType isEqualToString:@"public.image"])   {
         // 获取照片
-        UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+        UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        
         NSString *path = [self saveImg:image WithName:@"avatar.png"];
         if (path != nil)  {
             // 图片存在，做你想要的操作

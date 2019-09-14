@@ -11,6 +11,8 @@
 #import "MindDengTableViewCell.h"
 
 #import "QuickWishViewController.h"
+
+#import "YiDaoYuanChongZhiViewController.h"
 @interface MingDengViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 - (IBAction)clickCloseButton:(id)sender;
@@ -24,10 +26,24 @@
 @property (weak, nonatomic) IBOutlet UILabel *suitPeopleLabl;
 @property (weak, nonatomic) IBOutlet UIImageView *dengImageView;
 @property (nonatomic, strong) NSString *recordPriceId;
+
+- (IBAction)spendMoneyButtonDone:(id)sender;
+
+
 @end
 
 @implementation MingDengViewController
-
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    
+    [self configNavigationBar];
+    
+}
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self configNavigationBar];
+}
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -74,11 +90,18 @@ self.suitPeopleLabl.text = [NSString stringWithFormat:@"%@",CSGetResult[@"suit"]
 - (void)configNavigationBar {
    
     self.title = @"心愿点灯";
-   
+    [self.navigationController.navigationBar setBackgroundImage:DotaImageName(@"img_dingbu") forBarMetrics:UIBarMetricsDefault];
+    
+    [self.navigationController.navigationBar setShadowImage:[CSUtility createImageWithColor:[UIColor colorWithHexString:@"#180C0A"]]];
     UIButton *leftButton = [[UIButton alloc] init];
     
     [leftButton setImage:DotaImageName(@"img_back") forState:UIControlStateNormal];
+   
+    UIColor *whiteColor = UIColor.whiteColor;
     
+    NSDictionary *dic = [NSDictionary dictionaryWithObject:whiteColor forKey:NSForegroundColorAttributeName];
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:dic];
     
     [leftButton addTarget:self action:@selector(clickLeftButtonDone) forControlEvents:UIControlEventTouchDown];
     
@@ -201,6 +224,13 @@ self.suitPeopleLabl.text = [NSString stringWithFormat:@"%@",CSGetResult[@"suit"]
         CSInternetFailure
     }];
     
+    
+}
+- (IBAction)spendMoneyButtonDone:(id)sender {
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    YiDaoYuanChongZhiViewController *new = [mainStoryboard instantiateViewControllerWithIdentifier:@"YiDaoYuanChongZhiViewController"];
+    [self.navigationController pushViewController:new animated:YES];
     
 }
 @end

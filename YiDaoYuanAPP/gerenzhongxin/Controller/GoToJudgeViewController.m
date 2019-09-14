@@ -14,8 +14,11 @@
 #import "GoToJudgeTitleTableViewCell.h"
 #import "GoToJudgeXingXingTableViewCell.h"
 #import "GoToJudgeJudgeModel.h"
-@interface GoToJudgeViewController ()<UITableViewDelegate, UITableViewDataSource, GoToJudgeXingXingTableViewCellDelegate>
+
+@interface GoToJudgeViewController ()<UITableViewDelegate, UITableViewDataSource, GoToJudgeXingXingTableViewCellDelegate,GoToJudgePictureTableViewCellDelegate>
+
 @property (nonatomic, strong) DaShiOrderInfoModel *infoModel;
+
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -25,11 +28,30 @@
 @property (nonatomic, strong) NSMutableArray *listArray;
 
 @property (nonatomic, assign) CGFloat zixunziliangxing;
+
 @property (nonatomic, assign) CGFloat fuwutaiduxing;
+
 @property (nonatomic, assign) CGFloat huifusuduxing;
+
+@property (nonatomic, strong) UIImageView *bigImageView;
+
 @end
 
 @implementation GoToJudgeViewController
+- (UIImageView *)bigImageView {
+    if (!_bigImageView) {
+        _bigImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+        _bigImageView.backgroundColor = UIColor.blackColor;
+        _bigImageView.contentMode = UIViewContentModeScaleAspectFit;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideImageView)];
+        tap.numberOfTapsRequired = 1;
+        tap.numberOfTouchesRequired = 1;
+        [_bigImageView addGestureRecognizer:tap];
+        _bigImageView.userInteractionEnabled = YES;
+        [self.view addSubview:_bigImageView];
+    }
+    return _bigImageView;
+}
 - (NSMutableArray *)listArray {
     if (!_listArray) {
         _listArray = @[].mutableCopy;
@@ -65,11 +87,14 @@
     NSDictionary *dic = [NSDictionary dictionaryWithObject:whiteColor forKey:NSForegroundColorAttributeName];
     
     [self.navigationController.navigationBar setTitleTextAttributes:dic];
-    UIButton *leftButton = [[UIButton alloc]init];
-    [leftButton setImage:DotaImageName(@"icon_back") forState:UIControlStateNormal];
-    [leftButton addTarget:self action:@selector(clickLeftItem) forControlEvents:UIControlEventTouchDown];
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     
+    UIButton *leftButton = [[UIButton alloc]init];
+    
+    [leftButton setImage:DotaImageName(@"icon_back") forState:UIControlStateNormal];
+    
+    [leftButton addTarget:self action:@selector(clickLeftItem) forControlEvents:UIControlEventTouchDown];
+    
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     
     self.navigationItem.leftBarButtonItem = backItem;
     
@@ -108,7 +133,13 @@
     para[@"serve"] = [NSString stringWithFormat:@"%.1f",self.fuwutaiduxing];
     para[@"reply"] = [NSString stringWithFormat:@"%.1f",self.huifusuduxing];
    
-    para[@"content"] = self.judgeTextView.text;
+    if (self.fromZanShangView) {
+        para[@"content"] = self.passContent;
+
+    }else {
+        para[@"content"] = self.judgeTextView.text;
+
+    }
     
     
     NSMutableArray *pArray = @[].mutableCopy;
@@ -132,9 +163,11 @@
 
     [CSNetManager sendPostRequestWithNeedToken:YES Url:CSURL_portal_Index_evaluation Pameters:para success:^(id  _Nonnull responseObject) {
         if (CSInternetRequestSuccessful) {
-            self.isDetail = YES;
-            [self.tableView reloadData];
-            self.submitButton.hidden = YES;
+//            self.isDetail = YES;
+//            [self.tableView reloadData];
+//            self.submitButton.hidden = YES;
+            CustomWrongMessage(@"评价成功");
+            [self.navigationController popViewControllerAnimated:YES];
         }else {
             CSShowWrongMessage
         }
@@ -172,7 +205,9 @@
 }
 - (void)getDetailInfomation {
     NSMutableDictionary *para = @{}.mutableCopy;
+   
     para[@"order_id"] = self.order_id;
+   
     para[@"type"] = self.typestring;
 
     [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_index_order_evaluation Pameters:para success:^(id  _Nonnull responseObject) {
@@ -210,10 +245,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.row == 0) {
+        
         GoToJudgeTitleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(GoToJudgeTitleTableViewCell) forIndexPath:indexPath];
+        
         cell.model = self.infoModel;
+        
         return cell;
+        
     }
+    
     if (indexPath.row == 4) {
         GoToJudgeJudgeTextTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(GoToJudgeJudgeTextTableViewCell) forIndexPath:indexPath];
         self.judgeTextView = cell.inputTextView;
@@ -222,8 +262,10 @@
     }
     if (indexPath.row == 5) {
         GoToJudgePictureTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(GoToJudgePictureTableViewCell) forIndexPath:indexPath];
+        cell.csDelegate = self;
         cell.listArray = self.listArray;
         cell.showTitleView = !self.isDetail;
+        
         return cell;
     }
     
@@ -257,6 +299,9 @@
         return 67;
     }
     if (indexPath.row == 4) {
+        if (self.fromZanShangView) {
+            return 0;
+        }
        return 200;
     }
     if (indexPath.row == 5) {
@@ -275,5 +320,14 @@
     }else {
         self.huifusuduxing = fenshu;
     }
+}
+- (void)passUrl:(NSString *)url {
+    
+    [self.bigImageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:PlaceHolderImage options:SDWebImageHighPriority];
+    self.bigImageView.hidden = NO;
+    
+}
+- (void)hideImageView {
+    self.bigImageView.hidden = YES;
 }
 @end

@@ -57,7 +57,7 @@
     UIAlertController *alertSheet = [UIAlertController alertControllerWithTitle:@"请选择头像来源" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.delegate = self;
-    imagePickerController.allowsEditing = YES;
+    imagePickerController.allowsEditing = NO;
     
     // 判断是否支持相机
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])  {
@@ -159,13 +159,16 @@
     NSMutableDictionary *para = @{}.mutableCopy;
     
     
-    para[@"user_nickname"] = self.nameTextField.text;
+    para[@"user_name"] = self.nameTextField.text;
     
     if (!csCharacterIsBlank(self.recordImage)) {
+      
         para[@"avatar"] = self.recordImage;
 
     }
+    
     NSString *sex = @"";
+    
     if (!self.boyButton.selected && !self.girlButton.selected) {
         para[@"sex"] = @"0";
         sex = @"0";
@@ -181,6 +184,7 @@
             
         }
     }
+    
     if (!csCharacterIsBlank(self.recordBirthday)) {
         para[@"birthday"] = self.recordBirthday;
 
@@ -189,7 +193,7 @@
     NSString *Url = CSURL_Profile_UserInfo;
     
     if (CS_UserIsMaster) {
-        Url = CSURL_Profile_UserInfo;
+        Url = CSURL_Profile_Masterinfo;
     }
     [CSNetManager sendPostRequestWithNeedToken:YES Url:Url Pameters:para success:^(id  _Nonnull responseObject) {
         if (CSInternetRequestSuccessful) {
@@ -203,7 +207,7 @@
             
            
             [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",CSGetResult[@"sex"]] forKey:@"CS_Sex"];
-            [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",CSGetResult[@"user_nickname"]] forKey:@"CS_User_Nickname"];
+            [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",CSGetResult[@"user_name"]] forKey:@"CS_User_Nickname"];
             
             
         }else {

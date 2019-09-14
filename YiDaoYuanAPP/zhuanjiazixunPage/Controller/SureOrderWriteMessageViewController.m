@@ -9,8 +9,9 @@
 #import "SureOrderWriteMessageViewController.h"
 #import "SureOrderCourseTableViewCell.h"
 #import "EasyUIChatViewController.h"
+#import "TimeChooseView.h"
 
-@interface SureOrderWriteMessageViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface SureOrderWriteMessageViewController ()<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, TimeChooseViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *surePayButton;
 
@@ -18,11 +19,22 @@
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *birthdayTF;
 @property (weak, nonatomic) IBOutlet UITextField *genderTF;
+@property (nonatomic, strong) TimeChooseView *timeView;
+
+
+
 
 @end
 
 @implementation SureOrderWriteMessageViewController
-
+- (TimeChooseView *)timeView {
+    if (!_timeView) {
+        _timeView = [[TimeChooseView alloc] initWithFrame:self.view.bounds];
+        _timeView.csTimeDelegate = self;
+        [self.view addSubview:_timeView];
+    }
+    return _timeView;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configSubViews];
@@ -80,6 +92,15 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.rowHeight = 73;
+    
+    self.birthdayTF.delegate = self;
+    
+    
+}
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    [self.view endEditing:YES];
+    self.timeView.hidden = NO;
+    return NO;
 }
 - (void)configSubViews {
     self.surePayButton.layer.cornerRadius = 5;
@@ -94,6 +115,9 @@
     NSDictionary *dic = [NSDictionary dictionaryWithObject:whiteColor forKey:NSForegroundColorAttributeName];
     
     [self.navigationController.navigationBar setTitleTextAttributes:dic];
+}
+- (void)passTime:(NSString *)time {
+    self.birthdayTF.text = time;
 }
 #pragma mark --UITableViewDelegate/DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

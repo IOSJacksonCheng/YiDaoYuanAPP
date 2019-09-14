@@ -180,9 +180,15 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
+        if (self.isWuLiu) {
+            return 0;
+        }
         return 1;
     }
     if (section == 1) {
+        if (self.isWuLiu) {
+            return 0;
+        }
         return 1 + self.productArray.count;
     }
     if (section == 2) {

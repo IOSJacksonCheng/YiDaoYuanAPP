@@ -43,7 +43,7 @@
     
     _itemArray = itemArray;
     
-     self.contentScrollView.contentSize = CGSizeMake(MainScreenWidth * self.itemArray.count, 316);
+     self.contentScrollView.contentSize = CGSizeMake(MainScreenWidth * self.itemArray.count, 305);
     self.pageController.numberOfPages = self.itemArray.count;
     
     [self configSubViews];
@@ -62,11 +62,11 @@
     self.topLabel.text = supModel.title;
 }
 - (void)configSubViews {
-    CGFloat height = 100;
+    CGFloat height = 80;
     
-    CGFloat X_Interval = 10;
+    CGFloat X_Interval = 20;
     
-    CGFloat XY_Distance = 8;
+    CGFloat XY_Distance = 16;
     
     CGFloat width = (MainScreenWidth - X_Interval *
                      2 - XY_Distance * 2) / 3.0;
@@ -103,12 +103,12 @@
             
             label.attributedText = string;
             
-            label.frame = CGRectMake(26,76,100,14);
+            label.frame = CGRectMake(20,60,100,14);
             label.numberOfLines = 0;
             
             [new addSubview:label];
             
-            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(25, 11, 60, 60)];
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(25, 2, 50, 50)];
            
            
             [new addSubview:imageView];
@@ -126,7 +126,6 @@
 - (void)clickView:(UITapGestureRecognizer *)tap {
     UIView *view = tap.view;
    
-    CSLog(@"%ld",view.tag);
     
    BOOL jump = [[NSUserDefaults standardUserDefaults] boolForKey:@"jump"];
     if (jump) {

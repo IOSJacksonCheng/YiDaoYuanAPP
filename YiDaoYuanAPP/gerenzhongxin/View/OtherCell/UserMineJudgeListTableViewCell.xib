@@ -179,6 +179,7 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="firstShanChangLabel" destination="TKh-vi-Hyi" id="brk-IL-oYh"/>
+                <outlet property="firstView" destination="0Ya-Vu-JDi" id="d19-oY-J3S"/>
                 <outlet property="fiveXingImageView" destination="c8a-Ss-Z2C" id="lc9-c7-nzE"/>
                 <outlet property="fourXingImageView" destination="hZa-RQ-h7i" id="Xg2-TI-Uh7"/>
                 <outlet property="headImageView" destination="qx0-Y6-BaJ" id="mKi-a7-Mkw"/>
@@ -187,6 +188,7 @@
                 <outlet property="pingFenLabel" destination="Pqy-yh-FXf" id="rmj-Kf-4wd"/>
                 <outlet property="qaLabel" destination="gRS-mp-IDm" id="Fi4-Bo-ula"/>
                 <outlet property="secondShanChangLabel" destination="eGW-ED-plY" id="5I1-YX-uem"/>
+                <outlet property="secondView" destination="Nt4-n6-QEt" id="phK-wB-9pu"/>
                 <outlet property="thirdShanChangLabel" destination="MlR-vo-2DX" id="cXU-UQ-pNW"/>
                 <outlet property="threeXingImageView" destination="LuI-c1-who" id="abf-Rc-uyN"/>
                 <outlet property="twoXingImageView" destination="6Rb-Fo-ZZs" id="jDq-4f-LWU"/>

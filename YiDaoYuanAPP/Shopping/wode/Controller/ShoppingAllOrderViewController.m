@@ -54,6 +54,7 @@ typedef NS_ENUM(NSInteger, CSCellType) {
 
 - (IBAction)clickKefuButtonDone:(id)sender;
 
+@property (nonatomic, assign) BOOL recordWuLiu;
 @end
 
 @implementation ShoppingAllOrderViewController
@@ -276,7 +277,7 @@ typedef NS_ENUM(NSInteger, CSCellType) {
     }
     AllOrderModel *model = [self getCurrentModel:indexPath.section];
     if (indexPath.row == model.goods.count + 2 - 1) {
-        if (model.status.integerValue == YiWanChengCSCellType || [model.status isEqualToString:@"-2"] || [model.status isEqualToString:@"-1"] || [model.status isEqualToString:@"-3"] || [model.status isEqualToString:@"1"]) {
+        if (model.status.integerValue == YiWanChengCSCellType || [model.status isEqualToString:@"-2"] || [model.status isEqualToString:@"-1"] || [model.status isEqualToString:@"-3"]) {
             return 36;
         }
         return 82;
@@ -498,8 +499,12 @@ typedef NS_ENUM(NSInteger, CSCellType) {
     }];
 }
 #pragma mark -- ShoppingAllOrderButtonTableViewCellDelegate
-- (void)clickCheckWuLiu {
+- (void)clickCheckWuLiuWithModel:(AllOrderModel *)model {
     
+    self.recordOrderId = model.order_id;
+    self.recordStatus = model.status;
+    self.recordWuLiu = YES;
+    [self performSegueWithIdentifier:@"ShoppingWaitReceiveGoodsViewController" sender:self];
 }
 - (void)clickCancelOrderDone {
     [self sendGetRequestForInfomation:self.currentCSCellType];
@@ -518,6 +523,7 @@ typedef NS_ENUM(NSInteger, CSCellType) {
         ShoppingWaitReceiveGoodsViewController *new = segue.destinationViewController;
         new.passOrderId = self.recordOrderId;
         new.passStatus = self.recordStatus;
+        new.isWuLiu = self.recordWuLiu;
     }
     /**else if ([segue.identifier isEqualToString:@"ShoppingHaveFinishedViewController"]) {
      ShoppingHaveFinishedViewController *new = segue.destinationViewController;

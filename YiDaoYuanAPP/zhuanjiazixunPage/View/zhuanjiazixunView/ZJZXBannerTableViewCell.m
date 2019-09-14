@@ -9,11 +9,11 @@
 #import "ZJZXBannerTableViewCell.h"
 #import "HomePageADModel.h"
 #import "ShopProductDetailViewController.h"
+#import "WkWebViewViewController.h"
 @interface ZJZXBannerTableViewCell() <UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *bannerScrollView;
 // top ad scrollview
-@property (nonatomic, strong) NSTimer *adTimer;
 
 @property (nonatomic, strong) UIImageView *leftImageView;
 @property (nonatomic, strong) UIImageView *centerImageView;
@@ -22,6 +22,9 @@
 
 @property (nonatomic, assign) NSUInteger currentImageIndex;
 @property (nonatomic, assign) NSUInteger imageCount;
+
+@property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, strong) NSDate *currentDate;
 @end
 @implementation ZJZXBannerTableViewCell
 
@@ -29,17 +32,18 @@
     [super awakeFromNib];
     // Initialization code
     
-    self.bannerScrollView.contentSize = CGSizeMake(MainScreenWidth * 3, 160);
+    CSLog(@"%f",self.bounds.size.height);
+    
     self.bannerScrollView.backgroundColor = UIColor.whiteColor;
     self.bannerScrollView.contentOffset = CGPointMake(MainScreenWidth, 0);
     self.bannerScrollView.bounces = NO;
-    
-    [self addImageViews];
-    
-    [self addPageControl];
+    self.bannerScrollView.pagingEnabled = YES;
+   
     
 }
-
+- (void)dealloc {
+    [self removeTimer];
+}
 -(void)setDefaultImage
 {
     if (_imageCount < 1) {
@@ -82,11 +86,20 @@
 -(void)addImageViews
 {
     
+    if (self.leftImageView) {
+        [self.leftImageView removeFromSuperview];
+    }
+    if (self.rightImageView) {
+        [self.rightImageView removeFromSuperview];
+    }
+    if (self.centerImageView) {
+        [self.centerImageView removeFromSuperview];
+    }
     
-    
-        self.leftImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, MainScreenWidth, 160)];
+        self.leftImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, MainScreenWidth, self.bounds.size.height)];
         self.leftImageView.backgroundColor = UIColor.whiteColor;
-        self.leftImageView.contentMode = UIViewContentModeScaleToFill;
+        self.leftImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.leftImageView.clipsToBounds = YES;
     self.leftImageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickCurrentView)];
     tap.numberOfTapsRequired = 1;
@@ -97,12 +110,14 @@
   
     
     
-        self.centerImageView = [[UIImageView alloc]initWithFrame:CGRectMake(MainScreenWidth, 0, MainScreenWidth, 160)];
+        self.centerImageView = [[UIImageView alloc]initWithFrame:CGRectMake(MainScreenWidth, 0, MainScreenWidth, self.bounds.size.height)];
     
         self.centerImageView.userInteractionEnabled = YES;
-        self.centerImageView.contentMode = UIViewContentModeScaleToFill;
+    self.centerImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.centerImageView.clipsToBounds = YES;
         
         [self.bannerScrollView addSubview:_centerImageView];
+    
     UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickCurrentView)];
     tap1.numberOfTapsRequired = 1;
     tap1.numberOfTouchesRequired = 1;
@@ -110,12 +125,11 @@
     
     
     
-    
-    
-        self.rightImageView = [[UIImageView alloc]initWithFrame:CGRectMake(2 * MainScreenWidth, 0, MainScreenWidth, 160)];
+        self.rightImageView = [[UIImageView alloc]initWithFrame:CGRectMake(2 * MainScreenWidth, 0, MainScreenWidth, self.bounds.size.height)];
       
-        self.rightImageView .contentMode = UIViewContentModeScaleToFill
-        ;
+    self.rightImageView .contentMode = UIViewContentModeScaleAspectFill;
+    self.rightImageView.userInteractionEnabled = YES;
+    self.rightImageView.clipsToBounds = YES;
         [self.bannerScrollView addSubview:self.rightImageView ];
     UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickCurrentView)];
     tap2.numberOfTapsRequired = 1;
@@ -128,31 +142,35 @@
         return;
     }
     
-    if (self.fromShopping) {
-        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"shopping" bundle:nil];
+    if (self.fromHomePage) {
         
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+
         
-        ShopProductDetailViewController *new = [mainStoryboard instantiateViewControllerWithIdentifier:@"ShopProductDetailViewController"];
-        HomePageADModel *model = self.adImageArray[self.currentImageIndex];
+        WkWebViewViewController *new = [mainStoryboard instantiateViewControllerWithIdentifier:@"WkWebViewViewController"];
         
-        new.passID = model.goods_id;
+        new.passUrl = @"http://xx.com/api/portal/site/fst";
+        
+        new.passTitle = @"奉思堂";
         
         [[CSUtility getCurrentViewController].navigationController pushViewController:new animated:YES];
+        return;
     }
+    
+//    if (self.fromShopping) {
+//        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"shopping" bundle:nil];
+//        
+//        
+//        ShopProductDetailViewController *new = [mainStoryboard instantiateViewControllerWithIdentifier:@"ShopProductDetailViewController"];
+//        HomePageADModel *model = self.adImageArray[self.currentImageIndex];
+//        
+//        new.passID = model.goods_id;
+//        
+//        [[CSUtility shoppingGetCurrentViewController].navigationController pushViewController:new animated:YES];
+//    }
    
 }
--(void)addPageControl
-{
-    
-    //设置颜色
-    self.pageControl.pageIndicatorTintColor = UIColor.whiteColor;
-    
-    self.pageControl.currentPageIndicatorTintColor = csBlueColor;
-    //设置总页数
-    self.pageControl.numberOfPages = _imageCount;
-    
-    
-}
+
 
 
 #pragma mark -- UIScrollViewDelegate
@@ -176,21 +194,46 @@
     [self addTimer];
 }
 - (void)removeTimer {
-    [self.adTimer invalidate];
-    self.adTimer = nil;
+    [_timer invalidate];
+    _timer= nil;
 }
 - (void)addTimer {
+    
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(nextPage) userInfo:nil repeats:YES];
-    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-    self.adTimer = timer;
+//  NSTimer *timer = [NSTimer timerWithTimeInterval:3 target:self selector:@selector(nextPage) userInfo:nil repeats:YES];
+//    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    _timer = timer;
 }
 - (void)nextPage {
+  
+    
+    if (!self.currentDate) {
+        
+        self.currentDate = [NSDate date];
+        
+    } else {
+        
+        int requestInterval = (int)[[NSDate date] timeIntervalSinceDate:self.currentDate];
+        
+        
+        if (requestInterval < 3) {
+            return;
+        }
+        self.currentDate = [NSDate date];
+    }
+  
+    
     self.bannerScrollView.contentOffset = CGPointMake(MainScreenWidth * 2, 0);
+  
     if (self.adImageArray.count >= 1) {
         [self reloadImage];
     }
+   
+    
     self.bannerScrollView.contentOffset = CGPointMake(MainScreenWidth, 0);
+    
     self.pageControl.currentPage = self.currentImageIndex;
+    
 }
 - (void)reloadImage {
     if (self.currentImageIndex >= self.adImageArray.count) {
@@ -222,13 +265,26 @@
     
 }
 - (void)setAdImageArray:(NSMutableArray *)adImageArray {
-   
+  
+    self.bannerScrollView.contentSize = CGSizeMake(MainScreenWidth * 3, self.frame.size.height);
+    [self addImageViews];
+    
     _adImageArray = adImageArray;
+   
     _imageCount = adImageArray.count;
-    
-        self.pageControl.numberOfPages = _imageCount;
-    
-    
+    self.pageControl.numberOfPages = adImageArray.count;
     [self setDefaultImage];
+
+
+    if (adImageArray.count > 1) {
+        
+        
+         [self addTimer];
+    }
+    
+    [self layoutIfNeeded];
 }
+
+
+
 @end

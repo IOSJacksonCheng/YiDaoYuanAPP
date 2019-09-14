@@ -107,9 +107,11 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="firstShanChangLabel" destination="4t7-Oa-M9w" id="hxb-yp-zMW"/>
+                <outlet property="firstView" destination="hQz-0E-Jbo" id="WhG-tM-O5f"/>
                 <outlet property="headImageView" destination="Td4-nc-PMt" id="vAa-ML-22W"/>
                 <outlet property="nameLabel" destination="WHM-Du-hK5" id="iwn-ae-omz"/>
                 <outlet property="secondShanChangLabel" destination="XVE-IR-oSn" id="A0u-P0-rYt"/>
+                <outlet property="secondView" destination="ehg-0Z-4G3" id="Ai3-y5-ViA"/>
                 <outlet property="thirdShanChangLabel" destination="Faa-jT-62j" id="w2k-IP-zAx"/>
             </connections>
             <point key="canvasLocation" x="121.59999999999999" y="58.920539730134934"/>

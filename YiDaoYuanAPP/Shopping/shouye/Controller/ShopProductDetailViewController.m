@@ -10,7 +10,7 @@
 #import "ShopProductDetailTitleTableViewCell.h"
 #import "ShopProductRepeatTitleTableViewCell.h"
 #import "ShopProductTitleTableViewCell.h"
-#import "ShopProductDetailBigImageTableViewCell.h"
+#import "ZJZXBannerTableViewCell.h"
 
 
 #import "ZJZXFirstRowModel.h"
@@ -96,7 +96,7 @@
         
         if (CSInternetRequestSuccessful) {
             
-            self.lunboImageArray = CSGetResult[@"img_lists"];
+            self.lunboImageArray = [CSParseManager getShoppingDetailHomePageADModelArrayWithResponseObject:CSGetResult[@"img_lists"]];
             NSString *best = [NSString stringWithFormat:@"%@",CSGetResult[@"best"]];
             if ([best isEqualToString:@"1"]) {
                 self.best = YES;
@@ -144,7 +144,7 @@
     
       [self.productTableView registerNib:[UINib nibWithNibName:CSCellName(ShopProductTitleTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(ShopProductTitleTableViewCell)];
     
-      [self.productTableView registerNib:[UINib nibWithNibName:CSCellName(ShopProductDetailBigImageTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(ShopProductDetailBigImageTableViewCell)];
+      [self.productTableView registerNib:[UINib nibWithNibName:CSCellName(ZJZXBannerTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(ZJZXBannerTableViewCell)];
     
     [self.productTableView registerNib:[UINib nibWithNibName:CSCellName(ShopDetailWebTableViewCell) bundle:nil] forCellReuseIdentifier:CSCellName(ShopDetailWebTableViewCell)];
     
@@ -201,8 +201,7 @@
     if (tableView.tag == 0) {
         
         if (indexPath.row == 0) {
-            ShopProductDetailBigImageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(ShopProductDetailBigImageTableViewCell)];
-         
+            ZJZXBannerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(ZJZXBannerTableViewCell)];
             cell.adImageArray = self.lunboImageArray;
             return cell;
         } else if (indexPath.row == 1) {
@@ -342,7 +341,7 @@
             
             return 310;
         } else if (indexPath.row == 1) {
-            return [self accrodingTextGiveItHeightWith:[NSString stringWithFormat:@"%@：%@",self.goods_name, self.intro]];
+            return [self accrodingTextGiveItHeightWith:[NSString stringWithFormat:@"%@：%@",self.goods_name, self.intro]] + 10;
         }else if (indexPath.row == 2) {
             return 50;
             

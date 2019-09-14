@@ -239,6 +239,7 @@
                 <outlet property="bgView" destination="ymB-hq-vHG" id="yus-ey-Y1b"/>
                 <outlet property="buttonView" destination="GtI-fa-O2m" id="czJ-Vi-AFh"/>
                 <outlet property="firstShanChangLabel" destination="lCG-RI-JxD" id="oAg-ir-jDa"/>
+                <outlet property="firstView" destination="U0Z-6H-j1Q" id="Y52-39-dlM"/>
                 <outlet property="fiveXingImageView" destination="d9t-VX-7wr" id="LYN-hp-RDa"/>
                 <outlet property="fourXingImageView" destination="CCA-ho-dCn" id="UTe-f9-nhl"/>
                 <outlet property="headImageView" destination="gg6-UP-BYU" id="eFm-dt-vUW"/>
@@ -249,6 +250,7 @@
                 <outlet property="pingFenLabel" destination="37y-5Z-Kcx" id="iua-Cj-0QN"/>
                 <outlet property="qaLabel" destination="31d-wZ-n4a" id="KtG-ig-vZ8"/>
                 <outlet property="secondShanChangLabel" destination="5yn-YM-sdx" id="bxP-Fo-FN9"/>
+                <outlet property="secondView" destination="Kex-n3-tL7" id="7f2-aU-PJN"/>
                 <outlet property="stateTitleLabel" destination="YB3-Ir-hUg" id="Bt4-mG-3XU"/>
                 <outlet property="thirdShanChangLabel" destination="ltH-gy-YFV" id="kbk-3X-kXf"/>
                 <outlet property="threeXingImageView" destination="l0m-U0-AAq" id="Wbn-Rv-5ed"/>

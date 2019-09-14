@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *money;
 @property (nonatomic, strong) NSString *dashangren;
 @property (nonatomic, strong) NSString *dashangqian;
+@property (nonatomic, assign) BOOL fromZanShang;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -24,7 +24,7 @@
 @property (nonatomic, strong) NSMutableArray *itemArray;
 
 @property (nonatomic, strong) NSString *recordCategoryId;
-
+@property (nonatomic, strong) NSString *recordTitle;
 @property (nonatomic, strong) NSString *recordPassId;
 @end
 
@@ -163,7 +163,7 @@
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             ZJZXBannerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(ZJZXBannerTableViewCell)];
-          
+            cell.fromShopping = YES;
             cell.adImageArray = self.bannerArray;
             return cell;
         }
@@ -179,9 +179,9 @@
     cell.model = model;
     return cell;
 }
-- (void)passID:(NSString *)passID {
+- (void)passID:(NSString *)passID WithTItle:(NSString *)title {
     self.recordCategoryId = passID;
-    
+    self.recordTitle = title;
     [self performSegueWithIdentifier:@"ShopManyProductViewController" sender:self];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -245,11 +245,21 @@
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"ShopProductDetailViewController"]) {
+     
         ShopProductDetailViewController *new = segue.destinationViewController;
+      
         new.passID = self.recordPassId;
+    
     } else if ([segue.identifier isEqualToString:@"ShopManyProductViewController"]) {
+        
         ShopManyProductViewController  *new = segue.destinationViewController;
+        
         new.passCategoryId = self.recordCategoryId;
+        
+        new.passTitle = self.recordTitle;
+        
     }
+    
 }
+
 @end

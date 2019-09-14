@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *showSecureButton;
 - (IBAction)clickShowSecureButtonDone:(id)sender;
 - (IBAction)clickForgetSecureNumberDone:(id)sender;
+- (IBAction)clickBackButtonDone:(id)sender;
 @property (nonatomic,strong) TencentOAuth *tencentOAuth;
 
 
@@ -77,6 +78,8 @@
 }
 - (void)sendPostRequest {
 
+    [self.view endEditing:YES];
+    
     if (csCharacterIsBlank(self.phoneTextField.text) || csCharacterIsBlank(self.secureTextField.text)) {
 
         CustomWrongMessage(@"请填写完整信息")
@@ -130,6 +133,17 @@
 }
 
 - (IBAction)clickForgetSecureNumberDone:(id)sender {
+    
+}
+
+- (IBAction)clickBackButtonDone:(id)sender {
+    
+    
+    [self.view endEditing:YES];
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    [UIApplication sharedApplication].keyWindow.rootViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"MainStoryboard"];
     
 }
 
@@ -281,7 +295,7 @@
     [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",result[@"user"][@"mobile"]] forKey:@"CS_Mobile"];
     
     
-    [[NSUserDefaults standardUserDefaults] setBool:[CSUtility handleNumber:result[@"user"][@"is_master"]] forKey:@"CS_UserIsMaster"];
+//    [[NSUserDefaults standardUserDefaults] setBool:[CSUtility handleNumber:result[@"user"][@"is_master"]] forKey:@"CS_UserIsMaster"];
     
     
     
