@@ -11,6 +11,9 @@
 #import "WXApi.h"
 
 #import <AlipaySDK/AlipaySDK.h>
+
+
+
 @interface YuEChongZhiViewController ()
 /** 10 */
 @property (weak, nonatomic) IBOutlet UIButton *button1;
@@ -166,11 +169,18 @@
 
 - (IBAction)clickSurePayButtonDone:(UIButton *)sender {
     
+    
+    
     if (self.recordMoney == 0) {
+
+
+
         CustomWrongMessage(@"请选择要充值的金额");
         return;
     }
-    
+
+
+
     NSMutableDictionary *para = @{}.mutableCopy;
     para[@"price"] = [NSString stringWithFormat:@"%d",self.recordMoney];
     para[@"type"] = @"1";
@@ -399,4 +409,7 @@
         }
     }];
 }
+
+
+
 @end

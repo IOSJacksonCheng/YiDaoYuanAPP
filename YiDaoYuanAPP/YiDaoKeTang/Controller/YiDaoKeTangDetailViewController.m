@@ -457,7 +457,7 @@
    
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            return 20 + 10 + 89 + [CSUtility accrodingTextGiveItHeightWith:self.ketangIntroduce WithLabelInterval:11 * 2 WithFont:15];
+            return 20 + 10 + 89 + [CSUtility accrodingTextGiveItHeightWith:self.introduceLabelString WithLabelInterval:11 * 2 WithFont:15];
         }
         if (indexPath.row == 1) {
            return 54;

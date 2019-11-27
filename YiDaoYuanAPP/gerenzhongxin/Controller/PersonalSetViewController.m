@@ -24,11 +24,11 @@
 @property (weak, nonatomic) IBOutlet UIButton *changeshengFenButton;
 - (IBAction)clickChangeIdentifyButtonDone:(id)sender;
 @end
-
 @implementation PersonalSetViewController
+
 - (CSShareView *)shareView {
     if (!_shareView) {
-        _shareView = [[CSShareView alloc] initWithFrame:self.view.bounds WithDelegate:self WithTitle:@"易道源" WithDescription:@"算命App" WithImage:DotaImageName(@"AppIcon") WithUrl:@"www.baidu.com"];
+        _shareView = [[CSShareView alloc] initWithFrame:self.view.bounds WithDelegate:self WithTitle:@"易道源" WithDescription:@"算命App" WithImage:DotaImageName(@"AppIcon") WithUrl:@"http://itunes.apple.com/cn/app/id1486602249?mt=8"];
     }
     return _shareView;
 }

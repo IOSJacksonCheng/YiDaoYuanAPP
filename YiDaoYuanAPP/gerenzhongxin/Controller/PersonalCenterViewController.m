@@ -353,7 +353,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         PersonalFirstRowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(PersonalFirstRowTableViewCell) forIndexPath:indexPath];
-        
+        cell.reloadRedView = @"123";
         cell.yidaoYuanLabel.text = [NSString stringWithFormat:@"%@元",CS_Coin];
         cell.yueYuanLabel.text = [NSString stringWithFormat:@"%@元",CS_Balance];
         [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:CS_Avatar] placeholderImage:CSUserImagePlaceHolder];

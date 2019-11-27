@@ -447,7 +447,6 @@ shouldSendHasReadAckForMessage:(EMMessage *)message
  @param image 发送图片
  @result
  */
-- (void)sendImageMessageWithData:(NSData *)imageData;
 - (void)sendImageMessage:(UIImage *)image;
 
 /*!
@@ -541,6 +540,5 @@ shouldSendHasReadAckForMessage:(EMMessage *)message
  */
 - (void)sendMessage:(EMMessage *)message
    isNeedUploadFile:(BOOL)isUploadFile;
-- (void)_customDownloadMessageFile:(EMMessage *)aMessage;
 
 @end

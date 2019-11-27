@@ -12,6 +12,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *greenImageView;
 @property (weak, nonatomic) IBOutlet UIView *redCircleView;
 
+@property (weak, nonatomic) IBOutlet UIView *consultRedCircleView;
 
 
 @end
@@ -31,7 +32,11 @@
     self.headImageView.layer.cornerRadius = 68 * 0.5;
     self.headImageView.layer.masksToBounds = YES;
     
-    self.redCircleView.hidden = YES;
+    
+    self.consultRedCircleView.layer.cornerRadius = 4;
+    
+    self.consultRedCircleView.layer.masksToBounds = YES;
+
     
 //    NSMutableDictionary *para = @{}.mutableCopy;
 
@@ -56,6 +61,52 @@
 //        }
 //    } failure:^(NSError * _Nonnull error) {
 //    }];
+
+}
+- (void)judgeRedViewHide {
+    
+    NSMutableDictionary *para = @{}.mutableCopy;
+   
+    if (CS_UserIsMaster) {
+        para[@"is_master"] = @"1";
+
+    }else {
+        para[@"is_master"] = @"0";
+
+    }
+    
+    
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_user_taskcount Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            
+            NSString *consult = [NSString stringWithFormat:@"%@",CSGetResult[@"consult"]];
+            NSString *answer = [NSString stringWithFormat:@"%@",CSGetResult[@"qa"]];
+
+            if (consult.floatValue > 0) {
+                self.consultRedCircleView.hidden = NO;
+            } else {
+                self.consultRedCircleView.hidden = YES;
+            }
+            if (answer.floatValue > 0) {
+                           self.redCircleView.hidden = NO;
+                       } else {
+                           self.redCircleView.hidden = YES;
+                       }
+            
+        }else {
+            self.redCircleView.hidden = YES;
+            
+            self.consultRedCircleView.hidden = YES;
+        }
+    } failure:^(NSError * _Nonnull error) {
+       
+        self.redCircleView.hidden = YES;
+        
+        self.consultRedCircleView.hidden = YES;
+
+    }];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -63,5 +114,8 @@
 
     // Configure the view for the selected state
 }
-
+- (void)setReloadRedView:(NSString *)reloadRedView {
+    _reloadRedView = reloadRedView;
+    [self judgeRedViewHide];
+}
 @end

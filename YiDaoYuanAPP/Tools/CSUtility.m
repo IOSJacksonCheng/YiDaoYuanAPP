@@ -487,4 +487,27 @@
 
     }];
 }
++ (void)checkIsDevelopStatus {
+    NSMutableDictionary *para = @{}.mutableCopy;
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_portal_index_isdev Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            
+            NSNumber *isdev = CSGetResult[@"is_dev"];
+            
+            if ([self handleNumber:isdev]) {
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"CSIsDev"];
+            } else {
+                [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"CSIsDev"];
+            }
+            
+           
+            
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+}
 @end

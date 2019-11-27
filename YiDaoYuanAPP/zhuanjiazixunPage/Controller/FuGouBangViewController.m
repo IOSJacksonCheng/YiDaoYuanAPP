@@ -50,7 +50,9 @@ typedef NS_ENUM(NSInteger, ListType) {
     [self configNavigationBar];
     
     [self configTableView];
+    
     self.currentType = HaoPingBangType;
+    
     [self changeButtonStatusWithTag:self.currentType];
 }
 

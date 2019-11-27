@@ -159,6 +159,8 @@
 #define CSURL_Portal_mcenter_qa @"portal/mcenter/qa"
 
 #define CSURL_Portal_user_consult @"portal/user/consult"
+#define CSURL_Portal_user_taskcount @"portal/user/taskcount"
+
 #define CSURL_Portal_user_qa @"portal/user/qa"
 #define CSURL_Portal_user_ismaster @"portal/user/ismaster"
 
@@ -221,7 +223,9 @@
 //商场
 #pragma mark -- //消息
 #define CSURL_portal_index_search @"portal/index/search"
+#define CSURL_portal_index_isdev @"portal/index/isdev"
 #define CSURL_portal_index_topad @"portal/index/topad"
+#define CSURL_portal_index_partnerimg @"portal/index/partnerimg"
 
 #define CSURL_msg_index @"portal/msg/index"
 #define CSURL_msg_del @"portal/msg/del"

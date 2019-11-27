@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *cityTextField;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 - (IBAction)clickSubmitDone:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *topImageView;
 
 @end
 
@@ -33,8 +34,25 @@
     
     [self configTableView];
     
+    [self getTopImageRequest];
 }
-
+- (void)getTopImageRequest {
+    
+    NSMutableDictionary *para = @{}.mutableCopy;
+    [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_portal_index_partnerimg Pameters:para success:^(id  _Nonnull responseObject) {
+        
+        if (CSInternetRequestSuccessful) {
+            
+            [self.topImageView sd_setImageWithURL:[NSURL URLWithString:CSGetResult[@"url"]] placeholderImage:PlaceHolderImage];
+            
+        }else {
+            CSShowWrongMessage
+        }
+    } failure:^(NSError * _Nonnull error) {
+        CSInternetFailure
+    }];
+    
+}
 - (void)configTableView {
     
 }

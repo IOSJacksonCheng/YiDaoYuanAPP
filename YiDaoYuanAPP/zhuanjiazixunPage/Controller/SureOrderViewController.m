@@ -106,6 +106,7 @@
 }
 #pragma mark --UITableViewDelegate/DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
     return 3;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -113,7 +114,13 @@
         return 2;
     }
     if (section == 1) {
+        if (CSIsDev) {
+            return 2;
+        }
         return 5;
+    }
+    if (CSIsDev) {
+        return 3;
     }
     if (self.currentClickIndex == 2) {
         return 3;
@@ -132,8 +139,30 @@
     }
     if (indexPath.section == 1) {
         
+        if (CSIsDev) {
+            
+            if (indexPath.row == 1) {
+                 YiDaoYuanZheKouTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(YiDaoYuanZheKouTableViewCell)];
+                          
+                           cell.beishu = self.beishu;
+                           
+                           return cell;
+            }
+            
+            PayMoneyWaysTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(PayMoneyWaysTableViewCell)];
+                   cell.explainLabel.hidden = YES;
+                    
+                       cell.titleImageView.image = DotaImageName(@"icon_yidaoyuan");
+                       cell.titleLabel.text = @"易道源支付";
+                       cell.explainLabel.hidden = NO;
+             cell.chooseImageView.image = DotaImageName(@"icon_xuanze");
+            return cell;
+            
+        }
+        
         if (indexPath.row == 2) {
             YiDaoYuanZheKouTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(YiDaoYuanZheKouTableViewCell)];
+           
             cell.beishu = self.beishu;
             
             return cell;
@@ -186,8 +215,17 @@
         }
       
     } else if (indexPath.row == 2) {
+       
         NSString *old = CS_Coin;
-        int dikou = old.intValue / self.beishu.intValue;
+       
+        int dikou = 0;
+
+        if (!csCharacterIsBlank(self.beishu)) {
+           
+            dikou = old.intValue / self.beishu.intValue;
+
+        }
+        
         
         float yingfu = self.infoModel.price.floatValue - dikou;
         
@@ -201,6 +239,12 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
+        
+        if (CSIsDev) {
+            self.currentClickIndex = 2;
+            [self.tableView reloadData];
+            return;
+        }
         
         self.currentClickIndex = indexPath.row + 1;
         [self.tableView reloadData];
@@ -216,7 +260,15 @@
         return 237;
     }
     if (indexPath.section == 1) {
-
+        
+        if (CSIsDev) {
+            if (indexPath.row == 1) {
+                return 75;
+            }
+        }
+        if (indexPath.row == 2) {
+            return 75;
+        }
         return 55;
     }
     return 44;

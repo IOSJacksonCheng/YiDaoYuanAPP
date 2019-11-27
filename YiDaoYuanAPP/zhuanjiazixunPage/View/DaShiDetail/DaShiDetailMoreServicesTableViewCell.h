@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DaShiDetailMoreServicesTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
 
 @end
 

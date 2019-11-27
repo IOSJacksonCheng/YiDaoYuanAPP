@@ -54,7 +54,9 @@
     
     self.sureButton.layer.cornerRadius = 5;
     self.currentClickIndex = 0;
-    
+    if (![self.passOrderType isEqualToString:@"4"] && CSIsDev) {
+           self.currentClickIndex = 2;
+       }
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(execute:) name:@"WXpayResult_Notification" object:nil];
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(execute:) name:@"AlipayResult_Notification" object:nil];
 }
@@ -77,13 +79,25 @@
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-   
+    if (![self.passOrderType isEqualToString:@"4"] && CSIsDev) {
+        return 1;
+    }
     return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
+    if (![self.passOrderType isEqualToString:@"4"] && CSIsDev) {
+        PayMoneyWaysTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(PayMoneyWaysTableViewCell)];
+           cell.explainLabel.hidden = YES;
+          
+               cell.titleImageView.image = DotaImageName(@"icon_yidaoyuan");
+               cell.titleLabel.text = @"易道源支付";
+               cell.explainLabel.hidden = NO;
+           
+           cell.chooseImageView.image = DotaImageName(@"icon_xuanze");
+           return cell;
+    }
     
     
     PayMoneyWaysTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(PayMoneyWaysTableViewCell)];
@@ -113,6 +127,9 @@
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (![self.passOrderType isEqualToString:@"4"] && CSIsDev) {
+        self.currentClickIndex = 2;
+    }
     self.currentClickIndex = (int)indexPath.row + 1;
     
     [self.moneyTableView reloadData];

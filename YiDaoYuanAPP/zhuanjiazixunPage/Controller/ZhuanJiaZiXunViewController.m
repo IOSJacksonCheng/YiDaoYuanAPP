@@ -125,48 +125,55 @@ CGFloat const AD_Height = 180;
 }
 - (void)sendGetRequest {
     
+    [self getBannerRequest];
+    [self getHotDaShi];
+    [self getUserPingLun];
+     [self getItemRequest];
+     [self getDashiLevel];
    
-    
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    
-    dispatch_group_t group = dispatch_group_create();
-    
-    dispatch_group_async(group, queue, ^{
-        [self getBannerRequest];
-
-    });
-    dispatch_group_async(group, queue, ^{
-        [self getHotDaShi];
-
-    });
-    
-    dispatch_group_async(group, queue, ^{
-        [self getUserPingLun];
-        
-    });
-    dispatch_group_async(group, queue, ^{
-        [self getItemRequest];
-        
-    });
-    
-    dispatch_group_async(group, queue, ^{
-        
-        [self getDashiLevel];
-        
-    });
-    
-    dispatch_group_notify(group, queue, ^{
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.mainTableView reloadData];
-            
-            
-            if (self.mainTableView.mj_header.isRefreshing) {
-                [self.mainTableView.mj_header endRefreshing];
-            }
-        });
-       
-    });
+    if (self.mainTableView.mj_header.isRefreshing) {
+                   [self.mainTableView.mj_header endRefreshing];
+               }
+//    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//
+//    dispatch_group_t group = dispatch_group_create();
+//
+//    dispatch_group_async(group, queue, ^{
+//        [self getBannerRequest];
+//
+//    });
+//    dispatch_group_async(group, queue, ^{
+//        [self getHotDaShi];
+//
+//    });
+//
+//    dispatch_group_async(group, queue, ^{
+//        [self getUserPingLun];
+//
+//    });
+//    dispatch_group_async(group, queue, ^{
+//        [self getItemRequest];
+//
+//    });
+//
+//    dispatch_group_async(group, queue, ^{
+//
+//        [self getDashiLevel];
+//
+//    });
+//
+//    dispatch_group_notify(group, queue, ^{
+//
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self.mainTableView reloadData];
+//
+//
+//            if (self.mainTableView.mj_header.isRefreshing) {
+//                [self.mainTableView.mj_header endRefreshing];
+//            }
+//        });
+//
+//    });
 
 
     
@@ -175,7 +182,7 @@ CGFloat const AD_Height = 180;
     
     NSMutableDictionary *para = @{}.mutableCopy;
     
-    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+//    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     
     [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_index_reclevel Pameters:para success:^(id  _Nonnull responseObject) {
         
@@ -184,61 +191,62 @@ CGFloat const AD_Height = 180;
         }else {
             
         }
-        dispatch_semaphore_signal(semaphore);
+        //dispatch_semaphore_signal(semaphore);
 
     } failure:^(NSError * _Nonnull error) {
-        dispatch_semaphore_signal(semaphore);
+//        dispatch_semaphore_signal(semaphore);
 
         CSInternetFailure
     }];
-    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+//    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
 }
 - (void)getBannerRequest {
     
-    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+//    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     NSMutableDictionary *para = @{}.mutableCopy;
     [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_hot_banner Pameters:para success:^(id  _Nonnull responseObject) {
         
         if (CSInternetRequestSuccessful) {
             self.adImageArray = [CSParseManager getHomePageADModelArrayWithResponseObject:CSGetResult[@"lists"]];
-            [self.mainTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+            [self.mainTableView reloadData];
         }else {
             CSShowWrongMessage
         }
-        dispatch_semaphore_signal(semaphore);
+//        dispatch_semaphore_signal(semaphore);
 
     } failure:^(NSError * _Nonnull error) {
-        dispatch_semaphore_signal(semaphore);
+//        dispatch_semaphore_signal(semaphore);
 
         CSInternetFailure
     }];
-    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+//    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
 
 }
 - (void)getItemRequest {
-    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    //dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
 
     NSMutableDictionary *para = @{}.mutableCopy;
     [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_hot_item Pameters:para success:^(id  _Nonnull responseObject) {
         
         if (CSInternetRequestSuccessful) {
             self.itemArray = [CSParseManager getFirstPageManyItemModelArrayWithResponseObject:CSGetResult[@"lists"]];
-            [self.mainTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:1]] withRowAnimation:UITableViewRowAnimationNone];
+//            [self.mainTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:1]] withRowAnimation:UITableViewRowAnimationNone];
+            [self.mainTableView reloadData];
         }else {
             CSShowWrongMessage
         }
-        dispatch_semaphore_signal(semaphore);
+       // dispatch_semaphore_signal(semaphore);
 
     } failure:^(NSError * _Nonnull error) {
         CSInternetFailure
-        dispatch_semaphore_signal(semaphore);
+       // dispatch_semaphore_signal(semaphore);
 
     }];
-    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+   // dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
 
 }
 - (void)getUserPingLun {
-    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+   // dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
 
     NSMutableDictionary *para = @{}.mutableCopy;
     
@@ -252,22 +260,22 @@ CGFloat const AD_Height = 180;
             
             self.userJudgeArray = [CSParseManager getUserPingLunFirstPageModelArrayWithResponseObject:CSGetResult[@"lists"]];
             
-
+            [self.mainTableView reloadData];
         }else {
             CSShowWrongMessage
         }
-        dispatch_semaphore_signal(semaphore);
+        //dispatch_semaphore_signal(semaphore);
 
     } failure:^(NSError * _Nonnull error) {
         CSInternetFailure
-        dispatch_semaphore_signal(semaphore);
+       // dispatch_semaphore_signal(semaphore);
 
     }];
-    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+   // dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
 
 }
 - (void)getHotDaShi {
-    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    //dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
 
     NSMutableDictionary *para = @{}.mutableCopy;
     [CSNetManager sendGetRequestWithNeedToken:YES Url:CSURL_Portal_Re Pameters:para success:^(id  _Nonnull responseObject) {
@@ -277,14 +285,14 @@ CGFloat const AD_Height = 180;
         }else {
             CSShowWrongMessage
         }
-        dispatch_semaphore_signal(semaphore);
+        //dispatch_semaphore_signal(semaphore);
 
     } failure:^(NSError * _Nonnull error) {
         CSInternetFailure
-        dispatch_semaphore_signal(semaphore);
+        //dispatch_semaphore_signal(semaphore);
 
     }];
-    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    //dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
 
 }
 -(void)startLocation{

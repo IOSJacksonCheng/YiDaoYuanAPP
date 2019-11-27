@@ -297,6 +297,13 @@
         
         if (row == 0) {
             DaShiDetailMoreServicesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CSCellName(DaShiDetailMoreServicesTableViewCell)];
+            
+            if (self.chooseMore) {
+                cell.iconImageView.image = DotaImageName(@"icon_shangla-2");
+            }else {
+                cell.iconImageView.image = DotaImageName(@"icon_xiala-2");
+            }
+            
             return cell;
         }
             
@@ -334,7 +341,9 @@
             CustomWrongMessage(@"暂无更多服务");
             return;
         }
+        
         self.chooseMore = !self.chooseMore;
+        
         [self.mainTableView reloadData];
     }
 }

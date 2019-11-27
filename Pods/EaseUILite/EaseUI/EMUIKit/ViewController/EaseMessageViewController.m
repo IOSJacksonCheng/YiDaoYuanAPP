@@ -27,6 +27,7 @@
 #import "EaseCustomMessageCell.h"
 #import "EaseLocalDefine.h"
 #import "EaseSDKHelper.h"
+
 #define KHintAdjustY    50
 
 #define IOS_VERSION [[UIDevice currentDevice] systemVersion]>=9.0
@@ -565,8 +566,6 @@ typedef enum : NSUInteger {
 
 - (void)_customDownloadMessageFile:(EMMessage *)aMessage
 {
-    
-    
     dispatch_async(dispatch_get_main_queue(), ^{
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:NSLocalizedString(@"message.autoTransfer", @"Please customize the  transfer attachment method") delegate:nil cancelButtonTitle:NSLocalizedString(@"sure", @"OK") otherButtonTitles:nil, nil];
         [alertView show];
@@ -925,14 +924,7 @@ typedef enum : NSUInteger {
         if (isCustomDownload) {
             [self _customDownloadMessageFile:model.message];
         } else {
-            
-//            [[EMClient sharedClient].chatManager downloadMessageAttachment:model.message progress:nil completion:^(EMMessage *message, EMError *error) {
-//                if (error) {
-//                    NSLog(@"%@ %@",error.debugDescription,error.errorDescription);
-//                }
-//            }];
             [[EMClient sharedClient].chatManager downloadMessageAttachment:model.message progress:nil completion:nil];
-            
         }
         
         return;
@@ -2004,7 +1996,6 @@ typedef enum : NSUInteger {
             }
         } completion:^(EMMessage *aMessage, EMError *aError) {
             [weakself.tableView reloadData];
-            
         }];
     }
 }
@@ -2037,9 +2028,6 @@ typedef enum : NSUInteger {
 {
     EMMessage *message = [EaseSDKHelper getTextMessage:text to:self.conversation.conversationId messageType:[self _messageTypeFromConversationType] messageExt:ext];
     [self sendMessage:message isNeedUploadFile:NO];
-    
-    
-    
 }
 
 - (void)sendLocationMessageLatitude:(double)latitude

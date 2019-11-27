@@ -16,6 +16,8 @@
 #import "WXApi.h"
 
 #import <AlipaySDK/AlipaySDK.h>
+
+#import "InAppPurchaseManager.h"
 @interface YiDaoYuanChongZhiViewController ()<UITableViewDelegate, UITableViewDataSource, YiDaoYuanCollectionTableViewCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *sureButton;
@@ -107,7 +109,10 @@
         CustomWrongMessage(@"请选择要充值的金额");
         return;
     }
-    
+    if (CSIsDev) {
+        [self inAppPurchase];
+        return;
+    }
     NSMutableDictionary *para = @{}.mutableCopy;
     para[@"price"] = self.currentModel.RMB;
     para[@"type"] = @"1";
@@ -235,6 +240,9 @@
 }
 #pragma mark --UITableViewDelegate/DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if (CSIsDev) {
+        return 2;
+    }
     return 3;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -291,6 +299,7 @@
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     
     if (indexPath.section == 2) {
         if (indexPath.row == 0) {
@@ -354,5 +363,89 @@
 - (IBAction)clickHideButtonDone:(id)sender {
     
     self.successView.hidden = YES;
+}
+
+#pragma mark- 内购
+-(void)inAppPurchase {
+    
+    NSString *productId = [NSString stringWithFormat:@"yidaoyuan.normal.com%@",self.currentModel.money];
+
+    if (self.currentModel.money.floatValue == 50) {
+        
+        productId = @"yidaoyuan.normal.com500";
+
+    }
+//    NSString *productId = @"yidaoyuan.normal.com100";
+    /// itunes connection产品id
+    [[InAppPurchaseManager getInstance] addProductIdentifiers:@[productId]];
+    
+    // 购买产品
+    [[InAppPurchaseManager getInstance] purchaseWithProductId:productId purchaseStatusBlock:^(SKPaymentTransaction *paymentTransaction, InAppPurchaseStatus status) {
+       
+        if(status == InAppPurchaseFailure) {
+            CSLog(@"未完成支付");
+            return;
+        }
+        
+//        NSString *productIdentifier = paymentTransaction.payment.productIdentifier;
+        
+        // 方法一 获取票据并向服务端提交票据信息
+        // 需要KK_RECEIPT_VALIDATAURL 配置服务端地址
+//        {
+//            [InAppPurchaseValidate ValidatReceipteWithSuccessBlock:^(id responesData) {
+//                // 提交成功
+//                NSLog(@"服务端已返回验证结果responesData");
+//
+//
+//            } failBlock:^(NSError *error) {
+//                NSLog(@"error:%@",error);
+//            }];
+//        }
+        
+        // 方法二 仅获取票据信息
+        {
+            [InAppPurchaseValidate loadReceiptWithSuccessBlock:^(id response) {
+                NSString *transactionReceiptsString =  (NSString *)response;
+                CSLog(@"%@",transactionReceiptsString);
+                // 向服务端提交票据信息
+                // 需要KK_RECEIPT_VALIDATAURL 配置服务端地址
+                
+               
+                NSMutableDictionary *para = @{}.mutableCopy;
+                
+            para[@"price"] = self.currentModel.RMB;
+                                  
+                para[@"type"] = @"1";
+                                                 
+                para[@"pay_type"] = @"5";
+
+                               
+                para[@"receipt_data"] = transactionReceiptsString;
+
+                                
+                
+                [CSNetManager sendPostRequestWithNeedToken:YES Url:CSURL_User_Recharge Pameters:para success:^(id  _Nonnull responseObject) {
+                    
+                    if (CSInternetRequestSuccessful) {
+                        self.successView.hidden = NO;
+                               
+                               self.successLabel.text = [NSString stringWithFormat:@"已为您的账户充值%@易道元",self.currentModel.money];
+                               [self updateCurrentMoney];
+                    }else {
+                    
+                        CustomWrongMessage(@"支付失败！");
+
+                    }
+                } failure:^(NSError * _Nonnull error) {
+                    CSInternetFailure
+                }];
+                
+
+            } failBlock:^(NSError *error) {
+                NSLog(@"error:%@",error);
+            }];
+        }
+        
+    }];
 }
 @end

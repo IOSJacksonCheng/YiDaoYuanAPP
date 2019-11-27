@@ -52,6 +52,7 @@
 #define CS_Mobile [[NSUserDefaults standardUserDefaults] valueForKey:@"CS_Mobile"]
 #define CS_UserIsMaster [[NSUserDefaults standardUserDefaults] boolForKey:@"CS_UserIsMaster"]
 
+#define CS_Cid [[NSUserDefaults standardUserDefaults] valueForKey:@"CID"]
 
 
 
@@ -77,6 +78,7 @@
 
 #define CS_BottomThirdShenImage [[NSUserDefaults standardUserDefaults] valueForKey:@"CS_BottomThirdShenImage"]
 
+#define CSIsDev  [[NSUserDefaults standardUserDefaults] boolForKey:@"CSIsDev"]
 
 #define CSIsLogin  [[NSUserDefaults standardUserDefaults] boolForKey:@"CSIsLogin"]
 

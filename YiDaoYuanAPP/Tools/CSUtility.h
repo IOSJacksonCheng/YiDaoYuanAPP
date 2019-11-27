@@ -41,6 +41,7 @@ typedef void(^updateRequestBlock)(BOOL updateSuccess);
 + (void)sendTextMessage:(NSString *)text WithOrderId:(NSString *)orderid;
 + (void)sendImageMessage:(UIImage *)image WithOrderId:(NSString *)orderid;
 + (void)sendVoiceMessageWithLocalPath:(NSString *)localPath duration:(NSInteger)duration WithOrderId:(NSString *)orderid;
++ (void)checkIsDevelopStatus;
 @end
 
 NS_ASSUME_NONNULL_END

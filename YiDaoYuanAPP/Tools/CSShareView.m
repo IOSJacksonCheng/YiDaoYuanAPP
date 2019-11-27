@@ -61,6 +61,7 @@ NSString * const csfuzhilianjie = @"复制链接";
         self.image = image;
         
         self.url = url;
+        
         self.csDelegate = delegate;
 
         UIColor *backGroundColor = [UIColor colorWithHexString:@"000000"];

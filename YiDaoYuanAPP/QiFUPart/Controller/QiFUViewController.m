@@ -916,6 +916,14 @@ NSString * const MusicPlayKey = @"MusciisPlayOrNot";
         CSLog(@"%@不存在",path);
 
     }
+    
+    if (csCharacterIsBlank(path)) {
+        
+        CustomWrongMessage(@"正在下载中，请稍后...");
+        return;
+        
+    }
+    
     NSURL *fileUrl=[NSURL fileURLWithPath:path];
     [self initPlayer];
     NSError *error = nil;

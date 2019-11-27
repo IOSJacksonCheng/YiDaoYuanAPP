@@ -151,14 +151,20 @@
 }
 - (void)sendVoiceMessageWithLocalPath:(NSString *)localPath duration:(NSInteger)duration {
     [super sendVoiceMessageWithLocalPath:localPath duration:duration];
+
     [CSUtility sendVoiceMessageWithLocalPath:localPath duration:duration WithOrderId:self.order_id];
 }
 - (void)sendTextMessage:(NSString *)text {
     [super sendTextMessage:text];
     [CSUtility sendTextMessage:text WithOrderId:self.order_id];
 }
+
 - (void)sendImageMessageWithData:(NSData *)imageData {
-    [super sendImageMessageWithData:imageData];
+    
+//    [super sendImageMessageWithData:imageData];
+    
+    [super sendImageMessage:[UIImage imageWithData:imageData]];
+    
     [CSUtility sendImageMessage:[UIImage imageWithData:imageData] WithOrderId:self.order_id];
 
     

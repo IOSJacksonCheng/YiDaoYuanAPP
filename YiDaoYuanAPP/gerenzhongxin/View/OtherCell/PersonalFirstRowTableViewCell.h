@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIView *yidaoyuanView;
 @property (weak, nonatomic) IBOutlet UILabel *yueYuanLabel;
 @property (weak, nonatomic) IBOutlet UILabel *yidaoYuanLabel;
+@property (nonatomic, strong) NSString *reloadRedView;
 @end
 
 NS_ASSUME_NONNULL_END

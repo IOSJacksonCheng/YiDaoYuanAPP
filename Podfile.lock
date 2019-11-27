@@ -22,6 +22,9 @@ PODS:
     - MWPhotoBrowser (~> 2.1.1)
   - HyphenateLite (3.5.5)
   - IQKeyboardManager (4.0.13)
+  - JCore (2.1.4)
+  - JPush (3.2.6):
+    - JCore (< 3.0.0, >= 2.0.0)
   - Masonry (1.0.2)
   - MBProgressHUD (0.9.2)
   - MJRefresh (3.1.15.3)
@@ -39,6 +42,7 @@ DEPENDENCIES:
   - AlipaySDK-iOS
   - EaseUILite (from `https://github.com/easemob/easeui-ios-hyphenate-cocoapods.git`, tag `3.5.1`)
   - IQKeyboardManager (~> 4.0.3)
+  - JPush
   - Masonry (~> 1.0.1)
   - MBProgressHUD (~> 0.9.2)
   - MJRefresh (~> 3.1.0)
@@ -46,12 +50,14 @@ DEPENDENCIES:
   - WechatOpenSDK
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - AFNetworking
     - AlipaySDK-iOS
     - DACircularProgress
     - HyphenateLite
     - IQKeyboardManager
+    - JCore
+    - JPush
     - Masonry
     - MBProgressHUD
     - MJRefresh
@@ -76,6 +82,8 @@ SPEC CHECKSUMS:
   EaseUILite: 50d9f9fd8a85777a19957c665412925d2845c793
   HyphenateLite: c3801b966857db275127d3ed2bf899cd1c6ad4f1
   IQKeyboardManager: 8eab4d8111418414619d1df8e4779ce5d0f8d7e2
+  JCore: d345c049141877eb61c33011455fdb5fcab1673f
+  JPush: 41dd48a69bd8c08abc692dc7f2b23c0fb281471f
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
@@ -83,6 +91,6 @@ SPEC CHECKSUMS:
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   WechatOpenSDK: 9b721089507c895d05f997408c30bb6e6f5f9b60
 
-PODFILE CHECKSUM: be10b86115191a4d02f767d7aa38ef6ca9440865
+PODFILE CHECKSUM: 3547ce3db6eefbdcf0a18d5d4862987c6cfd5763
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.3

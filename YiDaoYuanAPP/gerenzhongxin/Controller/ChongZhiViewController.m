@@ -60,6 +60,11 @@
     
     self.yidaoYuanButton.layer.cornerRadius = 5;
 
+    if (CSIsDev) {
+        self.yuEButton.hidden = YES;
+    }else {
+        self.yuEButton.hidden = NO;
+    }
 }
 
 - (void)configNavigationBar {

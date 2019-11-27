@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -211,6 +211,7 @@
 		2373C6FB229D5D4A004A6EA0 /* RightNowConsultIntroduceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2373C6F9229D5D4A004A6EA0 /* RightNowConsultIntroduceTableViewCell.xib */; };
 		2373C6FE229D6341004A6EA0 /* RightNowConsultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2373C6FD229D6341004A6EA0 /* RightNowConsultModel.m */; };
 		2373C701229D671E004A6EA0 /* UserJudgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2373C700229D671E004A6EA0 /* UserJudgeViewController.m */; };
+		237700B02359EBA4009CC8F6 /* CSAppPayTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 237700AF2359EBA4009CC8F6 /* CSAppPayTools.m */; };
 		2379C71522EDB55700C12F8A /* ShareCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2379C71322EDB55700C12F8A /* ShareCollectionViewCell.m */; };
 		2379C71622EDB55700C12F8A /* ShareCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2379C71422EDB55700C12F8A /* ShareCollectionViewCell.xib */; };
 		2379E3F32294DC920055FBDA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2379E3F22294DC920055FBDA /* AppDelegate.m */; };
@@ -343,6 +344,9 @@
 		23A5C6BD22A5F8FB005AA49B /* ShengXiaoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A5C6BC22A5F8FB005AA49B /* ShengXiaoModel.m */; };
 		23A5C6C122A5F94C005AA49B /* ShengXiaoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A5C6BF22A5F94C005AA49B /* ShengXiaoCollectionViewCell.m */; };
 		23A5C6C222A5F94C005AA49B /* ShengXiaoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23A5C6C022A5F94C005AA49B /* ShengXiaoCollectionViewCell.xib */; };
+		23AE97A1237A8B2000079B18 /* InAppPurchaseManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 23AE979C237A8B2000079B18 /* InAppPurchaseManager.mm */; };
+		23AE97A2237A8B2000079B18 /* InAppPurchaseValidate.m in Sources */ = {isa = PBXBuildFile; fileRef = 23AE979D237A8B2000079B18 /* InAppPurchaseValidate.m */; };
+		23AE97A3237A8B2000079B18 /* SKProduct+LocalizedPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 23AE979E237A8B2000079B18 /* SKProduct+LocalizedPrice.m */; };
 		23AF11ED22EC4A310010A99F /* ReplyDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 23AF11EC22EC4A310010A99F /* ReplyDetailModel.m */; };
 		23B0A34022A156CD002299E5 /* ChooseDaShiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B0A33F22A156CD002299E5 /* ChooseDaShiViewController.m */; };
 		23B0A34422A1583D002299E5 /* ChooseDaShiTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B0A34222A1583D002299E5 /* ChooseDaShiTableViewCell.m */; };
@@ -379,6 +383,7 @@
 		23B4AE8122B7843D00596E00 /* ShoppingDetailWuLiuInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23B4AE7F22B7843D00596E00 /* ShoppingDetailWuLiuInfoTableViewCell.xib */; };
 		23B4AE8522B7862700596E00 /* ShoppingDetailWuLiuInfoSecondRowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B4AE8322B7862700596E00 /* ShoppingDetailWuLiuInfoSecondRowTableViewCell.m */; };
 		23B4AE8622B7862700596E00 /* ShoppingDetailWuLiuInfoSecondRowTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23B4AE8422B7862700596E00 /* ShoppingDetailWuLiuInfoSecondRowTableViewCell.xib */; };
+		23B6C7E7237A835E0050078C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23B6C7E6237A835E0050078C /* StoreKit.framework */; };
 		23C3A535229D6F4000212BAF /* UserDefaultJudgeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C3A533229D6F4000212BAF /* UserDefaultJudgeTableViewCell.m */; };
 		23C3A536229D6F4000212BAF /* UserDefaultJudgeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23C3A534229D6F4000212BAF /* UserDefaultJudgeTableViewCell.xib */; };
 		23C3A539229D744C00212BAF /* AdmireMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C3A538229D744C00212BAF /* AdmireMoneyViewController.m */; };
@@ -853,6 +858,8 @@
 		2373C6FD229D6341004A6EA0 /* RightNowConsultModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RightNowConsultModel.m; sourceTree = "<group>"; };
 		2373C6FF229D671E004A6EA0 /* UserJudgeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserJudgeViewController.h; sourceTree = "<group>"; };
 		2373C700229D671E004A6EA0 /* UserJudgeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserJudgeViewController.m; sourceTree = "<group>"; };
+		237700AE2359EBA4009CC8F6 /* CSAppPayTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSAppPayTools.h; sourceTree = "<group>"; };
+		237700AF2359EBA4009CC8F6 /* CSAppPayTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSAppPayTools.m; sourceTree = "<group>"; };
 		2379C71222EDB55700C12F8A /* ShareCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareCollectionViewCell.h; sourceTree = "<group>"; };
 		2379C71322EDB55700C12F8A /* ShareCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareCollectionViewCell.m; sourceTree = "<group>"; };
 		2379C71422EDB55700C12F8A /* ShareCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShareCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -1079,6 +1086,14 @@
 		23A5C6BE22A5F94C005AA49B /* ShengXiaoCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShengXiaoCollectionViewCell.h; sourceTree = "<group>"; };
 		23A5C6BF22A5F94C005AA49B /* ShengXiaoCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShengXiaoCollectionViewCell.m; sourceTree = "<group>"; };
 		23A5C6C022A5F94C005AA49B /* ShengXiaoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShengXiaoCollectionViewCell.xib; sourceTree = "<group>"; };
+		23AE9795237A847E00079B18 /* YiDaoYuanAPP.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = YiDaoYuanAPP.entitlements; sourceTree = "<group>"; };
+		23AE9796237A847F00079B18 /* YiDaoYuanAPPRelease.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = YiDaoYuanAPPRelease.entitlements; sourceTree = "<group>"; };
+		23AE979B237A8B2000079B18 /* SKProduct+LocalizedPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKProduct+LocalizedPrice.h"; sourceTree = "<group>"; };
+		23AE979C237A8B2000079B18 /* InAppPurchaseManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = InAppPurchaseManager.mm; sourceTree = "<group>"; };
+		23AE979D237A8B2000079B18 /* InAppPurchaseValidate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppPurchaseValidate.m; sourceTree = "<group>"; };
+		23AE979E237A8B2000079B18 /* SKProduct+LocalizedPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKProduct+LocalizedPrice.m"; sourceTree = "<group>"; };
+		23AE979F237A8B2000079B18 /* InAppPurchaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppPurchaseManager.h; sourceTree = "<group>"; };
+		23AE97A0237A8B2000079B18 /* InAppPurchaseValidate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppPurchaseValidate.h; sourceTree = "<group>"; };
 		23AF11EB22EC4A310010A99F /* ReplyDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReplyDetailModel.h; sourceTree = "<group>"; };
 		23AF11EC22EC4A310010A99F /* ReplyDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReplyDetailModel.m; sourceTree = "<group>"; };
 		23B0A33E22A156CD002299E5 /* ChooseDaShiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChooseDaShiViewController.h; sourceTree = "<group>"; };
@@ -1138,6 +1153,7 @@
 		23B4AE8222B7862700596E00 /* ShoppingDetailWuLiuInfoSecondRowTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShoppingDetailWuLiuInfoSecondRowTableViewCell.h; sourceTree = "<group>"; };
 		23B4AE8322B7862700596E00 /* ShoppingDetailWuLiuInfoSecondRowTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShoppingDetailWuLiuInfoSecondRowTableViewCell.m; sourceTree = "<group>"; };
 		23B4AE8422B7862700596E00 /* ShoppingDetailWuLiuInfoSecondRowTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShoppingDetailWuLiuInfoSecondRowTableViewCell.xib; sourceTree = "<group>"; };
+		23B6C7E6237A835E0050078C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		23C3A532229D6F4000212BAF /* UserDefaultJudgeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserDefaultJudgeTableViewCell.h; sourceTree = "<group>"; };
 		23C3A533229D6F4000212BAF /* UserDefaultJudgeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserDefaultJudgeTableViewCell.m; sourceTree = "<group>"; };
 		23C3A534229D6F4000212BAF /* UserDefaultJudgeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDefaultJudgeTableViewCell.xib; sourceTree = "<group>"; };
@@ -1327,6 +1343,7 @@
 				2351C01A22CB381F000E5329 /* SystemConfiguration.framework in Frameworks */,
 				3EF042296F0BCAB9238D7999 /* libPods-YiDaoYuanAPP.a in Frameworks */,
 				2351C01922CB3806000E5329 /* TencentOpenAPI.framework in Frameworks */,
+				23B6C7E7237A835E0050078C /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1438,6 +1455,7 @@
 		23258E062294F88400EF44DC /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				23AE979A237A8B2000079B18 /* InAppPurchase */,
 				23FFD53E22EC95460051E3E8 /* QCStar */,
 				23258E072294F8B700EF44DC /* CSUtility.h */,
 				23258E082294F8B700EF44DC /* CSUtility.m */,
@@ -1456,6 +1474,8 @@
 				2379C71422EDB55700C12F8A /* ShareCollectionViewCell.xib */,
 				23F39CD722FAF76A0020F4AC /* TimeChooseView.h */,
 				23F39CD822FAF76A0020F4AC /* TimeChooseView.m */,
+				237700AE2359EBA4009CC8F6 /* CSAppPayTools.h */,
+				237700AF2359EBA4009CC8F6 /* CSAppPayTools.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -2034,6 +2054,8 @@
 		2379E3F02294DC920055FBDA /* YiDaoYuanAPP */ = {
 			isa = PBXGroup;
 			children = (
+				23AE9795237A847E00079B18 /* YiDaoYuanAPP.entitlements */,
+				23AE9796237A847F00079B18 /* YiDaoYuanAPPRelease.entitlements */,
 				233DBA1122EB344C009012D5 /* ChatUI */,
 				2379E40C2294E1C50055FBDA /* StoryboardPart */,
 				234F483122B24F28004D34DD /* Resource */,
@@ -2497,6 +2519,19 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		23AE979A237A8B2000079B18 /* InAppPurchase */ = {
+			isa = PBXGroup;
+			children = (
+				23AE979B237A8B2000079B18 /* SKProduct+LocalizedPrice.h */,
+				23AE979C237A8B2000079B18 /* InAppPurchaseManager.mm */,
+				23AE979D237A8B2000079B18 /* InAppPurchaseValidate.m */,
+				23AE979E237A8B2000079B18 /* SKProduct+LocalizedPrice.m */,
+				23AE979F237A8B2000079B18 /* InAppPurchaseManager.h */,
+				23AE97A0237A8B2000079B18 /* InAppPurchaseValidate.h */,
+			);
+			path = InAppPurchase;
+			sourceTree = "<group>";
+		};
 		23C9C47722A3C8B100FFFFEB /* DaShiRuZhuView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2667,6 +2702,7 @@
 		9B4865008A12AAB9D89727F9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				23B6C7E6237A835E0050078C /* StoreKit.framework */,
 				2334C2E722C3748900262FA7 /* CoreMotion.framework */,
 				2334C2E522C3747D00262FA7 /* CFNetwork.framework */,
 				2334C2E322C3746C00262FA7 /* Foundation.framework */,
@@ -2704,7 +2740,7 @@
 				2379E3EB2294DC910055FBDA /* Frameworks */,
 				2379E3EC2294DC910055FBDA /* Resources */,
 				DD02517AA9E51001B56A870A /* [CP] Copy Pods Resources */,
-				952E2B0CBDEAD953809B7ACE /* [CP] Embed Pods Frameworks */,
+				A4CE3551306567C65984D1E9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2931,22 +2967,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		952E2B0CBDEAD953809B7ACE /* [CP] Embed Pods Frameworks */ = {
+		A4CE3551306567C65984D1E9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-YiDaoYuanAPP/Pods-YiDaoYuanAPP-frameworks.sh",
-				"${PODS_ROOT}/HyphenateLite/iOS_Pods_IMSDK_V3.5.5/HyphenateLite.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YiDaoYuanAPP/Pods-YiDaoYuanAPP-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HyphenateLite.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YiDaoYuanAPP/Pods-YiDaoYuanAPP-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YiDaoYuanAPP/Pods-YiDaoYuanAPP-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YiDaoYuanAPP/Pods-YiDaoYuanAPP-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DD02517AA9E51001B56A870A /* [CP] Copy Pods Resources */ = {
@@ -2954,25 +2989,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-YiDaoYuanAPP/Pods-YiDaoYuanAPP-resources.sh",
-				"${PODS_ROOT}/AlipaySDK-iOS/AlipaySDK.bundle",
-				"${PODS_ROOT}/EaseUILite/EaseUI/resources/EaseUIResource.bundle",
-				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
-				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/MWPhotoBrowser/MWPhotoBrowser.bundle",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YiDaoYuanAPP/Pods-YiDaoYuanAPP-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AlipaySDK.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EaseUIResource.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MWPhotoBrowser.bundle",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YiDaoYuanAPP/Pods-YiDaoYuanAPP-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YiDaoYuanAPP/Pods-YiDaoYuanAPP-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YiDaoYuanAPP/Pods-YiDaoYuanAPP-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -3000,6 +3026,7 @@
 				23CB84E422A26E920004512D /* YiDaoKeTangDetailViewController.m in Sources */,
 				2371092E22A6662A001CF786 /* MingDengExplainTableViewCell.m in Sources */,
 				23C9C47B22A3C8DF00FFFFEB /* DaShiRuZhuTextFieldTableViewCell.m in Sources */,
+				237700B02359EBA4009CC8F6 /* CSAppPayTools.m in Sources */,
 				237ECEC022E80F22002B92D3 /* InputThreeNumTableViewCell.m in Sources */,
 				237AAF6822D724B1004080C8 /* NoAddressTableViewCell.m in Sources */,
 				233CB31922E5963900054D0F /* ChatViewController.m in Sources */,
@@ -3090,9 +3117,11 @@
 				23296D4E22F8084200F634E5 /* ChatVoiceLeftTableViewCell.m in Sources */,
 				23258E092294F8B700EF44DC /* CSUtility.m in Sources */,
 				23B3BEA822A3814900682A0E /* YiMoneyCollectionViewCell.m in Sources */,
+				23AE97A2237A8B2000079B18 /* InAppPurchaseValidate.m in Sources */,
 				23A5C6C122A5F94C005AA49B /* ShengXiaoCollectionViewCell.m in Sources */,
 				23C3A555229FAADB00212BAF /* SureOrderDaShiInfomationTableViewCell.m in Sources */,
 				231921632297E3AB00CADD7F /* CSTitleSearchView.m in Sources */,
+				23AE97A3237A8B2000079B18 /* SKProduct+LocalizedPrice.m in Sources */,
 				23296D4922F8079000F634E5 /* ChatRightImageTableViewCell.m in Sources */,
 				235D5437229BD0F30028591B /* DaShiDetailViewController.m in Sources */,
 				23A139C322F4149000D12231 /* KefuChatViewController.m in Sources */,
@@ -3274,6 +3303,7 @@
 				236F82E322A282B0003894D0 /* YiDaoKeTangDetailJudgeTableViewCell.m in Sources */,
 				2371092A22A66315001CF786 /* MingDengExplainViewController.m in Sources */,
 				231921102297CD2200CADD7F /* CSSearchViewController.m in Sources */,
+				23AE97A1237A8B2000079B18 /* InAppPurchaseManager.mm in Sources */,
 				23B3BEA122A37FEA00682A0E /* YiDaoYuanCollectionModel.m in Sources */,
 				23EB250822B75CE000F5CC89 /* ShoppingAddPersonalAddressTableViewCell.m in Sources */,
 				235C324A229FB0ED00446450 /* SureOrderMoneyTableViewCell.m in Sources */,
@@ -3451,21 +3481,25 @@
 			baseConfigurationReference = 4FB55DA717085005CF36E971 /* Pods-YiDaoYuanAPP.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = YiDaoYuanAPP/YiDaoYuanAPP.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0.3;
 				DEVELOPMENT_TEAM = XSN66725SV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/YiDaoYuanAPP/Resource",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/YiDaoYuanAPP/Other/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Jacky.com.YiDaoYuanAPP;
+				PRODUCT_BUNDLE_IDENTIFIER = com.normal.yidaoyuan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -3474,21 +3508,25 @@
 			baseConfigurationReference = 30E92645C0A1586562B7C4F6 /* Pods-YiDaoYuanAPP.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = YiDaoYuanAPP/YiDaoYuanAPPRelease.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0.3;
 				DEVELOPMENT_TEAM = XSN66725SV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/YiDaoYuanAPP/Resource",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/YiDaoYuanAPP/Other/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Jacky.com.YiDaoYuanAPP;
+				PRODUCT_BUNDLE_IDENTIFIER = com.normal.yidaoyuan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

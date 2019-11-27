@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,11 +14,11 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="263"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="262.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="480" height="263"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k7W-F5-NaS">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="262.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="263"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lIF-hc-tvw">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="100"/>
@@ -97,14 +95,24 @@
                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rmP-lu-WEB">
+                                        <rect key="frame" x="109" y="11" width="8" height="8"/>
+                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="8" id="cW0-XV-Jhq"/>
+                                            <constraint firstAttribute="height" constant="8" id="eWi-mn-GmS"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="7mT-lg-4sR" firstAttribute="centerX" secondItem="wfC-Tm-9jX" secondAttribute="centerX" id="1j1-r8-DcW"/>
+                                    <constraint firstItem="rmP-lu-WEB" firstAttribute="leading" secondItem="wfC-Tm-9jX" secondAttribute="trailing" constant="14" id="Dtb-OJ-hPO"/>
                                     <constraint firstItem="7mT-lg-4sR" firstAttribute="top" secondItem="wfC-Tm-9jX" secondAttribute="bottom" constant="10" id="FXD-qe-Mxd"/>
                                     <constraint firstItem="7mT-lg-4sR" firstAttribute="top" secondItem="wfC-Tm-9jX" secondAttribute="bottom" constant="10" id="S8B-WX-ohh"/>
                                     <constraint firstItem="wfC-Tm-9jX" firstAttribute="centerX" secondItem="hYe-LY-fAw" secondAttribute="centerX" id="f5L-uJ-5X7"/>
                                     <constraint firstAttribute="height" constant="83" id="i0R-Ea-yLN"/>
+                                    <constraint firstItem="rmP-lu-WEB" firstAttribute="top" secondItem="hYe-LY-fAw" secondAttribute="top" constant="11" id="ieE-Wi-yTX"/>
                                     <constraint firstItem="wfC-Tm-9jX" firstAttribute="top" secondItem="hYe-LY-fAw" secondAttribute="top" constant="15" id="tnu-5B-qHi"/>
                                 </constraints>
                             </view>
@@ -275,6 +283,7 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="answerView" destination="LTT-0E-QYd" id="EDB-lO-mBy"/>
+                <outlet property="consultRedCircleView" destination="rmP-lu-WEB" id="JKL-0X-jhW"/>
                 <outlet property="consultView" destination="hYe-LY-fAw" id="cG0-9d-LYo"/>
                 <outlet property="greenImageView" destination="sn9-q9-cS7" id="BmN-EP-aMx"/>
                 <outlet property="headImageView" destination="SBc-3a-x2t" id="PZA-Dg-i9H"/>
@@ -287,14 +296,14 @@
                 <outlet property="yuEView" destination="ba3-HU-67e" id="Hvn-pd-BeB"/>
                 <outlet property="yueYuanLabel" destination="w2e-A8-cQn" id="Xgz-n5-4G8"/>
             </connections>
-            <point key="canvasLocation" x="257.60000000000002" y="255.47226386806599"/>
+            <point key="canvasLocation" x="257.60000000000002" y="255.02248875562222"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="cicon_yu e" width="30" height="30"/>
-        <image name="icon_1_dingdan-1" width="30" height="30"/>
-        <image name="icon_2_answer-1" width="30" height="30"/>
-        <image name="icon_3_collect-1" width="30" height="30"/>
+        <image name="icon_1_dingdan-1" width="30.5" height="30"/>
+        <image name="icon_2_answer-1" width="30.5" height="30"/>
+        <image name="icon_3_collect-1" width="30.5" height="30"/>
         <image name="icon_yidaoyuan-1" width="30" height="30"/>
         <image name="img_user_zhanwei" width="90" height="90"/>
     </resources>

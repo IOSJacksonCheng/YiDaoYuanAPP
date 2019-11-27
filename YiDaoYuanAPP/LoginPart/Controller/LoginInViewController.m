@@ -11,71 +11,108 @@
 #import "WXApi.h"
 
 #import <TencentOpenAPI/TencentOAuth.h>
+
 #import <TencentOpenAPI/QQApiInterface.h>
 
-
 @interface LoginInViewController ()<WXApiDelegate, TencentSessionDelegate>
+
 - (IBAction)ckickRegisterButtonDone:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
+
 @property (weak, nonatomic) IBOutlet UITextField *secureTextField;
+
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
+
 - (IBAction)clickLoginButtonDone:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UIButton *showSecureButton;
+
 - (IBAction)clickShowSecureButtonDone:(id)sender;
+
 - (IBAction)clickForgetSecureNumberDone:(id)sender;
+
 - (IBAction)clickBackButtonDone:(id)sender;
+
 @property (nonatomic,strong) TencentOAuth *tencentOAuth;
 
+@property (weak, nonatomic) IBOutlet UIButton *weixinButton;
 
+@property (weak, nonatomic) IBOutlet UILabel *weixinLabel;
+@property (weak, nonatomic) IBOutlet UIButton *qqButton;
+
+@property (weak, nonatomic) IBOutlet UILabel *qqlabel;
 @end
 
 @implementation LoginInViewController
+
 - (void)viewWillAppear:(BOOL)animated {
+
     [super viewWillAppear:animated];
+
     self.navigationController.navigationBar.hidden = YES;
+
 }
+
 - (void)viewWillDisappear:(BOOL)animated {
+
     [super viewWillDisappear:animated];
+
 }
+
 - (void)viewDidLoad {
+
     [super viewDidLoad];
     
     [self configSubViews];
     
     [self configNavigationBar];
-    
- 
 }
 
 - (void)configSubViews {
+   
     self.loginButton.layer.cornerRadius = 24;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getLoginCode:) name:@"WXLoginstatus_Notification" object:nil];
+
+   if (![WXApi isWXAppInstalled]){
+        //没有安装微信的处理
+       self.weixinLabel.hidden = YES;
+       self.weixinButton.hidden = YES;
+    }
+    
+    if (![TencentOAuth iphoneQQInstalled]) {
+        self.qqlabel.hidden = YES;
+        self.qqButton.hidden = YES;
+    }
 }
+
 - (void)dealloc {
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+
 }
+
 - (void)configNavigationBar {
     
 }
+
 - (void)getLoginCode:(NSNotification *)info {
 
-
     [self sendPostRequestWithCodeInfo:info.object];
+
 }
 
 - (IBAction)ckickRegisterButtonDone:(id)sender {
     
-   
-    
 }
+
 - (IBAction)clickLoginButtonDone:(id)sender {
 
-    
     [self sendPostRequest];
-    
-    
+        
 }
+
 - (void)sendPostRequest {
 
     [self.view endEditing:YES];
@@ -100,6 +137,8 @@
     para[@"username"] = self.phoneTextField.text;
     para[@"password"] = self.secureTextField.text;
     para[@"device_type"] = @"iphone";
+    para[@"reg_id"] = CS_Cid;
+
     [CSNetManager sendPostRequestWithNeedToken:NO Url:CSURL_Login Pameters:para success:^(id  _Nonnull responseObject) {
         
         if (CSInternetRequestSuccessful) {
@@ -174,6 +213,7 @@
     NSMutableDictionary *para = @{}.mutableCopy;
     para[@"code"] = codeInfo;
     para[@"device_type"] = @"iphone";
+    para[@"reg_id"] = CS_Cid;
 
     [CSNetManager sendPostRequestWithNeedToken:NO Url:CSURL_Login_wechat Pameters:para success:^(id  _Nonnull responseObject) {
         if (CSInternetRequestSuccessful) {
@@ -193,6 +233,7 @@
 
 - (void)qqLogin
 {
+    
     self.tencentOAuth = [[TencentOAuth alloc]initWithAppId:CSQQAppId andDelegate:self];
     
     NSMutableArray *permission = [@[] mutableCopy];
@@ -200,17 +241,22 @@
     permission = [NSMutableArray arrayWithObjects:@"get_user_info",@"get_simple_userinfo",nil];
     
     [self.tencentOAuth authorize:permission inSafari:NO];
+    
 }
 
 #pragma mark --------- qq登录状态回调  TencentSessionDelegate-------
 - (void)tencentDidLogin{
+    
     if (_tencentOAuth.accessToken){
+        
         CSLog(@"%@ == %@",_tencentOAuth.accessToken,_tencentOAuth.openId);
 //        [self.tencentOAuth getUserInfo];
         NSMutableDictionary *para = @{}.mutableCopy;
         para[@"accesstoken"] = _tencentOAuth.accessToken;
         para[@"openid"] = _tencentOAuth.openId;
         para[@"device_type"] = @"iphone";
+        para[@"reg_id"] = CS_Cid;
+
         [CSNetManager sendPostRequestWithNeedToken:NO Url:CSURL_Login_QQ Pameters:para success:^(id  _Nonnull responseObject) {
             
             if (CSInternetRequestSuccessful) {
@@ -273,10 +319,10 @@
 
 
 - (void)handleResult:(id)result {
+    
     [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",result[@"token"]] forKey:@"CSGetToken"];
     
     [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",result[@"user"][@"id"]] forKey:@"CS_UserID"];
-    
     
     [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",result[@"user"][@"sex"]] forKey:@"CS_Sex"];
     
@@ -284,25 +330,20 @@
     
     [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",result[@"user"][@"coin"]] forKey:@"CS_Coin"];
     
-    
     [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",result[@"user"][@"balance"]] forKey:@"CS_Balance"];
     
     [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",result[@"user"][@"user_nickname"]] forKey:@"CS_User_Nickname"];
     
-    
     [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",result[@"user"][@"avatar"]] forKey:@"CS_Avatar"];
     
     [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",result[@"user"][@"mobile"]] forKey:@"CS_Mobile"];
-    
-    
-//    [[NSUserDefaults standardUserDefaults] setBool:[CSUtility handleNumber:result[@"user"][@"is_master"]] forKey:@"CS_UserIsMaster"];
-    
-    
     
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"CSIsLogin"];
     
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     [UIApplication sharedApplication].keyWindow.rootViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"MainStoryboard"];
+    
 }
+
 @end

@@ -47,7 +47,18 @@
         self.collectionView.backgroundColor = [UIColor colorWithHexString:@"FFFFFF"];
         [whiteView addSubview:self.collectionView];
         
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(27, self.collectionView.bounds.size.height + 10, 100, 30)];
+        CGRect buttonframe = CGRectMake(0, 0, 0, 0);
+        
+        if (IPHONE_X) {
+           
+            buttonframe = CGRectMake(27, self.collectionView.bounds.size.height - 20, 100, 30);
+        } else {
+           
+            buttonframe = CGRectMake(27, self.collectionView.bounds.size.height + 10, 100, 30);
+            
+        }
+        
+        UIButton *button = [[UIButton alloc] initWithFrame:buttonframe];
         
         [button setTitle:@"重置" forState:UIControlStateNormal];
         [button addTarget:self action:@selector(clickRestartDone) forControlEvents:UIControlEventTouchDown];
@@ -58,7 +69,19 @@
         
         [whiteView addSubview:button];
         
-        UIButton *button1 = [[UIButton alloc] initWithFrame:CGRectMake(whiteView.bounds.size.width - 27 - 100, self.collectionView.bounds.size.height + 10, 100, 30)];
+        
+        
+        CGRect buttonframe1 = CGRectMake(0, 0, 0, 0);
+        
+        if (IPHONE_X) {
+           
+            buttonframe1 = CGRectMake(whiteView.bounds.size.width - 27 - 100, self.collectionView.bounds.size.height - 20, 100, 30);
+        } else {
+           
+            buttonframe1 = CGRectMake(whiteView.bounds.size.width - 27 - 100, self.collectionView.bounds.size.height + 10, 100, 30);
+            
+        }
+        UIButton *button1 = [[UIButton alloc] initWithFrame:buttonframe1];
         
         [button1 setTitle:@"确定" forState:UIControlStateNormal];
         [button1 addTarget:self action:@selector(clickSureButton) forControlEvents:UIControlEventTouchDown];
